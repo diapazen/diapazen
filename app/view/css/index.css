@@ -1,0 +1,35 @@
+#info img{
+    display:inline-block;
+    margin-top: 40px;
+    width: 140px;
+    height: 140px;
+}
+
+#asterisk{
+    margin: 0px;
+    margin-left: 150px;
+    margin-bottom: 20px;
+}
+
+article{
+    display:inline-block;
+    vertical-align: top;
+    margin-top: 40px;
+    padding:0px;
+    width: 650px;
+    height: 140px;
+}
+
+article h2{
+    display:block;
+    margin:0px;
+    width:600px;
+    padding:0px;
+    margin-left: 10px;
+}
+
+article p{
+    margin-left: 15px;
+    margin-top: 10px;
+    padding:0px;
+}
