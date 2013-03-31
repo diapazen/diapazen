@@ -170,43 +170,62 @@
 
 /*---------------BOUTON---------------*/
 
-.button, .smallButton, .bigButton{
+.button, .smallButton, .bigButton, 
+.button2, .smallButton2, .bigButton2{
     padding: 0px;
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 3px;
     padding-bottom: 3px;
     border-radius: 2px;
+    font-family: zenText;
+}
+
+.button, .smallButton, .bigButton{
     border: 1px solid #ED2C00;
     background-color: #FF4820;
     color: #FFFFFF;
     box-shadow: 2px 2px 2px #ED2C00;
-    font-family: zenText;
 }
 
-.button{
+.button2, .smallButton2, .bigButton2{
+    border: 1px solid #919191;
+    background-color: #D0D0D0;
+    color: #919191;
+    box-shadow: 2px 2px 2px #919191;
+}
+
+.button, .button2{
     font-size: 1.2em;
 }
 
-.smallButton{
+.smallButton, .smallButton2{
     font-size: 0.8em;
 }
 
-.bigButton{
+.bigButton, .bigButton2{
     font-size: 1.6em;
 }
 
-.button:hover, .smallButton:hover, .bigButton:hover{
-    box-shadow: 1px 1px 2px #ED2C00;
+.button:hover, .smallButton:hover, .bigButton:hover, 
+.button2:hover, .smallButton2:hover, .bigButton2:hover{
     position:relative;
     left:1px;
     top:1px;
     cursor: pointer;
 }
 
+.button:hover, .smallButton:hover, .bigButton:hover{
+    box-shadow: 1px 1px 2px #ED2C00;
+}
+
+.button2:hover, .smallButton2:hover, .bigButton2:hover{
+    box-shadow: 1px 1px 2px #919191;
+} 
+
 /*------------FIL D'ARIANE-----------*/
 
-.ariadne1, .ariadne2{
+.ariadne, .ariadne2{
     padding-top: 10px;
     display: inline-block;
     text-align: center;
@@ -214,25 +233,17 @@
     width: 260px;
     text-decoration: none;
     font-size: 1.2em;
-    font-family: zenItalic;
+    font-family: zenText;
 }
 
-.ariadne1{
-    background: url('../media/pictures/ariadne1.png') no-repeat;
-    color:#919191;
+.ariadne{
+    color: #FFFFFF;
+    background: url('../media/pictures/ariadne.png') no-repeat;
 }
 
 .ariadne2{
+    color:#919191;
     background: url('../media/pictures/ariadne2.png') no-repeat;
-    color: #FFFFFF;
-}
-
-.ariadne1:hover{
-    font-family: zenText;
-}
-
-.ariadne2:hover{
-    font-family: zenText;
 }
 
 /*------------------------------------*/
