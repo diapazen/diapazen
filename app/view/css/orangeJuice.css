@@ -204,4 +204,35 @@
     cursor: pointer;
 }
 
+/*------------FIL D'ARIANE-----------*/
+
+.ariadne1, .ariadne2{
+    padding-top: 10px;
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    width: 260px;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-family: zenItalic;
+}
+
+.ariadne1{
+    background: url('../media/pictures/ariadne1.png') no-repeat;
+    color:#919191;
+}
+
+.ariadne2{
+    background: url('../media/pictures/ariadne2.png') no-repeat;
+    color: #FFFFFF;
+}
+
+.ariadne1:hover{
+    font-family: zenText;
+}
+
+.ariadne2:hover{
+    font-family: zenText;
+}
+
 /*------------------------------------*/
