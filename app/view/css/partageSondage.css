@@ -1,0 +1,31 @@
+#ariadneThread{
+	margin-bottom: 20px;
+}
+
+.title, .bigTitle, .bigText, .bigLink, .smallTextEdit{
+	margin-bottom: 10px;
+}
+
+.bigLink{
+	display:block;
+	border: 0px;
+}
+
+.bigLink:hover{
+	border: 0px;
+}
+
+.button{
+	display: block;
+	margin-bottom: 30px;
+}
+
+.bigLink, .bigText, .smallTextEdit, .button{
+	margin-left: 10px;
+}
+
+.smallTextEdit{
+	min-width: 300px;
+	max-width: 780px;
+	min-height: 7em;
+}
