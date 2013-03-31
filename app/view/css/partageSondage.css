@@ -2,25 +2,24 @@
 	margin-bottom: 20px;
 }
 
-.title, .bigTitle, .bigText, .bigLink, .smallTextEdit{
+.bigTitle, .title, .smallTitle, #shareInfo, #linkOutput, .smallTextEdit{
 	margin-bottom: 10px;
 }
 
-.bigLink{
+#linkOutput{
 	display:block;
 	border: 0px;
 }
 
-.bigLink:hover{
+#linkOutput:hover{
 	border: 0px;
 }
 
 .button{
 	display: block;
-	margin-bottom: 30px;
 }
 
-.bigLink, .bigText, .smallTextEdit, .button{
+#linkOutput, #shareInfo, .smallTextEdit, .button{
 	margin-left: 10px;
 }
 
