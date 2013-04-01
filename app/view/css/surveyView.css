@@ -20,7 +20,7 @@
 
 
 #survey-choices tr {
-	border-bottom: 1px black solid;
+	border-bottom: 1px #919191 solid;
 }
 
 #survey-choices tr:last-child {
@@ -28,7 +28,7 @@
 }
 
 #survey-choices td {
-	border-right: 1px black solid;
+	border-right: 1px #919191 solid;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	text-align: center;
