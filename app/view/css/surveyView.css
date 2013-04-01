@@ -1,5 +1,5 @@
 #survey {
-	min-height: 600px;
+	height: 600px;
 }
 
 #survey-choices {
@@ -8,7 +8,7 @@
 	overflow-y: auto;
 	border: 1px #FF4820 solid;
 	border-radius:5px;
-	max-height: 600px;
+	max-height: 400px;
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
@@ -32,7 +32,22 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 	text-align: center;
+	position: relative;
+}
 
+#survey-choices td link:hover {
+
+}
+
+#survey-choices td div {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	left: 350px;
+	top: 0px;
+	z-index: 10;
+	display: none;
+	border: 1px black solid;
 }
 
 #survey-choices td:last-child {
