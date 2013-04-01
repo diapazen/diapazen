@@ -1,19 +1,30 @@
 /*-----------------------------------------------------------------------------*/
 /*----------------------------------POLICES------------------------------------*/
 /*-----------------------------------------------------------------------------*/
-@font-face {
-    font-family: 'zenTitle';
-    src: url('../media/fonts/architects-daughter-fontfacekit/ArchitectsDaughter-webfont.eot');
-    src: url('../media/fonts/architects-daughter-fontfacekit/ArchitectsDaughter-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../media/fonts/architects-daughter-fontfacekit/ArchitectsDaughter-webfont.woff') format('woff'),
-         url('../media/fonts/architects-daughter-fontfacekit/ArchitectsDaughter-webfont.ttf') format('truetype'),
-         url('../media/fonts/architects-daughter-fontfacekit/ArchitectsDaughter-webfont.svg#ArchitectsDaughterRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+
+/*License for all "La Tipomatika" fonts
+
+License: Freeware
+
+By downloading a La Tipomatika typeface, you agree to these terms of use:
+
+You can use these fonts as freeware, can be used for commercial and for non-commercial works too.
+If you send me an e-mail with information about your commercial work, I will be grateful for it.
+
+All "La Tipomatika" Fonts are the sole property of "Joan Alegret" and "La Tipomatika". 
+All rights are reserved.
+
+You may not sell any of these Fonts.
+You may not edit a Font's outlines, data or name. Nor may you create alternate versions of a Font.
+No Font may be included on a CD or mass distributed in any other way without first obtaining my permission.
+
+for more information please visit
+
+www.tipomatika.co.nr
+tipomatika@gmail.com*/
 
 @font-face {
-    font-family: 'zenText';
+    font-family: 'CandelaBook';
     src: url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.eot');
     src: url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.eot?#iefix') format('embedded-opentype'),
          url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.woff') format('woff'),
@@ -24,7 +35,7 @@
 }
 
 @font-face {
-    font-family: 'zenItalic';
+    font-family: 'CandelaBookItalic';
     src: url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.eot');
     src: url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.eot?#iefix') format('embedded-opentype'),
          url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.woff') format('woff'),
@@ -35,7 +46,7 @@
 }
 
 @font-face {
-    font-family: 'zenBold';
+    font-family: 'CandelaBold';
     src: url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.eot');
     src: url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.eot?#iefix') format('embedded-opentype'),
          url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.woff') format('woff'),
@@ -46,7 +57,7 @@
 }
 
 @font-face {
-    font-family: 'zenBoldItalic';
+    font-family: 'CandelaBoldItalic';
     src: url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.eot');
     src: url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
          url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.woff') format('woff'),
@@ -56,6 +67,8 @@
     font-style: normal;
 }
 
+/*Copyright (c) 2013, Guillaume Bauduin*/
+
 /*-----------------------------------------------------------------------------*/
 /*----------------------------------CLASSES------------------------------------*/
 /*-----------------------------------------------------------------------------*/
@@ -63,7 +76,7 @@
 /*----------------TITRE---------------*/
 
 .title, .smallTitle, .bigTitle{
-    font-family: zenBold;
+    font-family: CandelaBold;
     color:#FF4820;   
 }
 
@@ -82,7 +95,7 @@
 /*--------------TEXTE-----------------*/
 
 .text, .smallText, .bigText{
-    font-family: zenText;
+    font-family: CandelaBook;
     color:#919191;
 }
 
@@ -101,7 +114,7 @@
 /*---------------GRAS-----------------*/
 
 .bold, .smallBold, .bigBold{
-    font-family: zenBold;
+    font-family: CandelaBold;
     color:#919191;
 }
 
@@ -121,7 +134,7 @@
 
 .link, .smallLink, .bigLink{
     text-decoration: none;
-    font-family: zenText;
+    font-family: CandelaBook;
     border-bottom: 1px solid #919191;
     color:#919191;
 }
@@ -153,7 +166,7 @@
     border: 1px solid #D0D0D0;
     border-radius: 2px;
     color: #919191;
-    font-family: zenText;
+    font-family: CandelaBook;
 }
 
 .textEdit{
@@ -178,20 +191,19 @@
     padding-top: 3px;
     padding-bottom: 3px;
     border-radius: 2px;
-    font-family: zenText;
+    color: #FFFFFF;
+    font-family: CandelaBook;
 }
 
 .button, .smallButton, .bigButton{
     border: 1px solid #ED2C00;
     background-color: #FF4820;
-    color: #FFFFFF;
     box-shadow: 2px 2px 2px #ED2C00;
 }
 
 .button2, .smallButton2, .bigButton2{
     border: 1px solid #919191;
     background-color: #D0D0D0;
-    color: #919191;
     box-shadow: 2px 2px 2px #919191;
 }
 
@@ -233,16 +245,15 @@
     width: 260px;
     text-decoration: none;
     font-size: 1.2em;
-    font-family: zenText;
+    color: #FFFFFF;
+    font-family: CandelaBook;
 }
 
 .ariadne{
-    color: #FFFFFF;
     background: url('../media/pictures/ariadne.png') no-repeat;
 }
 
 .ariadne2{
-    color:#919191;
     background: url('../media/pictures/ariadne2.png') no-repeat;
 }
 
