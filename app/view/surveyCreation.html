@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="css/orangeJuice.css">
         <link rel="stylesheet" type="text/css" href="css/diapazen.css">
-        <link rel="stylesheet" type="text/css" href="css/creationSondage.css">
+        <link rel="stylesheet" type="text/css" href="css/surveyCreation.css">
         <title></title>
     </head>
  
@@ -15,12 +15,12 @@
             <header>
                 <img id="logo" src="media/pictures/diapazen.png" alt="">
                 <!----
-                <div id="connect">
+                <form action="" id="connect">
                     <h3 class="smallTitle">Se connecter</h3>
                     <input id="mailUser" class="smallTextEdit" type="mail" placeholder="E-mail">
                     <input id="pwdUser" class="smallTextEdit" type="password" placeholder="Mot de passe">
-                    <input class ="smallButton" type="button" value="Connexion">
-                </div>
+                    <input class ="smallButton" type="submit" value="Connexion">
+                </form>
                 <!---->
             </header>
 
@@ -29,25 +29,25 @@
                 <a class="ariadne2" href="#">Connexion</a>
                 <a class="ariadne2" href="#">Partage</a>
             </div>
-
-            <h1 class="smallTitle">Paramètres :</h1>
-            <input class="bigText" id="titleInput" type="text" placeholder="Titre">
-            <textarea class="text" id="descriptionInput" placeholder="Description"></textarea>
-            <h1 class="smallTitle">Vos choix :</h1>
-            <div class="choice">
-                <input class="text" type="text" value="Choix 1">
-                <input class="smallButton2" type="button" value="x">
-            </div>
-            <div class="choice">
-                <input class="text" type="text" placeholder="Choix 2">
-                <input class="smallButton" type="button" value="+">
-            </div>
-            <input class="button" type="button" value="Etape suivante">
-
+            <form action="surveyConnection.html">
+                <h1 class="smallTitle">Paramètres :</h1>
+                <input class="bigText" id="titleInput" type="text" placeholder="Titre">
+                <textarea class="text" id="descriptionInput" placeholder="Description"></textarea>
+                <h1 class="smallTitle">Vos choix :</h1>
+                <div class="choice">
+                    <input class="text" type="text" value="Choix 1">
+                    <input class="smallButton2" type="button" value="x">
+                </div>
+                <div class="choice">
+                    <input class="text" type="text" placeholder="Choix 2">
+                    <input class="smallButton" type="button" value="+">
+                </div>
+                <input class="button" type="submit" value="Etape suivante">
+            </form>
             <footer>
                 <nav>
                     <ul>
-                        <li><a class="link" href="#">Accueil</a></li>
+                        <li><a class="link" href="index.html">Accueil</a></li>
                         <li><a class="link" href="#">A propos</a></li>
                         <li><a class="link" href="#">Contact</a></li>
                     </ul>

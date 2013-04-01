@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="css/orangeJuice.css">
         <link rel="stylesheet" type="text/css" href="css/diapazen.css">
-        <link rel="stylesheet" type="text/css" href="css/partageSondage.css">
+        <link rel="stylesheet" type="text/css" href="css/surveyShare.css">
         <title></title>
     </head>
  
@@ -15,12 +15,12 @@
             <header>
                 <img id="logo" src="media/pictures/diapazen.png" alt="">
                 <!----
-                <div id="connect">
+                <form action="" id="connect">
                     <h3 class="smallTitle">Se connecter</h3>
                     <input id="mailUser" class="smallTextEdit" type="mail" placeholder="E-mail">
                     <input id="pwdUser" class="smallTextEdit" type="password" placeholder="Mot de passe">
-                    <input class ="smallButton" type="button" value="Connexion">
-                </div>
+                    <input class ="smallButton" type="submit" value="Connexion">
+                </form>
                 <!---->
             </header>
 
@@ -29,20 +29,20 @@
                 <a class="ariadne2" href="#">Connexion</a>
                 <a class="ariadne" href="#">Partage</a>
             </div>
-
-            <h1 class="bigTitle">Félicitations !</h1>
-            <h2 class="title">Votre sondage a été créé !</h2>
-            <h3 class="smallTitle">Votre lien :</h3>
-            <a class="link" id="linkOutput" href="#">http//www.diapazen.com/12AB34CD</a>
-            <h3 class="smallTitle">Partagez :</h3>
-            <p class="text" id="shareInfo">Le lien ci-dessus leur sera envoyé</p>
-            <textarea class="smallTextEdit" placeholder="mail.example@mail.com"></textarea>
-            <input class="button" type="button" value="Partager">
-            
+            <form action="surveyView.html">
+                <h1 class="bigTitle">Félicitations !</h1>
+                <h2 class="title">Votre sondage a été créé !</h2>
+                <h3 class="smallTitle">Votre lien :</h3>
+                <a class="link" id="linkOutput" href="surveyView.html">http//www.diapazen.com/12AB34CD</a>
+                <h3 class="smallTitle">Partagez :</h3>
+                <p class="text" id="shareInfo">Le lien ci-dessus leur sera envoyé</p>
+                <textarea class="smallTextEdit" placeholder="mail.example@mail.com"></textarea>
+                <input class="button" type="submit" value="Partager">
+            </form>
             <footer>
                 <nav>
                     <ul>
-                        <li><a class="link" href="#">Accueil</a></li>
+                        <li><a class="link" href="index.html">Accueil</a></li>
                         <li><a class="link" href="#">A propos</a></li>
                         <li><a class="link" href="#">Contact</a></li>
                     </ul>

@@ -14,15 +14,18 @@
 
             <header>
                 <img id="logo" src="media/pictures/diapazen.png" alt="">
-                <div id="connect">
+                <form action="surveyView.html" id="connect">
                     <h3 class="smallTitle">Se connecter</h3>
                     <input id="mailUser" class="smallTextEdit" type="mail" placeholder="E-mail">
                     <input id="pwdUser" class="smallTextEdit" type="password" placeholder="Mot de passe">
-                    <input class ="smallButton" type="button" value="Connexion">
-                </div>
+                    <input class ="smallButton" type="submit" value="Connexion">
+                </form>
             </header>
 
-            <input class ="bigButton" type="button" value="Créer un sondage">
+            <form action="surveyCreation.html">
+                <input class ="bigButton" type="submit" value="Créer un sondage">
+            </form>
+
             <div id="info">
                 <img src="media/pictures/zen1.png" alt="">
                 <article>
@@ -45,7 +48,7 @@
             <footer>
                 <nav>
                     <ul>
-                        <li><a class="link" href="#">Accueil</a></li>
+                        <li><a class="link" href="index.html">Accueil</a></li>
                         <li><a class="link" href="#">A propos</a></li>
                         <li><a class="link" href="#">Contact</a></li>
                     </ul>
