@@ -45,7 +45,7 @@ class Config
 	 */
 	public static function getDatabaseConfig($configName = "")
 	{
-		return empty($configName) ? mDb["default"] : mDb[$configName];
+		return empty($configName) ? $mDb["default"] : $mDb[$configName];
 	}
 
 }
