@@ -25,7 +25,7 @@
  *
  */
 
-
+require_once "defineConstant.inc.php";
 class coreLoader{
 
     public function __construct()
@@ -42,37 +42,50 @@ class coreLoader{
     private function load($className)
     {
         
+        //la classe est un controller
         $regexp='/[a-z]+Controller$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'controller'.DIRECTORY_SEPARATOR.ucfirst($className).'.class.php';
+            $classPath = WEB_ROOT.'app'.DS.'controller'.DS.ucfirst($className)
+                .'.class.php';
         }
-        $regexp='/[a-z]+Model$/';
+        //la classe est un model
+        $regexp='/[a-z]+Model$/'; 
         if(preg_match( $regexp, $className))
         {
-            $classPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'model'.DIRECTORY_SEPARATOR.ucfirst($className).'.class.php';
+            $classPath = WEB_ROOT.'app'.DS.'model'.DS.ucfirst($className)
+                .'.class.php';
         }
+
+        //la classe est une vue
         $regexp='/[a-z]+View$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'view'.DIRECTORY_SEPARATOR.ucfirst($className).'.class.php';
+            $classPath = WEB_ROOT.'app'.DS.'view'.DS.ucfirst($className)
+                .'.class.php';
         }
+
+        //la classe est utilitaire
         $regexp='/[a-z]+Util$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = dirname(__FILE__).DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'util'.DIRECTORY_SEPARATOR.ucfirst($className).'.class.php';
+            $classPath = WEB_ROOT.'util'.DS.ucfirst($className).'.class.php';
         }
-        if(is_file($classPath)) 
+
+
+        if( isset($classPath) && is_file($classPath)) 
         {
             require_once($classPath);
         } else 
         {
-            throw new Exception('Cant load class '.$className.' :  file "'.$classPath.'" not found');
+            throw new Exception('Cant load class '.$className.' :  file "'
+                .$classPath.'" not found');
         }
     }
 }
 
 
 $coreLoader = new coreLoader;
+
 
 ?>
