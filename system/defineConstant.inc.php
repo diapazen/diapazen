@@ -24,11 +24,15 @@
  * along with Diapazen.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+//Constante utile pour les includes
 define("DS", DIRECTORY_SEPARATOR);
-define("WEB_ROOT", dirname(__FILE__).DS.'..'.DS);
-define("APP_ROOT", WEB_ROOT.'app'.DS);
+
+define("ROOT", dirname(__FILE__).DS.'..'.DS);
+define("SYSTEM_ROOT", dirname(__FILE__).DS);
+define("APP_ROOT", ROOT.'app'.DS);
 define("MODEL_ROOT", APP_ROOT.'model'.DS);
 define("VIEW_ROOT",APP_ROOT.'view'.DS);
 define("CONTROLLER_ROOT", APP_ROOT.'controller'.DS);
-define("UTIL_ROOT", WEB_ROOT.'util'.DS);
+define("UTIL_ROOT", ROOT.'util'.DS);
 ?>
