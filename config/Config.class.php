@@ -28,7 +28,7 @@ class Config
 {
 
 	// Configurations possibles de la base de données
-	private  mDb = array(
+	private  $mDb = array(
 						"default"	=>	array(
 												"host"	=>	"localhost",
 												"user"	=>	"root",
