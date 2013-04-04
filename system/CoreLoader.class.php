@@ -46,14 +46,14 @@ class coreLoader{
         $regexp='/[a-z]+Controller$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = WEB_ROOT.'app'.DS.'controller'.DS.ucfirst($className)
+            $classPath = CONTROLLER_ROOT.ucfirst($className)
                 .'.class.php';
         }
         //la classe est un model
         $regexp='/[a-z]+Model$/'; 
         if(preg_match( $regexp, $className))
         {
-            $classPath = WEB_ROOT.'app'.DS.'model'.DS.ucfirst($className)
+            $classPath = MODEL_ROOT.ucfirst($className)
                 .'.class.php';
         }
 
@@ -61,7 +61,7 @@ class coreLoader{
         $regexp='/[a-z]+View$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = WEB_ROOT.'app'.DS.'view'.DS.ucfirst($className)
+            $classPath = VIEW_ROOT.ucfirst($className)
                 .'.class.php';
         }
 
@@ -69,7 +69,7 @@ class coreLoader{
         $regexp='/[a-z]+Util$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = WEB_ROOT.'util'.DS.ucfirst($className).'.class.php';
+            $classPath = UTIL_ROOT.ucfirst($className).'.class.php';
         }
 
 
@@ -78,14 +78,16 @@ class coreLoader{
             require_once($classPath);
         } else 
         {
-            throw new Exception('Cant load class '.$className.' :  file "'
-                .$classPath.'" not found');
+            throw new Exception('Cant load class '.$className.' :  file not found');
         }
     }
 }
 
 
 $coreLoader = new coreLoader;
+
+
+
 
 
 ?>
