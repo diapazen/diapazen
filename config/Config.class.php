@@ -34,7 +34,7 @@ class Config
 												"user"	=>	"root",
 												"pass"	=>	"",
 												"name"	=>	"diapazen"
-																	);
+																	)
 						);
 
 	 /**
