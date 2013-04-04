@@ -4,7 +4,6 @@
  * Fichier de configuration de Diapazen
  * 
  * @package     Diapazen
- * @author      Timothée NICOLAS <timothee.nicolas@isen.fr>
  * @copyright   Copyright (c) 2013, ISEN-Toulon
  * @license     http://www.gnu.org/licenses/gpl.html GNU GPL v3
  * 
