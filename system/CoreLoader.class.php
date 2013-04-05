@@ -26,7 +26,7 @@
  */
 
 require_once "defineConstant.inc.php";
-class coreLoader{
+class coreLoader {
 
     public function __construct()
     {

@@ -27,12 +27,12 @@ class Config
 {
 
 	// Configurations possibles de la base de données
-	private  $mDb = array(
-						"default"	=>	array(
-												"host"	=>	"localhost",
-												"user"	=>	"root",
-												"pass"	=>	"",
-												"name"	=>	"diapazen"
+	private static $mDb = array(
+						'default'	=>	array(
+												'host'	=>	'localhost',
+												'user'	=>	'root',
+												'pass'	=>	'',
+												'name'	=>	'diapazen'
 																	)
 						);
 
@@ -42,9 +42,9 @@ class Config
 	 * @param	string	$configName	Nom de la configuration à utiliser
 	 * @return	array	La configuration voulue
 	 */
-	public static function getDatabaseConfig($configName = "")
+	public static function getDatabaseConfig($configName = '')
 	{
-		return (empty($configName) || !array_key_exists($configName, $mDb))  ? $mDb["default"] : $mDb[$configName];
+		return (empty($configName) || !array_key_exists($configName, self::$mDb))  ? self::$mDb['default'] : self::$mDb[$configName];
 	}
 
 }
