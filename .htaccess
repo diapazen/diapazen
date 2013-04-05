@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /diapazen/diapazen/
+RewriteRule ^(.*)$ index.php [L]
