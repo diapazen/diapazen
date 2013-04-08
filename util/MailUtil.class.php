@@ -45,7 +45,10 @@ class MailUtil
 	 */
 	public MailUtil($mailFrom,$nameMailFrom,$pswFrom,$configSMTP)
 	{
-
+		$This->mailFrom=$mailFrom;
+		$This->nameMailFrom=$nameMailFrom;
+		$This->pswFrom=$pswFrom;
+		$This->configSMTP=$configSMTP;
 	}
 
 
