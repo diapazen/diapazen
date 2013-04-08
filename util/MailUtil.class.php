@@ -28,6 +28,20 @@ class MailUtil
 	protected $mailFrom;
 	protected $pswFrom;
 	protected $configSMTP;
+
+	 /**
+	 * Fonction permettant d'envoyer un mail 
+	 * 
+	 * Cette méthode permet d'envoyer un mail depuis $mailFrom à $mailTo
+	 * 
+	 * @param     string	$mailTo	mail de destination
+	 * @param     string    $subject sujet du mail
+	 * @param     string    $message message du mail
+	 */
+	 public function sendMail($mailTo,$subjet,$message)
+	{
+		
+	}
 }
 
 ?>
