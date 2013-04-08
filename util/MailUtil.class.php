@@ -26,6 +26,7 @@
 class MailUtil 
 {
 	protected $mailFrom;
+	protected $nameMailFrom;
 	protected $pswFrom;
 	protected $configSMTP;
 
@@ -40,7 +41,32 @@ class MailUtil
 	 */
 	 public function sendMail($mailTo,$subjet,$message)
 	{
-		
+		//require de phpmailer et création d'une instance
+		require "../phpmailer/class.phpmailer.php";
+		$mail = new PHPmailer();
+
+		//configuration du mail
+		$mail->SetLanguage('fr');
+		$mail->CharSet = 'utf-8';
+		$mail->IsSMTP();
+		$mail->Host = $configSMTP;
+		$mail->From = $mailFrom;
+		$mail->FromName = $nameMailFrom;
+		$mail->AddAddress($mailTo);
+
+		$mail->IsHTML(true);
+		$mail->Subject = $subjet;
+		$mail->Body = $message;
+
+		//envoi du mail
+		if(!$mail->Send()){
+		 	return $mail->ErrorInfo;
+		}
+
+		$mail->SmtpClose();
+		unset($mail);
+
+		return true;
 	}
 }
 
