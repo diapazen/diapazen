@@ -25,11 +25,37 @@
  *
  */
 
-class UserModel {
+class UserModel
+{
 
+	
+	/**
+	 * Constructeur
+	 */
 	public function __construct()
 	{
 		
+	}
+
+	/**
+	 * Connexion de l'utilisateur à l'application
+	 *
+	 * @return	bool true si la connexion s'est bien passé
+	 */
+	public function connectionToApp()
+	{
+
+	}
+
+
+	/**
+	 * Déconnexion de l'utilisateur à l'application
+	 *
+	 * @return	bool true si la déconnexion s'est bien passé
+	 */
+	public function disconnectionFromApp()
+	{
+
 	}
 
 }
