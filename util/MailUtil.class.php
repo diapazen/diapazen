@@ -30,6 +30,25 @@ class MailUtil
 	protected $pswFrom;
 	protected $configSMTP;
 
+	/**
+	 * Constructeur de MailUtil 
+	 * 
+	 * Constructeur prenant en parametre le mail de celui qui envoie
+	 * Son nom
+	 * Le mot de passe
+	 * Et la configuration du SMTP
+	 * 
+	 * @param     string	$mailFrom	mail d'envoi
+	 * @param     string    $nameMailFrom nom du mail
+	 * @param     string    $pswFrom mot de passe du compte
+	 * @param     string    $configSMTP smtp
+	 */
+	public MailUtil($mailFrom,$nameMailFrom,$pswFrom,$configSMTP)
+	{
+
+	}
+
+
 	 /**
 	 * Fonction permettant d'envoyer un mail 
 	 * 
