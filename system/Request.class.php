@@ -36,7 +36,18 @@ class Request
 	 */
 	public function __construct()
 	{
-		// Parse l'url et stocke dans les variables
+		// URL de base
+		$baseUrl = explode('/',trim(BASE_URL,'/'));
+		
+		// Partie ré-ecrite de l'URL
+		$dynUrl = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
+
+		// On fait la différence entre les deux
+		$url(array_values(array_diff($dynUrl, $baseUrl)));
+
+		$mController = isset($url[0]) ? $url[0] : "index";
+		$mAction = isset($url[1]) ? $url[1] : "index";
+		$mParams = array_slice($url, 2);
 	}
 
 	/**
