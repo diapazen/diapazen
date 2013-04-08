@@ -25,7 +25,9 @@
 
 class MailUtil 
 {
-	
+	protected $mailFrom;
+	protected $pswFrom;
+	protected $configSMTP;
 }
 
 ?>
