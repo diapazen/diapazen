@@ -71,26 +71,20 @@ class CoreLogger {
     {
 
     }
-    
+
     public function setPath($path)
     {
 
     }
 
-    public function LOG($message,$level)
+    public function LOG($message,$level,$date='')
     {
-        if($level == "EXCEPTION")
+        if ($date ='')
         {
-   
+
+            $date = date('d.m.Y h:i:s');
         }
-        elseif ($level == "ERROR") 
-        {
-            
-        }
-        elseif ($level == "VERBOSE") 
-        {
-            
-        }
+        $this->writer->ajout($message,$level,$date);
     }
 
 

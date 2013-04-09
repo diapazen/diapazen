@@ -32,7 +32,7 @@ class CoreException extend Exception{
     protected $eCode;
     protected $eFile;
     protected $eLine;
-    protected $timestamp;
+    protected $eDate;
 
     // constructeur enrichie de la classe exception
 
@@ -50,7 +50,8 @@ class CoreException extend Exception{
 
     public function __construct($eMessage , $eCode = 0) {
         parent::__construct($eMessage, $eCode);
-        $this->timestamp=time();
+        $this->eDate=date('d.m.Y h:i:s');
+
 
 
         //to do --> systeme de log
