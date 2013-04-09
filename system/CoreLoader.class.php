@@ -29,7 +29,7 @@ require_once "defineConstant.inc.php";
 class CoreLoader {
 
 
-
+    private static $_instance = null;
 
      /**
      * Constructeur de la classe coreLoader
@@ -39,7 +39,7 @@ class CoreLoader {
      * 
      */
 
-    public function __construct()
+    private function __construct()
     {
 		spl_autoload_register(array($this,'load'),false);
     }
@@ -93,10 +93,29 @@ class CoreLoader {
             throw new Exception('Cant load class '.$className.' :  file not found');
         }
     }
+
+    /** Récuperation d'un loader
+     *
+     * Permet de récuperer un loader selon le design pattern
+     *  singleton.
+     *
+     * 
+     */
+    public static function getInstance()
+    {
+ 
+        if(is_null(self::$_instance)) 
+        {
+            self::$_instance = new CoreLoader();  
+        }
+ 
+     return self::$_instance;
+   }
 }
 
 //on instancie notre loader.
-$coreLoader = new CoreLoader;
+    $coreLoaderSingleton = CoreLoader::getInstance();
+ 
 
 
 
