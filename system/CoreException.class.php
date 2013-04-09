@@ -35,6 +35,19 @@ class CoreException extend Exception{
     protected $timestamp;
 
     // constructeur enrichie de la classe exception
+
+
+
+     /**
+     * Constructeur de la classe d exception
+     * 
+     * Constructeur de la classe d exception personnalisé, qui cree notre exception mais 
+     * aussi utilise un systeme de log
+     * 
+     * @param     string  eMessage    message de l exception
+     * @param     unsigned int  eCode   code de l exception
+     */
+
     public function __construct($eMessage , $eCode = 0) {
         parent::__construct($eMessage, $eCode);
         $this->timestamp=time();
@@ -45,13 +58,21 @@ class CoreException extend Exception{
         
     }
 
-    // Retourne un message en forme de l'exception
+    /**
+     * Formate le message
+     * 
+     * @return string messageFormate message de l exception formaté
+     */
     public getMessageFormate()
     {
         $messageFormate = "Mon message mis en forme";
         return $messageFormate;
     }
 
+    /**
+     * Active la gestion des exception orpheline
+     * 
+     */
     public static gestionExceptionOrpheline()
     {
         set_exception_handler('Nom de la fonction de gestion');  // to do

@@ -26,14 +26,26 @@
  */
 
 require_once "defineConstant.inc.php";
-class coreLoader {
+class CoreLoader {
+
+
+
+
+     /**
+     * Constructeur de la classe coreLoader
+     * 
+     * Active l'autoload.
+     * 
+     * 
+     */
 
     public function __construct()
     {
 		spl_autoload_register(array($this,'load'),false);
     }
 
-    /**
+    /** Fonction de chargement des classe
+     *
      * Charge si possible la classe qu'il faut inclure
      * 
      * @param   string  $className  Nom de la classe à inclure
@@ -83,8 +95,8 @@ class coreLoader {
     }
 }
 
-
-$coreLoader = new coreLoader;
+//on instancie notre loader.
+$coreLoader = new CoreLoader;
 
 
 
