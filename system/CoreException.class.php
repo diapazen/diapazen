@@ -54,7 +54,6 @@ class CoreException extend Exception{
 
 
         //to do --> systeme de log
-        // utilisation de syslog ou une classe de log ?
         
     }
 
@@ -65,18 +64,12 @@ class CoreException extend Exception{
      */
     public getMessageFormate()
     {
-        $messageFormate = "Mon message mis en forme";
+        $messageFormate = "Une erreur s'est produite,
+        merci de contacter l'administrateur";
         return $messageFormate;
     }
 
-    /**
-     * Active la gestion des exception orpheline
-     * 
-     */
-    public static gestionExceptionOrpheline()
-    {
-        set_exception_handler('Nom de la fonction de gestion');  // to do
-    } 
+ 
     
 }
 
