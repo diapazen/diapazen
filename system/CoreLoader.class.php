@@ -26,7 +26,8 @@
  */
 
 require_once "defineConstant.inc.php";
-class CoreLoader {
+class CoreLoader 
+{
 
 
     private static $_instance = null;

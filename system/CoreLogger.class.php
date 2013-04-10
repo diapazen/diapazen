@@ -26,7 +26,10 @@
  */
 
 require_once "defineConstant.inc.php";
-class CoreLogger {
+require_once LOADER;
+
+class CoreLogger 
+{
 
     private static $_instance = null;
     private $writer;
@@ -60,7 +63,8 @@ class CoreLogger {
     {
 		
     }
-     /** Affecte un writer
+
+    /** Affecte un writer
      *
      * Determine quel objet writter est utiliser pour
      * ecrire notre log
@@ -72,10 +76,7 @@ class CoreLogger {
 
     }
 
-    public function setPath($path)
-    {
-
-    }
+    
 
     public function LOG($message,$level,)
     {

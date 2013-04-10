@@ -26,7 +26,8 @@
  */
 
 require_once "defineConstant.inc.php";
-class CoreException extend Exception{
+class CoreException extend Exception
+{
 
     protected $eMessage;
     protected $eCode;
