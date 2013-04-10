@@ -35,6 +35,7 @@ define("MODEL_ROOT", APP_ROOT.'model'.DS);
 define("VIEW_ROOT",APP_ROOT.'view'.DS);
 define("CONTROLLER_ROOT", APP_ROOT.'controller'.DS);
 define("UTIL_ROOT", ROOT.'util'.DS);
+define("WRITER_ROOT", SYSTEM_ROOT.DS.'LOG'.DS);
 define('LOADER', SYSTEM_ROOT.DS.'CoreLoader.class.php');
 
 define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
