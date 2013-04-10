@@ -39,7 +39,7 @@ class CoreLogger {
      *
      * 
      */
-    public static function getInstance($path='')
+    public static function getInstance()
     {
  
         if(is_null(self::$_instance)) 
@@ -56,7 +56,7 @@ class CoreLogger {
      *
      * 
      */
-    private function __construct($path='')
+    private function __construct()
     {
 		
     }
@@ -77,13 +77,11 @@ class CoreLogger {
 
     }
 
-    public function LOG($message,$level,$date='')
+    public function LOG($message,$level,)
     {
-        if ($date ='')
-        {
-
-            $date = date('d.m.Y h:i:s');
-        }
+        
+        $date = date('d.m.Y h:i:s');
+        
         $this->writer->ajout($message,$level,$date);
     }
 
