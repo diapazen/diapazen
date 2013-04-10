@@ -84,7 +84,12 @@ class CoreLoader
         {
             $classPath = UTIL_ROOT.ucfirst($className).'.class.php';
         }
-
+        //la classe est de type Writer
+        $regexp='/[a-z]+Writer$/';
+        if(preg_match( $regexp, $className))
+        {
+            $classPath = WRITER_ROOT.ucfirst($className).'.class.php';
+        }
 
         if( isset($classPath) && is_file($classPath)) 
         {
