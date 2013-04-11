@@ -31,23 +31,22 @@ class TextWriter implements IWrite
    private const $logSizeAlert=5138020; // environs 98% de 5Mo
    private $path =WRITER_ROOT."log.txt";
 
-
+   private $file = null;
+    
+   public function __construct($file) {
+      $this->file = $file;
+   }
    public function write($message,$level,$date)
    {
-
+      $logSize = $this->testSize();
+      //on ajoute le fichier
+      file_put_contents($this->file, array(PHP_EOL, $message), FILE_APPEND);
    }
 
-   private function openFile()
-   {
-
-   }
-   private function closeFile()
-   {
-
-   }
+ 
    private function testSize()
    {
-
+      return 100;
    }
    private function addLine($text)
    {
