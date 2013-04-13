@@ -41,14 +41,15 @@ class MailUtil
 	 * @param     string	$mailFrom	mail d'envoi
 	 * @param     string    $nameMailFrom nom du mail
 	 * @param     string    $pswFrom mot de passe du compte
-	 * @param     string    $configSMTP smtp
+	 * @param     string    $nameSMTP nom du smtp
+	 * @param     string    $portSMTP port du smtp
 	 */
-	public MailUtil($mailFrom,$nameMailFrom,$pswFrom,$configSMTP)
+	public MailUtil($mailFrom,$nameMailFrom,$pswFrom,$nameSMTP,$portSMTP)
 	{
 		$This->mailFrom=$mailFrom;
 		$This->nameMailFrom=$nameMailFrom;
 		$This->pswFrom=$pswFrom;
-		$This->configSMTP=$configSMTP;
+		$This->configSMTP=$configSMTP.':'.$portSMTP;
 	}
 
 
