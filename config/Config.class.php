@@ -36,6 +36,14 @@ class Config
 																	)
 						);
 
+	// Configuration pour le serveur SMTP et le compte mail
+	private static $cMail = array(
+								'login' 	=>	'diapazen@mail.com',
+								'psw' 		=>	'Diaisenpa',
+								'nameSMTP'	=>	'smtp.mail.com'	,
+								'port'		=>	'587'
+							);
+
 	 /**
 	 * Récupère la configuration de la base de donnée voulue.
 	 * 
