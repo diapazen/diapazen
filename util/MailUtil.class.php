@@ -73,6 +73,8 @@ class MailUtil
 		$mail->CharSet = 'utf-8';
 		$mail->IsSMTP();
 		$mail->Host = $configSMTP;
+		$mail->Username=$mailFrom;
+		$mail->Password=$pswFrom;
 		$mail->From = $mailFrom;
 		$mail->FromName = $nameMailFrom;
 		$mail->AddAddress($mailTo);
