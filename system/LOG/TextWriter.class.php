@@ -29,29 +29,41 @@ class TextWriter implements IWrite
 {
    private const $logSizeMax=5242880; //5Mo
    private const $logSizeAlert=5138020; // environs 98% de 5Mo
-   private $path =WRITER_ROOT."log.txt";
 
-   private $file = null;
+   private $file = WRITER_ROOT."log.txt";
+   
+
     
-   public function __construct($file) {
-      $this->file = $file;
+   public function __construct($file="") 
+   {
+      if ($file != "")
+      {
+          $this->file = $file;   
+      }
+     
    }
    public function write($message,$level,$date)
    {
       $logSize = $this->testSize();
-      //on ajoute le fichier
-      file_put_contents($this->file, array(PHP_EOL, $message), FILE_APPEND);
+      if ($logSize <= self::logSizeMax)
+      {
+         file_put_contents($this->file, array(PHP_EOL, $message),
+            FILE_APPEND | LOCK_EX );
+         $logSize = $this->testSize(); 
+         if ($logSize >= self::logSizeAlert) 
+         {
+            //envoi d'un mail d'alerte
+         }
+      }
+      
    }
 
  
    private function testSize()
    {
-      return 100;
+      (file_exists($this->file)) ? return filesize($this->file) : return 0;
    }
-   private function addLine($text)
-   {
 
-   }
 
 
 }
