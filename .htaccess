@@ -1,4 +1,6 @@
 Options +FollowSymLinks
 RewriteEngine On
 RewriteBase /GitHub/diapazen/
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.*)$ index.php [L]
