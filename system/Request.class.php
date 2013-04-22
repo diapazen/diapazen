@@ -43,11 +43,11 @@ class Request
 		$dynUrl = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
 
 		// On fait la différence entre les deux
-		$url(array_values(array_diff($dynUrl, $baseUrl)));
+		$url = array_values(array_diff($dynUrl, $baseUrl));
 
-		$mController = isset($url[0]) ? $url[0] : "index";
-		$mAction = isset($url[1]) ? $url[1] : "index";
-		$mParams = array_slice($url, 2);
+		$this->mController = isset($url[0]) ? $url[0] : "index";
+		$this->mAction = isset($url[1]) ? $url[1] : "index";
+		$this->mParams = array_slice($url, 2);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Request
 	 */
 	public function getController()
 	{
-		return $mController;
+		return $this->mController;
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Request
 	 */
 	public function getAction()
 	{
-		return $mAction;
+		return $this->mAction;
 	}
 
 	/**
@@ -77,7 +77,7 @@ class Request
 	 */
 	public function getParams()
 	{
-		return $mParams;
+		return $this->mParams;
 	}
 }
 
