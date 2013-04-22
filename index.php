@@ -23,6 +23,10 @@
  *
  */
 
+require_once "system/defineConstant.inc.php";
+require_once 'system/Router.class.php';
 
+// On charge le router
+new Router();
 
 ?>
