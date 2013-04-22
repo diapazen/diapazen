@@ -23,9 +23,28 @@
  *
  */
 
+require_once 'Request.class.php';
+
 class Router
 {
-	
+	private $mRequest;
+
+
+	/**
+	 * Constructeur
+	 */
+	public function __construct()
+	{
+		$mRequest = new Request();
+
+		// Récupère le nom du controller à charger
+		$ctlName = $mRequest->getController();
+
+		// Modification du nom
+		$ctlName = ucfirst($ctlName) . 'Controller.class.php';
+
+		echo 'On doit charger le fichier ' . $ctlName;
+	}
 }
 
 ?>
