@@ -25,11 +25,18 @@
  *
  */
 
-class PollModel {
+require_once 'Model.class.php';
 
+class PollModel extends Model
+{
+
+
+	/**
+	 * Constructeur
+	 */
 	public function __construct()
 	{
-		
+		parent::__construct();
 	}
 
 }

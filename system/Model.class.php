@@ -25,20 +25,28 @@
  *
  */
 
-require_once '../config/Config.class.php';
+require_once 'Config.class.php';
 
 class Model
 {
 
-	private $mDbMySql;
+	protected $mDbMySql;
 
+	/**
+	 * Constructeur
+	 *
+	 */
 	public function __construct()
 	{
 		
 		$this->mDbMySql = $this->connectToDatabase();
-		
 	}
 
+	/**
+	 * Connexion de la classe à la database
+	 *
+	 * @return	le PDO
+	 */
 	public function connectToDatabase()
 	{
 		try
@@ -48,13 +56,62 @@ class Model
             $options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 
         	return new PDO('mysql:host='.$dataBaseConfig['host'], $dataBaseConfig['user'], $dataBaseConfig['pass'], $options);
-
         }
-        catch(Exception $e)
+        catch(Exception $e) 
         {
-            // throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
+            throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
         }
 
+	}
+
+	/**
+	 * Lecture
+	 *
+	 * @return	tableau
+	 */
+	public function read()
+	{
+		echo'4';
+	}
+
+	/**
+	 * Lecture
+	 *
+	 * @return	tableau
+	 */
+	public function find($data=array())
+	{
+		try
+		{
+			$conditions= "1=1";
+			$fields= "*";
+			$limit= "";
+			$order= "id DESC";
+
+			if(isset($data['conditions'])) $conditions=$data['conditions'];
+			if(isset($data['fields'])) $fields=$data['fields'];
+			if(isset($data['limit'])) $limit=$data['limit'];
+			if(isset($data['order'])) $order=$data['order'];
+
+			// selon les paramètres, on récupère les champs, avec conditions, avec un ordre, avec une limite
+			$request = $this->mDbMySql->prepare("SELECT $fields FROM diapazen.dpz_view_users WHERE $conditions ORDER BY $order $limit");
+			//$request->bindValue(':FIELDS', $fields);
+			//$request->bindValue(':CONDITIONS', $conditions);
+			//$request->bindValue(':ORDER', $order);
+			//$request->bindValue(':LIMITATION', $limit);
+			$request->execute();
+
+			$result=array();
+			while($data = $request->fetch()){
+				$result[]= $data;
+			}
+
+			return $result;
+		}
+		catch(Exception $e) 
+        {
+            throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
+        }
 	}
 
 }
