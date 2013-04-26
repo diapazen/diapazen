@@ -41,9 +41,15 @@ class Router
 		$ctlName = $mRequest->getController();
 
 		// Modification du nom
-		$ctlName = ucfirst($ctlName) . 'Controller.class.php';
+		$ctlName = ucfirst($ctlName) . 'Controller';
+		$ctlFileName = $ctlName . '.class.php';
 
-		echo 'On doit charger le fichier ' . $ctlName;
+		//echo 'On doit charger le fichier ' . $ctlName;
+		include CONTROLLER_ROOT . DS . $ctlFileName;
+
+		$controller = new $ctlName();
+		$controller->render();
+
 	}
 }
 
