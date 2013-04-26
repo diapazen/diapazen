@@ -1,6 +1,6 @@
 <header>
 	<div id="header_content">
-	    <img id="logo" src="<?php echo VIEW_ROOT; ?>media/pictures/diapazen.png" alt="">
+	    <img id="logo" src="<?php $this->getPath('media/pictures/diapazen.png'); ?>" alt="">
 	    <?php 
 	    	if ($connected == false){
 	    ?>
