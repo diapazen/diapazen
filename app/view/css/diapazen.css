@@ -1,0 +1,143 @@
+/**
+ * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
+ * http://cssreset.com
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video 
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section 
+{
+    display: block;
+}
+body 
+{
+    line-height: 1;
+}
+ol, ul 
+{
+    list-style: none;
+}
+blockquote, q 
+{
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after 
+{
+    content: '';
+    content: none;
+}
+table 
+{
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*-----------------------------------------------------------------------------*/
+/*---------------------------------DIAPAZEN------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+body
+{
+    background-color: #FFFFFF;
+}
+
+header
+{
+    border-bottom: 2px solid #F1F1F1;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: #FFFFFF;
+    z-index: 2;
+}
+
+header #header_content
+{
+    margin: auto;
+    width: 900px;
+    height: 62px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+header #header_content #logo
+{
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+}
+
+header #header_content #connect_box
+{
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+    padding-top: 16px;
+}
+
+header #header_content #connect_box #mail_connect
+{
+    width: 10em;
+}
+
+header #header_content #connect_box #password_connect
+{
+    width: 8.5em;
+}
+
+#content
+{
+    z-index: 1;
+    width: 900px;
+    min-height: 700px;
+    margin: auto;
+    /*margin-top: 10px;*/
+    padding-top: 90px;
+}
+
+footer
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #F1F1F1;
+    text-align: center;
+}
+
+footer .text, ul
+{
+    display: inline-block;
+}
+
+footer ul
+{
+    list-style-type: none;
+}
+
+footer ul li
+{
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 6px;
+    border-right: 1px solid #919191;
+}

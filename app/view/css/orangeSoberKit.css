@@ -1,0 +1,293 @@
+/*-----------------------------------------------------------------------------*/
+/*----------------------------------POLICES------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+/*License for all "La Tipomatika" fonts
+
+License: Freeware
+
+By downloading a La Tipomatika typeface, you agree to these terms of use:
+
+You can use these fonts as freeware, can be used for commercial and for non-commercial works too.
+If you send me an e-mail with information about your commercial work, I will be grateful for it.
+
+All "La Tipomatika" Fonts are the sole property of "Joan Alegret" and "La Tipomatika". 
+All rights are reserved.
+
+You may not sell any of these Fonts.
+You may not edit a Font's outlines, data or name. Nor may you create alternate versions of a Font.
+No Font may be included on a CD or mass distributed in any other way without first obtaining my permission.
+
+for more information please visit
+
+www.tipomatika.co.nr
+tipomatika@gmail.com*/
+
+@font-face {
+    font-family: 'candela_book';
+    src: url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.eot');
+    src: url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.woff') format('woff'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.ttf') format('truetype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBook-webfont.svg#CandelaBook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'candela_book_italic';
+    src: url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.eot');
+    src: url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.woff') format('woff'),
+         url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.ttf') format('truetype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaItalic-webfont.svg#CandelaBookItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'candela_bold';
+    src: url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.eot');
+    src: url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.woff') format('woff'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.ttf') format('truetype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBold-webfont.svg#CandelaBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'candela_bold_italic';
+    src: url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.eot');
+    src: url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.woff') format('woff'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.ttf') format('truetype'),
+         url('../media/fonts/Candela-fontfacekit/CandelaBoldItalic-webfont.svg#CandelaBoldItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Copyright (c) 2013, Guillaume Bauduin*/
+
+/*-----------------------------------------------------------------------------*/
+/*----------------------------------CLASSES------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+/*----------------TITRE---------------*/
+
+.title, .small_title, .big_title
+{
+    font-family: candela_bold;
+    color: #FF4820;   
+}
+
+.title
+{
+    font-size: 1.6em;
+}
+
+.small_title
+{
+    font-size: 1.2em;
+}
+
+.big_title
+{
+    font-size: 2em;
+}
+
+/*--------------TEXTE-----------------*/
+
+.text, .small_text, .big_text
+{
+    font-family: candela_book;
+    color: #919191;
+}
+
+.text
+{
+    font-size: 0.8em;
+}
+
+.small_text
+{
+    font-size: 0.6em;
+}
+
+.big_text
+{
+    font-size: 1.2em;
+}
+
+/*---------------GRAS-----------------*/
+
+.bold, .small_bold, .big_bold
+{
+    font-family: candela_bold;
+    color: #919191;
+}
+
+.bold
+{
+    font-size: 0.8em;
+}
+
+.small_bold
+{
+    font-size: 0.6em;
+}
+
+.big_bold
+{
+    font-size: 1.2em;
+}
+
+/*---------------LIEN-----------------*/
+
+.link, .small_link, .big_link
+{
+    text-decoration: none;
+    font-family: candela_book;
+    border-bottom: 1px solid #919191;
+    color: #919191;
+}
+
+.link:hover, .small_link:hover, .big_link:hover
+{
+    color: #FF4820;
+    border-bottom: 1px solid #FF4820;
+}
+
+.link
+{
+    font-size: 0.8em;
+}
+
+.small_link
+{
+    font-size: 0.6em;
+}
+
+.big_link
+{
+    font-size: 1.2em;
+}
+
+/*-----------CHAMP DE TEXTE------------*/
+
+.text_edit, .small_text_edit, .big_text_edit
+{
+    padding: 0px;
+    padding-left: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 1px solid #D0D0D0;
+    border-radius: 2px;
+    color: #919191;
+    font-family: candela_book;
+}
+
+.text_edit
+{
+    font-size: 1.2em;
+}
+
+.small_text_edit
+{
+    font-size: 0.8em;
+}
+
+.big_text_edit
+{
+    font-size: 1.6em;
+}
+
+/*---------------BOUTON---------------*/
+
+.orange_button, .orange_small_button, .orange_big_button, 
+.grey_button, .grey_small_button, .grey_big_button
+{
+    padding: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 2px;
+    color: #FFFFFF;
+    font-family: candela_book;
+}
+
+.orange_button, .orange_small_button, .orange_big_button
+{
+    border: 1px solid #ED2C00;
+    background-color: #FF4820;
+    box-shadow: 2px 2px 2px #ED2C00;
+}
+
+.grey_button, .grey_small_button, .grey_big_button
+{
+    border: 1px solid #919191;
+    background-color: #D0D0D0;
+    box-shadow: 2px 2px 2px #919191;
+}
+
+.orange_button, .grey_button
+{
+    font-size: 1.2em;
+}
+
+.orange_smallButton, .grey_small_button
+{
+    font-size: 0.8em;
+}
+
+.orange_big_button, .grey_big_button
+{
+    font-size: 1.6em;
+}
+
+.orange_button:hover, .orange_small_button:hover, .orange_big_button:hover, 
+.grey_button:hover, .grey_small_button:hover, .grey_big_button:hover
+{
+    position: relative;
+    left: 1px;
+    top: 1px;
+    cursor: pointer;
+}
+
+.orange_button:hover, .orange_small_button:hover, .orange_big_button:hover
+{
+    box-shadow: 1px 1px 2px #ED2C00;
+}
+
+.grey_button:hover, .grey_small_button:hover, .grey_big_button:hover
+{
+    box-shadow: 1px 1px 2px #919191;
+} 
+
+/*------------FIL D'ARIANE-----------*/
+
+.orange_ariadne, .grey_ariadne
+{
+    padding-top: 10px;
+    display: inline-block;
+    text-align: center;
+    height: 40px;
+    width: 260px;
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #FFFFFF;
+    font-family: candela_book;
+}
+
+.orange_ariadne
+{
+    background: url('../media/pictures/ariadne.png') no-repeat;
+}
+
+.grey_ariadne
+{
+    background: url('../media/pictures/ariadne2.png') no-repeat;
+}
+
+/*------------------------------------*/

@@ -1,0 +1,79 @@
+#content img, article
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+
+#content img
+{
+    width: 140px;
+    height: 140px;
+}
+
+#create_survey {
+    float: right;
+    padding-top: 45px;
+}
+
+#content article:nth-child(2) {
+    width: 650px;
+}
+
+article
+{
+    width: 100%;
+    margin-left: 10px;
+}
+
+.icon_article
+{
+    float: left;
+    width: 140px;
+    height: 140px;
+
+    background-image: url('../media/pictures/sprites_140x140.png');
+    background-repeat: no-repeat;
+
+    display: block;
+}
+
+.icon_article#img_un
+{
+    background-position: -140px 0px;
+}
+
+.icon_article#img_deux
+{
+     background-position: -280px 0px;
+}
+
+
+.icon_article#img_trois
+{
+    background-position: -420px 0px;
+}
+
+
+.text_article
+{
+    padding-left: 170px;
+}
+
+.text_article > h2
+{
+    margin-top: 30px;
+}
+
+#content > p
+{
+    margin-left: 150px;
+    margin-bottom: 20px;
+}
+
+article h2, p
+{
+    display: block;
+}
+
+

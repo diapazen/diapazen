@@ -1,0 +1,23 @@
+#ariadne_thread
+{
+	margin-bottom: 20px;
+}
+
+.small_title, #title_input, #description_input, .choice
+{
+	display: block;
+	margin-bottom: 10px;
+}
+
+#description_input
+{
+	min-width: 20em;
+	max-width: 20em;
+	min-height: 5em;
+	max-height: 5em;
+}
+
+#title_input, #description_input, .choice, .button
+{
+	margin-left: 10px;
+}

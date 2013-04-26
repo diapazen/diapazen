@@ -1,0 +1,23 @@
+#content input
+{
+	display: block;
+	margin-bottom: 10px;
+	width: inherit;
+}
+
+#content .big_title
+{
+	margin-bottom: 30px;
+}
+
+#content form
+{
+	margin: auto;
+	width: 350px;
+	//border: 1px solid black;
+}
+
+#content #user_mail
+{
+	width: inherit;
+}

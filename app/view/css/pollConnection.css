@@ -1,0 +1,36 @@
+#ariadne_thread
+{
+	margin-bottom: 20px;
+}
+
+#content .orange_button
+{
+	display: block;
+	margin-top:10px;
+}
+
+#mail_user
+{
+	width: 200px;
+}
+
+#create_form .text, .small_text_edit, label
+{
+	margin-bottom: 10px;
+}
+
+#create_form label
+{
+	display: block;
+
+}
+
+#create_form #not_registered, #registered
+{
+	margin-right: 10px;
+}
+
+#create_form #mail_info, #name_user, #first_name_user, #pwd_user
+{
+	display: none;
+}
