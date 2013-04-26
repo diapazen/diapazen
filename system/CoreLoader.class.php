@@ -59,17 +59,18 @@ class CoreLoader
         $regexp='/[a-z]+Controller$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = CONTROLLER_ROOT.ucfirst($className)
+            $classPath = dirname($_SERVER['SCRIPT_FILENAME']).DS.'app'.DS.'controller'.DS.ucfirst($className)
                 .'.class.php';
         }
         //la classe est un model
         $regexp='/[a-z]+Model$/'; 
         if(preg_match( $regexp, $className))
         {
-            $classPath = MODEL_ROOT.ucfirst($className)
+            $classPath = dirname($_SERVER['SCRIPT_FILENAME']).DS.'app'.DS.'controller'.DS.ucfirst($className)
                 .'.class.php';
         }
 
+        // Tim: En fait il n'y aura pas de classes view
         //la classe est une vue
         $regexp='/[a-z]+View$/';
         if(preg_match( $regexp, $className))
