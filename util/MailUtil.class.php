@@ -84,8 +84,10 @@ class MailUtil
 		$mail->Body = $message;
 
 		//envoi du mail
-		if(!$mail->Send()){
-		 	return $mail->ErrorInfo;
+		if(!$mail->Send())
+		{
+		 	throw new coreException($mail->ErrorInfo);
+		 	return false;
 		}
 
 		$mail->SmtpClose();
