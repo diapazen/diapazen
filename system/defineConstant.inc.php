@@ -31,15 +31,17 @@ define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", dirname(__FILE__).DS.'..'.DS);
 define("SYSTEM_ROOT", dirname(__FILE__).DS);
 define("APP_ROOT", ROOT.'app'.DS);
-define("MODEL_ROOT", APP_ROOT.'model'.DS);
+//define("MODEL_ROOT", APP_ROOT.'model'.DS);
 //define("VIEW_ROOT",APP_ROOT.'view'.DS);
 //define("CONTROLLER_ROOT", APP_ROOT.'controller'.DS);
-//define("UTIL_ROOT", ROOT.'util'.DS);
-//define("WRITER_ROOT", SYSTEM_ROOT.DS.'LOG'.DS);
+define("UTIL_ROOT", ROOT.'util'.DS);
+define("WRITER_ROOT", SYSTEM_ROOT.DS.'LOG'.DS);
 define('LOADER', SYSTEM_ROOT.DS.'CoreLoader.class.php');
 
 
 define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
-define('VIEW_ROOT', BASE_URL.DS.'app'.DS.'view'.DS);
+define('VIEW_ROOT', DS.'app'.DS.'view');
+define('CONTROLLER_ROOT', DS.'app'.DS.'controller');
+define('MODEL_ROOT', DS.'app'.DS.'model');
 
 ?>
