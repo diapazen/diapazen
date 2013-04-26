@@ -26,7 +26,7 @@
 
 interface IWriter
 {
-    public function write($message,$level,$date);
+    public function write($message,$level);
 }
 
 ?>

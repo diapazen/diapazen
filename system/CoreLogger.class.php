@@ -78,7 +78,7 @@ class CoreLogger
 
     
 
-    public function LOG($message,$level,)
+    public function LOG($message,$level)
     {
         
         $date = date('d.m.Y h:i:s');

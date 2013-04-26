@@ -23,14 +23,14 @@
  * along with Diapazen.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-require_once "IWrite.php";
+require_once "IWriter.php";
 require_once "../defineConstant.inc.php";
-class TextWriter implements IWrite
+class TextWriter implements IWriter
 {
-   private const $logSizeMax=5242880; //5Mo
-   private const $logSizeAlert=5138020; // environs 98% de 5Mo
+   private $logSizeMax=5242880; //5Mo
+   private  $logSizeAlert=5138020; // environs 98% de 5Mo
 
-   private $file = WRITER_ROOT."log.txt";
+   private  $file = "log.txt";
    
 
     
@@ -42,15 +42,16 @@ class TextWriter implements IWrite
       }
      
    }
-   public function write($message,$level,$date)
+   public function write($message,$level)
    {
       $logSize = $this->testSize();
-      if ($logSize <= self::logSizeMax)
+      if ($logSize <= $this->logSizeMax)
       {
+         $message =date("Y-m-d H:i:s") ."\t".$level ."\t".$message;
          file_put_contents($this->file, array(PHP_EOL, $message),
             FILE_APPEND | LOCK_EX );
          $logSize = $this->testSize(); 
-         if ($logSize >= self::logSizeAlert) 
+         if ($logSize >=  $this->logSizeAlert) 
          {
             //envoi d'un mail d'alerte
          }
@@ -61,11 +62,12 @@ class TextWriter implements IWrite
  
    private function testSize()
    {
-      (file_exists($this->file)) ? return filesize($this->file) : return 0;
+      return (file_exists($this->file)) ? filesize($this->file) :0;
    }
 
 
 
 }
-
+$a = new TextWriter();
+$a->write("test de message",5);
 ?>
