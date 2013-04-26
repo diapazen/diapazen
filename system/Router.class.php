@@ -42,12 +42,11 @@ class Router
 
 		// Modification du nom
 		$ctlName = ucfirst($ctlName) . 'Controller';
-		$ctlFileName = $ctlName . '.class.php';
 
-		//echo 'On doit charger le fichier ' . $ctlName;
-		include CONTROLLER_ROOT . DS . $ctlFileName;
-
+		// Instanciation du contrôleur
 		$controller = new $ctlName();
+
+		// Appel du rendu
 		$controller->render();
 
 	}
