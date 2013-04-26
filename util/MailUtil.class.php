@@ -46,10 +46,19 @@ class MailUtil
 	 */
 	public MailUtil($mailFrom,$nameMailFrom,$pswFrom,$nameSMTP,$portSMTP)
 	{
-		$This->mailFrom=$mailFrom;
-		$This->nameMailFrom=$nameMailFrom;
-		$This->pswFrom=$pswFrom;
-		$This->configSMTP=$configSMTP.':'.$portSMTP;
+		if(!empty($mailFrom) && !empty($nameMailFrom) && !empty($pswFrom) &&
+			!empty($nameSMTP) && $portSMTP>0)
+		{
+			$This->mailFrom=$mailFrom;
+			$This->nameMailFrom=$nameMailFrom;
+			$This->pswFrom=$pswFrom;
+			$This->configSMTP=$configSMTP.':'.$portSMTP;
+		}
+		else
+		{
+			throw new coreException("Error in MailUtil constructor");
+			
+		}
 	}
 
 
