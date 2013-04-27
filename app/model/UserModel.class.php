@@ -25,7 +25,9 @@
  *
  */
 
-class UserModel
+require_once 'system/Model.class.php';
+
+class UserModel extends Model
 {
 
 	

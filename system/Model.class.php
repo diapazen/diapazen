@@ -3,7 +3,7 @@
 
 /**
  * 
- * Class model du framework
+ * Classe du modèle
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon
@@ -24,8 +24,6 @@
  * along with Diapazen.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-require_once '../config/Config.class.php';
 
 class Model
 {
