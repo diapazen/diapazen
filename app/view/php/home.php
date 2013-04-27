@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html>
 
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/orangeSoberKit.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/diapazen.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/home.css'); ?>">
-        <title>Accueil</title>
-    </head>
 
-    <body>
-
-        <?php
-            $connected = false;
-            include 'header.php';
-        ?>
-
+<?php $this->getHeader(); ?>
+        
         <div id="content">
             
 
@@ -54,10 +40,5 @@
             <p class="bold">*Créer un sondage nécessite une inscription, celle-ci peut se faire en même temps que la création de votre sondage</p>
         </div>
 
-        <?php
-            include 'footer.php';
-        ?>
+<?php $this->getFooter(); ?>
         
-    </body>
-
-</html>

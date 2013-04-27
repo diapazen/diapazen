@@ -31,6 +31,16 @@ class Controller
 		echo BASE_URL.VIEW_ROOT.DS.$filename;
 	}
 
+	public function getHeader()
+	{
+		include VIEW_ROOT.DS.'php'.DS.'header.php';
+	}
+
+	public function getFooter()
+	{
+		include VIEW_ROOT.DS.'php'.DS.'footer.php';
+	}
+
 }
 
 
