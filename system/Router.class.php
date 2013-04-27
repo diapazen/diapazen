@@ -43,8 +43,17 @@ class Router
 		// Modification du nom
 		$ctlName = ucfirst($ctlName) . 'Controller';
 
-		// Instanciation du contrôleur
-		$controller = new $ctlName();
+		try
+		{
+			// Instanciation du contrôleur
+			$controller = new $ctlName();
+		}
+		catch(Exception $e)
+		{
+			// Le contrôleur est introuvable: 404
+			$controller = new IndexController('404');
+			header('HTTP/1.0 404 Not Found');
+		}
 
 		// Appel du rendu
 		$controller->render();

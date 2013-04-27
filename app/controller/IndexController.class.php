@@ -28,11 +28,25 @@ require_once 'system/Controller.class.php';
 class IndexController extends Controller
 {
 
+	private $is404 = false;
+
+	/**
+	 * Constructeur
+	 * @param	string	arg		Arguments optionnels
+	 */
+	public function __construct($arg = '')
+	{
+		if ($arg == '404')
+			$this->is404 = true;
+	}
+
 
 	public function render()
 	{
-
-		include VIEW_ROOT.DS.'php'.DS.'home.php';
+		if ($this->is404)
+			include VIEW_ROOT.DS.'php'.DS.'404.php';
+		else
+			include VIEW_ROOT.DS.'php'.DS.'home.php';
 
 	}
 
