@@ -26,16 +26,35 @@
 class Controller
 {
 
+	/**
+	 * Récupère le chemin d'un fichier css,js,png ...
+	 * 
+	 * Exemple d'utilisation: $this->getPath('css/style.css');
+	 * Donne le chemin du fichier style.css
+	 *
+	 * @param	string	filename	chemin relatif du fichier
+	 * @return	string	chemin complet du fichier
+	 */
 	public function getPath($filename)
 	{
 		echo BASE_URL.VIEW_ROOT.DS.$filename;
 	}
 
+	/**
+	 * Inclut le fichier d'entête. A utiliser dans les fichiers de vue
+	 *
+	 * @return	void	Rien
+	 */
 	public function getHeader()
 	{
 		include VIEW_ROOT.DS.'php'.DS.'header.php';
 	}
 
+	/**
+	 * Inclut le fichier de pied de page. A utiliser dans les fichiers de vue
+	 *
+	 * @return	void	Rien
+	 */
 	public function getFooter()
 	{
 		include VIEW_ROOT.DS.'php'.DS.'footer.php';
