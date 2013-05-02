@@ -81,11 +81,13 @@ class UserModel extends Model
 	 */
 	private function testParamConstruct($params)
 	{
+		$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
+
 		//si le premier paramêtre est true
 		//test du nom, prénom, email
 		if($params[0] && count($params)==4)
 		{
-			if(!empty($params[1]) && !empty($params[2]) && !empty($params[3]))
+			if(!empty($params[1]) && !empty($params[2]) && preg_match($regex, ($params[3])))
 				return true;
 			else
 				return false;
@@ -93,7 +95,7 @@ class UserModel extends Model
 		//test de l'id, email, password
 		else if(!$params[0] && count($params)==4)
 		{
-			if(!empty($params[1]) && !empty($params[2]) && !empty($params[3]))
+			if(!empty($params[1]) && preg_match($regex, ($params[2]) && !empty($params[3]))
 				return true;
 			else
 				return false;
