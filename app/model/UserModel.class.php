@@ -29,15 +29,13 @@ require_once 'Model.class.php';
 
 class UserModel extends Model
 {
-	private $data = array(
-						'id'	=>	null,
-						'firstname'	=>	null,
-						'lastname'	=>	null,
-						'email'	=>	null,
-						'registration_date'	=>	null,
-						'last_login_date' =>	null,
-						'last_login_ip'	=>	null
-					);
+	private $id;
+	private $firstname;
+	private $lastname;
+	private $email;
+	private $registration_date;
+	private $last_login_date;
+	private $last_login_ip;
 	
 	/**
 	 * Constructeur
