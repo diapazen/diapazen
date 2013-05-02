@@ -24,34 +24,52 @@
  *
  */
 require_once "IWriter.php";
-require_once "../defineConstant.inc.php";
+require_once "./defineConstant.inc.php";
 class TextWriter implements IWriter
 {
-   private $logSizeMax=5242880; //5Mo
-   private  $logSizeAlert=5138020; // environs 98% de 5Mo
+   private $mlogSizeMax=5242880; //5Mo
+   private  $mlogSizeAlert=5138020; // environs 98% de 5Mo
 
-   private  $file = "log.txt";
+   private  $mfile;
    
 
-    
+    /**
+    * Constructeur
+    * 
+    * Constructeur du writer texten defini le fichier du log
+    * 
+    * @param     string	file	url du fichier de log text
+    */ 
    public function __construct($file="") 
    {
       if ($file != "")
       {
-          $this->file = $file;   
+          $this->mfile = $file;   
+      }
+      else
+      {
+          $this->mfile =WRITER_ROOT."log.txt";
       }
      
    }
-   public function write($message,$level)
+   
+    /**
+    * write
+    * 
+    * Ajout d'un log implemente l'interface IWRITER
+    * 
+    * @param     string message  log
+     */
+   public function write($message)
    {
       $logSize = $this->testSize();
-      if ($logSize <= $this->logSizeMax)
+      if ($logSize <= $this->mlogSizeMax)
       {
-         $message =date("Y-m-d H:i:s") ."\t".$level ."\t".$message;
-         file_put_contents($this->file, array(PHP_EOL, $message),
+       
+         file_put_contents($this->mfile, array(PHP_EOL, $message),
             FILE_APPEND | LOCK_EX );
          $logSize = $this->testSize(); 
-         if ($logSize >=  $this->logSizeAlert) 
+         if ($logSize >=  $this->mlogSizeAlert) 
          {
             //envoi d'un mail d'alerte
          }
@@ -59,15 +77,21 @@ class TextWriter implements IWriter
       
    }
 
- 
+        /**
+     * Test size
+     * 
+     * retourne la taille du fichier de log
+     * 
+     * 
+     * @return   int taille du fichier de log
+     */
    private function testSize()
    {
-      return (file_exists($this->file)) ? filesize($this->file) :0;
+      return (file_exists($this->mfile)) ? filesize($this->mfile) :0;
    }
 
 
 
 }
-$a = new TextWriter();
-$a->write("test de message",5);
+
 ?>
