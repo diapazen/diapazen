@@ -59,14 +59,14 @@ class CoreLoader
         $regexp='/[a-z]+Controller$/';
         if(preg_match( $regexp, $className))
         {
-            $classPath = dirname($_SERVER['SCRIPT_FILENAME']).DS.'app'.DS.'controller'.DS.ucfirst($className)
+            $classPath = CONTROLLER_ROOT.ucfirst($className)
                 .'.class.php';
         }
         //la classe est un model
         $regexp='/[a-z]+Model$/'; 
         if(preg_match( $regexp, $className))
         {
-            $classPath = dirname($_SERVER['SCRIPT_FILENAME']).DS.'app'.DS.'controller'.DS.ucfirst($className)
+            $classPath = MODEL_ROOT.ucfirst($className)
                 .'.class.php';
         }
 
