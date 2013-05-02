@@ -45,14 +45,31 @@ class UserModel extends Model
 		parent::__construct();
 
 		//si le premier paramêtre est true on inscrit l'utilisateur
-		if(func_get_args(0))
+		//liste des paramêtres : 
+		//func_get_arg(1) : prénom
+		//func_get_arg(2) : nom
+		//func_get_arg(3) : email
+		if(func_get_arg(0))
 		{
-
+			if(testParamConstruct(func_get_arg()))
+			{
+				$this->registration(func_get_arg(1),func_get_arg(2),func_get_arg(3),$password);
+				$this->connectionToApp(func_get_arg(3),$password);
+			}
+			else
+				throw new coreException('Erreur dans le constructeur du user</br>');
 		}
 		//sinon on le connecte
+		//liste des paramêtres : 
+		//func_get_arg(1) : email
+		//func_get_arg(2) : password
+		//func_get_arg(3) : id
 		else
 		{
-
+			if(testParamConstruct(func_get_arg()))
+				connectionToApp(func_get_arg(1),func_get_arg(2),func_get_arg(3));
+			else
+				throw new coreException('Erreur dans le constructeur du user</br>');
 		}
 	}
 
