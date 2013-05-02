@@ -25,28 +25,26 @@
  *
  */
 
-require_once 'system/Model.class.php';
+require_once 'Model.class.php';
 
 class UserModel extends Model
 {
-
+	private $data = array(
+						'id'	=>	null,
+						'firstname'	=>	null,
+						'lastname'	=>	null,
+						'email'	=>	null,
+						'registration_date'	=>	null,
+						'last_login_date' =>	null,
+						'last_login_ip'	=>	null
+					);
 	
 	/**
 	 * Constructeur
 	 */
 	public function __construct()
 	{
-		
-	}
-
-	/**
-	 * Connexion de l'utilisateur à l'application
-	 *
-	 * @return	bool true si la connexion s'est bien passé
-	 */
-	public function connectionToApp()
-	{
-
+		parent::__construct();
 	}
 
 
@@ -58,6 +56,260 @@ class UserModel extends Model
 	public function disconnectionFromApp()
 	{
 
+	}
+
+	/**
+	 * Connexion de l'utilisateur
+	 *
+	 * @param email email renseigné par l'utilisateur
+	 * @param password mot de passe renseigné par l'utilisateur
+	 * @param login_ip ip de l'utilisateur
+	 *
+	 * @return	bool true si la connexion s'est bien passé
+	 */
+	public function connectionToApp($email,$password,$login_ip=null)
+	{
+		try
+		{
+			// si les parametres sont corrects
+			if(isset($email) && isset($password))
+			{
+				if($email != null && $password != null)
+				{
+					// on récupère l'identifiant, le mail et le password avec une clause WHERE sur l'email
+					$request = $this->mDbMySql->prepare("SELECT id,email,password FROM diapazen.dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
+					$request->bindValue(':EMAIL', $email);
+					$request->execute();
+					$infos=$request->fetch();
+
+					// si on a un résultat, c'est que ce mail est dans la bdd
+					// maintenant, on doit vérifier le password
+					if(!is_null($infos))
+					{
+						///$infos['id'] $infos['email'] $infos['password']
+						$password_encrypted = $infos['password'];
+						if( $password_encrypted == $password) 
+						{
+							$this->data['id'] = $infos['id'];
+							
+							$this->updateConnectionData($infos['id'],$login_ip);
+
+							return true;
+						}
+					}
+				}
+			}
+			return false;
+		}
+		catch(Exception $e) 
+        {
+            throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
+        }
+	}
+
+
+	/**
+	 * Mise à jour des données de connexion de l'utilisateur (adresse ip et date de derniere connexion)
+	 *
+	 * @param login_ip ip de l'utilisateur
+	 *
+	 * @return	bool true si la mise à jour s'est bien passé
+	 */
+	public function updateConnectionData($id,$login_ip=null)
+	{
+		try
+		{
+			// si le parametre est correct
+			if(isset($id))
+			{
+				if( $id != null)
+				{
+					// on modifie les données de connexion grace à une clause where sur l'id
+					// ici la date
+					$request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_users SET dpz_users.last_login_date=CURRENT_TIMESTAMP WHERE dpz_users.id=:ID;");
+					$request->bindValue(':ID', $id);
+					$request->execute();
+
+					// ici l'ip
+					$request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_users SET dpz_users.last_login_ip=:LAST_LOGIN_IP WHERE dpz_users.id=:ID;");
+					$request->bindValue(':ID', $id);
+					$request->bindValue(':LAST_LOGIN_IP', $login_ip);
+					$request->execute();
+					
+
+					return true;
+				}				
+			}
+			return false;
+		}
+		catch(Exception $e) 
+        {
+            throw new Exception('Erreur lors de la tentative de mise à jour des données de connexion :</br>' . $e->getMessage());
+        }
+	}
+
+
+	/**
+	 * Récupération des données de l'utilisateur (sauf mot de passe)
+	 *
+	 * @param id id de l'utilisateur
+	 *
+	 * @return	bool true si on a bien récupéré les données de l'utilisateur
+	 */
+	public function dataProvider($id)
+	{
+		try
+		{
+			// si les parametres sont corrects
+			if(isset($id))
+			{
+				if($id != null)
+				{
+					// on récupère toutes les données de l'utilisateur sauf le password avec une clause WHERE sur l'identifiant
+					$request = $this->mDbMySql->prepare("SELECT firstname,lastname,email,registration_date,last_login_date,last_login_ip FROM diapazen.dpz_view_users WHERE dpz_view_users.id=:ID;");
+					$request->bindValue(':ID', $id);
+					$request->execute();
+					$infos=$request->fetch();
+
+					// si on a un résultat, c'est qu'il n'y a pas d'erreur sur l'identifiant
+					if(!is_null($infos))
+					{
+						$this->data['firstname'] = $infos['firstname'];
+						$this->data['lastname'] = $infos['lastname'];
+						$this->data['email'] = $infos['email'];
+						$this->data['registration_date'] = $infos['registration_date'];
+						$this->data['last_login_date'] = $infos['last_login_date'];
+						$this->data['last_login_ip'] = $infos['last_login_ip'];
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+		catch(Exception $e) 
+        {
+            throw new Exception('Erreur lors de la tentative de récupération des données :</br>' . $e->getMessage());
+        }
+	}
+
+
+
+
+	/**
+	 * Enregistrement d'un nouvel utilisateur
+	 *
+	 * @param firstname prénom renseigné par l'utilisateur
+	 * @param lastname nom de famille renseigné par l'utilisateur
+	 * @param email email renseigné par l'utilisateur
+	 * @param password mot de passe renseigné par l'utilisateur
+	 *
+	 * @return	bool true si l'enregistrement s'est bien passé
+	 */
+	public function registration($firstname,$lastname,$email,$password)
+	{
+		try
+		{
+			// si les parametres sont corrects
+			if(isset($firstname) && isset($lastname) && isset($email) && isset($password))
+			{
+				if($firstname != null && $lastname != null && $email != null && $password != null)
+				{
+					// on enregistre les données fournies par l'utilisateur
+					$request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_users` 
+						(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
+					VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
+
+					$request->bindValue(':FIRSTNAME', $firstname);
+					$request->bindValue(':LASTNAME', $lastname);
+					$request->bindValue(':EMAIL', $email);
+					$request->bindValue(':PASSWORD', $password);
+					$check = $request->execute();
+
+					// si on a un résultat, c'est qu'on a bien ajouté cet utilisateur dans la bdd
+					if($check = 1) return true; 
+				}
+			}
+			return false;
+		}
+		catch(Exception $e) 
+        {
+            throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
+        }
+	}
+
+	/**
+	 * Getter
+	 *
+	 */
+	public function getData()
+	{
+		return $this->data;
+	}
+	public function getId()
+	{
+		return $this->data['id'];
+	}
+	public function getFirstname()
+	{
+		return $this->data['firstname'];
+	}
+	public function getLastname()
+	{
+		return $this->data['lastname'];
+	}
+	public function getEmail()
+	{
+		return $this->data['email'];
+	}
+	public function getRegistration_date()
+	{
+		return $this->data['registration_date'];
+	}
+	public function getLast_login_date()
+	{
+		return $this->data['last_login_date'];
+	}
+	public function getLast_login_ip()
+	{
+		return $this->data['last_login_ip'];
+	}
+
+
+	/**
+	 * Setter
+	 *
+	 */
+	public function setData($data)
+	{
+		$this->data=$data;
+	}
+	public function setId($id)
+	{
+		$this->data['id']=$id;
+	}
+	public function setFirstname($firstname)
+	{
+		$this->data['firstname']=$firstname;
+	}
+	public function setLastname($lastname)
+	{
+		$this->data['lastname']=$lastname;
+	}
+	public function setEmail($email)
+	{
+		$this->data['email']=$email;
+	}
+	public function setRegistration_date($registration_date)
+	{
+		$this->data['registration_date']=$registration_date;
+	}
+	public function setLast_login_date($last_login_date)
+	{
+		$this->data['last_login_date']=$last_login_date;
+	}
+	public function setLast_login_ip($last_login_ip)
+	{
+		$this->data['last_login_ip']=$last_login_ip;
 	}
 
 }
