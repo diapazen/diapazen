@@ -29,13 +29,13 @@ require_once 'Model.class.php';
 
 class UserModel extends Model
 {
-	private $id;
-	private $firstname;
-	private $lastname;
-	private $email;
-	private $registration_date;
-	private $last_login_date;
-	private $last_login_ip;
+	private $mId;
+	private $mFirstname;
+	private $mLastname;
+	private $mEmail;
+	private $mRegistration_date;
+	private $mLast_login_date;
+	private $mLast_login_ip;
 	
 	/**
 	 * Constructeur
@@ -88,7 +88,7 @@ class UserModel extends Model
 						$password_encrypted = $infos['password'];
 						if( $password_encrypted == $password) 
 						{
-							$this->data['id'] = $infos['id'];
+							$this->mId = $infos['id'];
 							
 							$this->updateConnectionData($infos['id'],$login_ip);
 
@@ -172,12 +172,12 @@ class UserModel extends Model
 					// si on a un résultat, c'est qu'il n'y a pas d'erreur sur l'identifiant
 					if(!is_null($infos))
 					{
-						$this->data['firstname'] = $infos['firstname'];
-						$this->data['lastname'] = $infos['lastname'];
-						$this->data['email'] = $infos['email'];
-						$this->data['registration_date'] = $infos['registration_date'];
-						$this->data['last_login_date'] = $infos['last_login_date'];
-						$this->data['last_login_ip'] = $infos['last_login_ip'];
+						$this->mFirstname = $infos['firstname'];
+						$this->mLastname = $infos['lastname'];
+						$this->mEmail = $infos['email'];
+						$this->mRegistration_date = $infos['registration_date'];
+						$this->mLast_login_date = $infos['last_login_date'];
+						$this->mLast_login_ip = $infos['last_login_ip'];
 						return true;
 					}
 				}
@@ -239,37 +239,33 @@ class UserModel extends Model
 	 * Getter
 	 *
 	 */
-	public function getData()
-	{
-		return $this->data;
-	}
 	public function getId()
 	{
-		return $this->data['id'];
+		return $this->mId;
 	}
 	public function getFirstname()
 	{
-		return $this->data['firstname'];
+		return $this->mFirstname;
 	}
 	public function getLastname()
 	{
-		return $this->data['lastname'];
+		return $this->mLastname;
 	}
 	public function getEmail()
 	{
-		return $this->data['email'];
+		return $this->mEmail;
 	}
 	public function getRegistration_date()
 	{
-		return $this->data['registration_date'];
+		return $this->mRegistration_date;
 	}
 	public function getLast_login_date()
 	{
-		return $this->data['last_login_date'];
+		return $this->mLast_login_date;
 	}
 	public function getLast_login_ip()
 	{
-		return $this->data['last_login_ip'];
+		return $this->mLast_login_ip;
 	}
 
 
@@ -277,37 +273,33 @@ class UserModel extends Model
 	 * Setter
 	 *
 	 */
-	public function setData($data)
-	{
-		$this->data=$data;
-	}
 	public function setId($id)
 	{
-		$this->data['id']=$id;
+		$this->mId=$id;
 	}
 	public function setFirstname($firstname)
 	{
-		$this->data['firstname']=$firstname;
+		$this->mFirstname=$firstname;
 	}
 	public function setLastname($lastname)
 	{
-		$this->data['lastname']=$lastname;
+		$this->mLastname=$lastname;
 	}
 	public function setEmail($email)
 	{
-		$this->data['email']=$email;
+		$this->mEmail=$email;
 	}
 	public function setRegistration_date($registration_date)
 	{
-		$this->data['registration_date']=$registration_date;
+		$this->mRegistration_date=$registration_date;
 	}
 	public function setLast_login_date($last_login_date)
 	{
-		$this->data['last_login_date']=$last_login_date;
+		$this->mLast_login_date=$last_login_date;
 	}
 	public function setLast_login_ip($last_login_ip)
 	{
-		$this->data['last_login_ip']=$last_login_ip;
+		$this->mLast_login_ip=$last_login_ip;
 	}
 
 }
