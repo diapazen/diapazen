@@ -68,12 +68,22 @@ class UserModel extends Model
 		//test du nom, prénom, email
 		if($params[0] && count($params)==4)
 		{
-
+			if(!empty($params[1]) && !empty($params[2]) && !empty($params[3]))
+				return true;
+			else
+				return false;
 		}
 		//test de l'id, email, password
 		else if(!$params[0] && count($params)==4)
 		{
-
+			if(!empty($params[1]) && !empty($params[2]) && !empty($params[3]))
+				return true;
+			else
+				return false;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
