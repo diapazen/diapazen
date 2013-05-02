@@ -26,14 +26,14 @@
  */
 
 require_once "defineConstant.inc.php";
-class CoreException extend Exception
+class CoreException extends Exception
 {
 
-    protected $eMessage;
-    protected $eCode;
-    protected $eFile;
-    protected $eLine;
-    protected $eDate;
+    protected $meMessage;
+    protected $meCode;
+    protected $meFile;
+    protected $meLine;
+    protected $meDate;
 
     // constructeur enrichie de la classe exception
 
@@ -49,13 +49,14 @@ class CoreException extend Exception
      * @param     unsigned int  eCode   code de l exception
      */
 
-    public function __construct($eMessage , $eCode = 0) {
+    public function __construct($eMessage , $eCode = 0, $log= false) {
         parent::__construct($eMessage, $eCode);
-        $this->eDate=date('d.m.Y h:i:s');
-
-
-
-        //to do --> systeme de log
+        $this->meDate=date('d.m.Y h:i:s');
+        if ($log)
+        {
+            $logger = CoreLogger::getInstance();
+            $logger->log($emessage,EXCEPTION);
+        }
         
     }
 
@@ -64,7 +65,7 @@ class CoreException extend Exception
      * 
      * @return string messageFormate message de l exception formaté
      */
-    public getMessageFormate()
+    public function getMessageFormate()
     {
         $messageFormate = "Une erreur s'est produite,
         merci de contacter l'administrateur";
