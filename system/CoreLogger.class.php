@@ -32,8 +32,8 @@ class CoreLogger
 {
 
     private static $_instance = null;
-    private $writer;
-    private $pathLog;
+    private static $mwriter  =  null;
+    private $mpathLog;
 
     /** Récuperation d'un logger
      *
@@ -49,6 +49,7 @@ class CoreLogger
         {
             self::$_instance = new CoreLogger();  
         }
+        
  
      return self::$_instance;
    }
@@ -61,7 +62,11 @@ class CoreLogger
      */
     private function __construct()
     {
-		
+	if(is_null(self::$mwriter)) 
+        {
+            self::$mwriter= new TextWriter();
+        }
+       
     }
 
     /** Affecte un writer
@@ -73,17 +78,24 @@ class CoreLogger
      */
     public function setWriter($ObjWriter)
     {
-
+        self::$mwriter = $ObjWriter;
     }
 
     
-
-    public function LOG($message,$level)
+    /**
+    * Log
+    * 
+    * Long description
+    * 
+    * @param     String message message du log
+    * @param    String level niveau du log
+    */
+    public function log($message,$level)
     {
         
-        $date = date('d.m.Y h:i:s');
-        
-        $this->writer->ajout($message,$level,$date);
+        $date = date('d.m.Y h:i:s') ." GMT " ;
+        $message =$date ."\t".$level ."\t".$message;
+        self::$mwriter->write($message,$this->mpathLog);
     }
 
 
