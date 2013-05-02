@@ -26,7 +26,15 @@
 
 interface IWriter
 {
-    public function write($message,$level);
+    
+      /**
+    * write
+    * 
+    * Ajout d'un log 
+    * 
+    * @param     string message  log
+     */
+    public function write($message);
 }
 
 ?>
