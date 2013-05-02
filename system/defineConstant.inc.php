@@ -44,4 +44,9 @@ define('VIEW_ROOT', DS.'app'.DS.'view');
 define('CONTROLLER_ROOT', DS.'app'.DS.'controller');
 define('MODEL_ROOT', DS.'app'.DS.'model');
 
+define('EXCEPTION', 'EXCEPTION');
+define('ERROR', 'ERROR');
+define('DEBUG', 'DEBUG');
+define('INFO', 'INFO');
+define('WARNING', 'WARNING');
 ?>
