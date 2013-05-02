@@ -43,6 +43,28 @@ class UserModel extends Model
 	public function __construct()
 	{
 		parent::__construct();
+
+		//si le premier paramêtre est true on inscrit l'utilisateur
+		if(func_get_args(0))
+		{
+
+		}
+		//sinon on le connecte
+		else
+		{
+
+		}
+	}
+
+	/**
+	 * Test des paramêtres du constructeur
+	 * @param  params liste des paramêtres du constructeur
+	 *
+	 * @return bool true si les paramêtres sont bons
+	 */
+	private function testParamConstruct($params)
+	{
+
 	}
 
 
@@ -89,8 +111,10 @@ class UserModel extends Model
 						if( $password_encrypted == $password) 
 						{
 							$this->mId = $infos['id'];
-							
+
 							$this->updateConnectionData($infos['id'],$login_ip);
+
+							$this->dataProvider($this->mId);
 
 							return true;
 						}
