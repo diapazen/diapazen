@@ -64,7 +64,17 @@ class UserModel extends Model
 	 */
 	private function testParamConstruct($params)
 	{
+		//si le premier paramêtre est true
+		//test du nom, prénom, email
+		if($params[0] && count($params)==4)
+		{
 
+		}
+		//test de l'id, email, password
+		else if(!$params[0] && count($params)==4)
+		{
+
+		}
 	}
 
 
