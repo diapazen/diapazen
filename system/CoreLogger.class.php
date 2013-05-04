@@ -94,7 +94,7 @@ class CoreLogger
     {
         
         $date = date('d.m.Y h:i:s') ." GMT " ;
-        $message =$date ."\t".$level ."\t".$message;
+        $message =$date ."\t".$level ."\t".$message."\t N";
         self::$mwriter->write($message,$this->mpathLog);
     }
 
