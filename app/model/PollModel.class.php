@@ -29,15 +29,36 @@ require_once 'Model.class.php';
 
 class PollModel extends Model
 {
+        
+        private $poll_url;
+        private $poll_title;
+        private $poll_description;
+        private $poll_expiration_date;
 
 
-	/**
+        /**
 	 * Constructeur
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
+        
+        /**
+         *Création d'une chaine de caractère aléatoire
+         * @param type $number nombre de caractères
+         * @return string la chaine de caractère
+         */
+        private function randomString($number)
+        {
+            $string = "";
+            $chaine = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            srand((double)microtime()*1000000);
+            for($i=0; $i<$number; $i++) {
+            $string .= $chaine[rand()%strlen($chaine)];
+            }
+            return $string;
+        }
 
 }
 
