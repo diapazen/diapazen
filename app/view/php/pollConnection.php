@@ -6,7 +6,7 @@
                 <a class="orange_ariadne" href="#">Connexion</a>
                 <a class="grey_ariadne" href="#">Partage</a>
             </div>
-            <form action="pollShare.php" id="poll_connection_form">
+            <form action="creation" method="post" id="poll_connection_form">
                 <input id="mail_user" class="small_text_edit" type="mail" placeholder="E-mail">
                 <label class="text"><input id="registered" type="radio" name="account">Déjà un compte</label>
                 <label class="text"><input id="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>

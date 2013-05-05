@@ -6,7 +6,7 @@
                 <a class="grey_ariadne" href="#">Connexion</a>
                 <a class="orange_ariadne" href="#">Partage</a>
             </div>
-            <form id="share_form" action="pollView.php">
+            <form id="share_form" methode="post" action="create">
                 <h1 class="big_title">Félicitations !</h1>
                 <h2 class="title">Votre sondage a été créé !</h2>
                 <h3 class="small_title">Votre lien :</h3>
