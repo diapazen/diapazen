@@ -25,7 +25,7 @@
  *
  */
 
-require_once 'Model.class.php';
+require_once 'system/Model.class.php';
 
 class UserModel extends Model
 {
@@ -43,7 +43,7 @@ class UserModel extends Model
 	public function __construct()
 	{
 		parent::__construct();
-
+/*
 		//si le premier paramêtre est true on inscrit l'utilisateur
 		//liste des paramêtres : 
 		//func_get_arg(1) : prénom
@@ -70,7 +70,7 @@ class UserModel extends Model
 				connectionToApp(func_get_arg(1),func_get_arg(2),func_get_arg(3));
 			else
 				throw new coreException('Erreur dans le constructeur du user</br>');
-		}
+		}*/
 	}
 
 	/**
@@ -95,7 +95,7 @@ class UserModel extends Model
 		//test de l'id, email, password
 		else if(!$params[0] && count($params)==4)
 		{
-			if(!empty($params[1]) && preg_match($regex, ($params[2]) && !empty($params[3]))
+			if(!empty($params[1]) && preg_match($regex, ($params[2])) && !empty($params[3]))
 				return true;
 			else
 				return false;
