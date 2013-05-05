@@ -26,7 +26,7 @@
 class Controller
 {
 
-
+	protected $mModel;
 	protected $mRequest;
 	protected $mVars = array();
 
@@ -37,6 +37,32 @@ class Controller
 	public function __construct($request)
 	{
 		$this->mRequest = $request;
+	}
+
+	/**
+	 * Charge le modèle de données
+	 * @param	Model	model		Modèle de données
+	 */
+	protected function loadModel($model)
+	{
+		$model = ucfirst($model).'Model';
+		try
+		{
+			$this->mModel =  new $model();
+		}
+		catch(Exception $e)
+		{
+			die($e->getMessage());
+		}
+	}
+
+	/**
+	 * Charge le modèle de données
+	 * @return	Model	model		Modèle de données
+	 */
+	protected function getModel()
+	{
+		return $this->mModel;
 	}
 
 	/**
