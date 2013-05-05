@@ -30,7 +30,10 @@ class DashboardController extends Controller
 
 	public function index($params = null)
 	{
-		$this->render('dashboard');
+		if ($this->isUserConnected())
+			$this->render('dashboard');
+		else
+			header('Location:' . BASE_URL);
 	}
 
 	public function profile($params = null)
