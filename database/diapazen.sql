@@ -13,7 +13,7 @@ CREATE  TABLE IF NOT EXISTS `diapazen`.`dpz_users` (
   `firstname` VARCHAR(45) NOT NULL ,
   `lastname` VARCHAR(45) NOT NULL ,
   `email` VARCHAR(255) NOT NULL ,
-  `password` VARCHAR(45) NOT NULL ,
+  `password` VARCHAR(60) NOT NULL ,
   `registration_date` TIMESTAMP NOT NULL ,
   `last_login_date` TIMESTAMP NULL ,
   `last_login_ip` VARCHAR(30) NULL ,
