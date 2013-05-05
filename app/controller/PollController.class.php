@@ -48,6 +48,26 @@ class PollController extends Controller
 		// On fait le rendu
 		$this->render('pollCreation');
 	}
+
+	public function connect($params = null)
+	{
+
+		// On charge le modèle des sondages
+		$this->loadModel('poll');
+
+		// On fait le rendu
+		$this->render('pollConnection');
+	}
+
+
+	public function share($params = null)
+	{
+		// On charge le modèle des sondages
+		$this->loadModel('poll');
+
+		// On fait le rendu
+		$this->render('pollShare');
+	}
 }
 
 ?>

@@ -6,7 +6,7 @@
                 <a class="grey_ariadne" href="#">Connexion</a>
                 <a class="grey_ariadne" href="#">Partage</a>
             </div>
-            <form id="poll_creation_form" action="create" method="post">
+            <form id="poll_creation_form" action="connect" method="post">
                 <h1 class="small_title">Paramètres :</h1>
                 <input class="big_text" id="title_input" type="text" placeholder="Titre">
                 <textarea class="text" id="description_input" placeholder="Description"></textarea>
