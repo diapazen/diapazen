@@ -30,6 +30,10 @@ class IndexController extends Controller
 
 	public function index($params = null)
 	{
+		// On set la variable à afficher sur dans la vue
+		$this->set('title', 'Accueil | Diapazen');
+
+
 		// On fait de rendu de la vue home.php
 		$this->render('home');
 	}

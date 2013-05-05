@@ -58,6 +58,7 @@ class Controller
 	 */
 	public function e404()
 	{
+		extract($this->mVars);
 		require(VIEW_ROOT.DS.'php'.DS.'404.php');
 	}
 
@@ -69,7 +70,7 @@ class Controller
 	 */
 	protected function set($key, $value)
 	{
-		$this->mVars[key] = $value;
+		$this->mVars[$key] = $value;
 	}
 
 	/**
@@ -93,6 +94,7 @@ class Controller
 	 */
 	public function getHeader()
 	{
+		extract($this->mVars);
 		include VIEW_ROOT.DS.'php'.DS.'header.php';
 	}
 
@@ -103,6 +105,7 @@ class Controller
 	 */
 	public function getFooter()
 	{
+		extract($this->mVars);
 		include VIEW_ROOT.DS.'php'.DS.'footer.php';
 	}
 
