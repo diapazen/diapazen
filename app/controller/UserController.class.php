@@ -78,17 +78,14 @@ class UserController extends Controller
 			}
 		}
 
-		// a faire la connexion
-
 	}
 
 
 	public function logout($params = null)
 	{
-		// quand on se déco
-		// on charge le modèle de l'utilisateur
-		$this->loadModel('user');
+		// quand on se déco.
 		$this->setUserDisconnected();
+		session_destroy();
 		// On redirige vers l'accueil
 		header('Location: ' . BASE_URL);
 	}
