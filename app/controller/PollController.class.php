@@ -30,7 +30,7 @@ class PollController extends Controller
 
 	public function index($params = null)
 	{
-		// a gérer
+		$this->create($params);
 	}
 
 	public function create($params = null)
