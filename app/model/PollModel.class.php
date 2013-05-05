@@ -30,14 +30,14 @@ require_once 'Model.class.php';
 class PollModel extends Model
 {
         
-        private $poll_url;
-        private $poll_title;
-        private $poll_description;
+        private $pollUrl;
+        private $pollTitle;
+        private $pollDescription;
         private $poll_expiration_date;
 
 
         /**
-	 * Constructeur
+	 * Constructeur par défaut
 	 */
 	public function __construct()
 	{
@@ -45,7 +45,7 @@ class PollModel extends Model
 	}
         
         /**
-         *Création d'une chaine de caractère aléatoire
+         * Création d'une chaine de caractère aléatoire
          * @param type $number nombre de caractères
          * @return string la chaine de caractère
          */
@@ -58,6 +58,20 @@ class PollModel extends Model
             $string .= $chaine[rand()%strlen($chaine)];
             }
             return $string;
+        }
+        
+        /**
+         * Construction d'un sondage
+         * @param type $pollTitle titre du sondage
+         * @param type $pollDescription description du sondage
+         * @param type $poll_expiration_date date d'expiration du sondage
+         */
+        public function pollModel($pollTitle, $pollDescription, $poll_expiration_date)
+        {
+            $this->pollTitle = $pollTitle;
+            $this->pollDescription = $pollDescription;
+            $this->poll_expiration_date = $poll_expiration_date;
+            $this->pollUrl = $this->randomString(11);
         }
 
 }
