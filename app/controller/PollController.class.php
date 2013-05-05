@@ -35,6 +35,17 @@ class PollController extends Controller
 
 	public function create($params = null)
 	{
+
+		// On charge le modèle des sondages
+		$this->loadModel('poll');
+
+		// on fait les requetes nécessaire à la bdd
+		//$this->getModel()->find();
+
+		//on envoie les variables à la vue
+		//$this->set('maVar', 'maValeure');
+
+		// On fait le rendu
 		$this->render('pollCreation');
 	}
 }

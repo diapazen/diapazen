@@ -25,7 +25,7 @@
  *
  */
 
-require_once 'Config.class.php';
+//require_once 'system/Config.class.php';
 
 class Model
 {
