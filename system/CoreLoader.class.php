@@ -48,8 +48,22 @@ class CoreLoader
         spl_autoload_register(array($this, 'loadModels'), false);
         spl_autoload_register(array($this, 'loadUtils'), false);
         spl_autoload_register(array($this, 'loadWriters'), false);
+
+        spl_autoload_register(array($this, 'checkErrors'), false);
     }
 
+    /** Vérifie si la classe est présente et lance une exception sinon
+     * 
+     * @param   string  $className  Nom de la classe à inclure
+     * 
+     */
+    private function checkErrors($class)
+    {
+        if (!class_exists($class, false))
+        {
+            throw new Exception('Impossible de charger la classe: ' . $class);
+        }
+    }
 
     /** Fonction de chargement des contrôleurs
      *
@@ -63,12 +77,6 @@ class CoreLoader
         set_include_path(CONTROLLER_ROOT);
         spl_autoload_extensions('.class.php');
         spl_autoload(ucfirst($class));
-
-        if (!class_exists($class, true))
-        {
-            throw new Exception('Impossible de charger le contrôleur: ' . $class);
-        }
-
     }
 
     /** Fonction de chargement des modèles
@@ -83,11 +91,6 @@ class CoreLoader
         set_include_path(MODEL_ROOT);
         spl_autoload_extensions('.class.php');
         spl_autoload(ucfirst($class));
-
-        if (!class_exists($class, true))
-        {
-            throw new Exception('Impossible de charger le modèle: ' . $class);
-        }
     }
 
     /** Fonction de chargement des utilitaires
@@ -102,11 +105,6 @@ class CoreLoader
         set_include_path(UTIL_ROOT);
         spl_autoload_extensions('.class.php');
         spl_autoload(ucfirst($class));
-
-        if (!class_exists($class, true))
-        {
-            throw new Exception('Impossible de charger l\'utilitaire: ' . $class);
-        }
     }
 
     /** Fonction de chargement des writers
@@ -121,11 +119,6 @@ class CoreLoader
         set_include_path(WRITER_ROOT);
         spl_autoload_extensions('.class.php');
         spl_autoload(ucfirst($class));
-
-        if (!class_exists($class, true))
-        {
-            throw new Exception('Impossible de charger le writer: ' . $class);
-        }
     }
 
 
