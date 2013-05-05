@@ -16,10 +16,16 @@
 				<a href="<?php $this->getHomeUrl(); ?>">
 			    	<img id="logo" src="<?php $this->getPath('media/pictures/diapazen.png'); ?>" alt="">
 				</a>
-				    	<form action="" id="connect_box"><!-- <h3 class="small_title">Se connecter</h3> -->
+
+				<?php if (!$this->isUserConnected()){ ?>
+				    	<form action="user/login" id="connect_box" method="post"><!-- <h3 class="small_title">Se connecter</h3> -->
 				        	<input id="mail_connect" name="mailConnect" class="small_text_edit" type="mail" placeholder="E-mail">
 				        	<input id="password_connect" name="passwordConnect" class="small_text_edit" type="password" placeholder="Mot de passe">
 				        	<input class ="orange_small_button" type="submit" value="Connexion">
 						</form>
+				<?php } else { ?>
+						<div>Bonjour Nom prénom <a href="user/logout">Se déconnecter</a></div>
+				<?php } ?>
+				
 			</div>
 		</header>

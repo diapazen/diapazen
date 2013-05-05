@@ -34,8 +34,17 @@ class IndexController extends Controller
 		$this->set('title', 'Accueil | Diapazen');
 
 
-		// On fait de rendu de la vue home.php
-		$this->render('home');
+		if ($this->isUserConnected())
+		{
+			// On fait de rendu de la vue dashboard.php
+			$this->render('dashboard');
+		}
+		else
+		{
+			// On fait de rendu de la vue home.php
+			$this->render('home');
+		}
+		
 	}
 
 

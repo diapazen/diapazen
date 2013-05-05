@@ -23,6 +23,9 @@
  *
  */
 
+// Démarrage de la session 
+session_start();
+
 //Constantes pour les inclusions PHP
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", dirname(__FILE__).DS.'..'.DS);

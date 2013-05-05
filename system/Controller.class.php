@@ -135,9 +135,44 @@ class Controller
 		include VIEW_ROOT.DS.'php'.DS.'footer.php';
 	}
 
+	/**
+	 * Récupère l'url de la page d'accueil
+	 *
+	 * @return	void	Rien
+	 */
 	public function getHomeUrl()
 	{
 		echo BASE_URL;
+	}
+
+	/**
+	 * Connecte l'utilisateur
+	 *
+	 * @return	void	Rien
+	 */
+	public function setUserConnected()
+	{
+		$_SESSION['connected'] = true;
+	}
+
+	/**
+	 * Déconnecte l'utilisateur
+	 *
+	 * @return	void	Rien
+	 */
+	public function setUserDisconnected()
+	{
+		$_SESSION['connected'] = false;
+	}
+
+	/**
+	 * L'utilisateur est-il connecté ?
+	 *
+	 * @return	bool	Vrai si il est connecté, Faux sinon
+	 */
+	public function isUserConnected()
+	{
+		return (isset($_SESSION['connected']) && $_SESSION['connected'] == true) ? true : false;
 	}
 
 }

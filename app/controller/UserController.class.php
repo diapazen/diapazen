@@ -28,9 +28,69 @@ require_once 'system/Controller.class.php';
 class UserController extends Controller
 {
 
+
 	public function index($params = null)
 	{
 		// a gérer
+	}
+
+
+	public function login($params = null)
+	{
+		// quand on se connecte
+		// on charge le modèle de l'utilisateur
+		$this->loadModel('user');
+
+		if (	isset($_POST['mailConnect'])		&& !empty($_POST['mailConnect'])
+			&&	isset($_POST['passwordConnect'])	&& !empty($_POST['passwordConnect']))
+		{
+
+			$email	 	= $_POST['mailConnect'];
+			$passwd 	= $_POST['passwordConnect'];
+			$ip_addr 	= $_SERVER['REMOTE_ADDR'];
+
+			
+			try
+			{
+				// on vérifie les infos avec la bdd
+				$result = $this->getModel()->connectionToApp($email, $passwd, $ip_addr);
+			}
+			catch(Exception $e)
+			{
+				// IMPORTANT: ERREUR A GERER PROPREMENT !!!!!
+				die('Erreur interne survenue.');
+			}
+
+			if ($result == true)
+			{
+				// La connexion a réussie
+				$this->setUserConnected();
+
+				// On redirige vers la dashboard
+				header('Location: ' . BASE_URL. '/dashboard');
+			}
+			else
+			{
+				// La connexion a échoué
+				$this->setUserDisconnected();
+
+
+			}
+		}
+
+		// a faire la connexion
+
+	}
+
+
+	public function logout($params = null)
+	{
+		// quand on se déco
+		// on charge le modèle de l'utilisateur
+		$this->loadModel('user');
+		$this->setUserDisconnected();
+		// On redirige vers l'accueil
+		header('Location: ' . BASE_URL);
 	}
 }
 
