@@ -37,7 +37,7 @@ class Controller
 	 */
 	public function getPath($filename)
 	{
-		echo BASE_URL.VIEW_ROOT.DS.$filename;
+		echo BASE_URL.VIEW_WEBROOT.DS.$filename;
 	}
 
 	/**
@@ -47,7 +47,7 @@ class Controller
 	 */
 	public function getHeader()
 	{
-		include VIEW_ROOT.DS.'php'.DS.'header.php';
+		include VIEW_WEBROOT.DS.'php'.DS.'header.php';
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Controller
 	 */
 	public function getFooter()
 	{
-		include VIEW_ROOT.DS.'php'.DS.'footer.php';
+		include VIEW_WEBROOT.DS.'php'.DS.'footer.php';
 	}
 
 }
