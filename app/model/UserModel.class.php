@@ -146,6 +146,10 @@ class UserModel extends Model
 					if(!is_null($infos))
 					{
 						///$infos['id'] $infos['email'] $infos['password']
+
+						// on hash le mot de passe avec du blowfish: le salt est le sha1 de l'email
+						$password = crypt($password, '$2a$07$'.sha1($infos['email']).'$');
+						
 						$password_encrypted = $infos['password'];
 						if( $password_encrypted == $password) 
 						{
