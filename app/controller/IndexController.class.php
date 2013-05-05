@@ -34,6 +34,7 @@ class IndexController extends Controller
 		$this->set('title', 'Accueil | Diapazen');
 
 
+		// On charge la vue, si l'utilisateur est connecté ou pas
 		if ($this->isUserConnected())
 		{
 			// On fait de rendu de la vue dashboard.php
