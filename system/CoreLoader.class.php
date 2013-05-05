@@ -26,6 +26,7 @@
  */
 
 require_once "defineConstant.inc.php";
+
 class CoreLoader 
 {
 
@@ -39,67 +40,94 @@ class CoreLoader
      * 
      * 
      */
-
     private function __construct()
     {
-		spl_autoload_register(array($this,'load'),false);
+
+        // Les dossiers à inclures
+        spl_autoload_register(array($this, 'loadControllers'), false);
+        spl_autoload_register(array($this, 'loadModels'), false);
+        spl_autoload_register(array($this, 'loadUtils'), false);
+        spl_autoload_register(array($this, 'loadWriters'), false);
     }
 
-    /** Fonction de chargement des classe
+
+    /** Fonction de chargement des contrôleurs
      *
      * Charge si possible la classe qu'il faut inclure
      * 
      * @param   string  $className  Nom de la classe à inclure
      * 
      */
-    private function load($className)
+    private function loadControllers($class)
     {
-        
-        //la classe est un controller
-        $regexp='/[a-z]+Controller$/';
-        if(preg_match( $regexp, $className))
+        set_include_path(CONTROLLER_ROOT);
+        spl_autoload_extensions('.class.php');
+        spl_autoload(ucfirst($class));
+
+        if (!class_exists($class, true))
         {
-            $classPath = CONTROLLER_ROOT.ucfirst($className)
-                .'.class.php';
-        }
-        //la classe est un model
-        $regexp='/[a-z]+Model$/'; 
-        if(preg_match( $regexp, $className))
-        {
-            $classPath = MODEL_ROOT.ucfirst($className)
-                .'.class.php';
+            throw new Exception('Impossible de charger le contrôleur: ' . $class);
         }
 
-        // Tim: En fait il n'y aura pas de classes view
-        //la classe est une vue
-        $regexp='/[a-z]+View$/';
-        if(preg_match( $regexp, $className))
-        {
-            $classPath = VIEW_ROOT.ucfirst($className)
-                .'.class.php';
-        }
+    }
 
-        //la classe est utilitaire
-        $regexp='/[a-z]+Util$/';
-        if(preg_match( $regexp, $className))
-        {
-            $classPath = UTIL_ROOT.ucfirst($className).'.class.php';
-        }
-        //la classe est de type Writer
-        $regexp='/[a-z]+Writer$/';
-        if(preg_match( $regexp, $className))
-        {
-            $classPath = WRITER_ROOT.ucfirst($className).'.class.php';
-        }
+    /** Fonction de chargement des modèles
+     *
+     * Charge si possible la classe qu'il faut inclure
+     * 
+     * @param   string  $className  Nom de la classe à inclure
+     * 
+     */
+    private function loadModels($class)
+    {
+        set_include_path(MODEL_ROOT);
+        spl_autoload_extensions('.class.php');
+        spl_autoload(ucfirst($class));
 
-        if( isset($classPath) && is_file($classPath)) 
+        if (!class_exists($class, true))
         {
-            require_once($classPath);
-        } else 
-        {
-            throw new Exception('Cant load class '.$className.' in '.$classPath.':  file not found');
+            throw new Exception('Impossible de charger le modèle: ' . $class);
         }
     }
+
+    /** Fonction de chargement des utilitaires
+     *
+     * Charge si possible la classe qu'il faut inclure
+     * 
+     * @param   string  $className  Nom de la classe à inclure
+     * 
+     */
+    private function loadUtils($class)
+    {
+        set_include_path(UTIL_ROOT);
+        spl_autoload_extensions('.class.php');
+        spl_autoload(ucfirst($class));
+
+        if (!class_exists($class, true))
+        {
+            throw new Exception('Impossible de charger l\'utilitaire: ' . $class);
+        }
+    }
+
+    /** Fonction de chargement des writers
+     *
+     * Charge si possible la classe qu'il faut inclure
+     * 
+     * @param   string  $className  Nom de la classe à inclure
+     * 
+     */
+    private function loadWriters($class)
+    {
+        set_include_path(WRITER_ROOT);
+        spl_autoload_extensions('.class.php');
+        spl_autoload(ucfirst($class));
+
+        if (!class_exists($class, true))
+        {
+            throw new Exception('Impossible de charger le writer: ' . $class);
+        }
+    }
+
 
     /** Récuperation d'un loader
      *
@@ -120,12 +148,11 @@ class CoreLoader
    }
 }
 
+
+
 //on instancie notre loader.
-    $coreLoaderSingleton = CoreLoader::getInstance();
+$coreLoaderSingleton = CoreLoader::getInstance();
  
-
-
-
 
 
 ?>
