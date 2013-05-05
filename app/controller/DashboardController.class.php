@@ -30,7 +30,7 @@ class DashboardController extends Controller
 
 	public function index($params = null)
 	{
-		
+		$this->render('dashboard');
 	}
 }
 
