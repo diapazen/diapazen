@@ -73,6 +73,57 @@ class PollModel extends Model
             $this->poll_expiration_date = $poll_expiration_date;
             $this->pollUrl = $this->randomString(11);
         }
+        
+        /**
+         * Setteur du titre du sondage
+         * @param type $pollTitle titre du sondage
+         */
+        public function setPollTitle($pollTitle)
+        {
+            $this->pollTitle = $pollTitle;
+        }
+        
+        /**
+         * Setteur de la description du sondage
+         * @param type $pollDescription description du sondage
+         */
+        public function setPollDescription($pollDescription)
+        {
+            $this->pollDescription = $pollDescription;
+        }
+        
+        /**
+         * Setteur de la date d'expiration du sondage
+         * @param type $poll_expiration_date date d'expiration du sondage
+         */
+        public function setPollExpirationDate($poll_expiration_date)
+        {
+            $this->poll_expiration_date = $poll_expiration_date;
+        }
+        
+        /**
+         * Getteur du titre du sondage
+         */
+        public function getPollTitle()
+        {
+            return $this->pollTitle;
+        }
+        
+        /**
+         * Getteur de la description du sondage
+         */
+        public function getPollDescription()
+        {
+            return $this->pollDescription;
+        }
+        
+        /**
+         * Getteur de la date d'expiration du sondage
+         */
+        public function getPollExpirationDate()
+        {
+            return $this->poll_expiration_date;
+        }
 
 }
 
