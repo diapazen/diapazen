@@ -30,7 +30,7 @@ class UserController extends Controller
 
 	public function index($params = null)
 	{
-		
+		// a gérer
 	}
 }
 
