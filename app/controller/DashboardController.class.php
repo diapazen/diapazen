@@ -32,6 +32,11 @@ class DashboardController extends Controller
 	{
 		$this->render('dashboard');
 	}
+
+	public function profile($params = null)
+	{
+		$this->render('personalData');
+	}
 }
 
 ?>
