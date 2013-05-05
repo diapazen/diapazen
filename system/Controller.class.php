@@ -26,6 +26,52 @@
 class Controller
 {
 
+
+	protected $mRequest;
+	protected $mVars = array();
+
+	/**
+	 * Constructeur
+	 * @param	Request	request		Requête HTTP
+	 */
+	public function __construct($request)
+	{
+		$this->mRequest = $request;
+	}
+
+	/**
+	 * Fait le rendu de la vue
+	 *
+	 * @param	string	filename	chemin relatif du fichier
+	 * @return	void	Rien
+	 */
+	public function render($view)
+	{
+		// On extrait les variables à afficher dans la vue
+		extract($this->mVars);
+		// On affiche le vue
+		require(VIEW_ROOT.DS.'php'.DS.$view.'.php');
+	}
+
+	/**
+	 * Affiche l'erreur 404
+	 */
+	public function e404()
+	{
+		require(VIEW_ROOT.DS.'php'.DS.'404.php');
+	}
+
+	/**
+	 * Ajoute une variable pour la vue
+	 *
+	 * @param	string	filename	chemin relatif du fichier
+	 * @return	void	Rien
+	 */
+	protected function set($key, $value)
+	{
+		$this->mVars[key] = $value;
+	}
+
 	/**
 	 * Récupère le chemin d'un fichier css,js,png ...
 	 * 

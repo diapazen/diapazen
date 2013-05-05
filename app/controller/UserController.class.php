@@ -28,7 +28,10 @@ require_once 'system/Controller.class.php';
 class UserController extends Controller
 {
 
-	
+	public function index($params = null)
+	{
+		
+	}
 }
 
 ?>

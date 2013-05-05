@@ -46,17 +46,21 @@ class Router
 		try
 		{
 			// Instanciation du contrôleur
-			$controller = new $ctlName();
+			$controller = new $ctlName($this->mRequest);
+			
+			// On appelle la méthode selon l'action de la requête
+			if (method_exists($controller, $mRequest->getAction()))
+				call_user_func_array(array($controller, $mRequest->getAction()), $mRequest->getParams());
+			else
+				throw new Exception();
 		}
 		catch(Exception $e)
 		{
 			// Le contrôleur est introuvable: 404
-			$controller = new IndexController('404');
+			$controller = new Controller($this->mRequest);
 			header('HTTP/1.0 404 Not Found');
+			die($controller->e404());
 		}
-
-		// Appel du rendu
-		$controller->render();
 
 	}
 }
