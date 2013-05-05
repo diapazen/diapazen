@@ -97,7 +97,7 @@ class CoreLoader
             require_once($classPath);
         } else 
         {
-            throw new Exception('Cant load class '.$className.' :  file not found');
+            throw new Exception('Cant load class '.$className.' in '.$classPath.':  file not found');
         }
     }
 
