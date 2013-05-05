@@ -106,6 +106,11 @@ class Controller
 		include VIEW_ROOT.DS.'php'.DS.'footer.php';
 	}
 
+	public function getHomeUrl()
+	{
+		echo BASE_URL;
+	}
+
 }
 
 
