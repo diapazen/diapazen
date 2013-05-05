@@ -23,9 +23,7 @@
                     <p class="big_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
                 </div>
             </article>
-            <form id="create_survey" action="">
-                <input class ="orange_big_button" type="submit" value="C'est parti !">
-            </form>
+                <a id="create_survey" class="orange_big_button" href="poll/create">C'est parti !</a>
             <article class="use_description">
                 <div class="icon_article" id="img_trois">
                     <!-- <img class="img_trois" src="../media/pictures/sprites_140x140.png" alt="3"> -->
