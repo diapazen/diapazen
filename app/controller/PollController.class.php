@@ -27,10 +27,19 @@ require_once 'system/Controller.class.php';
 
 class PollController extends Controller
 {
+	// poll_step sert à savoir ou on en est dans la création du sondage, et à savoir si l'utilisateur ne tente pas d'accéder à la seconde étape avant la premiere, par exemple
+	// contient les valeurs renseignées par l'utilisateur
+	/*
+	$_SESSION['poll_title'];
+	$_SESSION['poll_description'];
+	$_SESSION['poll_choices'] = array();
+
+	$_POST['mailConnect'];*/
 
 	public function index($params = null)
 	{
 		$this->create($params);
+
 	}
 
 	public function create($params = null)
@@ -39,12 +48,29 @@ class PollController extends Controller
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
-		// on fait les requetes nécessaire à la bdd
-		//$this->getModel()->find();
+		// lors de l'arrivée sur la page de création
+		$_SESSION['poll_step'] = 'init';
 
-		//on envoie les variables à la vue
-		//$this->set('maVar', 'maValeure');
+/*session_unregister (string name)*/
+		// si c'est la premiere fois, on ne fait rien
+		if( !isset($_SESSION['poll_title']) && !isset($_SESSION['poll_description']))
+		{
 
+
+		}
+		// on a fait précédent, on affiche les valeurs déjà renseignées
+		else
+		{
+			$this->set('poll_title', $_SESSION['poll_title']);
+			$this->set('poll_description', $_SESSION['poll_description']);
+
+			/* gérer les choix*/
+
+			$_SESSION['poll_step'] = 'précédent';
+		}
+		
+		/* temporaire, ensuite on mettre le titre de la page*/
+		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 		// On fait le rendu
 		$this->render('pollCreation');
 	}
@@ -55,6 +81,15 @@ class PollController extends Controller
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
+		$_SESSION['poll_step'] = 1;
+
+		$_SESSION['poll_title'] = $_POST['title_input'];
+		$_SESSION['poll_description'] = $_POST['description_input'];
+
+		/* gérer les choix*/
+
+		/* temporaire, ensuite on mettre le titre de la page*/
+		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 		// On fait le rendu
 		$this->render('pollConnection');
 	}
@@ -65,6 +100,8 @@ class PollController extends Controller
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
+		/* temporaire, ensuite on mettre le titre de la page*/
+		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 		// On fait le rendu
 		$this->render('pollShare');
 	}
