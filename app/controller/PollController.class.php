@@ -133,15 +133,13 @@ class PollController extends Controller
 					{
 						// La connexion a échoué
 						$this->setUserDisconnected();
+						$this->render('pollConnection');
+
 					}
 					else
 					{
 						// La connexion a réussie
 						$this->setUserConnected($result);
-
-						// On redirige vers la dashboard
-						header('Location: ' . BASE_URL. '/dashboard');
-
 					}
 				}
 				//si on a choisi l'inscription
