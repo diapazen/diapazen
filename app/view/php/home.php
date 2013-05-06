@@ -10,8 +10,8 @@
                 </div>
                 
                 <div class="text_article">
-                    <h2 class="big_title">Créez votre sondage*</h2>
-                    <p class="big_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <h2 class="big_title">Créez votre sondage</h2>
+                    <p class="big_text">Un dîner entre amis à organiser ? Un avis à demander ? Créez votre sondage en un rien de temps selon vos envies.</p>
                 </div>
             </article>
             <article class="use_description">
@@ -20,7 +20,7 @@
                 </div>
                 <div class="text_article">
                     <h2 class="big_title">Ajoutez des propositions</h2>
-                    <p class="big_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <p class="big_text">Votre sondage peut comporter le nombre de propositions que vous souhaitez, ajoutez-en ou supprimez-en dynamiquement.</p>
                 </div>
             </article>
                 <a id="create_survey" class="orange_big_button" href="poll/create">C'est parti !</a>
@@ -30,11 +30,11 @@
                 </div>
                 <div class="text_article">
                     <h2 class="big_title">Partagez-le !</h2>
-                    <p class="big_text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <p class="big_text">Invitez les personnes susceptibles de venir répondre à votre sondage. Après votre inscription, un mail leur sera envoyé pour qu'ils puissent venir faire leur choix.</p>
                 </div>
             </article>
 
-            <p id="asterisk" class="bold">*Créer un sondage nécessite une inscription, celle-ci peut se faire en même temps que la création de votre sondage</p>
+            <!-- <p id="asterisk" class="bold">*Créer un sondage nécessite une inscription, celle-ci peut se faire en même temps que la création de votre sondage</p> -->
         </div>
 
 <?php $this->getFooter(); ?>
