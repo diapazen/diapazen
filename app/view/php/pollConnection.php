@@ -12,7 +12,7 @@
                 <label class="text"><input id="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>
                 <input class="small_text_edit" id="name_user" name="nameUser" type="text" placeholder="Nom">
                 <input class="small_text_edit" id="first_name_user" name="firstNameUser" type="text" placeholder="Prénom">
-                <input id="pwd_user" class="small_text_edit" type="password" name="password" placeholder="Mot de passe">
+                <input class="small_text_edit" type="password" name="password" placeholder="Mot de passe" value="passe">
                 <p id="mail_info" class="text">Un mail sera envoyé sur l'adresse e-mail entrée ci-dessus avec votre mot de passe généré aléatoirement</p>
                 <input class="orange_button" type="submit" value="Etape suivante"/>
             </form>
