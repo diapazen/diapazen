@@ -94,10 +94,18 @@ class UserController extends Controller
 			print_r($_POST);
 
 			if (	isset($_POST['lastname']) && !empty($_POST['lastname'])
-				&&	isset($_POST['firstname']) && !empty($_POST['firstname']
-				&&	isset($_POST['email']) && !empty($_POST['email'])
+				&&	isset($_POST['firstname']) && !empty($_POST['firstname'])
+				&&	isset($_POST['mail']) && !empty($_POST['mail']) )
 			{
 				
+				try
+				{
+					$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstname'], $_POST['lastname'], $_POST['mail']);
+				}
+				catch(Exception $e)
+				{
+					die('Erreur interne de la base de données.');
+				}
 			}
 
 			
