@@ -104,6 +104,55 @@ class MailUtil
 
 		return true;
 	}
+
+	 /**
+	 * Fonction permettant d'envoyer un mail à plusieurs personne en copie carbone
+	 * 
+	 * Cette méthode permet d'envoyer un mail depuis $mailFrom à $mailTo
+	 * 
+	 * @param     string	$mailTo	tableau des mails de destination
+	 * @param     string    $subject sujet du mail
+	 * @param     string    $message message du mail
+	 */
+	 public function sendMailWithCC($mailTo,$subjet,$message)
+	{
+		//require de phpmailer et création d'une instance
+		require "../phpmailer/class.phpmailer.php";
+		$mail = new PHPmailer();
+
+		//configuration du mail
+		$mail->SetLanguage('fr');
+		$mail->CharSet = 'utf-8';
+		$mail->IsSMTP();
+		$mail->Host = $configSMTP;
+		$mail->Username=$mailFrom;
+		$mail->Password=$pswFrom;
+		$mail->From = $mailFrom;
+		$mail->FromName = $nameMailFrom;
+		$mail->AddAddress($mailFrom);
+
+		//On ajoute tous les destinataires
+		for($i=0;$i<count($mailTo);$i++)
+		{
+			$mail->AddBCC($mailTo[$i]);
+		}
+
+		$mail->IsHTML(true);
+		$mail->Subject = $subjet;
+		$mail->Body = $message;
+
+		//envoi du mail
+		if(!$mail->Send())
+		{
+		 	throw new coreException($mail->ErrorInfo);
+		 	return false;
+		}
+
+		$mail->SmtpClose();
+		unset($mail);
+
+		return true;
+	}
 }
 
 ?>
