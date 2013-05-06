@@ -107,19 +107,52 @@ class PollController extends Controller
 
 		try
 		{
-			//test si un choix a été fait entre la connection et l'inscription
+			//test si un choix a été fait entre la connection et l'inscription et qu'il y a un email
 			if(isset($_POST['account']) && isset($_POST['email']))
 			{
 				$mail=$_POST['email'];
 
-				//si on a choisi la connection
+				//si on a choisi la connection et qu'il y a le mdp on tente de se connecter
 				if($_POST['account']=='registered' && isset($_POST['password']))
 				{
 					$psw=$_POST['password'];
+					$ip_addr 	= $_SERVER['REMOTE_ADDR'];
+
+					try
+					{
+						// on vérifie les infos avec la bdd
+						$result = $this->getModel()->connectionToApp($mail, $psw, $ip_addr);
+					}
+					catch(Exception $e)
+					{
+						// IMPORTANT: ERREUR A GERER PROPREMENT !!!!!
+						die('Erreur interne survenue.');
+					}
+
+					if ($result == false)
+					{
+						// La connexion a échoué
+						$this->setUserDisconnected();
+					}
+					else
+					{
+						// La connexion a réussie
+						$this->setUserConnected($result);
+
+						// On redirige vers la dashboard
+						header('Location: ' . BASE_URL. '/dashboard');
+
+					}
 				}
-				else
+				//si on a choisi l'inscription
+				else if($_POST['account']=='not_registered')
 				{
 
+				}
+				//sinon on recharge la page précédante
+				else
+				{
+					$this->render('pollConnection');
 				}
 			}
 		}
