@@ -33,7 +33,7 @@ class CoreLogger
 
     private static $_instance = null;
     private static $mwriter  =  null;
-    private $mpathLog;
+    
 
     /** Récuperation d'un logger
      *
@@ -93,9 +93,8 @@ class CoreLogger
     public function log($message,$level)
     {
         
-        $date = date('d.m.Y h:i:s') ." GMT " ;
-        $message =$date ."\t".$level ."\t".$message."\t N";
-        self::$mwriter->write($message,$this->mpathLog);
+        
+        self::$mwriter->write($message,$level);
     }
 
 

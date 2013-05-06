@@ -48,7 +48,7 @@ class TextWriter implements IWriter
       }
       else
       {
-          $this->mfile =WRITER_ROOT."log.txt";
+          $this->mfile =ROOT."text.log";
       }
      
    }
@@ -60,12 +60,14 @@ class TextWriter implements IWriter
     * 
     * @param     string message  log
      */
-   public function write($message)
+   public function write($message,$level)
    {
       $logSize = $this->testSize();
       if ($logSize <= $this->mlogSizeMax)
       {
        
+          $date = date('d.m.Y h:i:s') ." GMT " ;
+        $message =$date ."\t".$level ."\t".$message."\t N";
          file_put_contents($this->mfile, array(PHP_EOL, $message),
             FILE_APPEND | LOCK_EX );
          $logSize = $this->testSize(); 

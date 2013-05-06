@@ -33,8 +33,9 @@ interface IWriter
     * Ajout d'un log 
     * 
     * @param     string message  log
+     * @param string level  
      */
-    public function write($message);
+    public function write($message,$level);
 }
 
 ?>
