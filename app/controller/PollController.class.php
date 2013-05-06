@@ -102,6 +102,25 @@ class PollController extends Controller
 
 		/* temporaire, ensuite on mettre le titre de la page*/
 		$this->set('title', ' mStep '.$_SESSION['poll_step']);
+
+		$this->loadModel('user');
+
+		//test si un choix a été fait entre la connection et l'inscription
+		if(isset($_POST['account']))
+		{
+			$mail=$_POST['email'];
+
+			//si on a choisi la connection
+			if($_POST['account']=='registered')
+			{
+
+			}
+			else
+			{
+
+			}
+		}
+
 		// On fait le rendu
 		$this->render('pollShare');
 	}
