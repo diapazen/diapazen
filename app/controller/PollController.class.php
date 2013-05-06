@@ -145,7 +145,7 @@ class PollController extends Controller
 				//si on a choisi l'inscription
 				else if($_POST['account']=='not_registered')
 				{
-
+					$psw=$this->getModel()->generatorPsw();
 				}
 				//sinon on recharge la page précédante
 				else
