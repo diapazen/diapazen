@@ -21,6 +21,12 @@
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
 
     );
     
@@ -59,9 +65,7 @@
                         <td class="text"> <?php echo $row['title']; ?> </td>
                         <td class="text"> <?php echo $row['description']; ?> </td>
                         <td> 
-                            <?php echo '<form action="'.$row['link'].'">' ?> 
-                                <input class="orange_small_button" type="submit" value="Voir">
-                            </form>
+                            <?php echo '<a class="orange_small_button" href="'.$row['link'].'">Voir</a>' ?> 
                         </td>
                     </tr> 
 

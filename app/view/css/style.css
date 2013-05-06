@@ -269,6 +269,11 @@
 	table-layout: fixed;
 }
 
+#poll_list table a 
+{
+	display: block;
+}
+
 #poll_list td
 {
 	padding: 5px;
