@@ -139,6 +139,7 @@ class UserController extends Controller
 				die('Erreur interne de la base de données.');
 			}
 
+			// Envoie des variables vers la vue
 			if ($user)
 			{
 				$this->set('firstname', $user['firstname']);
