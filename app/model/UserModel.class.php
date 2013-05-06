@@ -287,6 +287,9 @@ class UserModel extends Model
 					$request->bindValue(':FIRSTNAME', $firstname);
 					$request->bindValue(':LASTNAME', $lastname);
 					$request->bindValue(':EMAIL', $email);
+
+					$password = crypt($password, '$2a$07$'.sha1($email).'$');
+
 					$request->bindValue(':PASSWORD', $password);
 					$check = $request->execute();
 
