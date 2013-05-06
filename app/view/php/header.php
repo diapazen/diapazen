@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/orangeSoberKit.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/diapazen.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/style.css'); ?>">
-        <title><?php echo $title; ?></title>
+        <title><?php if (isset($title)){ echo $title; } ?></title>
     </head>
 
     <body>

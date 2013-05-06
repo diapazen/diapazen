@@ -81,6 +81,9 @@ class UserController extends Controller
 
 	public function profile($params = null)
 	{
+		// Titre de la page
+		$this->set('title', 'Mon profil | Diapazen');
+		
 		if ($this->isUserConnected())
 		{
 

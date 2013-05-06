@@ -30,6 +30,10 @@ class DashboardController extends Controller
 
 	public function index($params = null)
 	{
+
+		// Titre de la page
+		$this->set('title', 'Tableau de bord | Diapazen');
+		
 		if ($this->isUserConnected())
 		{
 
