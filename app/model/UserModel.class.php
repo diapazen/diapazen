@@ -357,6 +357,30 @@ class UserModel extends Model
             }
             return false;
         }
+
+        /**
+		 * Fonction qui génère un mot de passe aléatoire
+		 * 
+		 * Cette méthode génère un mot de passe aléatoire
+		 * 
+		 * @param     int	$size	taille du mot de passe
+		 * @return retourne le mot de passe
+		 */
+        public function generatorPsw($size=8)
+        {
+        	$list = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	
+			mt_srand((double)microtime()*1000000);
+
+			$psw="";
+
+			while( strlen( $psw )< 9 ) 
+			{
+				$psw .= $list[mt_rand(0, strlen($list)-1)];
+			}
+
+			return $psw;
+        }
         
 	/**
 	 * Getter
