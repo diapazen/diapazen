@@ -61,25 +61,74 @@ class UserController extends Controller
 				die('Erreur interne survenue.');
 			}
 
-			if ($result == true)
-			{
-				// La connexion a réussie
-				$this->setUserConnected();
-
-				// On redirige vers la dashboard
-				header('Location: ' . BASE_URL. '/dashboard');
-			}
-			else
+			if ($result == false)
 			{
 				// La connexion a échoué
 				$this->setUserDisconnected();
+			}
+			else
+			{
+				// La connexion a réussie
+				$this->setUserConnected($result);
 
+				// On redirige vers la dashboard
+				header('Location: ' . BASE_URL. '/dashboard');
 
 			}
 		}
 
 	}
 
+	public function profile($params = null)
+	{
+		if ($this->isUserConnected())
+		{
+
+			// chargement du modèle user
+			$this->loadModel('user');
+
+			
+
+
+			//Partie: Modifications des données utilisateur
+			print_r($_POST);
+
+			if (	isset($_POST['lastname']) && !empty($_POST['lastname'])
+				&&	isset($_POST['firstname']) && !empty($_POST['firstname']
+				&&	isset($_POST['email']) && !empty($_POST['email'])
+			{
+				
+			}
+
+			
+			// Partie: affichage des données
+			// On récupère l'id de l'utilisateur (session)
+			$id = $this->getUserInfo('id');
+
+			// On récupère ses infos dans la bdd
+			try
+			{
+				$user = $this->getModel()->dataProvider($id);
+			}
+			catch(Exception $e)
+			{
+				die('Erreur interne de la base de données.');
+			}
+
+			if ($user)
+			{
+				$this->set('firstname', $user['firstname']);
+				$this->set('lastname', $user['lastname']);
+				$this->set('email', $user['email']);
+			}
+
+
+			//  Rendu de la page
+			$this->render('personalData');
+		}
+		else
+			header('Location:' . BASE_URL);
+	}
 
 	public function logout($params = null)
 	{

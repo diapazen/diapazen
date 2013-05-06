@@ -36,7 +36,7 @@
         <div id="content">
 
             <h1 class="title" id="title_dashboard" >Bienvenue <?php echo $userName.' '.$userFirstName; ?></h1>
-            <a id="dashboard_form" class="orange_button" href="dashboard/profile">Modifier ses données personnelles</a>
+            <a id="dashboard_form" class="orange_button" href="user/profile">Modifier ses données personnelles</a>
 
             <h2 class="small_title small_title_dashboard">Liste de vos sondages</h2>
             <div id="poll_list">

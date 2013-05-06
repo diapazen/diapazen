@@ -136,7 +136,7 @@ class UserModel extends Model
 				if($email != null && $password != null)
 				{
 					// on récupère l'identifiant, le mail et le password avec une clause WHERE sur l'email
-					$request = $this->mDbMySql->prepare("SELECT id,email,password FROM diapazen.dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
+					$request = $this->mDbMySql->prepare("SELECT id,lastname,firstname,email,password FROM diapazen.dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
 					$request->bindValue(':EMAIL', $email);
 					$request->execute();
 					$infos=$request->fetch();
@@ -157,9 +157,11 @@ class UserModel extends Model
 
 							$this->updateConnectionData($infos['id'],$login_ip);
 
-							$this->dataProvider($this->mId);
-
-							return true;
+							return array(		'id' 		=> $infos['id'],
+												'firstname' => $infos['firstname'],
+												'lastname'	=> $infos['lastname'],
+												'email' 	=> $infos['email']
+											);
 						}
 					}
 				}
@@ -245,7 +247,14 @@ class UserModel extends Model
 						$this->mRegistration_date = $infos['registration_date'];
 						$this->mLast_login_date = $infos['last_login_date'];
 						$this->mLast_login_ip = $infos['last_login_ip'];
-						return true;
+						return array(	
+										'firstname' 		=> $infos['firstname'],
+										'lastname'			=> $infos['lastname'],
+										'email' 			=> $infos['email'],
+										'registration_date' => $infos['registration_date'],
+										'last_login_date'	=> $infos['last_login_date'],
+										'last_login_ip' 	=> $infos['last_login_ip']
+									);
 					}
 				}
 			}
