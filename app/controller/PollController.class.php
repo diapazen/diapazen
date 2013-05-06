@@ -105,20 +105,27 @@ class PollController extends Controller
 
 		$this->loadModel('user');
 
-		//test si un choix a été fait entre la connection et l'inscription
-		if(isset($_POST['account']))
+		try
 		{
-			$mail=$_POST['email'];
-
-			//si on a choisi la connection
-			if($_POST['account']=='registered')
+			//test si un choix a été fait entre la connection et l'inscription
+			if(isset($_POST['account']) && isset($_POST['email']))
 			{
+				$mail=$_POST['email'];
 
-			}
-			else
-			{
+				//si on a choisi la connection
+				if($_POST['account']=='registered' && isset($_POST['password']))
+				{
+					$psw=$_POST['password'];
+				}
+				else
+				{
 
+				}
 			}
+		}
+		catch(Exception $e)
+		{
+			//à gérer
 		}
 
 		// On fait le rendu
