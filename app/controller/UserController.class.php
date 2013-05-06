@@ -87,12 +87,7 @@ class UserController extends Controller
 			// chargement du modèle user
 			$this->loadModel('user');
 
-			
-
-
 			//Partie: Modifications des données utilisateur
-			print_r($_POST);
-
 			if (	isset($_POST['lastname']) && !empty($_POST['lastname'])
 				&&	isset($_POST['firstname']) && !empty($_POST['firstname'])
 				&&	isset($_POST['mail']) && !empty($_POST['mail']) )
@@ -108,7 +103,28 @@ class UserController extends Controller
 				}
 			}
 
-			
+			// On modifie le mot de passe si il est renseigné
+			if (	isset($_POST['password']) && !empty($_POST['password'])
+				&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
+			{
+				if ($_POST['password'] == $_POST['passwordConfirm'])
+				{
+					try
+					{
+						$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['mail'], $_POST['password']);
+					}
+					catch(Exception $e)
+					{
+						die('Erreur interne de la base de données.');
+					}
+				}
+				else
+				{
+					//si le mdp n'est pas le même
+				}
+				
+			}
+
 			// Partie: affichage des données
 			// On récupère l'id de l'utilisateur (session)
 			$id = $this->getUserInfo('id');
