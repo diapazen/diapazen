@@ -52,7 +52,7 @@ class CoreException extends Exception
     public function __construct($eMessage , $eCode = 0, $log= false) {
         parent::__construct($eMessage, $eCode);
         $this->meDate=date('d.m.Y h:i:s');
-        if ($log)
+        if ($log || LOG_ALL)
         {
             $logger = CoreLogger::getInstance();
             $logger->log($emessage,EXCEPTION);
