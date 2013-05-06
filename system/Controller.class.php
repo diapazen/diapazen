@@ -150,9 +150,10 @@ class Controller
 	 *
 	 * @return	void	Rien
 	 */
-	public function setUserConnected()
+	public function setUserConnected($userInfos)
 	{
 		$_SESSION['connected'] = true;
+		$_SESSION['user_infos'] = $userInfos;
 	}
 
 	/**
@@ -163,6 +164,7 @@ class Controller
 	public function setUserDisconnected()
 	{
 		$_SESSION['connected'] = false;
+		$_SESSION['user_infos'] = array();
 	}
 
 	/**
@@ -173,6 +175,16 @@ class Controller
 	public function isUserConnected()
 	{
 		return (isset($_SESSION['connected']) && $_SESSION['connected'] == true) ? true : false;
+	}
+
+	/**
+	 * Récupère les informations de l'utilisateur (stocké en session)
+	 *
+	 * @return	string	Information voulue
+	 */
+	public function getUserInfo($key)
+	{
+		return (isset($_SESSION['user_infos']) == true ? $_SESSION['user_infos'][$key] : null);
 	}
 
 }
