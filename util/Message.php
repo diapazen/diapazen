@@ -26,6 +26,41 @@
 class Message
 {
 
+	private static $messageRegistration	='';
+	private static $messageCreatePoll	='';
+	private static $messagePswForgotten	='';
+	private static $messageLogTooBig	='';
+	private $message;
+
+	/**
+	 * Récupère le message à envoyer
+	 *
+	 * @return string message à envoyer
+	 */
+	public function getMessage()
+	{
+
+	}
+
+	/**
+	 * Récupère le message à envoyer
+	 *
+	 * @param name nom permettant de savoir quel message choisir
+	 */
+	public function setMessage($name)
+	{
+
+	}
+
+	/**
+	 * Set les paramêtres des messages (ex : mot de passe)
+	 * @param  params liste des paramêtres du message
+	 *
+	 */
+	public function setParams($params)
+	{
+
+	}
 }
 
 ?>
