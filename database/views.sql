@@ -6,6 +6,8 @@
 CREATE OR REPLACE VIEW diapazen.dpz_view_connexion AS
 SELECT 
 	dpz_users.id,
+	dpz_users.firstname,
+	dpz_users.lastname,
 	dpz_users.email,
 	dpz_users.password     
 FROM diapazen.dpz_users;
