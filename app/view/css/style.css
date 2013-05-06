@@ -254,7 +254,8 @@
 	overflow-y: auto;
 	border: 1px solid #FF4820;
 	border-radius:5px;
-	max-height: 400px;
+	max-height: 650px;
+	margin-bottom: 20px;
 }
 
 #poll_list table
@@ -312,51 +313,6 @@
 	background-color: #D0D0D0;
 }
 
-/*-----------------------------------------------------------------------------*/
-/*---------------------------LISTE DE CONTACT----------------------------------*/
-/*-----------------------------------------------------------------------------*/
-
-#contact_list
-{
-	margin-top: 10px;
-	width: 50%;
-	overflow-x: hidden;
-	overflow-y: auto;
-	border: 1px solid #FF4820;
-	border-radius:5px;
-	max-height: 150px;
-}
-
-#contact_list table
-{
-	border-collapse: collapse;
-	width: 100%;
-	table-layout: fixed;
-}
-
-#contact_list td
-{
-	padding: 2px;
-	padding-left: 10px;
-	border-bottom: 1px solid #919191;
-}
-
-#contact_list tr:last-child td
-{
-	border-bottom: none;
-}
-
-#contact_list tr td:first-child
-{
-	width: 88%;
-}
-
-#contact_list + .small_text_edit
-{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	width: 45%;
-}
 
 /*pollConnection.css */
 

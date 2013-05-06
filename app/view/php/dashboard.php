@@ -19,18 +19,11 @@
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
+        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
 
     );
-    $contactList = array(
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-        'adresse.emaildetest@mailtest.com',
-    );
+    
     ?>
 
         <div id="content">
@@ -78,27 +71,6 @@
                 </table>
             </div>
 
-            <h2 class="small_title small_title_dashboard">Liste de vos contacts</h2>
-            <div id="contact_list">
-                <table>
-                    <?php
-                        foreach ($contactList as $row) {
-                    ?>
-
-                    <tr>
-                        <td class="text"> <?php echo $row ?> </td>
-                        <td>
-                            <input class="orange_small_button" type="button" value="X">
-                        </td>
-                    </tr>
-
-                    <?php
-                        }
-                    ?>
-                </table>
-            </div>
-            <input class="small_text_edit">
-            <input class="grey_small_button" type="button" value="+">
         </div>
         
 
