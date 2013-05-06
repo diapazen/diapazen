@@ -71,6 +71,10 @@
                 </table>
             </div>
 
+            <form id="new_poll">
+                <input type="submit" class="orange_button" value="Créer un nouvel évènement">
+            </form>
+
         </div>
         
 
