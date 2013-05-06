@@ -51,4 +51,19 @@ define('ERROR', 'ERROR');
 define('DEBUG', 'DEBUG');
 define('INFO', 'INFO');
 define('WARNING', 'WARNING');
+define('LOG_ALL', FALSE );  // permet de logger toute les exceptions etc
+        
+        
+ // Constante permettant de dire si on affiche les erreurs notice php ou pas
+define("PRODUCTION", false);
+if(PRODUCTION)
+{
+    if (!ini_get('display_errors')) 
+    {
+        ini_set('display_errors', '1');
+    }
+    error_reporting(E_PARSE); // affiche uniquement les erreurs de syntaxe
+}
+    
+
 ?>
