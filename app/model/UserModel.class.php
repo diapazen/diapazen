@@ -291,7 +291,7 @@ class UserModel extends Model
 					// on enregistre les données fournies par l'utilisateur
 					$request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_users` 
 						(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
-					VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
+                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
 
 					$request->bindValue(':FIRSTNAME', $firstname);
 					$request->bindValue(':LASTNAME', $lastname);
@@ -303,7 +303,7 @@ class UserModel extends Model
 					$check = $request->execute();
 
 					// si on a un résultat, c'est qu'on a bien ajouté cet utilisateur dans la bdd
-					if($check = 1) return true; 
+					if($check == 1) return true; 
 				}
 			}
 			return false;
@@ -313,7 +313,51 @@ class UserModel extends Model
             throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
         }
 	}
-
+        
+        /**
+         * Modification du profil de l'utilisateur
+         * @param type $id id de l'utilisateur
+         * @param firstname prénom renseigné par l'utilisateur
+	 * @param lastname nom de famille renseigné par l'utilisateur
+	 * @param email email renseigné par l'utilisateur
+         * @return boolean true si la modification s'est bien passé
+         */
+        public function changeUser($id, $firstName, $lastName, $email)
+        {
+            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `firstname` = :FIRSTNAME,`lastname` = :LASTNAME,`email` = :EMAIL WHERE `id` = :ID");
+            $request->bindValue(':FIRSTNAME', $firstName);
+            $request->bindValue(':LASTNAME', $lastName);
+            $request->bindValue(':EMAIL', $email);
+            $request->bindValue(':ID', $id);
+            $check = $request->execute();
+            if($check == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        
+        /**
+         * Modification du mot de passe de l'utilisateur
+         * @param type $id id de l'utilisateur
+         * @param type $email email de l'utilisateur
+         * @param type $password mot de passe renseigné par l'utilisateur
+         * @return boolean si la modification s'est bien passé
+         */
+        public function changePassword($id, $email, $password)
+        {
+            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `id` = :ID");
+            $password = crypt($password, '$2a$07$'.sha1($email).'$');
+            $request->bindValue(':PASSWORD', $password);
+            $request->bindValue(':ID', $id);
+            $check = $request->execute();
+            if($check == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+        
 	/**
 	 * Getter
 	 *
