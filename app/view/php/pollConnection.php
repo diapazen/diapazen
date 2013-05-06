@@ -7,7 +7,7 @@
                 <a class="grey_ariadne" href="#">Partage</a>
             </div>
             <form action="share" method="post" id="poll_connection_form">
-                <input id="mail_user" class="small_text_edit" name="email" type="mail" placeholder="E-mail">
+                <input id="mail_user" class="small_text_edit" name="email" type="email" placeholder="E-mail">
                 <label class="text"><input id="registered" type="radio" name="account">Déjà un compte</label>
                 <label class="text"><input id="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>
                 <input class="small_text_edit" id="name_user" name="nameUser" type="text" placeholder="Nom">
