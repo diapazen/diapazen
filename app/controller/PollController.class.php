@@ -105,6 +105,16 @@ class PollController extends Controller
 		// On fait le rendu
 		$this->render('pollShare');
 	}
+
+	public function view($params = null)
+	{
+		// On charge le modèle des sondages
+		$this->loadModel('poll');
+
+		
+		// On fait le rendu
+		$this->render('pollView');
+	}
 }
 
 ?>
