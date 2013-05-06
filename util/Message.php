@@ -49,7 +49,36 @@ class Message
 	 */
 	public function setMessage($name)
 	{
+		if(!empty($name))
+		{
+			//switch sur name pour choisir le bon message
+			switch ($name) 
+			{
+				case 'registration':
+					$message=self::$messageRegistration;
+					break;
 
+				case 'poll':
+					$message=self::$messageCreatePoll;
+					break;
+
+				case 'password':
+					$message=self::$messagePswForgotten;
+					break;
+
+				case 'log':
+					$message=self::$messageLogTooBig;
+					break;
+
+				default :
+					new coreException("nom du message non valide");
+					break;
+			}
+		}
+		else
+		{
+			new coreException("nom du message non valide");
+		}
 	}
 
 	/**
