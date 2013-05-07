@@ -1,3 +1,25 @@
+/* login.php */
+
+#connect_box_fail
+{
+	width: 350px;
+	margin: auto;
+}
+
+#connect_box_fail p
+{
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+#connect_box_fail input
+{
+	display: block;
+	width: inherit;
+	margin-bottom: 10px;
+}
+
+
 /* home.css */
 
 #content .use_description
@@ -89,7 +111,7 @@
 	margin-bottom: 20px;
 }
 
-#share_form .big_title, .title, .small_title, #share_info, #link_output, .small_text_edit
+#share_form .big_title, #share_form .title, #share_form .small_title, #share_form #share_info, #share_form #link_output, #share_form .small_text_edit
 {
 	margin-bottom: 15px;
 }
@@ -110,7 +132,7 @@
 	display: block;
 }
 
-#share_form #link_output, #share_info, .small_text_edit
+#share_form #link_output, #share_form #share_info, #share_form .small_text_edit
 {
 	margin-left: 10px;
 }
@@ -347,19 +369,19 @@
 
 }
 
-#poll_connection_form #not_registered, #registered
+#poll_connection_form #not_registered, #poll_connection_form #registered
 {
 	margin-right: 10px;
 }
 
-#poll_connection_form #mail_info, #name_user, #first_name_user, #pwd_user
+#poll_connection_form #mail_info, #poll_connection_form #name_user, #poll_connection_form #first_name_user, #poll_connection_form #pwd_user
 {
 	display: none;
 }
 
 /* pollCreation.css */
 
-#poll_creation_form .small_title, #title_input, #description_input, .choice
+#poll_creation_form .small_title, #poll_creation_form #title_input, #poll_creation_form #description_input, #poll_creation_form .choice
 {
 	display: block;
 	margin-bottom: 15px;
@@ -373,7 +395,7 @@
 	max-height: 5em;
 }
 
-#poll_creation_form #title_input, #description_input, .choice, .button
+#poll_creation_form #title_input, #poll_creation_form #description_input, #poll_creation_form .choice, #poll_creation_form .button
 {
 	margin-left: 10px;
 }

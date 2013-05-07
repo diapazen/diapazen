@@ -141,3 +141,19 @@ footer ul li
     padding-left: 6px;
     border-right: 1px solid #919191;
 }
+
+.error_message
+{
+    background-color: #f2dede;
+    border: 1px #eed3d7 solid;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.success_message
+{
+    background-color: #dff0d8;
+    border: 1px #d6e9c6 solid;
+    border-radius: 4px;
+    padding: 10px;
+}
