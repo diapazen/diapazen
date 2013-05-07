@@ -27,7 +27,7 @@
 				        	<input class ="orange_small_button" type="submit" value="Connexion">
 						</form>
 				<?php } else { ?>
-						<div>Bonjour Nom prénom <a href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
+						<div>Bonjour <?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?><a href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
 				<?php } ?>
 				
 			</div>
