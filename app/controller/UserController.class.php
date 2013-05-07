@@ -65,6 +65,9 @@ class UserController extends Controller
 			{
 				// La connexion a échoué
 				$this->setUserDisconnected();
+
+				// On affiche un formulaire de connexion
+				$this->render('login');
 			}
 			else
 			{
@@ -75,6 +78,11 @@ class UserController extends Controller
 				header('Location: ' . BASE_URL. '/dashboard');
 
 			}
+		}
+		else
+		{
+			// On affiche un formulaire de connexion
+			$this->render('login');
 		}
 
 	}
