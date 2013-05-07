@@ -41,6 +41,10 @@ class UserController extends Controller
 		// on charge le modèle de l'utilisateur
 		$this->loadModel('user');
 
+		// si l'utilisateur est déja connecté
+		if ($this->isUserConnected())
+			header('Location: ' . BASE_URL. '/dashboard');
+
 		if (	isset($_POST['mailConnect'])		&& !empty($_POST['mailConnect'])
 			&&	isset($_POST['passwordConnect'])	&& !empty($_POST['passwordConnect']))
 		{
