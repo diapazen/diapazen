@@ -53,7 +53,9 @@ class Model
 		{
 
 			$dataBaseConfig = Config::getDatabaseConfig();
-            $options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+			
+            $options[PDO::ATTR_ERRMODE]				= PDO::ERRMODE_EXCEPTION;
+            $options[PDO::MYSQL_ATTR_INIT_COMMAND]	= "SET NAMES utf8";
 
         	return new PDO('mysql:host='.$dataBaseConfig['host'], $dataBaseConfig['user'], $dataBaseConfig['pass'], $options);
         }
