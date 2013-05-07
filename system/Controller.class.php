@@ -180,11 +180,23 @@ class Controller
 	/**
 	 * Récupère les informations de l'utilisateur (stocké en session)
 	 *
+	 * @param	string	key	clé
 	 * @return	string	Information voulue
 	 */
 	public function getUserInfo($key)
 	{
 		return (isset($_SESSION['user_infos']) == true ? $_SESSION['user_infos'][$key] : null);
+	}
+
+	/**
+	 * Définit les informations de l'utilisateur (stocké en session)
+	 *
+	 * @param	string	key	clé
+	 * @param	string	Information voulue
+	 */
+	public function setUserInfo($key,$value)
+	{
+		$_SESSION['user_infos'][$key] = $value;
 	}
 
 }
