@@ -103,32 +103,19 @@ class UserController extends Controller
 				&&	isset($_POST['firstname']) && !empty($_POST['firstname'])
 				&&	isset($_POST['mail']) && !empty($_POST['mail']) )
 			{
-				
-				try
-				{
-					// met a jour la bdd
-					$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstname'], $_POST['lastname'], $_POST['mail']);
-
-					//met a jour la session
-					$this->setUserInfo('firstname', $_POST['firstname']);
-					$this->setUserInfo('lastname', $_POST['lastname']);
-					$this->setUserInfo('email', $_POST['mail']);
-				}
-				catch(Exception $e)
-				{
-					die('Erreur interne de la base de données.');
-				}
-			}
-
-			// On modifie le mot de passe si il est renseigné
-			if (	isset($_POST['password']) && !empty($_POST['password'])
-				&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
-			{
-				if ($_POST['password'] == $_POST['passwordConfirm'])
+				// On teste le mot de passe de confirmation
+				if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
+					&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
 				{
 					try
 					{
-						$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['mail'], $_POST['password']);
+						// met a jour la bdd
+						$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstname'], $_POST['lastname'], $_POST['mail']);
+
+						//met a jour la session
+						$this->setUserInfo('firstname', $_POST['firstname']);
+						$this->setUserInfo('lastname', $_POST['lastname']);
+						$this->setUserInfo('email', $_POST['mail']);
 					}
 					catch(Exception $e)
 					{
@@ -137,7 +124,39 @@ class UserController extends Controller
 				}
 				else
 				{
-					//si le mdp n'est pas le même
+					// Erreur de mot de passe de confirmation
+					die('erreur du mot de passe de confirmation!');
+				}
+			}
+
+			// On modifie le mot de passe si il est renseigné
+			if (	isset($_POST['password']) && !empty($_POST['password'])
+				&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
+			{
+				// On teste le mot de passe de confirmation
+				if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
+					&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
+				{
+					if ($_POST['password'] == $_POST['passwordConfirm'])
+					{
+						try
+						{
+							$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['mail'], $_POST['password']);
+						}
+						catch(Exception $e)
+						{
+							die('Erreur interne de la base de données.');
+						}
+					}
+					else
+					{
+						//si le mdp n'est pas le même
+					}
+				}
+				else
+				{
+					// Erreur de mot de passe de confirmation
+					die('erreur du mot de passe de confirmation!');
 				}
 				
 			}

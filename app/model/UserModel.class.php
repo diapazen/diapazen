@@ -331,6 +331,36 @@ class UserModel extends Model
         }
 
         /**
+         * Vérification du mot de passe de l'utilisateur
+         * @param type $id id de l'utilisateur
+         * @param type $password mot de passe renseigné par l'utilisateur
+         * @return boolean si la vérification s'est bien passé
+         */
+        public function checkPassword($id, $password)
+        {
+        	// on récupère le password avec une clause WHERE sur l'id
+			$request = $this->mDbMySql->prepare("SELECT password,email FROM diapazen.dpz_view_connexion WHERE dpz_view_connexion.id=:ID;");
+			$request->bindValue(':ID', $id);
+			$request->execute();
+			$infos=$request->fetch();
+
+			if(!is_null($infos))
+			{
+				// on hash le mot de passe avec du blowfish: le salt est le sha1 de l'email
+				$password = crypt($password, '$2a$07$'.sha1($infos['email']).'$');
+				
+				$password_encrypted = $infos['password'];
+				
+				if( $password_encrypted == $password) 
+				{
+					return true;
+				}
+			}
+
+			return false;
+        }
+
+        /**
 		 * Fonction qui génère un mot de passe aléatoire
 		 * 
 		 * Cette méthode génère un mot de passe aléatoire
