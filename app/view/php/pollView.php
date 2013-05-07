@@ -4,7 +4,7 @@
             <div id ="poll">
                 <h1 class="title" >Titre de l'évènement</h1>
                 <p class="small_title" >Par Prénom NOM</p>
-                <p class="text" >Description de l'évènement</p>
+                <p class="text" >Description de l'évènement</p><?php echo uniqid(); ?>
                 <div id="poll_choices">
                     <table>
                         <tr>

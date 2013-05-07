@@ -168,7 +168,10 @@ class PollController extends Controller
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
-		
+		$res = $this->getModel()->getPollView('E7DF4FED2ZD');
+		echo "<pre>";
+		print_r($res);
+		echo "</pre>";	
 		// On fait le rendu
 		$this->render('pollView');
 	}

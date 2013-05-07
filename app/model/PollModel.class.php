@@ -43,6 +43,46 @@ class PollModel extends Model
 	{
 		parent::__construct();
 	}
+
+    /**
+     * Construction d'un sondage
+     * @param type $pollTitle titre du sondage
+     * @param type $pollDescription description du sondage
+     * @param type $poll_expiration_date date d'expiration du sondage
+     */
+    public function getPollView($pollUrl)
+    {
+        try
+        {
+            // On récupère les informations du sondage de la bdd
+            $request = $this->mDbMySql->prepare("SELECT title,description,expiration_date,CHOICE_ID,choice FROM diapazen.dpz_view_poll WHERE dpz_view_poll.url=:URL;");
+            $request->bindValue(':URL', $pollUrl);
+            $request->execute();
+            $results=$request->fetch(PDO::FETCH_ASSOC);
+/*
+            // On traite le résultat
+            if(!is_null($results))
+            {
+                $ret = array();
+
+                $ret['title'] = $results[0]['title'];
+                $ret['description'] = $results[0]['description'];
+                $ret['expire'] = $results[0]['expire'];
+                foreach ($results as $choice => $value)
+                {
+                    $ret['choices'][] = 
+                }
+            }
+
+            return null;*/
+        return $results;
+        }
+        catch(Exception $e) 
+        {
+            throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
+        }
+    }
+
         
         /**
          * Création d'une chaine de caractère aléatoire
