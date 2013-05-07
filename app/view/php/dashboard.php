@@ -75,9 +75,7 @@
                 </table>
             </div>
 
-            <form id="new_poll">
-                <input type="submit" class="orange_button" value="Créer un nouvel évènement">
-            </form>
+            <a href="<?php $this->getHomeUrl(); ?>/poll/create" id="new_poll" class="orange_button">Créer un nouvel évènement</a>
 
         </div>
         
