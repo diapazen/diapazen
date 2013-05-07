@@ -106,7 +106,13 @@ class UserController extends Controller
 				
 				try
 				{
+					// met a jour la bdd
 					$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstname'], $_POST['lastname'], $_POST['mail']);
+
+					//met a jour la session
+					$this->setUserInfo('firstname', $_POST['firstname']);
+					$this->setUserInfo('lastname', $_POST['lastname']);
+					$this->setUserInfo('email', $_POST['mail']);
 				}
 				catch(Exception $e)
 				{
