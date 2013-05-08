@@ -271,7 +271,6 @@ tipomatika@gmail.com*/
 {
     padding-top: 10px;
     display: inline-block;
-    text-align: center;
     height: 40px;
     width: 260px;
     text-decoration: none;
@@ -280,14 +279,59 @@ tipomatika@gmail.com*/
     font-family: candela_book;
 }
 
-.orange_ariadne
+.orange_ariadne span, .grey_ariadne span
 {
-    background: url('../media/pictures/ariadne.png') no-repeat;
+    display: inline-block;
 }
 
-.grey_ariadne
+.orange_ariadne span:first-child
 {
-    background: url('../media/pictures/ariadne2.png') no-repeat;
+    background: url('../media/pictures/ariadne_back.png') no-repeat;
+    height: 40px;
+    width: 19px;
+}
+
+.orange_ariadne span:nth-child(2)
+{
+    background: url('../media/pictures/ariadne_middle.png') repeat-x;
+    height: 40px;
+    width: 217px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+}
+
+.orange_ariadne span:last-child
+{
+    background: url('../media/pictures/ariadne_front.png') no-repeat;
+    height: 40px;
+    width: 24px;
+    float: right;
+}
+
+.grey_ariadne span:first-child
+{
+    background: url('../media/pictures/ariadne2_back.png') no-repeat;
+    height: 40px;
+    width: 19px;
+}
+
+.grey_ariadne span:nth-child(2)
+{
+    background: url('../media/pictures/ariadne2_middle.png') repeat-x;
+    height: 40px;
+    width: 217px;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+}
+
+.grey_ariadne span:last-child
+{
+    background: url('../media/pictures/ariadne2_front.png') no-repeat;
+    height: 40px;
+    width: 24px;
+    float: right;
 }
 
 /*------------------------------------*/
