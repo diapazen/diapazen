@@ -213,6 +213,37 @@ class PollModel extends Model
         }
         
         /**
+         * Suppression d'un sondage
+         * @param type $pollId identifient du sondage
+         * @return boolean true si la suppression s'est bien exécuté sinon false
+         */
+        public function deletePoll($pollId)
+        {
+            try
+            {
+                $this->setPollTitle(NULL);
+                $this->setPollDescription(NULL);
+                $this->setPollExpirationDate(NULL);
+                $this->setPollUrl(NULL);
+                $request = $this->mDbMySql->prepare("DELETE FROM `diapazen.dpz_polls` WHERE id=:ID");
+                $request->bindValue(':ID', $pollId);
+                $check = $request->execute();
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur lors de la suppression du sondage :</br>' . $e->getMessage());
+            }
+        }
+
+        /**
          * Compare l'Url du sondage et l'url de tous les sondages existants
          * @return boolean true si l'url est unique false sinon
          */
