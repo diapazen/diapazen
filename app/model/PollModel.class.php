@@ -261,6 +261,32 @@ class PollModel extends Model
             }
             return TRUE;
         }
+
+        /**
+         * Récupère le contenu du textarea et parse les emails
+         * @return boolean true si l'url est unique false sinon
+         */
+        public function sharePoll($texteareaContent)
+        {
+
+            $emails = preg_split("/[\r\n,;]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
+
+            $emails = array_unique($emails);
+
+            $regexMail = '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#';
+            foreach($emails as $current)
+            {
+                if(!preg_match($regexMail, $current))
+                {
+                    unset($emails[array_search($current, $emails)]);
+                }
+            }
+
+
+            // Envoi mail aux valeurs de $emails
+
+
+        }
         
         /**
          * Setteur du titre du sondage
