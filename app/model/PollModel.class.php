@@ -101,17 +101,71 @@ class PollModel extends Model
         }
         
         /**
-         * Construction d'un sondage
+         * Ajout d'un sondage
+         * @param type $userId id de l'utilisateur
          * @param type $pollTitle titre du sondage
          * @param type $pollDescription description du sondage
          * @param type $poll_expiration_date date d'expiration du sondage
+         * @return boolean si l'ajout s'est bien exécuté sinon false
          */
-        public function pollModel($pollTitle, $pollDescription, $poll_expiration_date)
+        public function addPoll($userId, $pollTitle, $pollDescription, $poll_expiration_date)
         {
-            $this->pollTitle = $pollTitle;
-            $this->pollDescription = $pollDescription;
-            $this->poll_expiration_date = $poll_expiration_date;
-            $this->pollUrl = $this->randomString(11);
+            try
+            {
+                //on set les valeurs
+                $this->setPollTitle($pollTitle);
+                $this->setPollDescription($pollDescription);
+                $this->setPollExpirationDate($poll_expiration_date);
+                $this->setPollUrl($this->randomString(11));
+                while($this->compareUrlString() == FALSE)
+                {
+                    $this->setPollUrl($this->randomString(11));
+                }
+                
+                //on créer la requete pour créer une ligne d'un nouveau sondage
+                $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_polls` 
+                            (`id`, `user_id`, `url`, `title`, `description`, `expiration_date`, `open`) 
+                            VALUES (NULL, :USERID, :URL, :TITLE, :DESCRIPTION, :EXPIRATIONDATE, 1);");
+                $request->bindValue(':USERID', $userId);
+                $request->bindValue(':URL', $this->getPollUrl());
+                $request->bindValue(':TITLE', $pollTitle);
+                $request->bindValue(':DESCRIPTION', $pollDescription);
+                $request->bindValue(':EXPIRATIONDATE', $poll_expiration_date);
+                $check = $request->execute();
+                
+                //on renvoie true si l'ajout a été un succés sinon false
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception $e)
+            {
+                throw new Exception('Erreur lors de la tentative d\'ajout d\'un sondage :</br>' . $e->getMessage());
+            }
+        }
+        
+        /**
+         * Compare l'Url du sondage et l'url de tous les sondages existants
+         * @return boolean true si l'url est unique false sinon
+         */
+        public function compareUrlString()
+        {
+            $url = $this->getPollUrl;
+            $request = $this->mDbMySql->prepare("SELECT url FROM diapazen.dpz_polls");
+            $request->execute();
+            while($lignes = $request->fetch(PDO::FETCH_NUM))
+            {
+                if($lignes[0] == $url)
+                {
+                    return FALSE;
+                }
+            }
+            return TRUE;
         }
         
         /**
@@ -142,6 +196,15 @@ class PollModel extends Model
         }
         
         /**
+         * Setteur de l'url du sondage
+         * @param type $pollUrl url du sondage
+         */
+        public function setPollUrl($pollUrl)
+        {
+            $this->pollUrl = $pollUrl;
+        }
+        
+        /**
          * Getteur du titre du sondage
          */
         public function getPollTitle()
@@ -163,6 +226,14 @@ class PollModel extends Model
         public function getPollExpirationDate()
         {
             return $this->poll_expiration_date;
+        }
+        
+        /**
+         * Getteur de l'url du sondage
+         */
+        public function getPollUrl()
+        {
+            return $this->pollUrl;
         }
 
 }
