@@ -69,11 +69,7 @@
 
 #create_survey {
     float: right;
-    padding-top: 5px;
-    margin-top: 50px;
-}
-
-#create_survey input {
+    margin-top: 80px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 12px;
