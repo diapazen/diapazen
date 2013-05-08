@@ -1,3 +1,25 @@
+/* page 404 */
+
+#broken_diapason
+{
+	float: left;
+}
+
+#text_404
+{
+	margin-left: 400px;
+}
+
+#text_404 p:first-child
+{
+	margin-bottom: 40px;
+}
+
+#text_404 p:nth-child(2)
+{
+	margin-bottom: 20px;
+}
+
 /* login.php */
 
 #connect_box_fail
