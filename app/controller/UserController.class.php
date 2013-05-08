@@ -195,53 +195,6 @@ class UserController extends Controller
 			header('Location:' . BASE_URL);
 	}
 
-	public function register($params = null)
-	{
-		// Titre de la page
-		$this->set('title', 'Inscription | Diapazen');
-
-		//  Rendu de la page
-		$this->render('register');
-	}
-
-	public function registerAction($params = null)
-	{
-		// quand on se connecte
-		// on charge le modèle de l'utilisateur
-		$this->loadModel('user');
-
-		// si l'utilisateur est déja connecté
-		if ($this->isUserConnected())
-			header('Location: ' . BASE_URL. '/dashboard');
-
-		if (	isset($_POST['firstnameRegister'])			&& !empty($_POST['firstnameRegister'])
-			&&	isset($_POST['lastnameRegister'])			&& !empty($_POST['lastnameRegister'])
-			&&	isset($_POST['mailRegister'])				&& !empty($_POST['mailRegister'])
-			&&	isset($_POST['passwordRegister'])			&& !empty($_POST['passwordRegister'])
-			&&	isset($_POST['passwordConfirmRegister'])	&& !empty($_POST['passwordConfirmRegister'])
-			&&	($_POST['passwordRegister'] == $_POST['passwordConfirmRegister']) )
-		{
-			// On crée l'utilisateur
-			$this->getModel()->registration($_POST['firstnameRegister'],$_POST['lastnameRegister'],$_POST['mailRegister'],$_POST['passwordRegister']);
-			
-			// On redirige vers la création utilisateur reussi
-			// Titre de la page
-			$this->set('title', 'Inscription réussie ! | Diapazen');
-
-			//  Rendu de la page
-			$this->render('createUserSuccess');
-
-		}
-		else
-		{
-			// Erreur dans un ou plusieurs des champs remplis
-			// a gérer
-			// On redirige vers l'inscription
-			header('Location: ' . BASE_URL. '/user/register');
-		}
-
-	}
-
 	public function logout($params = null)
 	{
 		// quand on se déco.
