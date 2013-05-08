@@ -27,7 +27,7 @@
 				        	<input class ="orange_small_button" type="submit" value="Connexion">
 						</form>
 				<?php } else { ?>
-						<div>Bonjour <?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?><a href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
+						<div id="connected_box" ><p class="text" >Bonjour <span class="orange_text"><?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?></span></p><a class="link" href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
 				<?php } ?>
 				
 			</div>

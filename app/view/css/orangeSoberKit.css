@@ -119,6 +119,27 @@ tipomatika@gmail.com*/
     font-size: 1.2em;
 }
 
+.orange_text, .orange_small_text, .orange_big_text
+{
+    font-family: candela_book;
+    color: #FF4820;
+}
+
+.orange_text
+{
+    font-size: 1em;
+}
+
+.orange_small_text
+{
+    font-size: 0.8em;
+}
+
+.orange_big_text
+{
+    font-size: 1.2em;
+}
+
 /*---------------GRAS-----------------*/
 
 .bold, .small_bold, .big_bold

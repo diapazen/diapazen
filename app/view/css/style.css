@@ -1,3 +1,15 @@
+#connected_box
+{
+	float: right;
+	height: 62px;
+}
+
+#connected_box p
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
 /* page 404 */
 
 #broken_diapason
