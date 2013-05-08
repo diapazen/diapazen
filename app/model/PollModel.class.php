@@ -176,6 +176,43 @@ class PollModel extends Model
         }
         
         /**
+         * Modification d'un sondage
+         * @param type $pollTitle titre du sondage
+         * @param type $pollDescription description du sondage
+         * @param type $poll_expiration_date date d'expiration du sondage
+         * @return boolean true si la modification s'est bien exécuté sinon false
+         */
+        public function modifPoll($pollTitle, $pollDescription, $poll_expiration_date)
+        {
+            try
+            {
+                $this->setPollTitle($pollTitle);
+                $this->setPollDescription($pollDescription);
+                $this->setPollExpirationDate($poll_expiration_date);
+                $request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_polls SET
+                            `title`=:TITLE,`description`=:DESCRIPTION,`expiration_date`=:EXPIRATIONDATE 
+                            WHERE dpz_polls.url=:URL;");
+                $request->bindValue(':URL', $this->getPollUrl());
+                $request->bindValue(':TITLE', $pollTitle);
+                $request->bindValue(':DESCRIPTION', $pollDescription);
+                $request->bindValue(':EXPIRATIONDATE', $poll_expiration_date);
+                $check = $request->execute();
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur lors de la modification du sondage :</br>' . $e->getMessage());
+            }
+        }
+        
+        /**
          * Compare l'Url du sondage et l'url de tous les sondages existants
          * @return boolean true si l'url est unique false sinon
          */
