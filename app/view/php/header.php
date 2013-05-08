@@ -25,7 +25,6 @@
 				        	<input id="mail_connect" name="mailConnect" class="small_text_edit" type="mail" placeholder="E-mail">
 				        	<input id="password_connect" name="passwordConnect" class="small_text_edit" type="password" placeholder="Mot de passe">
 				        	<input class ="orange_small_button" type="submit" value="Connexion">
-				        	<a class="orange_small_button" href="<?php $this->getHomeUrl(); ?>/user/register">Inscription</a>
 						</form>
 				<?php } else { ?>
 						<div id="connected_box" ><p class="text" >Bonjour <span class="orange_text"><?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?></span></p><a class="link" href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
