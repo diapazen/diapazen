@@ -106,7 +106,7 @@ class PollModel extends Model
          * @param type $pollTitle titre du sondage
          * @param type $pollDescription description du sondage
          * @param type $poll_expiration_date date d'expiration du sondage
-         * @return boolean si l'ajout s'est bien exécuté sinon false
+         * @return boolean true si l'ajout s'est bien exécuté sinon false
          */
         public function addPoll($userId, $pollTitle, $pollDescription, $poll_expiration_date)
         {
@@ -143,9 +143,35 @@ class PollModel extends Model
                     return false;
                 }
             }
-            catch (Exception $e)
+            catch(Exception $e)
             {
                 throw new Exception('Erreur lors de la tentative d\'ajout d\'un sondage :</br>' . $e->getMessage());
+            }
+        }
+        
+        /**
+         * Mise à jour de la table Sondage
+         * @return boolean true si la mise à jour s'est bien exécuté sinon false
+         */
+        public function updatePoll()
+        {
+            try
+            {
+                $request = $this->mDbMySql->prepare("UPDATE `diapazen.dpz_polls` SET `open`=0 WHERE expiration_date < :TIME;");
+                $request->bindValue(':TIME', time());
+                $check = $request->execute();
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur lors de la mise a jour de la table sondage :</br>' . $e->getMessage());
             }
         }
         
