@@ -105,16 +105,20 @@ class PollController extends Controller
 
 		$this->loadModel('user');
 
+		// On choisi le rendu par default
+		$render='pollConnection';
+
 		try
 		{
 			//test si un choix a été fait entre la connection et l'inscription et qu'il y a un email
-			if(isset($_POST['account']) && isset($_POST['email']))
+			if(isset($_POST['account']) && isset($_POST['email']) && !empty($_POST['email']))
 			{
 				$mail=$_POST['email'];
 
 				//si on a choisi la connection et qu'il y a le mdp on tente de se connecter
-				if($_POST['account']=='registered' && isset($_POST['password']))
+				if($_POST['account']=='registered' && isset($_POST['password']) && !empty($_POST['password']))
 				{
+
 					$psw=$_POST['password'];
 					$ip_addr 	= $_SERVER['REMOTE_ADDR'];
 
@@ -133,24 +137,36 @@ class PollController extends Controller
 					{
 						// La connexion a échoué
 						$this->setUserDisconnected();
-						$this->render('pollConnection');
 
+						// On choisi le rendu
+						$render='pollConnection';
 					}
 					else
 					{
 						// La connexion a réussie
 						$this->setUserConnected($result);
+
+						// On choisi le rendu
+						$render='pollShare';
 					}
 				}
 				//si on a choisi l'inscription
 				else if($_POST['account']=='not_registered')
 				{
+					// On crée le mot de passe
 					$psw=$this->getModel()->generatorPsw();
+					// On crée l'utilisateur
+					// ne pas mettre de champs vide
+					$this->getModel()->registration('anonyme','anonyme',$mail,$psw);
+					
+					// On choisi le rendu
+					$render='pollShare';
 				}
 				//sinon on recharge la page précédante
 				else
 				{
-					$this->render('pollConnection');
+					// On choisi le rendu
+					$render='pollConnection';
 				}
 			}
 		}
@@ -158,9 +174,8 @@ class PollController extends Controller
 		{
 			//à gérer
 		}
-
 		// On fait le rendu
-		$this->render('pollShare');
+		$this->render($render);
 	}
 
 	public function view($params = null)
