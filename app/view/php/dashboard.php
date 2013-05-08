@@ -1,9 +1,6 @@
 <?php $this->getHeader(); ?>
 
     <?php
-    $connected = true;
-    $userName = 'Julien';
-    $userFirstName = 'Bodet';
     $pollList = array(
         array('title' => 'Sondage Test','description' => 'Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla Bla bla Bla bla Bla Bla bla Bla bla Bla Bla bla Bla bla Bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
         array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => false),
@@ -33,10 +30,11 @@
     ?>
 
         <div id="content">
-
-            <h1 class="title" id="title_dashboard" >Bienvenue <?php echo $userName.' '.$userFirstName; ?></h1>
-            <a id="dashboard_form" class="orange_button" href="user/profile">Modifier ses données personnelles</a>
-
+            
+                <a href="<?php $this->getHomeUrl(); ?>/poll/create" id="new_poll" class="orange_button">Créer un nouvel évènement</a>
+            <div id="float_button_dashboard">
+                <a id="dashboard_form" class="orange_button" href="user/profile">Modifier ses données personnelles</a>
+            </div>
             <h2 class="small_title small_title_dashboard">Liste de vos sondages</h2>
             <div id="poll_list">
                 <table>
@@ -74,9 +72,6 @@
                     ?>
                 </table>
             </div>
-
-            <a href="<?php $this->getHomeUrl(); ?>/poll/create" id="new_poll" class="orange_button">Créer un nouvel évènement</a>
-
         </div>
         
 

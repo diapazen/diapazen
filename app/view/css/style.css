@@ -279,26 +279,16 @@
 
 /* dashboard.css */
 
-#title_dashboard
+#float_button_dashboard
 {
-	display: inline-block;
-}
-
-#dashboard_form
-{
-	display: inline-block;
 	float: right;
-} 
+}
 
 .small_title_dashboard
 {
 	margin-top: 20px;
 }
 
-#new_poll
-{
-	margin-bottom: 10px;
-}
 /*-----------------------------------------------------------------------------*/
 /*--------------------------LISTE DE SONDAGES----------------------------------*/
 /*-----------------------------------------------------------------------------*/
