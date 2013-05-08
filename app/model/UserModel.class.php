@@ -281,9 +281,9 @@ class UserModel extends Model
 			return false;
 		}
 		catch(Exception $e) 
-        {
-            throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
-        }
+                {
+                    throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
+                }
 	}
         
         /**
