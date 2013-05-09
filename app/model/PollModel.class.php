@@ -55,7 +55,7 @@ class PollModel extends Model
         try
         {
             // On récupère les informations du sondage de la bdd
-            $request = $this->mDbMySql->prepare("SELECT title,description,expiration_date,CHOICE_ID,choice FROM diapazen.dpz_view_poll WHERE dpz_view_poll.url=:URL;");
+            $request = $this->mDbMySql->prepare("SELECT title,description,expiration_date,CHOICE_ID,choice FROM dpz_view_poll WHERE dpz_view_poll.url=:URL;");
             $request->bindValue(':URL', $pollUrl);
             $request->execute();
             $results=$request->fetch(PDO::FETCH_ASSOC);
