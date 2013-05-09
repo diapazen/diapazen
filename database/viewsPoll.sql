@@ -22,6 +22,7 @@ ORDER BY POLL_ID ASC;
 CREATE OR REPLACE VIEW diapazen.dpz_view_choice AS
 SELECT 
         dpz_choices.id AS CHOICE_ID,
+        dpz_choices.poll_id AS POLL_ID,
         dpz_choices.choice,
         
         dpz_results.value
