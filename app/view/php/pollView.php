@@ -1,11 +1,9 @@
 <?php $this->getHeader(); ?>
         <?php
-            $openedPoll = true;
-            $userLName = 'Disch';
-            $userFName = 'Anthony';
-            $eventTitle = 'Soirée chez moi !';
-            $eventDate = "2013-05-20 14:45:09";
-            $eventDescription = 'Bon voila, j\'organise une soirée ce samedi, qui voudrai quoi à manger ?';
+            $date = new DateTime($eventDate);
+            $now  = new DateTime('now');
+            $int = $now->diff($date);
+            $eventDate = $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).');
             $choiceList = array(
                 array('choiceName' => 'Couscous','choicePercent' => 50, 'checkList' => array('Guillaume Bauduin','Adrien Fourel')),
                 array('choiceName' => 'Paella','choicePercent' => 25, 'checkList' => array('Timothée Nicolas')),
@@ -18,9 +16,9 @@
         <div id="content">
             <div id ="poll">
                 <h1 class="title" > <?php echo $eventTitle; ?> </h1>
-                <p class="small_title" >Par <?php echo $userLName.' '.$userFName.' le '.$eventDate; ?> </p>
+                <p class="small_title" >Par <?php echo $userLName.' '.$userFName.'. '.$eventDate; ?> </p>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
-                <?php echo uniqid(); ?>
+                
                 <form>
                     <div id="poll_choices">
                         <table>
