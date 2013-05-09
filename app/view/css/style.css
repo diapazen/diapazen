@@ -1,3 +1,5 @@
+/* header.php */
+
 #connected_box
 {
 	float: right;
@@ -379,7 +381,7 @@
 	width: 200px;
 }
 
-#poll_connection_form .text, .small_text_edit, label
+#poll_connection_form .text, #poll_connection_form .small_text_edit, #poll_connection_form label
 {
 	margin-bottom: 15px;
 }

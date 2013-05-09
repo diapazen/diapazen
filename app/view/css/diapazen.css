@@ -90,18 +90,17 @@ header #header_content #logo
 
 header #header_content #connect_box
 {
-    display: inline-block;
     vertical-align: middle;
     float: right;
-    padding-top: 16px;
+    padding-top: 8px;
 }
 
-header #header_content #connect_box #mail_connect
+header #mail_connect
 {
     width: 10em;
 }
 
-header #header_content #connect_box #password_connect
+header #password_connect
 {
     width: 8.5em;
 }
@@ -112,7 +111,6 @@ header #header_content #connect_box #password_connect
     width: 900px;
     min-height: 700px;
     margin: auto;
-    /*margin-top: 10px;*/
     padding-top: 90px;
 }
 

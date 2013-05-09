@@ -171,6 +171,7 @@ tipomatika@gmail.com*/
     font-family: candela_book;
     border-bottom: 1px solid #919191;
     color: #919191;
+    cursor: pointer;
 }
 
 .link:hover, .small_link:hover, .big_link:hover
