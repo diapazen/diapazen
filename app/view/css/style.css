@@ -239,7 +239,8 @@
 
 .small_title_dashboard
 {
-	margin-top: 20px;
+	margin: 40px;
+	text-decoration: underline;
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -250,11 +251,11 @@
 {
 	margin-top: 10px;
 	width: inherit;
-	overflow-x: hidden;
-	overflow-y: auto;
+	/*overflow-x: hidden;*/
+	/*overflow-y: auto;*/
 	border: 1px solid #FF4820;
-	border-radius:5px;
-	max-height: 650px;
+	/*border-radius:5px;*/
+	/*max-height: 650px;*/
 	margin-bottom: 10px;
 }
 
@@ -263,6 +264,7 @@
 	border-collapse: collapse;
 	width: 100%;
 	table-layout: fixed;
+
 }
 
 #poll_list table a 
@@ -272,10 +274,12 @@
 
 #poll_list td
 {
-	padding: 5px;
+	padding: 10px;
 	border: 1px solid #919191;
 	text-align: center;
 	position: relative;
+
+	vertical-align: middle;
 }
 
 #poll_list tr:first-child td
