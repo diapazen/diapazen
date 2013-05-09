@@ -157,3 +157,16 @@ footer ul li
     padding: 10px;
     color: #468847;
 }
+
+.default_form
+{
+    width: 350px;
+    margin: auto;
+}
+
+.default_form input
+{
+    display: block;
+    width: inherit;
+    margin-bottom: 10px;
+}

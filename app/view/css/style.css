@@ -1,18 +1,3 @@
-/* retrievePwd.php */
-
-#retrieve_pwd_form
-{
-	width: 350px;
-	margin: auto;
-}
-
-#retrieve_pwd_form input
-{
-	display: block;
-	width: inherit;
-	margin-bottom: 10px;	
-}
-
 /* header.php */
 
 #connected_box
@@ -52,25 +37,11 @@
 
 /* login.php */
 
-#connect_box_fail
-{
-	width: 350px;
-	margin: auto;
-}
-
 #connect_box_fail p
 {
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
-
-#connect_box_fail input
-{
-	display: block;
-	width: inherit;
-	margin-bottom: 10px;
-}
-
 
 /* home.css */
 
@@ -271,27 +242,9 @@
 
 /* personalData.css */
 
-#personal_data_form
-{
-	margin: auto;
-	width: 350px;
-}
-
-#personal_data_form input
-{
-	display: block;
-	margin-bottom: 10px;
-	width: inherit;
-}
-
 #personal_data_form .big_title
 {
 	margin-bottom: 30px;
-}
-
-#personal_data_form #user_mail
-{
-	width: inherit;
 }
 
 /* dashboard.css */
