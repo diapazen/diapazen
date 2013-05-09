@@ -180,22 +180,41 @@ class PollController extends Controller
 
 	public function view($params = null)
 	{
+
+		// L'url du sondage doit être spécifiée
+		if (!$params)
+			header('Location: ' . BASE_URL);
+
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
 		try
 		{
-			$res = $this->getModel()->getPollView('E7DF4FED2ZD');
-			echo "<pre>";
-			print_r($res);
-			echo "</pre>";	
+			$res = $this->getModel()->viewPoll($params[0]);
+
+			//echo "<pre>";
+			//print_r($res);
+			//echo "</pre>";
+
+			// Si le sondage n'a pas été trouvé
+			if (!$res)
+				$this->e404();
+
+			// Sinon on définit les variables à envoyer à la vue
+			$this->set('openedPoll', $res['open']);
+			$this->set('userFName', $res['firstname']);
+			$this->set('userLName', $res['lastname']);
+			$this->set('eventTitle', $res['title']);
+			$this->set('eventDescription', $res['description']);
+			$this->set('eventDate', $res['expiration_date']);
+			// On fait le rendu
+			$this->render('pollView');
 		}
 		catch(Exception $e)
 		{
 			die($e->getMessage());
 		}
-		// On fait le rendu
-		$this->render('pollView');
+		
 	}
 }
 
