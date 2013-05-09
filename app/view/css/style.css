@@ -372,13 +372,13 @@
 
 /* pollCreation.css */
 
-#poll_creation_form .small_title, #poll_creation_form #title_input, #poll_creation_form #description_input, #poll_creation_form .choice
+#poll_creation_form .small_title, #poll_creation_form #id_title_input, #poll_creation_form #id_description_input, #poll_creation_form .choice
 {
 	display: block;
 	margin-bottom: 15px;
 }
 
-#poll_creation_form #description_input
+#poll_creation_form #id_description_input
 {
 	min-width: 20em;
 	max-width: 20em;
@@ -386,7 +386,7 @@
 	max-height: 5em;
 }
 
-#poll_creation_form #title_input, #poll_creation_form #description_input, #poll_creation_form .choice, #poll_creation_form .button
+#poll_creation_form #id_title_input, #poll_creation_form #id_description_input, #poll_creation_form .choice, #poll_creation_form .button
 {
 	margin-left: 10px;
 }
