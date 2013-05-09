@@ -35,7 +35,7 @@
             <div id="float_button_dashboard">
                 <a id="dashboard_form" class="orange_button" href="user/profile">Modifier ses données personnelles</a>
             </div>
-            <h2 class="small_title small_title_dashboard">Liste de vos sondages</h2>
+            <h2 class="small_title small_title_dashboard">Vos sondages</h2>
             <div id="poll_list">
                 <table>
                     <?php

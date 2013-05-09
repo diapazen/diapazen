@@ -111,7 +111,8 @@ header #password_connect
     width: 900px;
     min-height: 700px;
     margin: auto;
-    padding-top: 90px;
+    padding-top: 110px;
+    padding-bottom: 50px;
 }
 
 footer
