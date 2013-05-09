@@ -50,7 +50,7 @@ class Router
 			
 			// On appelle la méthode selon l'action de la requête
 			if (method_exists($controller, $mRequest->getAction()))
-				call_user_func_array(array($controller, $mRequest->getAction()), $mRequest->getParams());
+				call_user_func_array(array($controller, $mRequest->getAction()), array($mRequest->getParams()));
 			else
 				throw new Exception();
 		}
