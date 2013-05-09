@@ -7,7 +7,7 @@ var nameUser = document.getElementById('name_user');
 var firstNameUser = document.getElementById('first_name_user');
 
 registered.addEventListener('click', function(e){
-
+	
 	pwdUser.style.display = "block";
 	mailInfo.style.display = "none";
 	firstNameUser.style.display = "none";
