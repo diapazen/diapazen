@@ -2,9 +2,9 @@
 
         <div id="content">
             <div id="ariadne_thread"> 
-                <a class="orange_ariadne" href="#"><span></span><span>Création</span><span></span></a>
+                <a class="grey_ariadne" href="#"><span></span><span>Création</span><span></span></a>
                 <a class="grey_ariadne" href="#"><span></span><span>Connexion</span><span></span></a>
-                <a class="grey_ariadne" href="#"><span></span><span>Partage</span><span></span></a>
+                <a class="orange_ariadne" href="#"><span></span><span>Partage</span><span></span></a>
             </div>
             <form id="share_form" methode="post" action="share">
                 <h1 class="big_title">Félicitations !</h1>

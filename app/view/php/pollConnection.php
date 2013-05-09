@@ -2,8 +2,8 @@
 
         <div id="content">
             <div id="ariadne_thread"> 
-                <a class="orange_ariadne" href="#"><span></span><span>Création</span><span></span></a>
-                <a class="grey_ariadne" href="#"><span></span><span>Connexion</span><span></span></a>
+                <a class="grey_ariadne" href="#"><span></span><span>Création</span><span></span></a>
+                <a class="orange_ariadne" href="#"><span></span><span>Connexion</span><span></span></a>
                 <a class="grey_ariadne" href="#"><span></span><span>Partage</span><span></span></a>
             </div>
             <form action="share" method="post" id="poll_connection_form">
