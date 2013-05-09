@@ -1,3 +1,18 @@
+/* retrievePwd.php */
+
+#retrieve_pwd_form
+{
+	width: 350px;
+	margin: auto;
+}
+
+#retrieve_pwd_form input
+{
+	display: block;
+	width: inherit;
+	margin-bottom: 10px;	
+}
+
 /* header.php */
 
 #connected_box
