@@ -50,32 +50,32 @@ class PollModel extends Model
      * @param type $pollDescription description du sondage
      * @param type $poll_expiration_date date d'expiration du sondage
      */
-    public function getPollView($pollUrl)
+    public function viewPoll($pollUrl)
     {
         try
-        {
-            // On récupère les informations du sondage de la bdd
-            $request = $this->mDbMySql->prepare("SELECT title,description,expiration_date,CHOICE_ID,choice FROM dpz_view_poll WHERE dpz_view_poll.url=:URL;");
+        {   
+            // On récupère les informations de base du sondage
+            $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description,expiration_date,open FROM dpz_view_users_join_polls WHERE url=:URL;");
             $request->bindValue(':URL', $pollUrl);
             $request->execute();
-            $results=$request->fetch(PDO::FETCH_ASSOC);
-/*
+            $pollInfo=$request->fetch(PDO::FETCH_ASSOC);
+            
             // On traite le résultat
-            if(!is_null($results))
+            if($pollInfo)
             {
-                $ret = array();
-
-                $ret['title'] = $results[0]['title'];
-                $ret['description'] = $results[0]['description'];
-                $ret['expire'] = $results[0]['expire'];
-                foreach ($results as $choice => $value)
-                {
-                    $ret['choices'][] = 
-                }
+                // On récupère les informations de chaque choix du sondage de la bdd
+                $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,choice,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
+                $request->bindValue(':ID', $pollInfo['POLL_ID']);
+                $request->execute();
+                $pollChoices=$request->fetchAll(PDO::FETCH_ASSOC);
+                 
+                // On prépare le tableau de retour
+                $ret = $pollInfo;
+                $ret['choices'] = $pollChoices;
+                return $ret;
             }
 
-            return null;*/
-        return $results;
+            return false;
         }
         catch(Exception $e) 
         {
