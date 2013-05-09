@@ -195,6 +195,11 @@ class UserController extends Controller
 			header('Location:' . BASE_URL);
 	}
 
+	public function retrievePwd($params = null)
+	{
+		$this->render('retrievePwd');
+	}
+
 	public function logout($params = null)
 	{
 		// quand on se déco.
