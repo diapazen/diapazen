@@ -9,8 +9,14 @@ function manageChoices(input)
 
 		case 'orange_small_button':
 
+
+			// Le choix selectionné passe en grisé		
+
 			input.className = 'grey_small_button';
 			input.value = 'x';
+			
+
+			// Ajout d'un champ de choix
 
 			choices = input.parentNode.parentNode;
 
@@ -25,6 +31,8 @@ function manageChoices(input)
 
 		case 'grey_small_button':
 
+			// Suppression du champ de choix
+
 			choices = input.parentNode.parentNode;
 			choices.removeChild(input.parentNode);
 
@@ -35,6 +43,8 @@ function manageChoices(input)
 
 	}
 
+
+	// Reset des placeholder
 	choices = document.getElementsByName('choix[]');
 
 	for(i = 1; i <= choices.length; i++)
