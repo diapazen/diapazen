@@ -20,7 +20,7 @@
 
                 <input id="pwd_user" class="small_text_edit" type="password" name="password" placeholder="Mot de passe" value="">
 
-                <p id="mail_info" class="text">Un mail sera envoyé sur l'adresse e-mail entrée ci-dessus avec votre mot de passe généré aléatoirement</p>
+                <p id="mail_info" class="text">Votre mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
 
                 <input class="orange_button" type="submit" value="Etape suivante"/>
             </form>

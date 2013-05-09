@@ -5,6 +5,7 @@
     if(!isset($poll_description)) $poll_description="Description";
 
 ?>
+
         <div id="content">
             <div id="ariadne_thread"> 
                 <a class="orange_ariadne" href="#"><span></span><span>Création</span><span></span></a>
@@ -16,16 +17,21 @@
                 <input class="big_text" id="id_title_input" name="title_input" type="text" placeholder="Titre" value=<?php echo $poll_title;?>>
                 <textarea class="text" id="id_description_input" name="description_input" placeholder="Description" value=<?php echo $poll_description;?>></textarea>
                 <h1 class="small_title">Vos choix :</h1>
-                <div class="choice">
-                    <input class="text" type="text" name="choix" value="Choix 1">
-                    <input class="grey_small_button" type="button" value="x">
+                <div id="choices">
+                    <div class="choice">
+                        <input class="text" type="text" name="choix[]" placeholder="Choix 1" />
+                        <input class="grey_small_button" type="button" onclick="manageChoices(this);" value="x" />
+                    </div>
+                    <div class="choice">
+                        <input class="text" type="text" name="choix[]" placeholder="Choix 2" />
+                        <input class="orange_small_button" type="button" onclick="manageChoices(this);" value="+" />
+                    </div>
                 </div>
-                <div class="choice">
-                    <input class="text" type="text" name="choix" placeholder="Choix 2">
-                    <input class="orange_small_button" type="button" value="+">
-                </div>
-                <input class="orange_button" type="submit" value="Etape suivante">
+                <input class="orange_button" type="submit" value="Étape suivante" />
             </form>
         </div>
+
+        
+        <script type="text/javascript" src="<?php $this->getPath('js/script.js');?>"></script>
         
 <?php $this->getFooter(); ?>
