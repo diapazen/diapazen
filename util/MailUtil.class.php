@@ -27,7 +27,7 @@ class MailUtil
 {
 	protected $mailFrom;
 	protected $nameMailFrom;
-	protected $pswFrom;
+	protected $pwdForm;
 	protected $configSMTP;
 
 	/**
@@ -40,24 +40,26 @@ class MailUtil
 	 * 
 	 * @param     string	$mailFrom	mail d'envoi
 	 * @param     string    $nameMailFrom nom du mail
-	 * @param     string    $pswFrom mot de passe du compte
+	 * @param     string    $pwdForm mot de passe du compte
 	 * @param     string    $nameSMTP nom du smtp
 	 * @param     string    $portSMTP port du smtp
 	 */
-	public MailUtil($mailFrom,$nameMailFrom,$pswFrom,$nameSMTP,$portSMTP)
+	public function MailUtil()
 	{
-		if(!empty($mailFrom) && !empty($nameMailFrom) && !empty($pswFrom) &&
-			!empty($nameSMTP) && $portSMTP>0)
+		
+
+		$mailConfig = Config::getMailConfig();
+
+		if(!empty($mailConfig) && $mailConfig['port']>0)
 		{
-			$This->mailFrom=$mailFrom;
-			$This->nameMailFrom=$nameMailFrom;
-			$This->pswFrom=$pswFrom;
-			$This->configSMTP=$configSMTP.':'.$portSMTP;
+			$this->mailFrom = $mailConfig['login'];
+			$this->nameMailFrom = 'Diapazen';
+			$this->pwdForm = $mailConfig['pwd'];
+			$this->configSMTP = $mailConfig['nameSMTP'].':'.$mailConfig['port'];
 		}
 		else
 		{
-			throw new coreException("Error in MailUtil constructor");
-			
+			throw new coreException("Error in MailUtil constructor");	
 		}
 	}
 
@@ -71,25 +73,25 @@ class MailUtil
 	 * @param     string    $subject sujet du mail
 	 * @param     string    $message message du mail
 	 */
-	 public function sendMail($mailTo,$subjet,$message)
+	 public function sendMail($mailTo,$subject,$message)
 	{
 		//require de phpmailer et création d'une instance
-		require "../phpmailer/class.phpmailer.php";
+		require UTIL_ROOT.'phpmailer'.DS.'class.phpmailer.php';
 		$mail = new PHPmailer();
 
 		//configuration du mail
 		$mail->SetLanguage('fr');
 		$mail->CharSet = 'utf-8';
 		$mail->IsSMTP();
-		$mail->Host = $configSMTP;
-		$mail->Username=$mailFrom;
-		$mail->Password=$pswFrom;
-		$mail->From = $mailFrom;
-		$mail->FromName = $nameMailFrom;
+		$mail->Host = $this->configSMTP;
+		$mail->Username = $this->mailFrom;
+		$mail->Password = $this->pwdForm;
+		$mail->From = $this->mailFrom;
+		$mail->FromName = $this->nameMailFrom;
 		$mail->AddAddress($mailTo);
 
 		$mail->IsHTML(true);
-		$mail->Subject = $subjet;
+		$mail->Subject = $subject;
 		$mail->Body = $message;
 
 		//envoi du mail
@@ -117,7 +119,7 @@ class MailUtil
 	 public function sendMailWithCC($mailTo,$subjet,$message)
 	{
 		//require de phpmailer et création d'une instance
-		require "../phpmailer/class.phpmailer.php";
+		require UTIL_ROOT.'phpmailer'.DS.'class.phpmailer.php';
 		$mail = new PHPmailer();
 
 		//configuration du mail

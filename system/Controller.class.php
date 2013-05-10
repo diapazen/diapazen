@@ -48,7 +48,7 @@ class Controller
 		$model = ucfirst($model).'Model';
 		try
 		{
-			$this->mModel =  new $model();
+			$this->mModel = new $model();
 		}
 		catch(Exception $e)
 		{
@@ -57,7 +57,7 @@ class Controller
 	}
 
 	/**
-	 * Charge le modèle de données
+	 * Retourne le modèle de données
 	 * @return	Model	model		Modèle de données
 	 */
 	protected function getModel()

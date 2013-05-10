@@ -281,9 +281,9 @@ class UserModel extends Model
 			return false;
 		}
 		catch(Exception $e) 
-                {
-                    throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
-                }
+		{
+			throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
+		}
 	}
         
         /**
@@ -318,10 +318,10 @@ class UserModel extends Model
          */
         public function changePassword($id, $email, $password)
         {
-            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `id` = :ID");
+            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `email` = :EMAIL");
             $password = crypt($password, '$2a$07$'.sha1($email).'$');
             $request->bindValue(':PASSWORD', $password);
-            $request->bindValue(':ID', $id);
+            $request->bindValue(':EMAIL', $email);
             $check = $request->execute();
             if($check == 1)
             {
@@ -383,7 +383,29 @@ class UserModel extends Model
 
 			return $psw;
         }
-        
+       
+        /**
+         * Vérification si email contenu dans bdd
+         * @param type $email email à vérifier
+         * @return boolean true si l'email est présent
+         */
+	    public function isEmailRegistred($email)
+		{
+		
+			$request = $this->mDbMySql->prepare("SELECT count(*) FROM diapazen.dpz_view_users WHERE dpz_view_users.email=:EMAIL;");
+			$request->bindValue(':EMAIL', $email);
+			$request->execute();
+			$infos=$request->fetch();
+
+			if($infos[0]<1)
+			{		
+				return false;
+			}
+			
+			return true;
+			
+		}
+
 	/**
 	 * Getter
 	 *

@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/diapazen.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/style.css'); ?>">
         <!-- jQuery 2.0 -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+        <!--script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script-->
         
         <title><?php if (isset($title)){ echo $title; } ?></title>
     </head>
@@ -27,7 +27,7 @@
 				        	<input id="password_connect" name="passwordConnect" class="small_text_edit" type="password" placeholder="Mot de passe">
 				        	<input class ="orange_small_button" type="submit" value="Connexion">
 						</form>
-						<a class="small_link" href="<?php $this->getHomeUrl(); ?>/user/retrievePwd" >Mot de passe oublié ?</a>
+						<a class="small_link" href="<?php $this->getHomeUrl(); ?>/user/forgot" >Mot de passe oublié ?</a>
 					</div>
 				<?php } else { ?>
 						<div id="connected_box" ><p class="text" >Bonjour <span class="orange_text"><?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?></span></p><a class="link" href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>

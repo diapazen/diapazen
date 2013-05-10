@@ -43,7 +43,9 @@ class UserController extends Controller
 
 		// si l'utilisateur est déja connecté
 		if ($this->isUserConnected())
+		{
 			header('Location: ' . BASE_URL. '/dashboard');
+		}
 
 		if (	isset($_POST['mailConnect'])		&& !empty($_POST['mailConnect'])
 			&&	isset($_POST['passwordConnect'])	&& !empty($_POST['passwordConnect']))
@@ -195,9 +197,54 @@ class UserController extends Controller
 			header('Location:' . BASE_URL);
 	}
 
+	public function forgot($params = null)
+	{
+		if ($this->isUserConnected())
+		{
+			header('Location: ' . BASE_URL. '/dashboard');
+		}
+
+		// Titre de la page
+		$this->set('title', 'Mot de passe oublié | Diapazen');
+		$this->render('forgot');
+	}
 	public function retrievePwd($params = null)
 	{
-		$this->render('retrievePwd');
+		$this->loadModel('user');
+		$email = $_POST['mailRetrieve'];
+
+
+		try
+		{
+			if(isset($email) && !empty($email) && $this->getModel()->isEmailRegistred($email))
+			{
+				$password = $this->getModel()->generatorPsw();
+
+				$this->getModel()->changePassword(null, $email, $password);
+
+				try
+				{
+					$objMail = new MailUtil();
+					$subject = 'Votre nouveau mot de passe.';
+					$message = 'Voici votre nouveau mot de passe :<br />'.$password;
+					$objMail->sendMail($email, $subject, $message);
+				}
+				catch(Exception $e)
+				{
+					die('Envoi mail échoué '+$password);
+				}
+	        }
+			else
+			{
+				$this->forgot();	
+	 		}
+		}
+		catch(Exception $e)
+		{
+			die('Erreur interne de la base de données.');
+		}
+
+		
 	}
 
 	public function logout($params = null)
@@ -208,6 +255,7 @@ class UserController extends Controller
 		// On redirige vers l'accueil
 		header('Location: ' . BASE_URL);
 	}
+
 }
 
 ?>

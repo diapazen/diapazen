@@ -29,20 +29,22 @@ class Config
 	// Configurations possibles de la base de données
 	private static $mDb = array(
 						'default'	=>	array(
-												'host'	=>	'localhost',
-												'user'	=>	'root',
-												'pass'	=>	'',
-												'name'	=>	'diapazen'
+								'host'	=>	'localhost',
+								'user'	=>	'root',
+								'pass'	=>	'',
+								'name'	=>	'diapazen'
 																	)
 						);
 
 	// Configuration pour le serveur SMTP et le compte mail
-	private static $cMail = array(
+	private static $mMail = array(
+						'default'	=> array(
 								'login' 	=>	'diapazen@mail.com',
-								'psw' 		=>	'Diaisenpa',
+								'pwd' 		=>	'Diaisenpa',
 								'nameSMTP'	=>	'smtp.mail.com'	,
 								'port'		=>	'587'
-							);
+																	)
+						);
 
 	 /**
 	 * Récupère la configuration de la base de donnée voulue.
@@ -53,6 +55,11 @@ class Config
 	public static function getDatabaseConfig($configName = '')
 	{
 		return (empty($configName) || !array_key_exists($configName, self::$mDb))  ? self::$mDb['default'] : self::$mDb[$configName];
+	}
+
+	public static function getMailConfig($configName = '')
+	{
+		return (empty($configName) || !array_key_exists($configName, self::$mMail))  ? self::$mMail['default'] : self::$mMail[$configName];
 	}
 
 }
