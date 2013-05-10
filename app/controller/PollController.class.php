@@ -199,16 +199,18 @@ class PollController extends Controller
 			// Si le sondage n'a pas été trouvé
 			if (!$res)
 				$this->e404();
-
-			// Sinon on définit les variables à envoyer à la vue
-			$this->set('openedPoll', $res['open']);
-			$this->set('userFName', $res['firstname']);
-			$this->set('userLName', $res['lastname']);
-			$this->set('eventTitle', $res['title']);
-			$this->set('eventDescription', $res['description']);
-			$this->set('eventDate', $res['expiration_date']);
-			// On fait le rendu
-			$this->render('pollView');
+			else
+			{
+				// Sinon on définit les variables à envoyer à la vue
+				$this->set('openedPoll', $res['open']);
+				$this->set('userFName', $res['firstname']);
+				$this->set('userLName', $res['lastname']);
+				$this->set('eventTitle', $res['title']);
+				$this->set('eventDescription', $res['description']);
+				$this->set('eventDate', $res['expiration_date']);
+				// On fait le rendu
+				$this->render('pollView');
+			}
 		}
 		catch(Exception $e)
 		{
