@@ -6,9 +6,14 @@ var mailInfo = document.getElementById('mail_info');
 var nameUser = document.getElementById('name_user');
 var firstNameUser = document.getElementById('first_name_user');
 
+pwdUser.style.display = "inline-block";
+mailInfo.style.display = "none";
+firstNameUser.style.display = "none";
+nameUser.style.display = "none";
+
 registered.addEventListener('click', function(e){
 	
-	pwdUser.style.display = "block";
+	pwdUser.style.display = "inline-block";
 	mailInfo.style.display = "none";
 	firstNameUser.style.display = "none";
 	nameUser.style.display = "none";

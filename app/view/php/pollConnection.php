@@ -8,19 +8,19 @@
             </div>
             <form action="share" method="post" id="poll_connection_form">
 
-                <input id="mail_user" class="small_text_edit" name="email" type="email" placeholder="E-mail">
-
-                <label class="text"><input id="registered" type="radio" name="account">Déjà un compte</label>
+                <label class="text"><input id="registered" type="radio" name="account" checked="checked">J'ai déjà un compte</label>
 
                 <label class="text"><input id="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>
 
-                <input class="small_text_edit" id="name_user" name="nameUser" type="text" placeholder="Nom">
+                <input class="small_text_edit large_width" name="email" type="email" placeholder="E-mail">
 
-                <input class="small_text_edit" id="first_name_user" name="firstNameUser" type="text" placeholder="Prénom">
+                <input class="small_text_edit large_width" id="name_user" name="nameUser" type="text" placeholder="Nom">
 
-                <input id="pwd_user" class="small_text_edit" type="password" name="password" placeholder="Mot de passe" value="">
+                <input class="small_text_edit large_width" id="first_name_user" name="firstNameUser" type="text" placeholder="Prénom">
 
-                <p id="mail_info" class="text">Votre mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
+                <input class="small_text_edit large_width" id="pwd_user" type="password" name="password" placeholder="Mot de passe" value="">
+
+                <p class="text" id="mail_info">Votre mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
 
                 <input class="orange_button" type="submit" value="Etape suivante"/>
             </form>

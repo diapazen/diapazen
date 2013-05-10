@@ -330,11 +330,6 @@
 	margin-top:15px;
 }
 
-#mail_user
-{
-	width: 200px;
-}
-
 #poll_connection_form .text, #poll_connection_form .small_text_edit, #poll_connection_form label
 {
 	margin-bottom: 15px;
@@ -351,9 +346,9 @@
 	margin-right: 10px;
 }
 
-#poll_connection_form #mail_info, #poll_connection_form #name_user, #poll_connection_form #first_name_user, #poll_connection_form #pwd_user
+.large_width
 {
-	display: none;
+	width: 200px;
 }
 
 /* pollCreation.css */
