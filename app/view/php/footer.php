@@ -1,3 +1,4 @@
+		</div>
 		<footer>
 		    <ul>
 		        <li><a class="link" href="home.php">Accueil</a></li>
