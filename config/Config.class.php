@@ -39,10 +39,10 @@ class Config
 	// Configuration pour le serveur SMTP et le compte mail
 	private static $mMail = array(
 						'default'	=> array(
-								'login' 	=>	'diapazen@mail.com',
-								'pwd' 		=>	'Diaisenpa',
-								'nameSMTP'	=>	'smtp.mail.com'	,
-								'port'		=>	'587'
+								'login' 	=>	'no-reply@diapazen.fr',
+								// 'pwd' 		=>	'Diaisenpa',
+								'nameSMTP'	=>	'smtp.numericable.fr'	,
+								'port'		=>	'25'
 																	)
 						);
 

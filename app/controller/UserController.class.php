@@ -224,6 +224,7 @@ class UserController extends Controller
 
 				try
 				{
+					echo $password;
 					$objMail = new MailUtil();
 					$subject = 'Votre nouveau mot de passe.';
 					$message = 'Voici votre nouveau mot de passe :<br />'.$password;
@@ -236,7 +237,7 @@ class UserController extends Controller
 	        }
 			else
 			{
-				$this->forgot();	
+				header('Location: ' . BASE_URL. '/user/forgot');
 	 		}
 		}
 		catch(Exception $e)

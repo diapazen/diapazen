@@ -27,7 +27,7 @@ class MailUtil
 {
 	protected $mailFrom;
 	protected $nameMailFrom;
-	protected $pwdForm;
+	protected $pwdFrom;
 	protected $configSMTP;
 
 	/**
@@ -40,7 +40,7 @@ class MailUtil
 	 * 
 	 * @param     string	$mailFrom	mail d'envoi
 	 * @param     string    $nameMailFrom nom du mail
-	 * @param     string    $pwdForm mot de passe du compte
+	 * @param     string    $pwdFrom mot de passe du compte
 	 * @param     string    $nameSMTP nom du smtp
 	 * @param     string    $portSMTP port du smtp
 	 */
@@ -54,8 +54,9 @@ class MailUtil
 		{
 			$this->mailFrom = $mailConfig['login'];
 			$this->nameMailFrom = 'Diapazen';
-			$this->pwdForm = $mailConfig['pwd'];
-			$this->configSMTP = $mailConfig['nameSMTP'].':'.$mailConfig['port'];
+			// $this->pwdFrom = $mailConfig['pwd'];
+			$this->configSMTP = $mailConfig['nameSMTP'];
+			// $this->configSMTP = $mailConfig['nameSMTP'].':'.$mailConfig['port'];
 		}
 		else
 		{
@@ -79,13 +80,15 @@ class MailUtil
 		require UTIL_ROOT.'phpmailer'.DS.'class.phpmailer.php';
 		$mail = new PHPmailer();
 
+
+
 		//configuration du mail
 		$mail->SetLanguage('fr');
 		$mail->CharSet = 'utf-8';
 		$mail->IsSMTP();
 		$mail->Host = $this->configSMTP;
 		$mail->Username = $this->mailFrom;
-		$mail->Password = $this->pwdForm;
+		// $mail->Password = $this->pwdFrom;
 		$mail->From = $this->mailFrom;
 		$mail->FromName = $this->nameMailFrom;
 		$mail->AddAddress($mailTo);
@@ -97,7 +100,8 @@ class MailUtil
 		//envoi du mail
 		if(!$mail->Send())
 		{
-		 	throw new coreException($mail->ErrorInfo);
+		 	echo $mail->ErrorInfo;
+		 	echo $this->pwdFrom;
 		 	return false;
 		}
 
