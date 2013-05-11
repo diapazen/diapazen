@@ -7,12 +7,12 @@ function manageChoices(input)
 	switch(input.className)
 	{
 
-		case 'orange_small_button':
+		case 'orange_button':
 
 
 			// Le choix selectionné passe en grisé		
 
-			input.className = 'grey_small_button';
+			input.className = 'grey_button';
 			input.value = 'x';
 			
 
@@ -22,14 +22,14 @@ function manageChoices(input)
 
 			choice = document.createElement("div");
 			choice.className = 'choice';
-			choice.innerHTML = '<input class="text" type="text" name="choix[]" placeholder="" />'
-							  +'<input class="orange_small_button" type="button" onclick="manageChoices(this);" value="+" />';
+			choice.innerHTML = '<input class="text_edit" type="text" name="choix[]" placeholder="" />'
+							  +'<input class="orange_button" type="button" onclick="manageChoices(this);" value="+" />';
 			
 			choices.appendChild(choice);
 			
 		break;
 
-		case 'grey_small_button':
+		case 'grey_button':
 
 			// Suppression du champ de choix
 

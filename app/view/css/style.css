@@ -361,13 +361,16 @@
 
 #poll_creation_form #id_description_input
 {
-	min-width: 20em;
-	max-width: 20em;
-	min-height: 5em;
-	max-height: 5em;
+	height: 150px;
+	resize: none;
 }
 
-#poll_creation_form #id_title_input, #poll_creation_form #id_description_input, #poll_creation_form .choice, #poll_creation_form .button
+#poll_creation_form .choice{
+	width: 350px;
+}
+
+#poll_creation_form .choice input[type="text"]
 {
-	margin-left: 10px;
+	width:300px;
+	display:inline-block;
 }

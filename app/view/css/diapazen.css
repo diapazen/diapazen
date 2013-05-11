@@ -170,7 +170,7 @@ footer ul li
     margin: auto;
 }
 
-.default_form input
+.default_form input[type="submit"], .default_form input[type="text"], .default_form textarea, .default_form input[type="password"], .default_form input[type="mail"]
 {
     display: block;
     width: inherit;
