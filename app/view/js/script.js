@@ -22,7 +22,7 @@ function manageChoices(input)
 
 			choice = document.createElement("div");
 			choice.className = 'choice';
-			choice.innerHTML = '<input class="text_edit" type="text" name="choix[]" placeholder="" />'
+			choice.innerHTML = '<input class="text_edit" type="text" name="choix[]" placeholder="" /> '
 							  +'<input class="orange_button" type="button" onclick="manageChoices(this);" value="+" />';
 			
 			choices.appendChild(choice);

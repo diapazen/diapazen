@@ -13,7 +13,7 @@
                 <input class="text_edit" id="name_user" name="nameUser" type="text" placeholder="Nom">
                 <input class="text_edit" id="first_name_user" name="firstNameUser" type="text" placeholder="Prénom">
                 <input class="text_edit" id="pwd_user" type="password" name="password" placeholder="Mot de passe" value="">
-                <p class="orange_text" id="mail_info">Votre mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
+                <p class="orange_text" id="mail_info">Votre mot de passe sera envoyé à l'adresse e-mail renseignée.</p>
                 <input class="orange_button" type="submit" value="Etape suivante"/>
             </form>
         </div>
