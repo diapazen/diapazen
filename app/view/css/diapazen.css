@@ -176,3 +176,8 @@ footer ul li
     width: inherit;
     margin-bottom: 10px;
 }
+
+.default_form input[type="submit"]
+{
+    margin-top: 10px;
+}

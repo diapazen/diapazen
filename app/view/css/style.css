@@ -326,13 +326,7 @@
 
 /*pollConnection.css */
 
-#poll_connection_form .orange_button
-{
-	display: block;
-	margin-top:15px;
-}
-
-#poll_connection_form .text, #poll_connection_form .small_text_edit, #poll_connection_form label
+#poll_connection_form label
 {
 	margin-bottom: 15px;
 }
@@ -340,17 +334,11 @@
 #poll_connection_form label
 {
 	display: block;
-
 }
 
 #poll_connection_form #not_registered, #poll_connection_form #registered
 {
 	margin-right: 10px;
-}
-
-.large_width
-{
-	width: 200px;
 }
 
 /* pollCreation.css */
