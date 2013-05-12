@@ -83,7 +83,8 @@ class Message
 
 	/**
 	 * Set les paramêtres des messages (ex : mot de passe)
-	 * @param  params liste des paramêtres du message
+	 * Ceci doivent avoir été mis dans des balises <span> ayant le même name qu'une key du tableau
+	 * @param  params tableau des paramêtres du message
 	 *
 	 */
 	public function setParams($params)
