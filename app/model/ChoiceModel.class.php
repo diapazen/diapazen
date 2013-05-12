@@ -29,48 +29,98 @@ require_once 'system/Model.class.php';
 
 class ChoiceModel extends Model
 {
-    private $title;
-    private $value;
-    
-    /**
-     *Constructeur par défaut 
-     */
-    public function __construct()
-    {
-	parent::__construct();
-    }
-    
-    public function addPoll($title, $pollId)
-    {
-        try
+        private $title;
+        private $value;
+
+        /**
+        *Constructeur par défaut 
+        */
+        public function __construct()
         {
-            $this->setChoiceTitle($title);
-            $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_choices`(`id`, `poll_id`, `choice`) VALUES (NULL,:POLLID,:CHOICE);");
-            $request->bindValue(':POLLID', $pollId);
-            $request->bindValue(':CHOICE', $title);
-            $check = $request->execute();
-                
-            //on renvoie true si l'ajout a été un succés sinon false
-            if($check == 1) 
+            parent::__construct();
+        }
+
+        /**
+        * Ajout d'un choix
+        * @param type $title titre du choix
+        * @param type $pollId id du sondage
+        * @return boolean true si l'ajout s'est bien exécuté sinon false
+        */
+        public function addChoice($title, $pollId)
+        {
+            try
             {
-                return true;
+                $this->setChoiceTitle($title);
+                $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_choices`
+                            (`id`, `poll_id`, `choice`) VALUES (NULL,:POLLID,:CHOICE);");
+                $request->bindValue(':POLLID', $pollId);
+                $request->bindValue(':CHOICE', $title);
+                $check = $request->execute();
+
+                //on renvoie true si l'ajout a été un succés sinon false
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch(Exception $e)
             {
-                return false;
+                throw new Exception('Erreur lors de la tentative d\'ajout d\'un choix :</br>' . $e->getMessage());
             }
         }
-        catch (Exception $e)
+        
+        /**
+         * Mise à Jour d'un choix
+         * @param type $title titre du choix
+         * @param type $id id du choix
+         * @return boolean true si l'ajout s'est bien exécuté sinon false
+         */
+        public function updateChoice($title, $id)
         {
-            throw new Exception('Erreur lors de la tentative d\'ajout d\'un choix :</br>' . $e->getMessage());
+            try
+            {
+               $this->setChoiceTitle($title);
+               $request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_choices 
+                            SET`choice`=:TITLE WHERE dpz_choices.id=:ID;");
+               $request->bindValue(':CHOICE', $title);
+                $check = $request->execute();
+
+                //on renvoie true si l'ajout a été un succés sinon false
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur lors de la tentative de mise à jour d\'un choix :</br>' . $e->getMessage());
+            }
         }
-    }
-    
-    public function setChoiceTitle($title)
-    {
-        $this->title = $title;
-    }
-    
+
+        /**
+        * Setteur du titre du choix
+        * @param type $title titre du choix
+        */
+        public function setChoiceTitle($title)
+        {
+            $this->title = $title;
+        }
+
+        /**
+        * Getteur du titre du choix
+        */
+        public function getChoiceTitle()
+        {
+            return $this->title;
+        }
 }
 
 ?>
