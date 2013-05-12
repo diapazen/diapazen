@@ -26,10 +26,21 @@
 class Message
 {
 
-	private static $messageRegistration	='';
-	private static $messageCreatePoll	='';
-	private static $messagePswForgotten	='';
-	private static $messageLogTooBig	='';
+	private static $messageRegistration	=
+		"<html>Bonjour <br>
+			Merci de vous être inscrit sur Diapazen <br>
+			Votre mot de passe est : <span name='password'></span> <br>
+			Vous pourrez le changer à tout moment à partir de votre compte</html>";
+
+	private static $messageCreatePoll	=
+		"<html>Bonjour vous venez de créer le sondage <span name='sondage'></span></html>";
+
+	private static $messagePswForgotten	=
+		"<html>Bonjour votre mot de passe est : <span name='password'></span></html>";
+		
+	private static $messageLogTooBig	=
+		"<html>Attention il y a actuellement trop de log</html>";
+
 	private $message;
 
 	/**
