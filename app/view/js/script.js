@@ -45,7 +45,7 @@ function manageChoices(input)
 
 
 	// Reset des placeholder
-	choices = document.getElementsByName('choix[]');
+	choices = document.getElementsByName('choices[]');
 
 	for(i = 1; i <= choices.length; i++)
 	{
