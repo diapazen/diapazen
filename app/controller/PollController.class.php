@@ -51,23 +51,18 @@ class PollController extends Controller
 		$_SESSION['poll_step'] = 'init';
 
 		/*session_unregister (string name)*/
-		// si c'est la premiere fois, on ne fait rien
-		if(!isset($_SESSION['poll_title']) && !isset($_SESSION['poll_description']))
-		{
-
-
-		} 
-		else // on a fait précédent, on affiche les valeurs déjà renseignées
+		// on a fait précédent, on affiche les valeurs déjà renseignées
+		if(isset($_SESSION['poll_title']) && isset($_SESSION['poll_description']) && isset($_SESSION['poll_choices']))
 		{
 			$this->set('poll_title', $_SESSION['poll_title']);
 			$this->set('poll_description', $_SESSION['poll_description']);
-
-			/* gérer les choix*/
+			$this->set('poll_choices', $_SESSION['poll_choices']);
+			// modifier la vue pour qu'elle affiche les choix (le navigateur web le gère automatiquement)
 
 			$_SESSION['poll_step'] = 'précédent';
 		}
 		
-		/* temporaire, ensuite on mettre le titre de la page*/
+		/* temporaire, ensuite on mettra le titre de la page*/
 		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 		// On fait le rendu
 		$this->render('pollCreation');
@@ -75,20 +70,44 @@ class PollController extends Controller
 
 	public function connect($params = null)
 	{
+		echo 'connect';
+		// echo '<pre>';
+		// print_r($_POST['choices']);
+		// echo '</pre>';
+		if (isset($_POST['title_input']) && isset($_POST['description_input']) && isset($_POST['choices']))
+		{
+			$_SESSION['poll_step'] = 1;
 
-		// On charge le modèle des sondages
-		$this->loadModel('poll');
-
-		$_SESSION['poll_step'] = 1;
-
-		$_SESSION['poll_title'] = $_POST['title_input'];
-		$_SESSION['poll_description'] = $_POST['description_input'];
-		$_SESSION['poll_choices'] = $_POST['choices'];
-
-		/* temporaire, ensuite on mettre le titre de la page*/
-		$this->set('title', ' mStep '.$_SESSION['poll_step']);
-		// On fait le rendu
-		$this->render('pollConnection');
+			$_SESSION['poll_title'] = $_POST['title_input'];
+			$_SESSION['poll_description'] = $_POST['description_input'];
+			$_SESSION['poll_choices'] = $_POST['choices'];
+			// Test si les variables sont vides // TODO ameliorer le test pour les choix
+			if (empty($_POST['title_input']) || empty($_POST['description_input']) || empty($_POST['choices']))
+			{
+				// renvoyer a Poll create avec un message disant champ(s) vide(s)
+				header('Location: ' . BASE_URL. '/poll/create');
+			}
+			else
+			{
+				// si l'utilisateur est déja connecté
+				if ($this->isUserConnected())
+				{
+					header('Location: ' . BASE_URL. '/poll/share');
+				}
+				else
+				{
+					/* temporaire, ensuite on mettra le titre de la page*/
+					$this->set('title', ' mStep '.$_SESSION['poll_step']);
+					// On fait le rendu
+					$this->render('pollConnection');
+				}
+			}
+		}
+		else
+		{
+			// renvoyer a Poll create avec un message disant champs inexistants
+			header('Location: ' . BASE_URL. '/poll/create');
+		}
 	}
 
 	/**
@@ -98,8 +117,8 @@ class PollController extends Controller
 	 **/
 	public function share($params = null)
 	{
-		
-		/* temporaire, ensuite on mettre le titre de la page*/
+		echo 'share';
+		/* temporaire, ensuite on mettra le titre de la page*/
 		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 
 		$this->loadModel('user');
@@ -118,9 +137,6 @@ class PollController extends Controller
 				//si on a choisi la connection et qu'il y a le mdp on tente de se connecter
 				if($_POST['account'] == 'registered' && isset($_POST['password']) && !empty($_POST['password']))
 				{
-
-					// echo 'connexion';
-
 					$pwd = $_POST['password'];
 
 					try
@@ -134,10 +150,9 @@ class PollController extends Controller
 						die('Erreur interne survenue.');
 					}
 
-				}
-				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']) && !empty($_POST['firstNameUser']) && !empty($_POST['nameUser'])) //si on a choisi l'inscription
+				} //si on a choisi l'inscription et qu'il y a le nom et prenom on l'inscrit
+				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']) && !empty($_POST['firstNameUser']) && !empty($_POST['nameUser']))
 				{
-					// echo 'inscription';
 					$firstname = $_POST['firstNameUser'];
 					$lastname = $_POST['nameUser'];
 					// On crée le mot de passe
@@ -147,6 +162,7 @@ class PollController extends Controller
 					// ne pas mettre de champs vide
 					$this->getModel()->registration($firstname, $lastname,$mail,$pwd);
 					$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
+					//TODO envoyer un mail avec le mdp
 				}
 
 
@@ -163,6 +179,15 @@ class PollController extends Controller
 					// La connexion a réussie
 					$this->setUserConnected($connectStatus);
 
+				}
+
+			}
+
+			// si l'utilisateur est déja connecté
+			if ($this->isUserConnected())
+			{
+				if (isset($_SESSION['poll_title']) && isset($_SESSION['poll_description']) && isset($_SESSION['poll_choices']))
+				{
 					// On créé le sondage
 					$this->loadModel('poll');
 					$this->getModel()->addPoll($_SESSION['user_infos']['id'], $_SESSION['poll_title'], $_SESSION['poll_description'], null);
@@ -177,8 +202,19 @@ class PollController extends Controller
 					// On choisit le rendu
 					$render='pollShare';
 				}
-
+				else
+				{
+					// renvoyer a Poll create avec un message disant champs inexistants
+					header('Location: ' . BASE_URL. '/poll/create');
+				}
 			}
+			else
+			{
+				// renvoyer a Poll connect avec un message disant user non connecté
+				header('Location: ' . BASE_URL. '/poll/connect');
+			}
+
+
 		}
 		catch(Exception $e)
 		{
@@ -188,7 +224,7 @@ class PollController extends Controller
 					break;
 				
 				default:
-					# code...
+					// code...
 					break;
 			}
 		}
@@ -196,11 +232,29 @@ class PollController extends Controller
 		$this->render($render);
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Affichage d'un sondage
 	 * 
 	 * url:	diapazen.com/poll/view/.../
 	 **/
+=======
+	public function sharePoll($params = null)
+	{
+		if (isset($_POST['mails']) && !empty($_POST['mails']))
+		{
+			$this->loadModel('poll');
+			$this->getModel()->sharePoll($_POST['mails']);
+			echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
+		}
+		else
+		{
+			// renvoyer a Poll share avec un message disant pas de mails
+			header('Location: ' . BASE_URL. '/poll/share');
+		}
+	}
+
+>>>>>>> Création de sondage presque operationnel
 	public function view($params = null)
 	{
 		
