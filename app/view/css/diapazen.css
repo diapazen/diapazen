@@ -180,4 +180,5 @@ footer ul li
 .default_form input[type="submit"]
 {
     margin-top: 10px;
+    display: block;
 }

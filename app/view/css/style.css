@@ -131,30 +131,9 @@
 	margin-bottom: 20px;
 }
 
-#share_form .big_title, #share_form .title, #share_form .small_title, #share_form #share_info, #share_form #link_output, #share_form .small_text_edit
+#share_form .big_title, #share_form .title, #share_form .small_title
 {
 	margin-bottom: 15px;
-}
-
-#link_output
-{
-	display:block;
-	border: 0px;
-}
-
-#link_output:hover
-{
-	border: 0px;
-}
-
-#share_form .orange_button
-{
-	display: block;
-}
-
-#share_form #link_output, #share_form #share_info, #share_form .small_text_edit
-{
-	margin-left: 10px;
 }
 
 #share_form textarea
