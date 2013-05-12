@@ -104,6 +104,29 @@ class ChoiceModel extends Model
                 throw new Exception('Erreur lors de la tentative de mise à jour d\'un choix :</br>' . $e->getMessage());
             }
         }
+        
+        public function deleteChoice($id)
+        {
+            try
+            {
+                $this->setChoiceTitle(NULL);
+                $request = $this->mDbMySql->prepare("DELETE FROM `diapazen.dpz_choices` WHERE id=:ID");
+                $request->bindValue(':ID', $id);
+                $check = $request->execute();
+                if($check == 1) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur lors de la tentative de suppression d\'un choix :</br>' . $e->getMessage());
+            }
+        }
 
         /**
         * Setteur du titre du choix
