@@ -5,13 +5,13 @@
 /*-----------------------------------------------------------------------------*/
 
 INSERT INTO `diapazen`.`dpz_users` (`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
-VALUES (NULL, 'Adrien', 'Fourel', 'adrien.fourel@isen.fr', '$2a$07$ea356421e2bc4b7a68465OElvyQr6LHdqd3lxdwFtMQbHcC5WN0zW', CURRENT_TIMESTAMP, '', NULL);
+VALUES (NULL, 'Adrien', 'Fourel', 'adrien.fourel@isen.fr', '$2a$07$WgHXUqdYPR8A7csxSnhL$.M95uNRXBiMUa3H5YOFBlswm.HFYzaSO', CURRENT_TIMESTAMP, '', NULL);
 
 INSERT INTO `diapazen`.`dpz_users` (`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
-VALUES (NULL, 'Nicolas', 'Silvain', 'nicolas.silvain@isen.fr', '$2a$07$1945af30dfc25cf863308eHPj8TwcdCkvtFkHe1mJJKeN5pnlxkKm', CURRENT_TIMESTAMP, '', NULL);
+VALUES (NULL, 'Nicolas', 'Silvain', 'nicolas.silvain@isen.fr', '$2a$07$SvItH38xYibO6E2eQop/$.tdCCJtGmXxzrJMr5wMbkyVTvR6lUBse', CURRENT_TIMESTAMP, '', NULL);
 
 INSERT INTO `diapazen`.`dpz_users` (`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
-VALUES (NULL, 'Guillaume', 'Bauduin', 'guillaume.bauduin@isen.fr', '$2a$07$eb26d1a40142ad0063bc6uTSZUWJwVknbkJz.ElWOUoFu8i01l1aG', CURRENT_TIMESTAMP, '', NULL);
+VALUES (NULL, 'Guillaume', 'Bauduin', 'guillaume.bauduin@isen.fr', '$2a$07$rAwN3gqQVFxEvo.8tXMu$.tM0m0MCKxlElNZ09RyrU/2DF2.P3glG', CURRENT_TIMESTAMP, '', NULL);
 
 
 /*-----------------------------------------------------------------------------*/

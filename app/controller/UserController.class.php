@@ -147,7 +147,7 @@ class UserController extends Controller
 					{
 						try
 						{
-							$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['mail'], $_POST['password']);
+							$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['password']);
 						}
 						catch(Exception $e)
 						{

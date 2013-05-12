@@ -107,15 +107,9 @@ class UserModel extends Model
 
 					// si on a un résultat, c'est que ce mail est dans la bdd
 					// maintenant, on doit vérifier le password
-					if(!is_null($infos))
+					if (!is_null($infos))
 					{
-						///$infos['id'] $infos['email'] $infos['password']
-
-						// on hash le mot de passe avec du blowfish: le salt est le sha1 de l'email
-						$password = crypt($password, '$2a$07$'.sha1($infos['email']).'$');
-						
-						$password_encrypted = $infos['password'];
-						if( $password_encrypted == $password) 
+						if (crypt($password, $infos['password']) == $infos['password']) 
 						{
 							$this->mId = $infos['id'];
 
@@ -260,17 +254,16 @@ class UserModel extends Model
 							(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
 	                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
 
-						$request->bindValue(':FIRSTNAME', $firstname);
-						$request->bindValue(':LASTNAME', $lastname);
-						$request->bindValue(':EMAIL', $email);
+						$request->bindValue(':FIRSTNAME', htmlspecialchars($firstname));
+						$request->bindValue(':LASTNAME', htmlspecialchars($lastname));
+						$request->bindValue(':EMAIL', htmlspecialchars($email));
 
-						$password = crypt($password, '$2a$07$'.sha1($email).'$');
-
+						// On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
+						$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
+						$password = crypt($password, '$2a$07$'.$salt.'$');
 						$request->bindValue(':PASSWORD', $password);
-						$check = $request->execute();
 
-						// si on a un résultat, c'est qu'on a bien ajouté cet utilisateur dans la bdd
-						if($check == 1) return true; 
+						return $request->execute();
 					}
 					else
 					{
@@ -316,18 +309,15 @@ class UserModel extends Model
          * @param type $password mot de passe renseigné par l'utilisateur
          * @return boolean si la modification s'est bien passé
          */
-        public function changePassword($id, $email, $password)
+        public function changePassword($id, $password)
         {
-            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `email` = :EMAIL");
-            $password = crypt($password, '$2a$07$'.sha1($email).'$');
+            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `id` = :ID");
+            // On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
+			$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
+            $password = crypt($password, '$2a$07$'.$salt.'$');
             $request->bindValue(':PASSWORD', $password);
-            $request->bindValue(':EMAIL', htmlspecialchars($email));
-            $check = $request->execute();
-            if($check == 1)
-            {
-                return true;
-            }
-            return false;
+            $request->bindValue(':ID', $id);
+            return $request->execute();
         }
 
         /**
@@ -346,15 +336,9 @@ class UserModel extends Model
 
 			if(!is_null($infos))
 			{
-				// on hash le mot de passe avec du blowfish: le salt est le sha1 de l'email
-				$password = crypt($password, '$2a$07$'.sha1($infos['email']).'$');
-				
-				$password_encrypted = $infos['password'];
-				
-				if( $password_encrypted == $password) 
-				{
+				// vérification du hash
+				if( crypt($password, $infos['password']) == $infos['password']) 
 					return true;
-				}
 			}
 
 			return false;
