@@ -9,7 +9,7 @@
         <div id="content">
             <div id ="poll">
                 <h1 class="title" > <?php echo $eventTitle; ?> </h1>
-                <p class="small_title" >Par <?php echo $userLName.' '.$userFName.'. '.$eventDate; ?> </p>
+                <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
                 
                 <form>
