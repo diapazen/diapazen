@@ -34,7 +34,7 @@
                         <td class="text"> <?php echo $row['title']; ?> </td>
                         <td class="text"> <?php echo $row['description']; ?> </td>
                         <td> 
-                            <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo 'poll/view/'.$row['url']; ?>">Voir</a> 
+                            <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a> 
                         </td>
                     </tr> 
 
