@@ -3,6 +3,9 @@
             $date = new DateTime($eventDate);
             $now  = new DateTime('now');
             $int = $now->diff($date);
+            // si le sondage est expiré
+            if($int->invert == 1)
+                $openedPoll = false;
             $eventDate = $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).');
         ?>        
 
@@ -12,11 +15,11 @@
                 <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
                 
-                <form>
+                <form method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">
                     <div id="poll_choices">
                         <table>
                             <?php
-                                foreach ($choiceList as $row) {
+                                foreach ($choiceList as $key => $row) {
                             ?>
 
                             <tr>
@@ -25,7 +28,7 @@
                                     if ($openedPoll == true) {       
                                 ?>
 
-                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox" name="choiceId[]" value="<?php echo $key; ?>"></td>
 
                                 <?php
                                     }
@@ -65,8 +68,8 @@
                             ?>
                         </table>
                     </div>
-                    <input type="text" class="small_text_edit" placeholder="Prénom Nom" >
-                    <input type="button" class="orange_small_button" value="Voter" >
+                    <input type="text" class="small_text_edit" placeholder="Prénom Nom" name="value" >
+                    <input type="submit" class="orange_small_button" value="Voter" >
                 </form>
             </div>
         </div>

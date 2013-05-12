@@ -54,7 +54,7 @@ class PollModel extends Model
         try
         {   
             // On récupère les informations de base du sondage
-            $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description,expiration_date,open FROM dpz_view_users_join_polls WHERE url=:URL;");
+            $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description,expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
             $request->bindValue(':URL', $pollUrl);
             $request->execute();
             $pollInfo=$request->fetch(PDO::FETCH_ASSOC);
@@ -63,7 +63,7 @@ class PollModel extends Model
             if($pollInfo)
             {
                 // On récupère les informations de chaque choix du sondage de la bdd
-                $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,choice,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
+                $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
                 $request->bindValue(':ID', $pollInfo['POLL_ID']);
                 $request->execute();
                 $results=$request->fetchAll(PDO::FETCH_ASSOC);
@@ -79,13 +79,12 @@ class PollModel extends Model
                 {
                     $id = $choice['CHOICE_ID'];
                     $list[$id]['choiceName'] = $choice['choice'];
+                    $list[$id]['checkList'] = array();
                     foreach($results as $result)
                     {
                         $rid = $result['CHOICE_ID'];
                         if ($id == $rid)
                             $list[$id]['checkList'][] = $result['value'];
-                        else
-                            $list[$id]['checkList'] = array();
                     }
                 }
                 
@@ -186,6 +185,30 @@ class PollModel extends Model
             catch(Exception $e)
             {
                 throw new Exception('Erreur lors de la tentative d\'ajout d\'un sondage :</br>' . $e->getMessage());
+            }
+        }
+
+        /**
+         * Ajout d'un sondage
+         * @param int $choiceId L'id du choix
+         * @param string $pollTitle valeur à insérer
+         * @return boolean true si l'ajout s'est bien exécuté sinon false
+         */
+        public function votePoll($choiceId, $value)
+        {
+            try
+            {
+                $request = $this->mDbMySql->prepare("INSERT INTO dpz_results
+                            (`id`, `choice_id`, `value`) 
+                            VALUES (NULL, :CHOICEID, :VALUE);");
+                $request->bindValue(':CHOICEID', $choiceId);
+                $request->bindValue(':VALUE', $value);
+                
+                return $request->execute();
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur lors de la tentative d\'ajout d\'une réponse :</br>' . $e->getMessage());
             }
         }
         

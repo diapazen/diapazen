@@ -180,7 +180,7 @@ class PollController extends Controller
 
 	public function view($params = null)
 	{
-
+		
 		// L'url du sondage doit être spécifiée
 		if (!$params)
 			header('Location: ' . BASE_URL);
@@ -190,6 +190,26 @@ class PollController extends Controller
 
 		try
 		{
+			// Ajout d'un vote
+			if (isset($_POST['value']) && !empty($_POST['value'])
+				&& isset($_POST['choiceId']) && count($_POST['choiceId']) > 0)
+			{
+				foreach($_POST['choiceId'] as $choice)
+				{
+					if ($this->getModel()->votePoll($choice,$_POST['value']))
+					{
+						//OK
+					}
+					else
+					{
+						// ERREUR à l'ajout
+					}
+				}
+				
+			}
+
+
+			// On récupère les choix et résultats
 			$res = $this->getModel()->viewPoll($params[0]);
 
 			// Si le sondage n'a pas été trouvé
@@ -199,13 +219,14 @@ class PollController extends Controller
 			{
 				// Sinon on définit les variables à envoyer à la vue
 				$this->set('openedPoll', $res['open']);
+				$this->set('urlPoll', $res['url']);
 				$this->set('userFName', $res['firstname']);
 				$this->set('userLName', $res['lastname']);
 				$this->set('eventTitle', $res['title']);
 				$this->set('eventDescription', $res['description']);
 				$this->set('eventDate', $res['expiration_date']);
 				$this->set('choiceList', $res['choices']);
-
+				
 				// On fait le rendu
 				$this->render('pollView');
 			}
