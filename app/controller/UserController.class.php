@@ -28,13 +28,21 @@ require_once 'system/Controller.class.php';
 class UserController extends Controller
 {
 
-
+	/**
+	 * Action par défaut
+	 * 
+	 * url:	diapazen.com/user
+	 **/
 	public function index($params = null)
 	{
 		// a gérer
 	}
 
-
+	/**
+	 * Connection à l'application
+	 * 
+	 * url:	diapazen.com/user/login
+	 **/
 	public function login($params = null)
 	{
 		// quand on se connecte
@@ -93,6 +101,11 @@ class UserController extends Controller
 
 	}
 
+	/**
+	 * Modification des information personnelles
+	 * 
+	 * url:	diapazen.com/user/profile
+	 **/
 	public function profile($params = null)
 	{
 		// Titre de la page
@@ -197,6 +210,11 @@ class UserController extends Controller
 			header('Location:' . BASE_URL);
 	}
 
+	/**
+	 * Mot de passe oublié
+	 * 
+	 * url:	diapazen.com/user/forgot
+	 **/
 	public function forgot($params = null)
 	{
 		if ($this->isUserConnected())
@@ -208,6 +226,12 @@ class UserController extends Controller
 		$this->set('title', 'Mot de passe oublié | Diapazen');
 		$this->render('forgot');
 	}
+
+	/**
+	 * Récupération du mot de passe
+	 * 
+	 * url:	diapazen.com/user/retrievePwd
+	 **/
 	public function retrievePwd($params = null)
 	{
 		$this->loadModel('user');
@@ -248,6 +272,11 @@ class UserController extends Controller
 		
 	}
 
+	/**
+	 * Déconnexion de l'application
+	 * 
+	 * url:	diapazen.com/user/logout
+	 **/
 	public function logout($params = null)
 	{
 		// quand on se déco.
