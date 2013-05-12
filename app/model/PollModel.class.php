@@ -201,8 +201,8 @@ class PollModel extends Model
                 $request = $this->mDbMySql->prepare("INSERT INTO dpz_results
                             (`id`, `choice_id`, `value`) 
                             VALUES (NULL, :CHOICEID, :VALUE);");
-                $request->bindValue(':CHOICEID', $choiceId);
-                $request->bindValue(':VALUE', $value);
+                $request->bindValue(':CHOICEID', htmlspecialchars($choiceId));
+                $request->bindValue(':VALUE', htmlspecialchars($value));
                 
                 return $request->execute();
             }
