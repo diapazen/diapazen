@@ -88,7 +88,21 @@ class Message
 	 */
 	public function setParams($params)
 	{
+		$doc = new DOMDocument();  
+		$doc->loadHTML($this->message);
 
+		foreach($params as $key=>$param)
+		{
+			$elements=$doc->getElementsByTagName("span");
+
+			foreach($elements as $element)
+			{
+				if(strcmp($element->getAttribute("name"),$key)==0)
+					$element->nodeValue=$param;
+			}
+		}
+
+		$this->message=$doc->saveHTML();
 	}
 }
 
