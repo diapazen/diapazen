@@ -37,8 +37,8 @@ class IndexController extends Controller
 		// On charge la vue, si l'utilisateur est connecté ou pas
 		if ($this->isUserConnected())
 		{
-			// On fait de rendu de la vue dashboard.php
-			$this->render('dashboard');
+			// On redirige vers le dashboard
+			header('Location:' . BASE_URL .'/dashboard');
 		}
 		else
 		{
