@@ -1,17 +1,4 @@
-<?php $this->getHeader(); ?>
-        <?php
-            $date = new DateTime($eventDate);
-            $now  = new DateTime('now');
-            $int = $now->diff($date);
-            // si le sondage est expiré
-            if($int->invert == 1)
-            {
-                $openedPoll = false;
-                $eventDate = 'Le sondage est fermé.';
-            }
-            else
-                $eventDate = $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).');
-        ?>        
+<?php $this->getHeader(); ?> 
 
         <div id="content">
             <div id ="poll">

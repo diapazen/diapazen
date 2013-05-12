@@ -112,7 +112,7 @@ class PollModel extends Model
     {
         try
         {   
-            $request = $this->mDbMySql->prepare("SELECT title,description,open,url FROM dpz_view_users_join_polls WHERE USER_ID=:UID;");
+            $request = $this->mDbMySql->prepare("SELECT title,description,open,url,POLL_ID,expiration_date FROM dpz_view_users_join_polls WHERE USER_ID=:UID;");
             $request->bindValue(':UID', $userId);
             $request->execute();
             return $request->fetchAll(PDO::FETCH_ASSOC);
@@ -218,21 +218,13 @@ class PollModel extends Model
      * Mise à jour de la table Sondage
      * @return boolean true si la mise à jour s'est bien exécuté sinon false
      */
-    public function updatePoll()
+    public function updatePoll($pollId)
     {
         try
         {
-            $request = $this->mDbMySql->prepare("UPDATE `diapazen.dpz_polls` SET `open`=0 WHERE expiration_date < :TIME;");
-            $request->bindValue(':TIME', time());
-            $check = $request->execute();
-            if($check == 1) 
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            $request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_polls SET open=0 WHERE id = :POLLID;");
+            $request->bindValue(':POLLID', $pollId);
+            return $request->execute();
         }
         catch(Exception $e)
         {

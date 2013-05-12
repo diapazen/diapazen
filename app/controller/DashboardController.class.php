@@ -40,8 +40,32 @@ class DashboardController extends Controller
 
 			$uid = $this->getUserInfo('id');
 			$polls = $this->getModel()->viewAllPolls($uid);
-			$this->set('pollList', $polls);
 			
+			// recherche des sondages expirés
+			foreach ($polls as &$poll)
+			{
+				$exp_date = new DateTime($poll['expiration_date']);
+				$now = new DateTime('now');
+				$interval = $now->diff($exp_date);
+				if ($interval->invert)
+				{
+					$poll['open'] = false;
+					// On met à jour le sondage dans la bdd
+					try
+					{
+						$this->getModel()->updatePoll($poll['POLL_ID']);
+					}
+					catch (Exception $e)
+					{
+						die("Erreur lors de la mise à jour");
+					}
+				}
+
+			}
+
+			$this->set('pollList', $polls);
+
+
 			$this->render('dashboard');
 		}
 		else

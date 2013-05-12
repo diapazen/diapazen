@@ -240,14 +240,33 @@ class PollController extends Controller
 				$this->e404();
 			else
 			{
-				// Sinon on définit les variables à envoyer à la vue
+				// Si le sondage est expiré
+				$date = new DateTime($res['expiration_date']);
+            	$now  = new DateTime('now');
+            	$int = $now->diff($date);
+				if ($int->invert == 1)
+				{
+					$res['open'] = false;
+					$this->set('eventDate', 'Le sondage est fermé.');
+					try
+					{
+						$this->getModel()->updatePoll($res['POLL_ID']);
+					}
+					catch(Exception $e)
+					{
+						die("erreur de mise à jour");
+					}
+				}
+				else
+					$this->set('eventDate', $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).'));
+
+				// on définit les variables à envoyer à la vue
 				$this->set('openedPoll', $res['open']);
 				$this->set('urlPoll', $res['url']);
 				$this->set('userFName', $res['firstname']);
 				$this->set('userLName', $res['lastname']);
 				$this->set('eventTitle', $res['title']);
 				$this->set('eventDescription', $res['description']);
-				$this->set('eventDate', $res['expiration_date']);
 				$this->set('choiceList', $res['choices']);
 
 				// On fait le rendu
