@@ -242,6 +242,7 @@
 {
 	margin: 40px;
 	text-decoration: underline;
+	font-size: 1.5em;
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -271,6 +272,13 @@
 #poll_list table a 
 {
 	display: block;
+}
+
+#poll_list .head_dash
+{
+	text-decoration: underline;
+	font-weight: bold;
+	color: #FF4820;
 }
 
 #poll_list td

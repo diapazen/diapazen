@@ -17,7 +17,7 @@
 		<header>
 			<div id="header_content">
 				<a href="<?php $this->getHomeUrl(); ?>">
-			    	<img id="logo" src="<?php $this->getPath('media/pictures/diapazen_v2.png'); ?>" alt="">
+			    	<img id="logo" src="<?php $this->getPath('media/pictures/diapazen_v2.png'); ?>" alt="Diapazen">
 				</a>
 
 				<?php if (!$this->isUserConnected()){ ?>
