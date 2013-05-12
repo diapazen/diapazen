@@ -36,7 +36,11 @@ class DashboardController extends Controller
 		
 		if ($this->isUserConnected())
 		{
+			$this->loadModel('poll');
 
+			$uid = $this->getUserInfo('id');
+			$polls = $this->getModel()->viewAllPolls($uid);
+			$this->set('pollList', $polls);
 			
 			$this->render('dashboard');
 		}

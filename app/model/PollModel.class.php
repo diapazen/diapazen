@@ -45,10 +45,9 @@ class PollModel extends Model
 	}
 
     /**
-     * Construction d'un sondage
-     * @param type $pollTitle titre du sondage
-     * @param type $pollDescription description du sondage
-     * @param type $poll_expiration_date date d'expiration du sondage
+     * Affichage d'un sondage
+     * @param type $pollUrl url du sondage
+     * @return array contenu du sondage
      */
     public function viewPoll($pollUrl)
     {
@@ -97,6 +96,26 @@ class PollModel extends Model
             }
 
             return false;
+        }
+        catch(Exception $e) 
+        {
+            throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Affichage de la liste des sondages
+     * @param type $pollUrl url du sondage
+     * @return array contenu du sondage
+     */
+    public function viewAllPolls($userId)
+    {
+        try
+        {   
+            $request = $this->mDbMySql->prepare("SELECT title,description,open,url FROM dpz_view_users_join_polls WHERE USER_ID=:UID;");
+            $request->bindValue(':UID', $userId);
+            $request->execute();
+            return $request->fetchAll(PDO::FETCH_ASSOC);
         }
         catch(Exception $e) 
         {

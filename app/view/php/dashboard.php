@@ -1,34 +1,5 @@
 <?php $this->getHeader(); ?>
 
-    <?php
-    $pollList = array(
-        array('title' => 'Sondage Test','description' => 'Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla bla Bla Bla bla Bla bla Bla Bla bla Bla bla Bla Bla bla Bla bla Bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => false),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => false),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => false),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => false),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-        array('title' => 'Sondage Test','description' => 'Bla bla', 'link' => 'http//diapazen/12AB34CD', 'open' => true),
-
-    );
-    
-    ?>
-
         <div id="content">
             
                 <a href="<?php $this->getHomeUrl(); ?>/poll/create" id="new_poll" class="orange_button">Créer un nouvel évènement</a>
@@ -63,7 +34,7 @@
                         <td class="text"> <?php echo $row['title']; ?> </td>
                         <td class="text"> <?php echo $row['description']; ?> </td>
                         <td> 
-                            <?php echo '<a class="orange_small_button" href="'.$row['link'].'">Voir</a>' ?> 
+                            <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo 'poll/view/'.$row['url']; ?>">Voir</a> 
                         </td>
                     </tr> 
 
