@@ -91,7 +91,11 @@ class PollController extends Controller
 		$this->render('pollConnection');
 	}
 
-
+	/**
+	 * Création d'un sondage
+	 * 
+	 * url:	diapazen.com/poll/share
+	 **/
 	public function share($params = null)
 	{
 		
@@ -192,6 +196,11 @@ class PollController extends Controller
 		$this->render($render);
 	}
 
+	/**
+	 * Affichage d'un sondage
+	 * 
+	 * url:	diapazen.com/poll/view/.../
+	 **/
 	public function view($params = null)
 	{
 		
