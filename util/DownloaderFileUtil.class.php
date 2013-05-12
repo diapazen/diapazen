@@ -2,7 +2,7 @@
 
 /**
  * 
- * File using for send e-mail
+ * Fichier de telechargement forcé d'un fichier
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon

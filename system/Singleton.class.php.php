@@ -2,7 +2,7 @@
 
 /**
  * 
- * Fichier de définitions des constantes
+ * Fichier du systeme de singleton generique
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon
@@ -24,22 +24,29 @@
  *
  */
 
-class coreSingleton {
+class coreSingleton 
+{
     protected static $_instances; //tableau des instance singleton
     public static $namespace = __NAMESPACE__;
    
     public static function __callStatic($name, array $arguments = array()) 
-    {    
-        $name = ltrim(static::$namespace, '\\') . '\\' . ltrim($name, '\\'); //on trouve le nom de la classe 
-        if(empty(static::$_instances[$name]) || !empty($arguments))  // si on a pas instancie ou si il y a des arguments
+    {   
+        //on trouve le nom de la classe 
+        $name = ltrim(static::$namespace, '\\') . '\\' . ltrim($name, '\\'); 
+        // si on a pas instancie ou si il y a des arguments
+        if(empty(static::$_instances[$name]) || !empty($arguments))  
         {
             if(method_exists($name, '__construct'))  //si le constructeur existe
             {
-                $class = new \ReflectionClass($name);  //on recupere un objet donnant des info sur la classe
-                static::$_instances[$name] = $class->newInstanceArgs($arguments); //on instancie la classe
-            } else 
+                //on recupere un objet donnant des info sur la classe
+                $class = new \ReflectionClass($name);  
+                //on instancie la classe
+                static::$_instances[$name] = $class->newInstanceArgs($arguments); 
+            } 
+            else 
             {
-                static::$_instances[$name] = new $name; //on instancie de maniere classe
+                //on instancie de maniere classe
+                static::$_instances[$name] = new $name; 
             }
         }
         return static::$_instances[$name]; //on retourne l'instance voulu
