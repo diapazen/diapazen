@@ -28,15 +28,7 @@
 require_once 'system/Model.class.php';
 
 class UserModel extends Model
-{
-	private $mId;
-	private $mFirstname;
-	private $mLastname;
-	private $mEmail;
-	private $mRegistration_date;
-	private $mLast_login_date;
-	private $mLast_login_ip;
-	
+{	
 	/**
 	 * Constructeur
 	 */
@@ -405,73 +397,6 @@ class UserModel extends Model
 			return true;
 			
 		}
-
-	/**
-	 * Getter
-	 *
-	 */
-	public function getId()
-	{
-		return $this->mId;
-	}
-	public function getFirstname()
-	{
-		return $this->mFirstname;
-	}
-	public function getLastname()
-	{
-		return $this->mLastname;
-	}
-	public function getEmail()
-	{
-		return $this->mEmail;
-	}
-	public function getRegistration_date()
-	{
-		return $this->mRegistration_date;
-	}
-	public function getLast_login_date()
-	{
-		return $this->mLast_login_date;
-	}
-	public function getLast_login_ip()
-	{
-		return $this->mLast_login_ip;
-	}
-
-
-	/**
-	 * Setter
-	 *
-	 */
-	public function setId($id)
-	{
-		$this->mId=$id;
-	}
-	public function setFirstname($firstname)
-	{
-		$this->mFirstname=$firstname;
-	}
-	public function setLastname($lastname)
-	{
-		$this->mLastname=$lastname;
-	}
-	public function setEmail($email)
-	{
-		$this->mEmail=$email;
-	}
-	public function setRegistration_date($registration_date)
-	{
-		$this->mRegistration_date=$registration_date;
-	}
-	public function setLast_login_date($last_login_date)
-	{
-		$this->mLast_login_date=$last_login_date;
-	}
-	public function setLast_login_ip($last_login_ip)
-	{
-		$this->mLast_login_ip=$last_login_ip;
-	}
 
 }
 
