@@ -5,8 +5,12 @@
             $int = $now->diff($date);
             // si le sondage est expiré
             if($int->invert == 1)
+            {
                 $openedPoll = false;
-            $eventDate = $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).');
+                $eventDate = 'Le sondage est fermé.';
+            }
+            else
+                $eventDate = $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).');
         ?>        
 
         <div id="content">
