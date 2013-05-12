@@ -197,16 +197,6 @@ class PollController extends Controller
 				$this->e404();
 			else
 			{
-
-				// Mise en forme des choix
-				$ch = array();
-				foreach ($res['choices'] as $choice)
-				{
-					$id = $choice['CHOICE_ID'];
-					$ch[$id]['choiceName'] = $choice['choice'];
-					$ch[$id]['checkList'][] = $choice['value'];
-				}
-
 				// Sinon on définit les variables à envoyer à la vue
 				$this->set('openedPoll', $res['open']);
 				$this->set('userFName', $res['firstname']);
@@ -214,7 +204,7 @@ class PollController extends Controller
 				$this->set('eventTitle', $res['title']);
 				$this->set('eventDescription', $res['description']);
 				$this->set('eventDate', $res['expiration_date']);
-				$this->set('choiceList', $ch);
+				$this->set('choiceList', $res['choices']);
 
 				// On fait le rendu
 				$this->render('pollView');

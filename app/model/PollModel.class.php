@@ -67,11 +67,32 @@ class PollModel extends Model
                 $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,choice,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
                 $request->bindValue(':ID', $pollInfo['POLL_ID']);
                 $request->execute();
-                $pollChoices=$request->fetchAll(PDO::FETCH_ASSOC);
-                 
+                $results=$request->fetchAll(PDO::FETCH_ASSOC);
+
+                // On récupère les informations de chaque résultat des choixdu sondage de la bdd
+                $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,choice FROM dpz_view_poll WHERE POLL_ID=:ID;");
+                $request->bindValue(':ID', $pollInfo['POLL_ID']);
+                $request->execute();
+                $choices=$request->fetchAll(PDO::FETCH_ASSOC);
+
+                $list = array();
+                foreach($choices as $choice)
+                {
+                    $id = $choice['CHOICE_ID'];
+                    $list[$id]['choiceName'] = $choice['choice'];
+                    foreach($results as $result)
+                    {
+                        $rid = $result['CHOICE_ID'];
+                        if ($id == $rid)
+                            $list[$id]['checkList'][] = $result['value'];
+                        else
+                            $list[$id]['checkList'] = array();
+                    }
+                }
+                
                 // On prépare le tableau de retour
                 $ret = $pollInfo;
-                $ret['choices'] = $pollChoices;
+                $ret['choices'] = $list;
                 return $ret;
             }
 
