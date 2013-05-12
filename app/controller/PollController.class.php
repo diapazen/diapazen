@@ -198,11 +198,11 @@ class PollController extends Controller
 				{
 					if ($this->getModel()->votePoll($choice,$_POST['value']))
 					{
-						//OK
+						// A afficher ici la confirmation du vote
 					}
 					else
 					{
-						// ERREUR à l'ajout
+						// A afficher ici l'erreur du vote
 					}
 				}
 				
@@ -226,7 +226,7 @@ class PollController extends Controller
 				$this->set('eventDescription', $res['description']);
 				$this->set('eventDate', $res['expiration_date']);
 				$this->set('choiceList', $res['choices']);
-				
+
 				// On fait le rendu
 				$this->render('pollView');
 			}
