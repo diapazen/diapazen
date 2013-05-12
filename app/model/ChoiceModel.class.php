@@ -40,6 +40,36 @@ class ChoiceModel extends Model
 	parent::__construct();
     }
     
+    public function addPoll($title, $pollId)
+    {
+        try
+        {
+            $this->setChoiceTitle($title);
+            $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_choices`(`id`, `poll_id`, `choice`) VALUES (NULL,:POLLID,:CHOICE);");
+            $request->bindValue(':POLLID', $pollId);
+            $request->bindValue(':CHOICE', $title);
+            $check = $request->execute();
+                
+            //on renvoie true si l'ajout a été un succés sinon false
+            if($check == 1) 
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception $e)
+        {
+            throw new Exception('Erreur lors de la tentative d\'ajout d\'un choix :</br>' . $e->getMessage());
+        }
+    }
+    
+    public function setChoiceTitle($title)
+    {
+        $this->title = $title;
+    }
     
 }
 
