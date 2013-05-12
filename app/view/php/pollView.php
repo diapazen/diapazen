@@ -4,13 +4,6 @@
             $now  = new DateTime('now');
             $int = $now->diff($date);
             $eventDate = $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).');
-            $choiceList = array(
-                array('choiceName' => 'Couscous','choicePercent' => 50, 'checkList' => array('Guillaume Bauduin','Adrien Fourel')),
-                array('choiceName' => 'Paella','choicePercent' => 25, 'checkList' => array('Timothée Nicolas')),
-                array('choiceName' => 'Couscous','choicePercent' => 0, 'checkList' => array()),
-                array('choiceName' => 'Saucisses','choicePercent' => 25, 'checkList' => array('Julien Bodet')),
-            );
-
         ?>        
 
         <div id="content">
