@@ -257,9 +257,9 @@ class UserModel extends Model
 						(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
                                                 VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
 
-					$request->bindValue(':FIRSTNAME', $firstname);
-					$request->bindValue(':LASTNAME', $lastname);
-					$request->bindValue(':EMAIL', $email);
+					$request->bindValue(':FIRSTNAME', htmlspecialchars($firstname));
+					$request->bindValue(':LASTNAME', htmlspecialchars($lastname));
+					$request->bindValue(':EMAIL', htmlspecialchars($email));
 
 					$password = crypt($password, '$2a$07$'.sha1($email).'$');
 
@@ -289,9 +289,9 @@ class UserModel extends Model
         public function changeUser($id, $firstName, $lastName, $email)
         {
             $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `firstname` = :FIRSTNAME,`lastname` = :LASTNAME,`email` = :EMAIL WHERE `id` = :ID");
-            $request->bindValue(':FIRSTNAME', $firstName);
-            $request->bindValue(':LASTNAME', $lastName);
-            $request->bindValue(':EMAIL', $email);
+            $request->bindValue(':FIRSTNAME', htmlspecialchars($firstName));
+            $request->bindValue(':LASTNAME', htmlspecialchars($lastName));
+            $request->bindValue(':EMAIL', htmlspecialchars($email));
             $request->bindValue(':ID', $id);
             $check = $request->execute();
             if($check == 1)
@@ -313,7 +313,7 @@ class UserModel extends Model
             $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `email` = :EMAIL");
             $password = crypt($password, '$2a$07$'.sha1($email).'$');
             $request->bindValue(':PASSWORD', $password);
-            $request->bindValue(':EMAIL', $email);
+            $request->bindValue(':EMAIL', htmlspecialchars($email));
             $check = $request->execute();
             if($check == 1)
             {
@@ -385,7 +385,7 @@ class UserModel extends Model
 		{
 		
 			$request = $this->mDbMySql->prepare("SELECT count(*) FROM diapazen.dpz_view_users WHERE dpz_view_users.email=:EMAIL;");
-			$request->bindValue(':EMAIL', $email);
+			$request->bindValue(':EMAIL', htmlspecialchars($email));
 			$request->execute();
 			$infos=$request->fetch();
 
