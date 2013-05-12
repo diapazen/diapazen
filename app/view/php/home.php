@@ -1,6 +1,9 @@
 
 
-<?php $this->getHeader(); ?>
+<?php 
+    session_destroy();
+    $this->getHeader();
+?>
         
         <div id="content">
             

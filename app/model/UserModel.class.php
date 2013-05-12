@@ -252,22 +252,30 @@ class UserModel extends Model
 			{
 				if($firstname != null && $lastname != null && $email != null && $password != null)
 				{
-					// on enregistre les données fournies par l'utilisateur
-					$request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_users` 
-						(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
-                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
+					
+					if(!$this->isEmailRegistred($email))
+					{
+						// on enregistre les données fournies par l'utilisateur
+						$request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_users` 
+							(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
+	                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
 
-					$request->bindValue(':FIRSTNAME', htmlspecialchars($firstname));
-					$request->bindValue(':LASTNAME', htmlspecialchars($lastname));
-					$request->bindValue(':EMAIL', htmlspecialchars($email));
+						$request->bindValue(':FIRSTNAME', $firstname);
+						$request->bindValue(':LASTNAME', $lastname);
+						$request->bindValue(':EMAIL', $email);
 
-					$password = crypt($password, '$2a$07$'.sha1($email).'$');
+						$password = crypt($password, '$2a$07$'.sha1($email).'$');
 
-					$request->bindValue(':PASSWORD', $password);
-					$check = $request->execute();
+						$request->bindValue(':PASSWORD', $password);
+						$check = $request->execute();
 
-					// si on a un résultat, c'est qu'on a bien ajouté cet utilisateur dans la bdd
-					if($check == 1) return true; 
+						// si on a un résultat, c'est qu'on a bien ajouté cet utilisateur dans la bdd
+						if($check == 1) return true; 
+					}
+					else
+					{
+						throw new Exception("Email already in db");						
+					}
 				}
 			}
 			return false;

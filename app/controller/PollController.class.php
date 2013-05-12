@@ -39,7 +39,6 @@ class PollController extends Controller
 	public function index($params = null)
 	{
 		$this->create($params);
-
 	}
 
 	public function create($params = null)
@@ -51,15 +50,14 @@ class PollController extends Controller
 		// lors de l'arrivée sur la page de création
 		$_SESSION['poll_step'] = 'init';
 
-/*session_unregister (string name)*/
+		/*session_unregister (string name)*/
 		// si c'est la premiere fois, on ne fait rien
-		if( !isset($_SESSION['poll_title']) && !isset($_SESSION['poll_description']))
+		if(!isset($_SESSION['poll_title']) && !isset($_SESSION['poll_description']))
 		{
 
 
-		}
-		// on a fait précédent, on affiche les valeurs déjà renseignées
-		else
+		} 
+		else // on a fait précédent, on affiche les valeurs déjà renseignées
 		{
 			$this->set('poll_title', $_SESSION['poll_title']);
 			$this->set('poll_description', $_SESSION['poll_description']);
@@ -85,8 +83,7 @@ class PollController extends Controller
 
 		$_SESSION['poll_title'] = $_POST['title_input'];
 		$_SESSION['poll_description'] = $_POST['description_input'];
-
-		/* gérer les choix*/
+		$_SESSION['poll_choices'] = $_POST['choices'];
 
 		/* temporaire, ensuite on mettre le titre de la page*/
 		$this->set('title', ' mStep '.$_SESSION['poll_step']);
@@ -97,9 +94,7 @@ class PollController extends Controller
 
 	public function share($params = null)
 	{
-		// On charge le modèle des sondages
-		$this->loadModel('poll');
-
+		
 		/* temporaire, ensuite on mettre le titre de la page*/
 		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 
@@ -113,19 +108,21 @@ class PollController extends Controller
 			//test si un choix a été fait entre la connection et l'inscription et qu'il y a un email
 			if(isset($_POST['account']) && isset($_POST['email']) && !empty($_POST['email']))
 			{
-				$mail=$_POST['email'];
+				$mail = $_POST['email'];
+				$ip_addr = $_SERVER['REMOTE_ADDR'];
 
 				//si on a choisi la connection et qu'il y a le mdp on tente de se connecter
-				if($_POST['account']=='registered' && isset($_POST['password']) && !empty($_POST['password']))
+				if($_POST['account'] == 'registered' && isset($_POST['password']) && !empty($_POST['password']))
 				{
 
-					$psw=$_POST['password'];
-					$ip_addr 	= $_SERVER['REMOTE_ADDR'];
+					// echo 'connexion';
+
+					$pwd = $_POST['password'];
 
 					try
 					{
 						// on vérifie les infos avec la bdd
-						$result = $this->getModel()->connectionToApp($mail, $psw, $ip_addr);
+						$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
 					}
 					catch(Exception $e)
 					{
@@ -133,46 +130,63 @@ class PollController extends Controller
 						die('Erreur interne survenue.');
 					}
 
-					if ($result == false)
-					{
-						// La connexion a échoué
-						$this->setUserDisconnected();
-
-						// On choisi le rendu
-						$render='pollConnection';
-					}
-					else
-					{
-						// La connexion a réussie
-						$this->setUserConnected($result);
-
-						// On choisi le rendu
-						$render='pollShare';
-					}
 				}
-				//si on a choisi l'inscription
-				else if($_POST['account']=='not_registered')
+				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']) && !empty($_POST['firstNameUser']) && !empty($_POST['nameUser'])) //si on a choisi l'inscription
 				{
+					// echo 'inscription';
+					$firstname = $_POST['firstNameUser'];
+					$lastname = $_POST['nameUser'];
 					// On crée le mot de passe
-					$psw=$this->getModel()->generatorPsw();
+					$pwd=$this->getModel()->generatorPsw();
+
 					// On crée l'utilisateur
 					// ne pas mettre de champs vide
-					$this->getModel()->registration('anonyme','anonyme',$mail,$psw);
-					
-					// On choisi le rendu
-					$render='pollShare';
+					$this->getModel()->registration($firstname, $lastname,$mail,$pwd);
+					$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
 				}
-				//sinon on recharge la page précédante
-				else
+
+
+				if($connectStatus == false)
 				{
+					// La connexion a échoué
+					$this->setUserDisconnected();
+
 					// On choisi le rendu
 					$render='pollConnection';
 				}
+				else
+				{
+					// La connexion a réussie
+					$this->setUserConnected($connectStatus);
+
+					// On créé le sondage
+					$this->loadModel('poll');
+					$this->getModel()->addPoll($_SESSION['user_infos']['id'], $_SESSION['poll_title'], $_SESSION['poll_description'], null);
+					$pollId = $this->getModel()->getPollId();
+
+					// Insertion des choix
+					$this->loadModel('choice');
+					foreach ($_SESSION['poll_choices'] as $choice) {
+						$this->getModel()->addChoice($choice, $pollId);
+					}
+					
+					// On choisit le rendu
+					$render='pollShare';
+				}
+
 			}
 		}
 		catch(Exception $e)
 		{
-			//à gérer
+			switch ($e->getMessage()) {
+				case 'Email already in db':
+					$render = 'pollConnection';
+					break;
+				
+				default:
+					# code...
+					break;
+			}
 		}
 		// On fait le rendu
 		$this->render($render);
