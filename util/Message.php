@@ -55,19 +55,19 @@ class Message
 			switch ($name) 
 			{
 				case 'registration':
-					$message=self::$messageRegistration;
+					$this->message=self::$messageRegistration;
 					break;
 
 				case 'poll':
-					$message=self::$messageCreatePoll;
+					$this->message=self::$messageCreatePoll;
 					break;
 
 				case 'password':
-					$message=self::$messagePswForgotten;
+					$this->message=self::$messagePswForgotten;
 					break;
 
 				case 'log':
-					$message=self::$messageLogTooBig;
+					$this->message=self::$messageLogTooBig;
 					break;
 
 				default :
