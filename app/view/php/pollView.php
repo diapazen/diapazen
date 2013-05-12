@@ -68,8 +68,10 @@
                             ?>
                         </table>
                     </div>
+                    <?php if ($openedPoll) {?>
                     <input type="text" class="small_text_edit" placeholder="Prénom Nom" name="value" >
                     <input type="submit" class="orange_small_button" value="Voter" >
+                    <?php } ?>
                 </form>
             </div>
         </div>
