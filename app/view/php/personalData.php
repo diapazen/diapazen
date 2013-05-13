@@ -1,10 +1,5 @@
 <?php $this->getHeader(); ?>
 
-
-        <?php
-            $userName = "Bodet";
-            $connected = true;
-        ?>
         <div id="content">
             <form id="personal_data_form" class="default_form" action="profile" method="post">
                 <p class="big_title">Données personnelles</p>
