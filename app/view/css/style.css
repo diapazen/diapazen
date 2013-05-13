@@ -188,9 +188,20 @@
 	position: relative;
 }
 
-#poll_choices td:last-child
+#poll_choices tr td:first-child
+{
+	width: 5%;
+}
+
+#poll_choices tr td:first-child + td
+{
+	width: 25%;
+}
+
+#poll_choices tr td:last-child
 {
 	border-right: none;
+	width: 70%;
 }
 
 #poll .title, #poll .small_title
