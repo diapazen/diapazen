@@ -193,6 +193,8 @@ class PollController extends Controller
 					$this->getModel()->addPoll($_SESSION['user_infos']['id'], $_SESSION['poll_title'], $_SESSION['poll_description'], null);
 					$pollId = $this->getModel()->getPollId();
 
+					$this->set('pollUrl', $this->getModel()->getPollUrl());
+
 					// Insertion des choix
 					$this->loadModel('choice');
 					foreach ($_SESSION['poll_choices'] as $choice) {
