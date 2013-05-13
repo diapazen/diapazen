@@ -11,6 +11,7 @@
                 <br/>
                 <p class="orange_text">Pour confirmer les modifications, entrez votre mot de passe actuel.</p>
                 <input type="password" class="text_edit" value="" placeholder="Mot de passe" name="passwordSecurity">
+                <a class="grey_button" href="<?php $this->getHomeUrl(); ?>/dashboard" >Annuler</a>
                 <input class="orange_button" type="submit" value="Modifier">
             </form>    
         </div>

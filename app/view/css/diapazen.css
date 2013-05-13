@@ -153,6 +153,7 @@ footer ul li
     border-radius: 4px;
     padding: 10px;
     color: #b94a48;
+    font-family: candela_book;
 }
 
 .success_message
@@ -162,6 +163,7 @@ footer ul li
     border-radius: 4px;
     padding: 10px;
     color: #468847;
+    font-family: candela_book;
 }
 
 .default_form
