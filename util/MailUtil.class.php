@@ -120,7 +120,7 @@ class MailUtil
 	 * @param     string    $subject sujet du mail
 	 * @param     string    $message message du mail
 	 */
-	 public function sendMailWithCC($mailTo,$subjet,$message)
+	 public function sendMailWithCC($mailsTo,$subjet,$message)
 	{
 		//require de phpmailer et création d'une instance
 		require UTIL_ROOT.'phpmailer'.DS.'class.phpmailer.php';
@@ -130,17 +130,17 @@ class MailUtil
 		$mail->SetLanguage('fr');
 		$mail->CharSet = 'utf-8';
 		$mail->IsSMTP();
-		$mail->Host = $configSMTP;
-		$mail->Username=$mailFrom;
-		$mail->Password=$pswFrom;
-		$mail->From = $mailFrom;
-		$mail->FromName = $nameMailFrom;
-		$mail->AddAddress($mailFrom);
+		$mail->Host = $this->configSMTP;
+		$mail->Username=$this->mailFrom;
+		//$mail->Password=$this->pswFrom;
+		$mail->From = $this->mailFrom;
+		$mail->FromName = $this->nameMailFrom;
+		$mail->AddAddress($this->mailFrom);
 
 		//On ajoute tous les destinataires
-		for($i=0;$i<count($mailTo);$i++)
+		foreach($mailsTo as $current)
 		{
-			$mail->AddBCC($mailTo[$i]);
+			$mail->AddBCC($current);
 		}
 
 		$mail->IsHTML(true);

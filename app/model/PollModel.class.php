@@ -321,12 +321,12 @@ class PollModel extends Model
 
     /**
      * Récupère le contenu du textarea et parse les emails
-     * @return boolean true si l'url est unique false sinon
+     * @return Tableau avec les emails valides auquels les mails ont été envoyé
      */
-    public function sharePoll($texteareaContent)
+    public function sharePoll($texteareaContent, $from, $titre, $description, $lien)
     {
 
-        $emails = preg_split("/[\r\n,;]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
+        $emails = preg_split("/[\r\n,; ]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
 
         $emails = array_unique($emails);
 
@@ -339,10 +339,22 @@ class PollModel extends Model
             }
         }
 
+        if (!isset($emails))
+        {
+            return null;
+        }
 
-        // Envoi mail aux valeurs de $emails
+        $subjet = $from.' vous invite à répondre à sont sondage : '.$titre;
 
+        $message = 'Bounjour,<br />'.
+                    $from.' vous invite a repondre au sondage suivant : '.$description.'<br />
+                    Vous retrouverez le sondage au lien suivant :<br />
+                    <a href="'.$lien.'">'.$lien.'</a>';
 
+        $mailer = new MailUtil();
+        $mailer->sendMailWithCC($emails,$subjet,$message);
+
+        return $emails;
     }
     
     /**

@@ -24,6 +24,7 @@
  */
 
 require_once 'system/Controller.class.php';
+require_once 'util/MailUtil.class.php';
 
 class PollController extends Controller
 {
@@ -70,7 +71,7 @@ class PollController extends Controller
 
 	public function connect($params = null)
 	{
-		echo 'connect';
+		// echo 'connect';
 		// echo '<pre>';
 		// print_r($_POST['choices']);
 		// echo '</pre>';
@@ -117,7 +118,7 @@ class PollController extends Controller
 	 **/
 	public function share($params = null)
 	{
-		echo 'share';
+		// echo 'share';
 		/* temporaire, ensuite on mettra le titre de la page*/
 		$this->set('title', ' mStep '.$_SESSION['poll_step']);
 
@@ -162,6 +163,18 @@ class PollController extends Controller
 					// ne pas mettre de champs vide
 					$this->getModel()->registration($firstname, $lastname,$mail,$pwd);
 					$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
+
+					$subjet = 'Inscription sur Diapazen';
+
+					$message = 'Bounjour '.$firstname.' '.$lastname.',<br />'.
+								'Suite à votre inscrption sur <a href="localhost'.BASE_URL.'">Diapazen</a> Nous vous transmettons votre mot de passe.<br />
+								Votre mot de passe est :'.$pwd.'<br />
+								<br />
+								A bientot sur Diapazen !';
+
+					$mailer = new MailUtil();
+					$mailer->sendMail($mail,$subjet,$message);
+
 					//TODO envoyer un mail avec le mdp
 				}
 
@@ -193,7 +206,9 @@ class PollController extends Controller
 					$this->getModel()->addPoll($_SESSION['user_infos']['id'], $_SESSION['poll_title'], $_SESSION['poll_description'], null);
 					$pollId = $this->getModel()->getPollId();
 
-					$this->set('pollUrl', $this->getModel()->getPollUrl());
+					$_SESSION['poll_url'] = $this->getModel()->getPollUrl();
+
+					$this->set('pollUrl', $_SESSION['poll_url']);
 
 					// Insertion des choix
 					$this->loadModel('choice');
@@ -237,11 +252,16 @@ class PollController extends Controller
 
 	public function sharePoll($params = null)
 	{
-		if (isset($_POST['mails']) && !empty($_POST['mails']))
+		if (isset($_POST['mails']) && !empty($_POST['mails']) && isset($_SESSION['poll_url']) && !empty($_SESSION['poll_url']))
 		{
 			$this->loadModel('poll');
-			$this->getModel()->sharePoll($_POST['mails']);
+			$lien = 'localhost'.BASE_URL.'/poll/view/'.$_SESSION['poll_url'];
+			$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
+			$mailSend = $this->getModel()->sharePoll($_POST['mails'], $from, $_SESSION['poll_title'], $_SESSION['poll_description'], $lien);
 			echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
+			echo "<pre>";
+			print_r($mailSend);
+			echo "</pre>";
 		}
 		else
 		{
