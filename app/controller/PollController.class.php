@@ -232,13 +232,7 @@ class PollController extends Controller
 		$this->render($render);
 	}
 
-<<<<<<< HEAD
-	/**
-	 * Affichage d'un sondage
-	 * 
-	 * url:	diapazen.com/poll/view/.../
-	 **/
-=======
+
 	public function sharePoll($params = null)
 	{
 		if (isset($_POST['mails']) && !empty($_POST['mails']))
@@ -253,8 +247,12 @@ class PollController extends Controller
 			header('Location: ' . BASE_URL. '/poll/share');
 		}
 	}
-
->>>>>>> Création de sondage presque operationnel
+	
+	/**
+	 * Affichage d'un sondage
+	 * 
+	 * url:	diapazen.com/poll/view/.../
+	 **/
 	public function view($params = null)
 	{
 		
