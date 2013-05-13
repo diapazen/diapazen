@@ -355,11 +355,11 @@
 }
 
 #poll_creation_form .choice{
-	width: 350px;
+	width: 400px;
 }
 
 #poll_creation_form .choice input[type="text"]
 {
-	width:300px;
+	width:350px;
 	display:inline-block;
 }
