@@ -6,8 +6,8 @@
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/orangeSoberKit.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/diapazen.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/style.css'); ?>">
-        <!-- jQuery 2.0 -->
-        <!--script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script-->
+        <!-- jQuery 1.9-->
+        <script src="../js/jquery.js"> </script>
         
         <title><?php if (isset($title)){ echo $title; } ?></title>
     </head>

@@ -16,5 +16,8 @@
                 <input class="orange_button" type="submit" value="Partager">
             </form>
         </div>
-        
+
+<script type="text/javascript" src="../js/mailcheck.js"></script>
+<script type="text/javascript" src="../js/mailShare.js"></script>
+
 <?php $this->getFooter(); ?>
