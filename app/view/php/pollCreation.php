@@ -14,6 +14,7 @@
             <form id="poll_creation_form" class="default_form" action="connect" method="post">
                 <h1 class="small_title">Votre sondage</h1>
                 <input class="text_edit" id="id_title_input" name="title_input" type="text" placeholder="Titre" value="<?php echo $poll_title;?>">
+                <input class="text_edit" id="id_date_input" name="date_input" type="text" placeholder="Date d'expiration">
                 <textarea class="text" id="id_description_input" name="description_input" placeholder="Description"><?php echo $poll_description;?></textarea>
                 <h1 class="small_title">Propositions</h1>
                 <div id="choices">
