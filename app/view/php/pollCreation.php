@@ -7,9 +7,9 @@
 
         <div id="content">
             <div id="ariadne_thread"> 
-                <a class="orange_ariadne" href="#"><span></span><span>Création</span><span></span></a>
-                <a class="grey_ariadne" href="#"><span></span><span>Connexion</span><span></span></a>
-                <a class="grey_ariadne" href="#"><span></span><span>Partage</span><span></span></a>
+                <span class="orange_ariadne" ><span></span><span>Création</span><span></span></span>
+                <span class="grey_ariadne" ><span></span><span>Connexion</span><span></span></span>
+                <span class="grey_ariadne" ><span></span><span>Partage</span><span></span></span>
             </div>
             <form id="poll_creation_form" class="default_form" action="connect" method="post">
                 <h1 class="small_title">Votre sondage</h1>
