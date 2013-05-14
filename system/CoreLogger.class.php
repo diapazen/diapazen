@@ -74,11 +74,20 @@ class CoreLogger
      * Determine quel objet writter est utiliser pour
      * ecrire notre log
      *
-     * 
+     * @return boolean affectation reussi
      */
     public function setWriter($ObjWriter)
     {
-        self::$mwriter = $ObjWriter;
+        if($ObjWriter instanceof IWriter )
+        {
+            self::$mwriter = $ObjWriter;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 
     
