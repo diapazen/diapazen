@@ -1,5 +1,7 @@
-<?php $this->getHeader(); ?> 
-
+<?php $this->getHeader(); 
+    $percent = 50;
+?> 
+        
         <div id="content">
             <div id ="poll">
                 <div id="back_button_dashboard">
@@ -10,7 +12,6 @@
                     <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
                 </div>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
-                
                 <form method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">
                     <div id="poll_choices">
                         <table>
@@ -37,7 +38,13 @@
                                     }
                                 ?>
 
-                                <td class="text" ><?php echo $row['choiceName'] ?> </td>
+                                <td class="text"><?php echo $row['choiceName'] ?> </td> 
+                                <td class="progression_bar">
+                                    <div class="container">
+                                        <div class="meter" style="<?php echo 'width: '.$percent.'%' ?>"></div>
+                                        <p class="text"><?php echo $percent.'%'; ?></p>
+                                    </div>
+                                </td>   
                                 <td class="text" >
 
                                 <?php
