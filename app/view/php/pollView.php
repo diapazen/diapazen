@@ -2,8 +2,13 @@
 
         <div id="content">
             <div id ="poll">
-                <h1 class="title" > <?php echo $eventTitle; ?> </h1>
-                <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
+                <div id="back_button_dashboard">
+                    <a class="orange_button" href="<?php $this->getHomeUrl(); ?>/dashboard" >Retourner au dashboard</a>
+                </div>
+                <div id="poll_title_box" >
+                    <h1 class="title" > <?php echo $eventTitle; ?> </h1>
+                    <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
+                </div>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
                 
                 <form method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">

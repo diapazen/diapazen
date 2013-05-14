@@ -224,6 +224,16 @@
 	margin-top: 30px;
 }
 
+#poll_title_box, #back_button_dashboard
+{
+	display: inline-block;
+}
+
+#back_button_dashboard
+{
+	float: right;
+}
+
 /* personalData.css */
 
 #personal_data_form .big_title
