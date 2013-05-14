@@ -2,9 +2,9 @@
 
         <div id="content">
             <div id="ariadne_thread"> 
-                <a class="grey_ariadne" href="#"><span></span><span>Création</span><span></span></a>
-                <a class="orange_ariadne" href="#"><span></span><span>Connexion</span><span></span></a>
-                <a class="grey_ariadne" href="#"><span></span><span>Partage</span><span></span></a>
+                <span class="grey_ariadne" ><span></span><span>Création</span><span></span></span>
+                <span class="orange_ariadne" ><span></span><span>Connexion</span><span></span></span>
+                <span class="grey_ariadne" ><span></span><span>Partage</span><span></span></span>
             </div>
             <form action="share" method="post" class="default_form" id="poll_connection_form">
                 <label for="registered" class="text"><input id="registered" value="registered" type="radio" name="account" checked="checked">J'ai déjà un compte</label>
