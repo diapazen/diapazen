@@ -185,7 +185,17 @@
 	padding-top: 20px;
 	padding-bottom: 20px;
 	text-align: center;
-	position: relative;
+}
+
+#poll_choices tr td .progression_bar
+{
+	background-color: #FF4820;
+	height: 100%;
+}
+
+#poll_choices tr td:first-child + td p
+{
+	
 }
 
 #poll_choices tr td:first-child
@@ -285,8 +295,6 @@
 	padding: 10px;
 	border: 1px solid #919191;
 	text-align: center;
-	position: relative;
-
 	vertical-align: middle;
 }
 
@@ -308,7 +316,7 @@
 
 #poll_list tr td:first-child + td
 {
-	width: 30%;
+	width: 20%;
 }
 
 #poll_list tr td:last-child
@@ -317,7 +325,20 @@
 	border-left: none;
 	border-right: none;
 	background-color: #FFFFFF;
-	width: 8%;
+	width: 12%;
+}
+
+#poll_list tr td:last-child a
+{
+	display: block;
+	width: 70%;
+}
+
+#poll_list tr td:last-child .grey_small_button
+{
+	display: block;
+	width: 70%;
+	margin-top: 5px;
 }
 
 .opened_poll td:first-child

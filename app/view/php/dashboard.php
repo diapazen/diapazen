@@ -23,24 +23,31 @@
 
                     <tr class="opened_poll">
                         <td>Ouvert</td>
+                        <td> <?php echo $row['title']; ?> </td>
+                        <td> <?php echo $row['description']; ?> </td>
+                        <td> 
+                            <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a> 
+                            <input class="grey_small_button" value="Clôturer">
+                        </td>
 
                     <?php
-                            } else {
+                            } 
+                            else {
                             //Sondage fermé
                     ?>
 
                     <tr class="closed_poll">
                         <td>Fermé</td>
-
-                    <?php
-                            }
-                    ?>
-
                         <td> <?php echo $row['title']; ?> </td>
                         <td> <?php echo $row['description']; ?> </td>
                         <td> 
                             <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a> 
                         </td>
+                    <?php
+                            }
+                    ?>
+
+
                     </tr> 
 
                     <?php
