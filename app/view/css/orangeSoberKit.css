@@ -259,19 +259,19 @@ tipomatika@gmail.com*/
 .orange_button, .grey_button
 {
     font-size: 1.4em;
-    line-height: 1.4em;
+    line-height: 1.3em;
 }
 
 .orange_small_button, .grey_small_button
 {
     font-size: 1em;
-    line-height: 1em;
+    line-height: 1.2em;
 }
 
 .orange_big_button, .grey_big_button
 {
     font-size: 1.6em;
-    line-height: 1.6em;
+    line-height: 1.4em;
 }
 
 .orange_button:hover, .orange_small_button:hover, .orange_big_button:hover, 
