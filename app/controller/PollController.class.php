@@ -38,6 +38,8 @@ class PollController extends Controller
 	{
 		//si l'utilisateur est deja connecter alors on affiche pas le le bouton connexion dans le fil d'arianne
 		$_SESSION['show_ariadne'] = $this->isUserConnected() ? false : true;
+		$_SESSION['width_ariadne'] = $this->isUserConnected() ? '525' : '788';
+		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 		$this->set('show_ariadne', $_SESSION['show_ariadne']);
 
 		$this->set('class_create', 'orange');
@@ -53,17 +55,22 @@ class PollController extends Controller
 		}
 		
 		/* temporaire, ensuite on mettra le titre de la page*/
-		$this->set('title', 'Diapazen Creation d\'un Sondage');
+		$this->set('title', 'Création d\'un sondage | Diapazen');
 		// On fait le rendu
 		$this->render('pollCreation');
 	}
 
 	public function connect($params = null)
 	{
+
+		$this->set('title', 'Création d\'un sondage | Diapazen');
+
 		if (isset($_SESSION['show_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
 		}
+
+		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 		$this->set('class_create', 'grey');
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
@@ -89,7 +96,7 @@ class PollController extends Controller
 				else
 				{
 					/* temporaire, ensuite on mettra le titre de la page*/
-					$this->set('title', 'Diapazen Creation d\'un Sondage');
+					
 					// On fait le rendu
 					$this->render('pollConnection');
 				}
@@ -100,6 +107,8 @@ class PollController extends Controller
 			// renvoyer a Poll create avec un message disant champs inexistants
 			header('Location: ' . BASE_URL. '/poll/create');
 		}
+
+		
 	}
 
 	/**
@@ -109,13 +118,15 @@ class PollController extends Controller
 	 **/
 	public function share($params = null)
 	{
+
 		if (isset($_SESSION['show_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
 		}
+		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 
 		// On choisi le rendu par default
-		$this->set('title', 'Diapazen Creation d\'un Sondage');
+		$this->set('title', 'Création d\'un sondage | Diapazen');
 		$this->set('class_create', 'grey');
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
@@ -181,7 +192,7 @@ class PollController extends Controller
 					$this->setUserDisconnected();
 
 					// On choisi le rendu
-					$this->set('title', 'Diapazen Creation d\'un Sondage');
+					
 					$this->set('class_connect', 'orange');
 					$this->set('class_share', 'grey');
 					$render = 'pollConnection';
@@ -216,7 +227,7 @@ class PollController extends Controller
 					}
 					
 					// On choisit le rendu
-					$this->set('title', ' Share ');
+					
 					$this->set('class_connect', 'grey');
 					$this->set('class_share', 'orange');
 					$render = 'pollShare';

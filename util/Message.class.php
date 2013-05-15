@@ -30,16 +30,16 @@ class Message
 		"<html>Bonjour <br>
 			Merci de vous être inscrit sur Diapazen <br>
 			Votre mot de passe est : <span name='password'></span> <br>
-			Vous pourrez le changer à tout moment à partir de votre compte</html>";
+			Changer le dès maintenant en accèdant à votre profil.</html>";
 
 	private static $messageCreatePoll	=
 		"<html>Bonjour vous venez de créer le sondage <span name='sondage'></span></html>";
 
 	private static $messagePswForgotten	=
-		"<html>Bonjour votre mot de passe est : <span name='password'></span></html>";
+		"<html>Bonjour votre nouveau mot de passe est : <span name='password'></span></html>";
 		
 	private static $messageLogTooBig	=
-		"<html>Attention il y a actuellement trop de log</html>";
+		"<html>Attention: Le fichier de logs de Diapazen est plein.</html>";
 
 	private $message;
 
