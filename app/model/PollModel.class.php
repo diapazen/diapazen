@@ -75,7 +75,9 @@ class PollModel extends Model
                 $request->execute();
                 $choices=$request->fetchAll(PDO::FETCH_ASSOC);
 
+                // Traitements des résultats
                 $list = array();
+                $nbTotalVotes = 0;
                 foreach($choices as $choice)
                 {
                     $id = $choice['CHOICE_ID'];
@@ -85,12 +87,22 @@ class PollModel extends Model
                     {
                         $rid = $result['CHOICE_ID'];
                         if ($id == $rid)
+                        {
                             $list[$id]['checkList'][] = $result['value'];
+                            $nbTotalVotes++;
+                        }
                     }
+                }
+
+                // calcul du pourcentage
+                foreach($list as &$elem)
+                {
+                    $elem['percent'] = (int) round((count($elem['checkList']) / $nbTotalVotes) * 100);
                 }
                 
                 // On prépare le tableau de retour
                 $ret = $pollInfo;
+                $ret['nbVotes'] = $nbTotalVotes;
                 $ret['choices'] = $list;
                 return $ret;
             }

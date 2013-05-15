@@ -1,6 +1,4 @@
-<?php $this->getHeader(); 
-    $percent = 50;
-?> 
+<?php $this->getHeader(); ?> 
         
         <div id="content">
             <div id ="poll">
@@ -42,8 +40,8 @@
                                 <td class="text"><?php echo $row['choiceName'] ?> </td> 
                                 <td class="progression_bar">
                                     <div class="container">
-                                        <div class="meter" style="<?php echo 'width: '.$percent.'%' ?>"></div>
-                                        <p class="small_text"><?php echo $percent.'%'; ?></p>
+                                        <div class="meter" style="<?php echo 'width: '.$row['percent'].'%'; ?>"></div>
+                                        <p class="small_text"><?php echo $row['percent'].'%'; ?></p>
                                     </div>
                                 </td>   
                                 <td class="text" >
