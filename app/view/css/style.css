@@ -143,6 +143,12 @@
 	min-height: 7em;
 }
 
+#share_form a
+{
+    display: block;
+    margin-bottom: 10px;
+}
+
 /* pollView.css */
 
 #poll
