@@ -53,7 +53,7 @@ class PollController extends Controller
 		}
 		
 		/* temporaire, ensuite on mettra le titre de la page*/
-		$this->set('title', 'Diapazen Creation d\'un Sondage');
+		$this->set('title', 'Creation d\'un sondage | Diapazen');
 		// On fait le rendu
 		$this->render('pollCreation');
 	}
@@ -89,7 +89,7 @@ class PollController extends Controller
 				else
 				{
 					/* temporaire, ensuite on mettra le titre de la page*/
-					$this->set('title', 'Diapazen Creation d\'un Sondage');
+					$this->set('title', 'Creation d\'un sondage | Diapazen');
 					// On fait le rendu
 					$this->render('pollConnection');
 				}
@@ -115,7 +115,7 @@ class PollController extends Controller
 		}
 
 		// On choisi le rendu par default
-		$this->set('title', 'Diapazen Creation d\'un Sondage');
+		$this->set('title', 'Creation d\'un sondage | Diapazen');
 		$this->set('class_create', 'grey');
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
@@ -181,7 +181,7 @@ class PollController extends Controller
 					$this->setUserDisconnected();
 
 					// On choisi le rendu
-					$this->set('title', 'Diapazen Creation d\'un Sondage');
+					$this->set('title', 'Creation d\'un sondage | Diapazen');
 					$this->set('class_connect', 'orange');
 					$this->set('class_share', 'grey');
 					$render = 'pollConnection';
