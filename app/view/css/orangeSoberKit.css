@@ -239,6 +239,8 @@ tipomatika@gmail.com*/
     font-family: candela_book;
     text-decoration: none;
     text-align: center;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
 }
 
 .orange_button, .orange_small_button, .orange_big_button
