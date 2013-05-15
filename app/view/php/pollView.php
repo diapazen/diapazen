@@ -16,6 +16,7 @@
                     <div id="poll_choices">
                         <table>
                             <?php
+                                $i = 0;
                                 foreach ($choiceList as $key => $row) {
                             ?>
 
@@ -42,27 +43,64 @@
                                 <td class="progression_bar">
                                     <div class="container">
                                         <div class="meter" style="<?php echo 'width: '.$percent.'%' ?>"></div>
-                                        <p class="text"><?php echo $percent.'%'; ?></p>
+                                        <p class="small_text"><?php echo $percent.'%'; ?></p>
                                     </div>
                                 </td>   
                                 <td class="text" >
 
                                 <?php
                                     $nbPeople = count($row['checkList']);
-                                    if ($nbPeople == 0 || is_null($nbPeople)) {
-
-                                    }
-                                    elseif ($nbPeople == 1) {
+                    
+                                    if ($nbPeople == 1) {
                                         echo $row['checkList'][0].' a voté';
                                     }
                                     elseif ($nbPeople == 2) {
-                                         echo $row['checkList'][0].' et <span class="link">1 autre personne</span> ont voté';
+                                         echo $row['checkList'][0].' et <span id="link_'.$i.'" class="link">1 autre personne</span> ont voté';
                                     }
                                     elseif ($nbPeople > 2) {
-                                         echo $row['checkList'][0].' et <span class="link">'.($nbPeople-1).' autres personnes</span> ont voté';
+                                         echo $row['checkList'][0].' et <span id="link_'.$i.'" class="link">'.($nbPeople-1).' autres personnes</span> ont voté'; 
                                     }
+                                    else {
+
+                                    }
+                                    /*On ajoute la fenêtre pop up pour les autres personnes ayant voté*/
+                                    if ($nbPeople == 2 || $nbPeople >2) {
+
                                 ?>
 
+                                    <div id="<?php echo 'vote_list_'.$i; ?>" class="vote_list">
+                                        <ul>
+                                
+                                            <?php
+                                                /* On remplit la liste des personnes ayant voté*/
+                                                for ($j=1; $j < $nbPeople; $j++) { 
+                                                   
+                                            ?>
+
+                                            <li> <?php echo $row['checkList'][$j]; ?> </li>
+
+                                            <?php    
+                                                }
+                                            ?>
+
+                                        </ul>
+                                    </div>
+
+                                    <script type="text/javascript">
+                                        document.getElementById("<?php echo 'link_'.$i; ?>").addEventListener('mouseover', function(e){
+    
+                                            document.getElementById("<?php echo 'vote_list_'.$i; ?>").style.display = "block";
+                                        }, false);
+                                        document.getElementById("<?php echo 'link_'.$i; ?>").addEventListener('mouseout', function(e){
+    
+                                            document.getElementById("<?php echo 'vote_list_'.$i; ?>").style.display = "none";
+                                        }, false);
+                                    </script>
+
+                                <?php
+                                        $i = $i + 1;
+                                    }
+                                ?>
                                 </td>
                             </tr>
 

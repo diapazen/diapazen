@@ -148,6 +148,7 @@
 #poll
 {
 	height: 600px;
+	position: relative;
 }
 
 #poll_choices
@@ -160,12 +161,14 @@
 	max-height: 400px;
 	margin-top: 20px;
 	margin-bottom: 20px;
+
 }
 
 #poll_choices table
 {
 	border-collapse: collapse;
 	width: 100%;
+
 }
 
 
@@ -240,6 +243,16 @@
 {
 	border-right: none;
 	width: 70%;
+}
+
+#poll_choices .vote_list
+{
+	display: none;
+	padding: 5px;
+	background-color: #FFFFFF;
+	border: 1px solid #919191;
+	position: absolute;
+	left: 82%;
 }
 
 #poll .title, #poll .small_title
