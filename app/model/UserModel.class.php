@@ -304,19 +304,18 @@ class UserModel extends Model
         
         /**
          * Modification du mot de passe de l'utilisateur
-         * @param type $id id de l'utilisateur
          * @param type $email email de l'utilisateur
          * @param type $password mot de passe renseigné par l'utilisateur
          * @return boolean si la modification s'est bien passé
          */
-        public function changePassword($id, $password)
+        public function changePassword($email, $password)
         {
-            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `id` = :ID");
+            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `email` = :EMAIL");
             // On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
 			$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
             $password = crypt($password, '$2a$07$'.$salt.'$');
             $request->bindValue(':PASSWORD', $password);
-            $request->bindValue(':ID', $id);
+            $request->bindValue(':EMAIL', $email);
             return $request->execute();
         }
 
