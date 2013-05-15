@@ -135,6 +135,9 @@ class UserController extends Controller
 						$this->setUserInfo('firstname', $_POST['firstname']);
 						$this->setUserInfo('lastname', $_POST['lastname']);
 						$this->setUserInfo('email', $_POST['mail']);
+
+						// On informe l'utilisateur de la réussite
+						$this->set('data_updated', true);
 					}
 					catch(Exception $e)
 					{
@@ -144,7 +147,7 @@ class UserController extends Controller
 				else
 				{
 					// Erreur de mot de passe de confirmation
-					die('erreur du mot de passe de confirmation!');
+					$this->set('data_updated', false);
 				}
 			}
 
@@ -161,6 +164,9 @@ class UserController extends Controller
 						try
 						{
 							$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['password']);
+						
+							// Réussite de la modification du mot de passe
+							$this->set('data_updated', true);
 						}
 						catch(Exception $e)
 						{
@@ -169,13 +175,14 @@ class UserController extends Controller
 					}
 					else
 					{
-						//si le mdp n'est pas le même
+						// Echec de la modification le mot de passe est différent
+						$this->set('data_updated', false);
 					}
 				}
 				else
 				{
 					// Erreur de mot de passe de confirmation
-					die('erreur du mot de passe de confirmation!');
+					$this->set('data_updated', false);
 				}
 				
 			}

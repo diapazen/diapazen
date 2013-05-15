@@ -11,7 +11,7 @@
                         <?php
                     } else {
                         ?>
-                        <div class="error_message message_personal_data">Erreur, Vérifiez les données saisies.</div>
+                        <div class="error_message message_personal_data">Erreur, vérifiez les données saisies.</div>
                         <?php  
                     }
                 }
