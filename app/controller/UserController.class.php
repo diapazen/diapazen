@@ -167,7 +167,7 @@ class UserController extends Controller
 					{
 						try
 						{
-							$res = $this->getModel()->changePassword($this->getUserInfo('id'), $_POST['password']);
+							$res = $this->getModel()->changePassword($this->getUserInfo('email'), $_POST['password']);
 						
 							// Réussite de la modification du mot de passe
 							$this->set('data_updated', true);
