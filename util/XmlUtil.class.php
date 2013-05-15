@@ -28,7 +28,7 @@ require_once '../system/defineConstant.inc.php';
 class XmlUtil 
 {
     protected $mXMLFile=null;
-    protected $mFileName=null;
+    protected $mFileName;
 
      /**
     * Constructeur de gestionnaire xml
@@ -53,7 +53,7 @@ class XmlUtil
             $url=UTIL_ROOT.'documentModel.xml';
             $xml = new SimpleXMLElement($url, NULL, TRUE);
 
-            if($xml->asXML($fileURL)) //sauvegarde du fichier xml
+            if($xml->asXML($this->mFileName)) //sauvegarde du fichier xml
             {
                 $this->mXMLFile=$xml;
             }
@@ -72,6 +72,7 @@ class XmlUtil
     * @param     string name nom du noeud
     * @param     string value contenu du noeud (defaut vide)
     * @param     array attributes tableau dattribut (key --> value)
+    * @return  simpleXMLElement noed ajouté
     */
 
     public function addNode($name,$value="", $attributes=null)
@@ -95,23 +96,18 @@ class XmlUtil
                 
             }
         }
+        return $newNode;
     }
     /**
     * Enregistre le xml
     * 
     * @param     string name nom du fichier 
     */
-    public function saveXml($name="")
+    public function saveXml()
     {
-        if($name == "")
-        {
-            $this->mXMLFile->asXML($this->mFileName);
-        }
-        else
-        {
-            $this->mXMLFile->asXML($name);
-        }
-        
+        $this->mXMLFile->asXML($this->mFileName);
+       
+       
     }
    
 }
