@@ -34,6 +34,12 @@ class DashboardController extends Controller
 		// Titre de la page
 		$this->set('title', 'Tableau de bord | Diapazen');
 		
+
+		if (isset($_POST['close']) && !empty($_POST['close']))
+		{
+			var_dump($_POST);
+		}
+
 		if ($this->isUserConnected())
 		{
 			$this->loadModel('poll');
