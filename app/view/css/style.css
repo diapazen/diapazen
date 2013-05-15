@@ -126,7 +126,7 @@
 
 #ariadne_thread
 {
-	/*width: 788px;*/
+	width: 788px;
 	margin: auto;
 	margin-bottom: 20px;
 }
@@ -154,8 +154,8 @@
 #poll_choices
 {
 	width: inherit;
-	overflow-x: hidden;
-	overflow-y: auto;
+	/*overflow-x: hidden;
+	overflow-y: auto;*/
 	border: 1px #FF4820 solid;
 	border-radius:5px;
 	max-height: 400px;
