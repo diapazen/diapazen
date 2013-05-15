@@ -38,6 +38,8 @@ class PollController extends Controller
 	{
 		//si l'utilisateur est deja connecter alors on affiche pas le le bouton connexion dans le fil d'arianne
 		$_SESSION['show_ariadne'] = $this->isUserConnected() ? false : true;
+		$_SESSION['width_ariadne'] = $this->isUserConnected() ? '525' : '788';
+		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 		$this->set('show_ariadne', $_SESSION['show_ariadne']);
 
 		$this->set('class_create', 'orange');
@@ -64,6 +66,8 @@ class PollController extends Controller
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
 		}
+
+		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 		$this->set('class_create', 'grey');
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
@@ -113,6 +117,7 @@ class PollController extends Controller
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
 		}
+		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 
 		// On choisi le rendu par default
 		$this->set('title', 'Creation d\'un sondage | Diapazen');
