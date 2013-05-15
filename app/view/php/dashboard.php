@@ -7,6 +7,19 @@
                 <a id="dashboard_form" class="orange_button" href="user/profile">Modifier ses données personnelles</a>
             </div>
             <h2 class="small_title small_title_dashboard">Vos sondages</h2>
+            <?php
+                if(isset($data_updated)) {
+                    if($data_updated) {
+                        ?>
+                        <div class="success_message message_personal_data">Le sondage a été clôturé avec succés.</div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="error_message message_personal_data">Erreur lors de la clôture du sondage.</div>
+                        <?php  
+                    }
+                }
+            ?>
             <div class="text" id="poll_list">
                 <table>
                     <tr cols="3" class="head_dash">
@@ -22,16 +35,17 @@
                     ?>
 
                     <tr class="opened_poll">
-                        <form action="<?php $this->getHomeUrl(); ?>/dashboard" method="post">
+                        
                             <td>Ouvert</td>
                             <td> <?php echo $row['title']; ?> </td>
                             <td> <?php echo $row['description']; ?> </td>
                             <td> 
                                 <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a>
-                                <input type="hidden" name="<?php echo $row['url']; ?>"> 
-                                <input type="submit" class="grey_small_button" value="Clôturer">
+                                <form action="<?php $this->getHomeUrl(); ?>/dashboard" method="post">
+                                    <input type="hidden" name="close" value="<?php echo $row['POLL_ID']; ?>"> 
+                                    <input type="submit" class="grey_small_button" value="Clôturer">
+                                </form>
                             </td>
-                        </form>
                     <?php
                             } 
                             else {

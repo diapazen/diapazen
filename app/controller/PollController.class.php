@@ -330,7 +330,7 @@ class PollController extends Controller
 				$date = new DateTime($res['expiration_date']);
             	$now  = new DateTime('now');
             	$int = $now->diff($date);
-				if ($int->invert == 1)
+				if ($int->invert == 1 || !$res['open'])
 				{
 					$res['open'] = false;
 					$this->set('eventDate', 'Le sondage est fermé.');
