@@ -4,7 +4,7 @@ $(function(){
     * Vérification du nom lors de l'inscription
     */
     $("#user_lastname").blur(function(e){
-        var regex = "^[\w\.\']{2,}([\s][\w\.\']{2,})+$";
+        var regex = "^[a-zA-Z\çéèêï]+[-\'\s]?[a-zA-Z\çéèêï]+$";
         if(!$("#user_lastname").val().match(regex, "gi")){
             $("#user_lastname").css({borderLeft:"2px solid red"});
             return false
@@ -36,7 +36,7 @@ $(function(){
     /*
      * Vérification de la syntaxe du mail lors de la modif des données perso
      */
-    $("user_mail").blur(function(e){
+    $("#user_mail").blur(function(e){
         var regex = "^[a-zA-Z0-9\-_]+[a-zA-Z0-9\.\-_]*@[a-zA-Z0-9\-_]+[.][a-zA-Z\.\-_]{1,}[a-zA-Z\-_]+";
         if(!$("#user_mail").val().match(regex, "gi")){
             $("#user_mail").css({borderLeft:"2px solid red"});

@@ -31,6 +31,6 @@
             </form>    
         </div>
         
-<script type="text/javascript" src="../js/formCheck.js"> </script>
+    <script src="<?php $this->getPath('js/formCheck.js'); ?>"> </script>
 
 <?php $this->getFooter(); ?>
