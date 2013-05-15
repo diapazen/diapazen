@@ -4,7 +4,21 @@
         
         <div id="content">
             
-            <div class="error_message" >Erreur de connexion, le nom d'utilisateur ou le mot de passe est incorrect.</div>
+            <?php 
+            	if(isset('infoLogin'))
+            	{
+            		switch('infoLogin')
+            		{
+            			case 'connectionError':
+            				echo "<div class='error_message' >Erreur de connexion, le nom d'utilisateur ou le mot de passe est incorrect.</div>";
+            				break;
+
+            			case 'sendPassword':
+            				echo "<div class='success_message' >Votre message vous a été envoyé, tentez de vous connecter.</div>";
+            				break;
+            		}
+            	}
+            ?>
             
             <form action="<?php $this->getHomeUrl(); ?>/user/login" class="default_form" id="connect_box_fail" method="post">
             	<p class="title" >Réessayer de vous connecter !</p>
