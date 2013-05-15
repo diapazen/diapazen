@@ -5,7 +5,7 @@
         <div id="content">
             
             <?php 
-            	if(isset($infoLogin$))
+            	if(isset($infoLogin))
             	{
             		switch($infoLogin)
             		{
