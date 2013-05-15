@@ -10,7 +10,7 @@
                 <input class="text_edit" id="name_user" name="nameUser" type="text" placeholder="Nom">
                 <input class="text_edit" id="pwd_user" type="password" name="password" placeholder="Mot de passe" value="passe">
                 <p class="orange_text" id="mail_info">Un mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
-                <input class="orange_button" type="submit" value="Etape suivante"/>
+                <input class="orange_button" type="submit" value="Étape suivante"/>
             </form>
         </div>
         <script type="text/javascript" src="<?php $this->getPath('js/pollConnection.js'); ?>"></script>

@@ -9,15 +9,24 @@
             <h2 class="small_title small_title_dashboard">Vos sondages</h2>
             <?php
                 if(isset($data_updated)) {
+
                     if($data_updated) {
                         ?>
-                        <div class="success_message message_personal_data">Le sondage a été clôturé avec succés.</div>
+                        <div class="success_message message_dashboard">Le sondage a été clôturé avec succés.</div>
                         <?php
                     } else {
                         ?>
-                        <div class="error_message message_personal_data">Erreur lors de la clôture du sondage.</div>
+                        <div class="error_message message_dashboard">Erreur lors de la clôture du sondage.</div>
                         <?php  
                     }
+
+                ?>
+
+                <script>
+                    $('.message_dashboard').fadeOut(5000);
+                </script>
+
+                <?php
                 }
             ?>
             <div class="text" id="poll_list">
