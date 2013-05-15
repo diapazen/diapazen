@@ -13,7 +13,6 @@
             </form>
         </div>
 
-<script type="text/javascript" src="../js/mailcheck.js"></script>
-<script type="text/javascript" src="../js/mailShare.js"></script>
-
+    <script src="<?php $this->getPath('js/mailcheck.js'); ?>"> </script>
+    <script src="<?php $this->getPath('js/mailShare.js'); ?>"> </script>
 <?php $this->getFooter(); ?>

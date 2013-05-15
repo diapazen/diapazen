@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/style.css'); ?>">
         <!-- jQuery 1.9-->
         <script src="<?php $this->getPath('js/jquery.js'); ?>"> </script>
+        <script src="<?php $this->getPath('js/connect.js'); ?>"> </script>
         
         <title><?php if (isset($title)){ echo $title; } ?></title>
     </head>

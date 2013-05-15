@@ -7,20 +7,20 @@
 
 $(function(){
     
-    //Vï¿½rification de la bonne syntaxe du mail
-    $("#small_text_edit").keyup(function(e){
+    //Vérification de la bonne syntaxe du mail
+    $(".text_edit").keyup(function(e){
         if( (e.keyCode == 32) ||(e.keyCode == 188) ||(e.keyCode == 186) ){    //Sï¿½paration avec un espace, virgule, point virgule)
-            if($("#small_text_edit").val().match("^[a-zA-Z0-9\-_]+[a-zA-Z0-9\.\-_]*@[a-zA-Z0-9\-_]+\.[a-zA-Z\.\-_]{1,}[a-zA-Z\-_]+", "gi")){
-                alert("adresse ok");
+            if($(".text_edit").val().match("^[a-zA-Z0-9\-_]+[a-zA-Z0-9\.\-_]*@[a-zA-Z0-9\-_]+\.[a-zA-Z\.\-_]{1,}[a-zA-Z\-_]+", "gi")){
+               $(this).css("font:2px solid green");
             }
             else{
-                alert("erreur dans l'adresse");               
+                  $(this).css("font:2px solid red");     
             }
             
             var domains = ['hotmail.com', 'gmail.com', 'laposte.net', 'hotmail.fr', '9.fr', 'bbox.fr', 'free.fr'];
             
             //Proposition de correction s'il y a uen erreur minime'
-            $("#small_text_edit").keyup(function(){
+            $(".text_edit").keyup(function(){
                 var input = $(this);
                 
                 input.mailcheck({
