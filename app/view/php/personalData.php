@@ -1,6 +1,21 @@
 <?php $this->getHeader(); ?>
 
         <div id="content">
+            <?php 
+                //$data_updated = false;
+
+                if(isset($data_updated)) {
+                    if($data_updated) {
+                        ?>
+                        <div class="success_message message_personal_data">Vos données personelles ont été mises à jour avec succés.</div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="error_message message_personal_data">Erreur, Vérifiez les données saisies.</div>
+                        <?php  
+                    }
+                }
+            ?>
             <form id="personal_data_form" class="default_form" action="profile" method="post">
                 <p class="big_title">Données personnelles</p>
                 <input type="text" class="text_edit" value="<?php if(isset($lastname)){echo $lastname;}?>" placeholder="Nom" name="lastname">

@@ -279,7 +279,7 @@
 
 #personal_data_form .big_title
 {
-	margin-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 #personal_data_form .orange_button, #personal_data_form .grey_button
@@ -288,7 +288,12 @@
 	padding-right: 0;
 	width: 197px;
 	display: inline-block;
-} 
+}
+
+.message_personal_data
+{
+	margin-bottom: 30px;
+}
 
 /* dashboard.css */
 
