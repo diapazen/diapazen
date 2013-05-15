@@ -173,14 +173,13 @@ class PollController extends Controller
 
 					$subjet = 'Inscription sur Diapazen';
 
-					$message = 'Bounjour '.$firstname.' '.$lastname.',<br />'.
-								'Suite à votre inscrption sur <a href="localhost'.BASE_URL.'">Diapazen</a> Nous vous transmettons votre mot de passe.<br />
-								Votre mot de passe est :'.$pwd.'<br />
-								<br />
-								A bientot sur Diapazen !';
+					$message = new Message();
+					$message->setMessage('registration');
+					$message->setParams(array('password' => $pwd, 'firstName' => $firstname, 'lastName' => $lastname));
+					$messageMail = $message->getMessage();
 
 					$mailer = new MailUtil();
-					$mailer->sendMail($mail,$subjet,$message);
+					$mailer->sendMail($mail,$subjet,$messageMail);
 
 					//TODO envoyer un mail avec le mdp
 				}
