@@ -27,19 +27,47 @@ class Message
 {
 
 	private static $messageRegistration	=
-		"<html>Bonjour <span name='firstName'></span> <span name='lastName'></span><br>
-			Merci de vous être inscrit sur Diapazen <br>
-			Votre mot de passe est : <span name='password'></span> <br>
-			Changer le dès maintenant en accèdant à votre profil.</html>";
+		"<html>
+			<head>
+				<meta charset='utf-8'>
+			</head>
+			<body>
+				Bonjour <span name='firstName'></span> <span name='lastName'></span><br>
+				Merci de vous être inscrit sur Diapazen <br>
+				Votre mot de passe est : <span name='password'></span> <br>
+				Changer le dès maintenant en accèdant à votre profil.
+			</body>
+		</html>";
 
 	private static $messageCreatePoll	=
-		"<html>Bonjour vous venez de créer le sondage <span name='sondage'></span></html>";
+		"<html>
+			<head>
+				<meta charset='utf-8'>
+			</head>
+			<body>
+				Bonjour vous venez de créer le sondage <span name='sondage'></span>
+			</body>
+		</html>";
 
 	private static $messagePswForgotten	=
-		"<html>Bonjour votre nouveau mot de passe est : <span name='password'></span></html>";
+		"<html>
+			<head>
+				<meta charset='utf-8'>
+			</head>
+			<body>
+				Bonjour votre nouveau mot de passe est : <span name='password'></span>
+			</body>
+		</html>";
 		
 	private static $messageLogTooBig	=
-		"<html>Attention: Le fichier de logs de Diapazen est plein.</html>";
+		"<html>
+			<head>
+				<meta charset='utf-8'>
+			</head>
+			<body>
+				Attention: Le fichier de logs de Diapazen est plein.
+			</body>
+		</html>";
 
 	private $message;
 
