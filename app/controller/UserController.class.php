@@ -260,9 +260,12 @@ class UserController extends Controller
 				try
 				{
 					$objMail = new MailUtil();
+					$message = new Message();
+					$message->setMessage('password');
+					$message->setParams(array('password'=>$password));
 					$subject = 'Votre nouveau mot de passe.';
-					$message = 'Voici votre nouveau mot de passe :<br />'.$password;
-					$objMail->sendMail($email, $subject, $message);
+					$messageMail = $message->getMessage();
+					$objMail->sendMail($email, $subject, $messageMail);
 					$this->set('infoLogin','sendPassword');
 					$this->render('login');
 				}

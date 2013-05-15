@@ -1,4 +1,4 @@
-			<div id="ariadne_thread"> 
+			<div style="width: <?php echo $width_ariadne; ?>px;" id="ariadne_thread"> 
 				<span class="<?php echo $class_create; ?>_ariadne" ><span></span><span>Création</span><span></span></span>
 				<?php
 				if (isset($show_ariadne) && $show_ariadne == true)
