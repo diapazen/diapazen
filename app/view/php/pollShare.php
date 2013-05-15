@@ -1,11 +1,7 @@
 ﻿<?php $this->getHeader(); ?>
 
         <div id="content">
-            <div id="ariadne_thread"> 
-                <span class="grey_ariadne" ><span></span><span>Création</span><span></span></span>
-                <span class="grey_ariadne" ><span></span><span>Connexion</span><span></span></span>
-                <span class="orange_ariadne" ><span></span><span>Partage</span><span></span></span>
-            </div>
+            <?php $this->getAriadneThread(); ?>
             <form id="share_form" class="default_form" method="post" action="sharePoll">
                 <h2 class="title">Votre sondage a bien été créé !</h2>
                 <h3 class="small_title">Lien du sondage</h3>

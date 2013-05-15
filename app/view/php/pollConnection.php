@@ -1,11 +1,7 @@
 <?php $this->getHeader(); ?>
 
         <div id="content">
-            <div id="ariadne_thread"> 
-                <span class="grey_ariadne" ><span></span><span>Création</span><span></span></span>
-                <span class="orange_ariadne" ><span></span><span>Connexion</span><span></span></span>
-                <span class="grey_ariadne" ><span></span><span>Partage</span><span></span></span>
-            </div>
+            <?php $this->getAriadneThread(); ?>
             <form action="share" method="post" class="default_form" id="poll_connection_form">
                 <label for="registered" class="text"><input id="registered" value="registered" type="radio" name="account" checked="checked">J'ai déjà un compte</label>
                 <label for="not_registered" class="text"><input id="not_registered" value="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>

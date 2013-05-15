@@ -28,14 +28,6 @@ require_once 'util/MailUtil.class.php';
 
 class PollController extends Controller
 {
-	// poll_step sert à savoir ou on en est dans la création du sondage, et à savoir si l'utilisateur ne tente pas d'accéder à la seconde étape avant la premiere, par exemple
-	// contient les valeurs renseignées par l'utilisateur
-	/*
-	$_SESSION['poll_title'];
-	$_SESSION['poll_description'];
-	$_SESSION['poll_choices'] = array();
-
-	$_POST['mailConnect'];*/
 
 	public function index($params = null)
 	{
@@ -44,14 +36,13 @@ class PollController extends Controller
 
 	public function create($params = null)
 	{
+		//si l'utilisateur est deja connecter alors on affiche pas le le bouton connexion dans le fil d'arianne
+		$_SESSION['show_ariadne'] = $this->isUserConnected() ? false : true;
+		$this->set('show_ariadne', $_SESSION['show_ariadne']);
 
-		// On charge le modèle des sondages
-		$this->loadModel('poll');
-
-		// lors de l'arrivée sur la page de création
-		$_SESSION['poll_step'] = 'init';
-
-		/*session_unregister (string name)*/
+		$this->set('class_create', 'orange');
+		$this->set('class_connect', 'grey');
+		$this->set('class_share', 'grey');
 		// on a fait précédent, on affiche les valeurs déjà renseignées
 		if(isset($_SESSION['poll_title']) && isset($_SESSION['poll_description']) && isset($_SESSION['poll_choices']))
 		{
@@ -59,26 +50,26 @@ class PollController extends Controller
 			$this->set('poll_description', $_SESSION['poll_description']);
 			$this->set('poll_choices', $_SESSION['poll_choices']);
 			// modifier la vue pour qu'elle affiche les choix (le navigateur web le gère automatiquement)
-
-			$_SESSION['poll_step'] = 'précédent';
 		}
 		
 		/* temporaire, ensuite on mettra le titre de la page*/
-		$this->set('title', ' mStep '.$_SESSION['poll_step']);
+		$this->set('title', ' Create ');
 		// On fait le rendu
 		$this->render('pollCreation');
 	}
 
 	public function connect($params = null)
 	{
-		// echo 'connect';
-		// echo '<pre>';
-		// print_r($_POST['choices']);
-		// echo '</pre>';
+		if (isset($_SESSION['show_ariadne']))
+		{
+			$this->set('show_ariadne', $_SESSION['show_ariadne']);
+		}
+		$this->set('class_create', 'grey');
+		$this->set('class_connect', 'orange');
+		$this->set('class_share', 'grey');
+		// test si le formulaire de creation de sondage est existant
 		if (isset($_POST['title_input']) && isset($_POST['description_input']) && isset($_POST['choices']))
 		{
-			$_SESSION['poll_step'] = 1;
-
 			$_SESSION['poll_title'] = $_POST['title_input'];
 			$_SESSION['poll_description'] = $_POST['description_input'];
 			$_SESSION['poll_choices'] = $_POST['choices'];
@@ -98,7 +89,7 @@ class PollController extends Controller
 				else
 				{
 					/* temporaire, ensuite on mettra le titre de la page*/
-					$this->set('title', ' mStep '.$_SESSION['poll_step']);
+					$this->set('title', ' connect ');
 					// On fait le rendu
 					$this->render('pollConnection');
 				}
@@ -118,14 +109,17 @@ class PollController extends Controller
 	 **/
 	public function share($params = null)
 	{
-		// echo 'share';
-		/* temporaire, ensuite on mettra le titre de la page*/
-		$this->set('title', ' mStep '.$_SESSION['poll_step']);
-
-		$this->loadModel('user');
+		if (isset($_SESSION['show_ariadne']))
+		{
+			$this->set('show_ariadne', $_SESSION['show_ariadne']);
+		}
 
 		// On choisi le rendu par default
-		$render='pollConnection';
+		$this->set('title', ' connect ');
+		$this->set('class_create', 'grey');
+		$this->set('class_connect', 'orange');
+		$this->set('class_share', 'grey');
+		$render = 'pollConnection';
 
 		try
 		{
@@ -143,6 +137,7 @@ class PollController extends Controller
 					try
 					{
 						// on vérifie les infos avec la bdd
+						$this->loadModel('user');
 						$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
 					}
 					catch(Exception $e)
@@ -157,7 +152,8 @@ class PollController extends Controller
 					$firstname = $_POST['firstNameUser'];
 					$lastname = $_POST['nameUser'];
 					// On crée le mot de passe
-					$pwd=$this->getModel()->generatorPsw();
+					$this->loadModel('user');
+					$pwd = $this->getModel()->generatorPsw();
 
 					// On crée l'utilisateur
 					// ne pas mettre de champs vide
@@ -185,7 +181,10 @@ class PollController extends Controller
 					$this->setUserDisconnected();
 
 					// On choisi le rendu
-					$render='pollConnection';
+					$this->set('title', ' mStep ');
+					$this->set('class_connect', 'orange');
+					$this->set('class_share', 'grey');
+					$render = 'pollConnection';
 				}
 				else
 				{
@@ -217,7 +216,10 @@ class PollController extends Controller
 					}
 					
 					// On choisit le rendu
-					$render='pollShare';
+					$this->set('title', ' Share ');
+					$this->set('class_connect', 'grey');
+					$this->set('class_share', 'orange');
+					$render = 'pollShare';
 				}
 				else
 				{
@@ -237,6 +239,9 @@ class PollController extends Controller
 		{
 			switch ($e->getMessage()) {
 				case 'Email already in db':
+					$this->set('title', ' Connect ');
+					$this->set('class_connect', 'orange');
+					$this->set('class_share', 'grey');
 					$render = 'pollConnection';
 					break;
 				

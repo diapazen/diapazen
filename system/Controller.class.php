@@ -136,6 +136,17 @@ class Controller
 	}
 
 	/**
+	 * Inclut le fichier du fil d'arianne. A utiliser dans les fichiers de vue
+	 *
+	 * @return	void	Rien
+	 */
+	public function getAriadneThread()
+	{
+		extract($this->mVars);
+		include VIEW_ROOT.DS.'php'.DS.'ariadneThread.php';
+	}
+
+	/**
 	 * Récupère l'url de la page d'accueil
 	 *
 	 * @return	void	Rien

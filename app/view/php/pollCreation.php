@@ -6,11 +6,7 @@
 ?>
 
         <div id="content">
-            <div id="ariadne_thread"> 
-                <span class="orange_ariadne" ><span></span><span>Création</span><span></span></span>
-                <span class="grey_ariadne" ><span></span><span>Connexion</span><span></span></span>
-                <span class="grey_ariadne" ><span></span><span>Partage</span><span></span></span>
-            </div>
+            <?php $this->getAriadneThread(); ?>
             <form id="poll_creation_form" class="default_form" action="connect" method="post">
                 <h1 class="small_title">Votre sondage</h1>
                 <input class="text_edit" id="id_title_input" name="title_input" type="text" placeholder="Titre" value="<?php echo $poll_title;?>">
