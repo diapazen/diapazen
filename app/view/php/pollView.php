@@ -59,6 +59,7 @@
                                          echo $row['checkList'][0].' et <span id="link_'.$i.'" class="link">'.($nbPeople-1).' autres personnes</span> ont voté'; 
                                     }
                                     else {
+                                        echo 'Aucune personne n\'a encore voté.';
 
                                     }
                                     /*On ajoute la fenêtre pop up pour les autres personnes ayant voté*/
