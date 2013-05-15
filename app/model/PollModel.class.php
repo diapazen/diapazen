@@ -97,7 +97,10 @@ class PollModel extends Model
                 // calcul du pourcentage
                 foreach($list as &$elem)
                 {
-                    $elem['percent'] = (int) round((count($elem['checkList']) / $nbTotalVotes) * 100);
+                    if (count($elem['checkList']) != 0)
+                        $elem['percent'] = (int) round((count($elem['checkList']) / $nbTotalVotes) * 100);
+                    else
+                        $elem['percent'] = 0;
                 }
                 
                 // On prépare le tableau de retour
