@@ -55,13 +55,16 @@ class PollController extends Controller
 		}
 		
 		/* temporaire, ensuite on mettra le titre de la page*/
-		$this->set('title', 'Creation d\'un sondage | Diapazen');
+		$this->set('title', 'Création d\'un sondage | Diapazen');
 		// On fait le rendu
 		$this->render('pollCreation');
 	}
 
 	public function connect($params = null)
 	{
+
+		$this->set('title', 'Création d\'un sondage | Diapazen');
+
 		if (isset($_SESSION['show_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
@@ -93,7 +96,7 @@ class PollController extends Controller
 				else
 				{
 					/* temporaire, ensuite on mettra le titre de la page*/
-					$this->set('title', 'Creation d\'un sondage | Diapazen');
+					
 					// On fait le rendu
 					$this->render('pollConnection');
 				}
@@ -104,6 +107,8 @@ class PollController extends Controller
 			// renvoyer a Poll create avec un message disant champs inexistants
 			header('Location: ' . BASE_URL. '/poll/create');
 		}
+
+		
 	}
 
 	/**
@@ -113,6 +118,7 @@ class PollController extends Controller
 	 **/
 	public function share($params = null)
 	{
+
 		if (isset($_SESSION['show_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
@@ -120,7 +126,7 @@ class PollController extends Controller
 		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 
 		// On choisi le rendu par default
-		$this->set('title', 'Creation d\'un sondage | Diapazen');
+		$this->set('title', 'Création d\'un sondage | Diapazen');
 		$this->set('class_create', 'grey');
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
@@ -186,7 +192,7 @@ class PollController extends Controller
 					$this->setUserDisconnected();
 
 					// On choisi le rendu
-					$this->set('title', 'Creation d\'un sondage | Diapazen');
+					
 					$this->set('class_connect', 'orange');
 					$this->set('class_share', 'grey');
 					$render = 'pollConnection';
@@ -221,7 +227,7 @@ class PollController extends Controller
 					}
 					
 					// On choisit le rendu
-					$this->set('title', ' Share ');
+					
 					$this->set('class_connect', 'grey');
 					$this->set('class_share', 'orange');
 					$render = 'pollShare';
