@@ -255,7 +255,7 @@ class UserController extends Controller
 			{
 				$password = $this->getModel()->generatorPsw();
 
-				$this->getModel()->changePassword(null, $email, $password);
+				$this->getModel()->changePassword($email, $password);
 
 				try
 				{
