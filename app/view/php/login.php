@@ -5,9 +5,9 @@
         <div id="content">
             
             <?php 
-            	if(isset($infoLogin))
+            	if(isset('infoLogin'))
             	{
-            		switch($infoLogin)
+            		switch('infoLogin')
             		{
             			case 'connectionError':
             				echo "<div class='error_message' >Erreur de connexion, le nom d'utilisateur ou le mot de passe est incorrect.</div>";
