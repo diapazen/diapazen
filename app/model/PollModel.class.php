@@ -361,8 +361,8 @@ class PollModel extends Model
 
         $subjet = $from.' vous invite à répondre à sont sondage : '.$titre;
 
-        $message = 'Bounjour,<br />'.
-                    $from.' vous invite a repondre au sondage suivant : '.$description.'<br />
+        $message = 'Bonjour,<br />'.
+                    $from.' vous invite à répondre au sondage suivant : '.$description.'<br />
                     Vous retrouverez le sondage au lien suivant :<br />
                     <a href="'.$lien.'">'.$lien.'</a>';
 
