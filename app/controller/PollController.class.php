@@ -288,23 +288,30 @@ class PollController extends Controller
 		try
 		{
 			// Ajout d'un vote
-			if (isset($_POST['value']) && !empty($_POST['value'])
-				&& isset($_POST['choiceId']) && count($_POST['choiceId']) > 0)
+			if (isset($_POST['value']))
 			{
-				foreach($_POST['choiceId'] as $choice)
+				if (!empty($_POST['value']) && isset($_POST['choiceId']))
 				{
-					if ($this->getModel()->votePoll($choice,$_POST['value']))
+					foreach($_POST['choiceId'] as $choice)
 					{
-						// A afficher ici la confirmation du vote
-					}
-					else
-					{
-						// A afficher ici l'erreur du vote
+						if ($this->getModel()->votePoll($choice,$_POST['value']))
+						{
+							// vote pris en compte
+							$this->set('data_updated', true);
+						}
+						else
+						{
+							// echec du vote
+							$this->set('data_updated', false);
+						}
 					}
 				}
-				
+				else
+				{
+					//echec du vote
+					$this->set('data_updated', false);
+				}	
 			}
-
 
 			// On récupère les choix et résultats
 			$res = $this->getModel()->viewPoll($params[0]);

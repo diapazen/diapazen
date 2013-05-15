@@ -113,6 +113,18 @@
                     <input type="text" class="small_text_edit" placeholder="Prénom Nom" name="value" >
                     <input type="submit" class="orange_small_button" value="Voter" >
                     <?php } ?>
+                    <?php 
+
+                        if(isset($data_updated)) {
+                            if($data_updated) { ?>
+                                <div style="float: right;" class="success_message message_personal_data">Votre vote a été bien pris en compte.</div>
+                            <?php
+                            } else { ?>
+                                <div style="float: right;" class="error_message message_personal_data">Erreur, vérifiez les données saisies.</div>
+                            <?php  
+                            }
+                         }
+                    ?>
                 </form>
             </div>
         </div>
