@@ -5,7 +5,7 @@
 		        <li><a class="link" href="#">À propos</a></li>
 		        <li><a class="link" href="#">Contact</a></li>
 		    </ul>
-		    <p class="text">© Diapazen</p>
+		    <p class="text">© <?php echo date('Y'); ?> Diapazen</p>
 		</footer>
 
     </body>
