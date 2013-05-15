@@ -154,6 +154,7 @@ footer ul li
     padding: 10px;
     color: #b94a48;
     font-family: candela_book;
+    text-align: center;
 }
 
 .success_message
@@ -164,6 +165,7 @@ footer ul li
     padding: 10px;
     color: #468847;
     font-family: candela_book;
+    text-align: center;
 }
 
 .default_form
