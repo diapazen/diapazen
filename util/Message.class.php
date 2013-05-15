@@ -27,7 +27,7 @@ class Message
 {
 
 	private static $messageRegistration	=
-		"<html>Bonjour <br>
+		"<html>Bonjour <span name='firstName'></span> <span name='lastName'></span><br>
 			Merci de vous être inscrit sur Diapazen <br>
 			Votre mot de passe est : <span name='password'></span> <br>
 			Changer le dès maintenant en accèdant à votre profil.</html>";
