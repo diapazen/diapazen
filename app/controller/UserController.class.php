@@ -77,6 +77,10 @@ class UserController extends Controller
 
 			if ($result == false)
 			{
+
+				//création de la variable infoLogin
+				$this->set('infoLogin','connectionError');
+
 				// La connexion a échoué
 				$this->setUserDisconnected();
 
