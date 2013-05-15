@@ -175,11 +175,12 @@ class PollController extends Controller
 
 					$message = new Message();
 					$message->setMessage('registration');
-					$message->setParams(array('password' => $pwd, 'firstName' => $firstname, 'lastName' => $lastname));
+					$tabParamMessage = array('password' => $pwd, 'firstName' => $firstname, 'lastName' => $lastname);
+					$message->setParams($tabParamMessage);
 					$messageMail = $message->getMessage();
 
 					$mailer = new MailUtil();
-					$mailer->sendMail($mail,$subjet,$messageMail);
+					$mailer->sendMailWithCC($mail,$subjet,$messageMail);
 
 					//TODO envoyer un mail avec le mdp
 				}
