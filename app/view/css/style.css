@@ -393,7 +393,7 @@
 #poll_list tr td:last-child .grey_small_button
 {
 	display: block;
-	width: 70%;
+	width: 100%;
 	margin-top: 5px;
 }
 

@@ -22,14 +22,16 @@
                     ?>
 
                     <tr class="opened_poll">
-                        <td>Ouvert</td>
-                        <td> <?php echo $row['title']; ?> </td>
-                        <td> <?php echo $row['description']; ?> </td>
-                        <td> 
-                            <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a> 
-                            <input class="grey_small_button" value="Clôturer">
-                        </td>
-
+                        <form action="<?php $this->getHomeUrl(); ?>/dashboard" method="post">
+                            <td>Ouvert</td>
+                            <td> <?php echo $row['title']; ?> </td>
+                            <td> <?php echo $row['description']; ?> </td>
+                            <td> 
+                                <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a>
+                                <input type="hidden" name="<?php echo $row['url']; ?>"> 
+                                <input type="submit" class="grey_small_button" value="Clôturer">
+                            </td>
+                        </form>
                     <?php
                             } 
                             else {
