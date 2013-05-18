@@ -180,7 +180,7 @@ class PollController extends Controller
 					$messageMail = $message->getMessage();
 
 					$mailer = new MailUtil();
-					$mailer->sendMailWithCC($mail,$subjet,$messageMail);
+					$mailer->sendMail($mail,$subjet,$messageMail);
 
 					//TODO envoyer un mail avec le mdp
 				}
@@ -274,10 +274,11 @@ class PollController extends Controller
 			$lien = 'localhost'.BASE_URL.'/poll/view/'.$_SESSION['poll_url'];
 			$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 			$mailSend = $this->getModel()->sharePoll($_POST['mails'], $from, $_SESSION['poll_title'], $_SESSION['poll_description'], $lien);
-			echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
+
+			/*echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
 			echo "<pre>";
 			print_r($mailSend);
-			echo "</pre>";
+			echo "</pre>";*/
 		}
 		else
 		{
