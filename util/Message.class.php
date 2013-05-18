@@ -69,6 +69,17 @@ class Message
 			</body>
 		</html>";
 
+	private static $messagePollShare	=
+		"<html>
+			<head>
+				<meta charset='utf-8'>
+			</head>
+			<body>
+				<span name='user'></span> vous invite à répondre a un sondage. <br>
+				Pour y répondre veuillez suivre ce lien : <span name='linkPoll'></span>
+			</body>
+		</html>";
+
 	private $message;
 
 	/**
@@ -107,6 +118,10 @@ class Message
 
 				case 'log':
 					$this->message=self::$messageLogTooBig;
+					break;
+
+				case 'share':
+					$this->message=self::$messagePollShare;
 					break;
 
 				default :
