@@ -275,6 +275,21 @@ class PollController extends Controller
 			$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 			$mailSend = $this->getModel()->sharePoll($_POST['mails'], $from, $_SESSION['poll_title'], $_SESSION['poll_description'], $lien);
 
+			$linkPoll = "<a href='".$lien."'>Sondage</a>";
+
+			$subject = "Invitation à un sondage";
+			$message = new Message();
+			$message->setMessage('share');
+			$tabParamMessage = array('user' => $from, 'link' => $linkPoll);
+			$message->setParams($tabParamMessage);
+			$messageMail = $message->getMessage();
+
+			$mailer = new MailUtil();
+			$mailer->sendMailWithCC($mailSend,$subjet,$messageMail);
+
+			//a changer!!!!!!!!
+			$this->render('pollView');
+
 			/*echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
 			echo "<pre>";
 			print_r($mailSend);
