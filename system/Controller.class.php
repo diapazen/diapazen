@@ -110,7 +110,8 @@ class Controller
 	 */
 	public function getPath($filename)
 	{
-		echo BASE_URL.VIEW_WEBROOT.DS.$filename;
+		// echo BASE_URL.VIEW_WEBROOT.DS.$filename;
+		echo BASE_URL.VIEW_WEBROOT.'/'.$filename;
 	}
 
 	/**

@@ -40,7 +40,8 @@ define('LOADER', SYSTEM_ROOT.DS.'CoreLoader.class.php');
 
 // Constantes pour les inclusions HTML/CSS
 define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
-define('VIEW_WEBROOT', DS.'app'.DS.'view');
+define('VIEW_WEBROOT', '/'.'app'.'/'.'view');
+// define('VIEW_WEBROOT', DS.'app'.DS.'view');
 define('CONTROLLER_WEBROOT', DS.'app'.DS.'controller');
 define('MODEL_WEBROOT', DS.'app'.DS.'model');
 
