@@ -435,7 +435,6 @@
 
 #poll_creation_form .small_title, #poll_creation_form #id_title_input, #poll_creation_form #id_description_input, #poll_creation_form .choice
 {
-	display: block;
 	margin-bottom: 15px;
 }
 
@@ -446,7 +445,7 @@
 }
 
 #poll_creation_form .choice{
-	width: 400px;
+	width: 560px;
 }
 
 #poll_creation_form .choice input[type="text"]
