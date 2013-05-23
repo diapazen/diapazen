@@ -137,23 +137,6 @@ class PollModel extends Model
             throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
         }
     }
-
-        
-    /**
-     * Création d'une chaine de caractère aléatoire
-     * @param type $number nombre de caractères
-     * @return string la chaine de caractère
-     */
-    private function randomString($number)
-    {
-        $string = "";
-        $chaine = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        srand((double)microtime()*1000000);
-        for($i=0; $i<$number; $i++) {
-        $string .= $chaine[rand()%strlen($chaine)];
-        }
-        return $string;
-    }
     
     /**
      * Ajout d'un sondage
@@ -171,11 +154,9 @@ class PollModel extends Model
             $this->setPollTitle($pollTitle);
             $this->setPollDescription($pollDescription);
             $this->setPollExpirationDate($poll_expiration_date);
-            $this->setPollUrl($this->randomString(11));
-            while($this->compareUrlString() == FALSE)
-            {
-                $this->setPollUrl($this->randomString(11));
-            }
+            
+            // Url unique du sondage
+            $this->setPollUrl(substr(md5(uniqid()),5,10));
             
             //on créer la requete pour créer une ligne d'un nouveau sondage
             $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_polls` 
@@ -268,15 +249,8 @@ class PollModel extends Model
             $request->bindValue(':TITLE', $pollTitle);
             $request->bindValue(':DESCRIPTION', $pollDescription);
             $request->bindValue(':EXPIRATIONDATE', $poll_expiration_date);
-            $check = $request->execute();
-            if($check == 1) 
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return $request->execute();
+            
         }
         catch(Exception $e)
         {
@@ -299,39 +273,12 @@ class PollModel extends Model
             $this->setPollUrl(NULL);
             $request = $this->mDbMySql->prepare("DELETE FROM `diapazen.dpz_polls` WHERE id=:ID");
             $request->bindValue(':ID', $pollId);
-            $check = $request->execute();
-            if($check == 1) 
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return $request->execute();
         }
         catch(Exception $e)
         {
             throw new Exception('Erreur lors de la suppression du sondage :</br>' . $e->getMessage());
         }
-    }
-
-    /**
-     * Compare l'Url du sondage et l'url de tous les sondages existants
-     * @return boolean true si l'url est unique false sinon
-     */
-    public function compareUrlString()
-    {
-        $url = $this->getPollUrl();
-        $request = $this->mDbMySql->prepare("SELECT url FROM diapazen.dpz_polls");
-        $request->execute();
-        while($lignes = $request->fetch(PDO::FETCH_NUM))
-        {
-            if($lignes[0] == $url)
-            {
-                return FALSE;
-            }
-        }
-        return TRUE;
     }
 
     /**
