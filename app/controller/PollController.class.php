@@ -230,6 +230,10 @@ class PollController extends Controller
 					foreach ($_SESSION['poll_choices'] as $choice) {
 						$this->getModel()->addChoice($choice, $pollId);
 					}
+
+					unset($_SESSION['poll_title']);
+					unset($_SESSION['poll_description']);
+					unset($_SESSION['poll_choices']);
 					
 					// On choisit le rendu
 					$this->set('class_connect', 'grey');
