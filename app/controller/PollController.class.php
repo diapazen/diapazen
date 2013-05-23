@@ -65,12 +65,17 @@ class PollController extends Controller
 
 		$this->set('title', 'Création d\'un sondage | Diapazen');
 
-		if (isset($_SESSION['show_ariadne']))
+		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
+			$this->set('width_ariadne', $_SESSION['width_ariadne']);
+		}
+		else
+		{
+			// renvoyer a Poll create ces variable devrais etre initialisées
+			header('Location: ' . BASE_URL. '/poll/create');
 		}
 
-		$this->set('width_ariadne', $_SESSION['width_ariadne']);
 		$this->set('class_create', 'grey');
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
@@ -95,9 +100,7 @@ class PollController extends Controller
 				}
 				else
 				{
-					/* temporaire, ensuite on mettra le titre de la page*/
-					
-					// On fait le rendu
+					// Sinon on fait le rendu
 					$this->render('pollConnection');
 				}
 			}
@@ -118,12 +121,16 @@ class PollController extends Controller
 	 **/
 	public function share($params = null)
 	{
-
-		if (isset($_SESSION['show_ariadne']))
+		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
+			$this->set('width_ariadne', $_SESSION['width_ariadne']);
 		}
-		$this->set('width_ariadne', $_SESSION['width_ariadne']);
+		else
+		{
+			// renvoyer a Poll create ces variable devrais etre initialisées
+			header('Location: ' . BASE_URL. '/poll/create');
+		}
 
 		// On choisi le rendu par default
 		$this->set('title', 'Création d\'un sondage | Diapazen');
@@ -171,13 +178,12 @@ class PollController extends Controller
 					$this->getModel()->registration($firstname, $lastname,$mail,$pwd);
 					$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
 
-					$subjet = 'Inscription sur Diapazen';
-
 					$message = new Message();
 					$message->setMessage('registration');
 					$tabParamMessage = array('password' => $pwd, 'firstName' => $firstname, 'lastName' => $lastname);
 					$message->setParams($tabParamMessage);
 					$messageMail = $message->getMessage();
+					$subjet = 'Inscription sur Diapazen';
 
 					$mailer = new MailUtil();
 					$mailer->sendMail($mail,$subjet,$messageMail);
@@ -192,7 +198,6 @@ class PollController extends Controller
 					$this->setUserDisconnected();
 
 					// On choisi le rendu
-					
 					$this->set('class_connect', 'orange');
 					$this->set('class_share', 'grey');
 					$render = 'pollConnection';
@@ -227,7 +232,6 @@ class PollController extends Controller
 					}
 					
 					// On choisit le rendu
-					
 					$this->set('class_connect', 'grey');
 					$this->set('class_share', 'orange');
 					$render = 'pollShare';
