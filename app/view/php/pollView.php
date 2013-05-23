@@ -3,7 +3,7 @@
         <div id="content">
             <div id ="poll">
                 <div id="back_button_dashboard">
-                    <a class="orange_button" href="<?php $this->getHomeUrl(); ?>/dashboard" >Retourner au dashboard</a>
+                    <a class="orange_button" href="<?php $this->getHomeUrl(); ?>/dashboard" >Retour</a>
                 </div>
                 <div id="poll_title_box" >
                     <h1 class="title" > <?php echo $eventTitle; ?> </h1>
@@ -116,12 +116,17 @@
 
                         if(isset($data_updated)) {
                             if($data_updated) { ?>
-                                <div style="float: right;" class="success_message message_personal_data">Votre vote a été bien pris en compte.</div>
+                                <div style="float: right;" class="success_message message_personal_data">Votre vote a bien été pris en compte.</div>
                             <?php
                             } else { ?>
                                 <div style="float: right;" class="error_message message_personal_data">Erreur, vérifiez les données saisies.</div>
-                            <?php  
+                            <?php
                             }
+                            ?>
+                            <script>
+                                $('.success_message').delay(4000).slideUp(300);
+                            </script>
+                    <?php
                          }
                     ?>
                 </form>
