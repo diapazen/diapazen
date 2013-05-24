@@ -382,6 +382,20 @@ class PollController extends Controller
 				else
 					$this->set('eventDate', $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).'));
 
+
+				// Si le sondage est fermé, on trie les résultats
+				// du meilleur au moins bon.
+				if (!$res['open'])
+				{
+					function cmp($a, $b)
+					{
+						if ($a['percent'] == $b['percent'])
+							return 0;
+						return ($a['percent'] > $b['percent']) ? -1 : 1;
+					}
+					usort($res['choices'], 'cmp');
+				}
+
 				// on définit les variables à envoyer à la vue
 				$this->set('openedPoll', $res['open']);
 				$this->set('urlPoll', $res['url']);
@@ -391,6 +405,8 @@ class PollController extends Controller
 				$this->set('eventDescription', $res['description']);
 				$this->set('choiceList', $res['choices']);
 
+				
+				
 				// On fait le rendu
 				$this->render('pollView');
 			}
