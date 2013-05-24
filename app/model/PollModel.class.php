@@ -155,7 +155,7 @@ class PollModel extends Model
             $this->setPollDescription($pollDescription);
             $this->setPollExpirationDate($poll_expiration_date);
             
-            // Url unique du sondage
+            // Url unique du sondage. ex: h8ddf2e561
             $this->setPollUrl(substr(md5(uniqid()),5,10));
             
             //on créer la requete pour créer une ligne d'un nouveau sondage
