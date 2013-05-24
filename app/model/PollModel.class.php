@@ -338,7 +338,7 @@ class PollModel extends Model
      * Récupère le contenu du textarea et parse les emails
      * @return Tableau avec les emails valides auquels les mails ont été envoyé
      */
-    public function sharePoll($texteareaContent, $from, $titre, $description, $lien)
+    public function sharePoll($texteareaContent)
     {
 
         $emails = preg_split("/[\r\n,; ]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
@@ -358,16 +358,6 @@ class PollModel extends Model
         {
             return null;
         }
-
-        $subjet = $from.' vous invite à répondre à sont sondage : '.$titre;
-
-        $message = 'Bonjour,<br />'.
-                    $from.' vous invite à répondre au sondage suivant : '.$description.'<br />
-                    Vous retrouverez le sondage au lien suivant :<br />
-                    <a href="'.$lien.'">'.$lien.'</a>';
-
-        $mailer = new MailUtil();
-        $mailer->sendMailWithCC($emails,$subjet,$message);
 
         return $emails;
     }

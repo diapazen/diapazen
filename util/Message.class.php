@@ -76,7 +76,7 @@ class Message
 			</head>
 			<body>
 				<span name='user'></span> vous invite à répondre a un sondage. <br>
-				Pour y répondre veuillez suivre ce lien : <span name='linkPoll'></span>
+				Pour y répondre veuillez suivre ce lien : <a name='linkPoll'>Sondage</a>
 			</body>
 		</html>";
 
@@ -154,6 +154,14 @@ class Message
 			{
 				if(strcmp($element->getAttribute("name"),$key)==0)
 					$element->nodeValue=$param;
+			}
+
+			$elements=$doc->getElementsByTagName("a");
+
+			foreach($elements as $element)
+			{
+				if(strcmp($element->getAttribute("name"),$key)==0)
+					$element->setAttribute("href",$param);
 			}
 		}
 

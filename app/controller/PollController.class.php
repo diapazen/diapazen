@@ -281,22 +281,23 @@ class PollController extends Controller
 			$this->loadModel('poll');
 			$lien = 'localhost'.BASE_URL.'/poll/view/'.$_SESSION['poll_url'];
 			$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
-			$mailSend = $this->getModel()->sharePoll($_POST['mails'], $from, $_SESSION['poll_title'], $_SESSION['poll_description'], $lien);
+			$mailSend = $this->getModel()->sharePoll($_POST['mails']);
 
-			$linkPoll = "<a href='".$lien."'>Sondage</a>";
+			// $linkPoll = "<a href='".$lien."'>Sondage</a>";
 
 			$subject = "Invitation à un sondage";
 			$message = new Message();
 			$message->setMessage('share');
-			$tabParamMessage = array('user' => $from, 'link' => $linkPoll);
+			$tabParamMessage = array('user' => $from, 'linkPoll' => $lien);
 			$message->setParams($tabParamMessage);
 			$messageMail = $message->getMessage();
-
+			echo $messageMail;
 			$mailer = new MailUtil();
-			$mailer->sendMailWithCC($mailSend,$subjet,$messageMail);
+			$mailer->sendMailWithCC($mailSend,$subject,$messageMail);
 
-			//a changer!!!!!!!!
-			$this->render('pollView');
+
+			// afficher les mails auquel un mail a été envoyé a passer en param
+			//header('Location: ' . BASE_URL. '/dashboard');
 
 			/*echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
 			echo "<pre>";
