@@ -48,6 +48,14 @@ class Request
 		$this->mController = isset($url[0]) ? $url[0] : "index";
 		$this->mAction = isset($url[1]) ? $url[1] : "index";
 		$this->mParams = array_slice($url, 2);
+
+		// Si le sondage est sous forme d'url réduite
+		if (strtolower($this->mController) == 'p')
+		{
+			$this->mParams = array($this->mAction);
+			$this->mController = 'poll';
+			$this->mAction = 'view';
+		}
 	}
 
 	/**
