@@ -36,7 +36,7 @@ class Router
 	public function __construct()
 	{
 		$mRequest = new Request();
-
+		
 		// Récupère le nom du controller à charger
 		$ctlName = $mRequest->getController();
 
@@ -52,14 +52,21 @@ class Router
 			if (method_exists($controller, $mRequest->getAction()))
 				call_user_func_array(array($controller, $mRequest->getAction()), array($mRequest->getParams()));
 			else
-				throw new Exception();
+				throw new Exception(404);
 		}
 		catch(Exception $e)
 		{
-			// Le contrôleur est introuvable: 404
-			$controller = new Controller($this->mRequest);
-			header('HTTP/1.0 404 Not Found');
-			die($controller->e404());
+
+			// On teste si c'est une page 404
+			if ($e->getMessage = '404')
+			{
+				// Le contrôleur est introuvable: 404
+				$controller = new Controller($this->mRequest);
+				header('HTTP/1.0 404 Not Found');
+				die($controller->e404());
+			}
+			else // Sinon on la relance
+				throw $e;
 		}
 
 	}

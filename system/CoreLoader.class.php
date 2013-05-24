@@ -61,7 +61,7 @@ class CoreLoader
     {
         if (!class_exists($class, false))
         {
-            throw new Exception('Impossible de charger la classe: ' . $class);
+            throw new Exception(404);
         }
     }
 
