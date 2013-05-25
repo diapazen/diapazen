@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * Charge le controleur demandé
+ * Fait le chargement du contrôleur selon la requête HTTP
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon

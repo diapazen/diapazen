@@ -2,7 +2,7 @@
 
 /**
  * 
- * Fichier du systeme de singleton generique
+ * Classe qui implémente le design pattern Singleton
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon

@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * Classe parsant l'url du site
+ * Cette classe permet de parser l'URL.
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon

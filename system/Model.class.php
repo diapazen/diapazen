@@ -3,7 +3,7 @@
 
 /**
  * 
- * Class model du framework
+ * Cette classe fait le lien entre la base de données et les contrôleurs
  * 
  * @package     Diapazen
  * @copyright   Copyright (c) 2013, ISEN-Toulon
@@ -30,6 +30,9 @@
 class Model
 {
 
+	/*
+	 * Instance de PDO
+	 */
 	protected $mDbMySql;
 
 	/**
@@ -45,7 +48,7 @@ class Model
 	/**
 	 * Connexion de la classe à la database
 	 *
-	 * @return	le PDO
+	 * @return	l'instance de PDO
 	 */
 	public function connectToDatabase()
 	{
@@ -54,8 +57,8 @@ class Model
 
 			$dataBaseConfig = Config::getDatabaseConfig();
 			
-            $options[PDO::ATTR_ERRMODE]				= PDO::ERRMODE_EXCEPTION;
-            $options[PDO::MYSQL_ATTR_INIT_COMMAND]	= "SET NAMES utf8";
+            $options[PDO::ATTR_ERRMODE]				= PDO::ERRMODE_EXCEPTION;	// Exceptions autorisées
+            $options[PDO::MYSQL_ATTR_INIT_COMMAND]	= "SET NAMES utf8";			// L'encodage est en utf-8
 
         	return new PDO('mysql:host='.$dataBaseConfig['host'].';dbname='.$dataBaseConfig['name'], $dataBaseConfig['user'], $dataBaseConfig['pass'], $options);
         }
@@ -77,9 +80,10 @@ class Model
 	}
 
 	/**
-	 * Lecture
+	 * Fait une recherche dans la base de données
 	 *
-	 * @return	tableau
+	 * @param 	array $data Paramètres de la recherche
+	 * @return	Un tableau de résultats
 	 */
 	public function find($data=array())
 	{
