@@ -20,6 +20,12 @@ Diapazen utilise les technologies suivantes:
 
 Diapazen est libre et gratuit. Il est distribué dans les termes de la license [GNU GPL v3](http://www.gnu.org/licenses/gpl.html). Pour plus d'information, lisez le fichier LICENSE.
 
+## Prérequis
+
+* Un serveur web avec PHP 5. Recommandé: Apache2
+* Le module `mod_rewrite` installé et activé
+* Une base de données MySQL
+
 ## Installation
 
 1. Importer le fichier `diapazen.sql` dans MySQL. La base de données sera créé automatiquement.
