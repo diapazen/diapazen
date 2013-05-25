@@ -26,14 +26,16 @@
 class Config
 {
 
-	// Configurations possibles de la base de données
+	/*
+	 * Configuration de la connexion à la base de données
+	 */
 	private static $mDb = array(
 						'default'	=>	array(
-								'host'	=>	'localhost',
-								'user'	=>	'root',
-								'pass'	=>	'',
-								'name'	=>	'diapazen'
-																	)
+								'host'	=>	'localhost',	// Serveur de la base de données
+								'user'	=>	'root',			// Nom d'utilisateur
+								'pass'	=>	'',				// Mot de passe
+								'name'	=>	'diapazen'		// Nom de la base de données
+								)
 						);
 
 	// Configuration pour le serveur SMTP et le compte mail
