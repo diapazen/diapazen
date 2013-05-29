@@ -46,11 +46,12 @@ class PollController extends Controller
 		$this->set('class_connect', 'grey');
 		$this->set('class_share', 'grey');
 		// on a fait précédent, on affiche les valeurs déjà renseignées
-		if(isset($_SESSION['poll_title']) && isset($_SESSION['poll_description']) && isset($_SESSION['poll_choices']))
+		if(isset($_SESSION['poll_title']) && isset($_SESSION['poll_description']) && isset($_SESSION['poll_choices']) && isset($_SESSION['poll_date']))
 		{
 			$this->set('poll_title', $_SESSION['poll_title']);
 			$this->set('poll_description', $_SESSION['poll_description']);
 			$this->set('poll_choices', $_SESSION['poll_choices']);
+			$this->set('poll_date', $_SESSION['poll_date']);
 			// modifier la vue pour qu'elle affiche les choix (le navigateur web le gère automatiquement)
 		}
 		
@@ -85,6 +86,13 @@ class PollController extends Controller
 			$_SESSION['poll_title'] = $_POST['title_input'];
 			$_SESSION['poll_description'] = $_POST['description_input'];
 			$_SESSION['poll_choices'] = $_POST['choices'];
+			
+
+			if(!isset($_POST['date_input']))
+				$_SESSION['poll_date'] = null;
+			else
+				$_SESSION['poll_date'] = $_POST['date_input'];
+
 			// Test si les variables sont vides // TODO ameliorer le test pour les choix
 			if (empty($_POST['title_input']) || empty($_POST['description_input']) || empty($_POST['choices']))
 			{
@@ -218,7 +226,7 @@ class PollController extends Controller
 				{
 					// On créé le sondage
 					$this->loadModel('poll');
-					$this->getModel()->addPoll($_SESSION['user_infos']['id'], $_SESSION['poll_title'], $_SESSION['poll_description'], null);
+					$this->getModel()->addPoll($_SESSION['user_infos']['id'], $_SESSION['poll_title'], $_SESSION['poll_description'], $_SESSION['poll_date'].' 23:59:59');
 					$pollId = $this->getModel()->getPollId();
 
 					$_SESSION['poll_url'] = $this->getModel()->getPollUrl();
@@ -234,6 +242,7 @@ class PollController extends Controller
 					unset($_SESSION['poll_title']);
 					unset($_SESSION['poll_description']);
 					unset($_SESSION['poll_choices']);
+					unset($_SESSION['poll_date']);
 					
 					// On choisit le rendu
 					$this->set('class_connect', 'grey');
@@ -364,7 +373,7 @@ class PollController extends Controller
 				$date = new DateTime($res['expiration_date']);
             	$now  = new DateTime('now');
             	$int = $now->diff($date);
-				if ($int->invert == 1 || !$res['open'])
+				if (($int->invert == 1 || !$res['open']) && $res['expiration_date'] != '0000-00-00 00:00:00')
 				{
 					$res['open'] = false;
 					$this->set('eventDate', 'Le sondage est fermé.');
@@ -377,8 +386,10 @@ class PollController extends Controller
 						die("erreur de mise à jour");
 					}
 				}
-				else
+				else if($res['expiration_date'] != '0000-00-00 00:00:00')
 					$this->set('eventDate', $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).'));
+				else
+					$this->set('eventDate', $int->format(''));
 
 
 				// Si le sondage est fermé, on trie les résultats
@@ -402,7 +413,7 @@ class PollController extends Controller
 				$this->set('eventTitle', $res['title']);
 				$this->set('eventDescription', $res['description']);
 				$this->set('choiceList', $res['choices']);
-
+				$this->set('creationDate', date("d-m-Y",strtotime($res['creation_date'])));
 				
 				
 				// On fait le rendu

@@ -64,7 +64,7 @@ class DashboardController extends Controller
 				$exp_date = new DateTime($poll['expiration_date']);
 				$now = new DateTime('now');
 				$interval = $now->diff($exp_date);
-				if ($interval->invert)
+				if($interval->invert && $poll['expiration_date'] != '0000-00-00 00:00:00')
 				{
 					$poll['open'] = false;
 					// On met à jour le sondage dans la bdd

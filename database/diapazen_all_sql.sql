@@ -18,7 +18,7 @@ CREATE  TABLE IF NOT EXISTS `diapazen`.`dpz_users` (
   `email` VARCHAR(255) NOT NULL ,
   `password` VARCHAR(60) NOT NULL ,
   `registration_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `last_login_date` TIMESTAMP NULL ,
+  `last_login_date` timestamp NULL ,
   `last_login_ip` VARCHAR(30) NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
@@ -34,7 +34,8 @@ CREATE  TABLE IF NOT EXISTS `diapazen`.`dpz_polls` (
   `url` VARCHAR(30) NOT NULL ,
   `title` VARCHAR(45) NOT NULL ,
   `description` VARCHAR(400) NULL ,
-  `expiration_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `expiration_date` timestamp NULL ,
   `open` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) ,
@@ -126,6 +127,7 @@ SELECT
   dpz_users.registration_date,
   dpz_users.last_login_date,
   dpz_users.last_login_ip,
+  dpz_polls.creation_date,
 
   dpz_polls.id AS POLL_ID,
   dpz_polls.url,

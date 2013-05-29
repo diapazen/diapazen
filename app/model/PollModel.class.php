@@ -55,7 +55,7 @@ class PollModel extends Model
         try
         {   
             // On récupère les informations de base du sondage
-            $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description,expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
+            $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description, creation_date, expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
             $request->bindValue(':URL', $pollUrl);
             $request->execute();
             $pollInfo=$request->fetch(PDO::FETCH_ASSOC);
@@ -127,7 +127,7 @@ class PollModel extends Model
     {
         try
         {   
-            $request = $this->mDbMySql->prepare("SELECT title,description,open,url,POLL_ID,expiration_date FROM dpz_view_users_join_polls WHERE USER_ID=:UID;");
+            $request = $this->mDbMySql->prepare("SELECT title,description,open,url,POLL_ID,expiration_date,creation_date FROM dpz_view_users_join_polls WHERE USER_ID=:UID ORDER BY open DESC,creation_date DESC;");
             $request->bindValue(':UID', $userId);
             $request->execute();
             return $request->fetchAll(PDO::FETCH_ASSOC);
