@@ -149,6 +149,12 @@
     margin-bottom: 10px;
 }
 
+#share_form a[class="orange_button"]
+{
+	margin-left: 155px;
+	width: 374px;
+}
+
 /* pollView.css */
 
 #poll
