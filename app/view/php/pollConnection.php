@@ -8,12 +8,12 @@
                 <label class="text">E-mail</label>
                 <input class="text_edit" name="email" type="mail" placeholder="E-mail" value="adrien.fourel@isen.fr">
                 <label for="first_name_user" class="text">Prénom</label>
-                <input class="text_edit" id="first_name_user" name="firstNameUser" type="text" placeholder="Prénom">
+                <input class="text_edit" id="first_name_user" name="firstNameUser" type="text">
                 <label for="name_user" class="text">Nom</label>
-                <input class="text_edit" id="name_user" name="nameUser" type="text" placeholder="Nom">
+                <input class="text_edit" id="name_user" name="nameUser" type="text">
                 <label for="pwd_user" class="text">Mot de passe</label>
                 <input class="text_edit" id="pwd_user" type="password" name="password" placeholder="Mot de passe" value="passe">
-                <p class="orange_text" id="mail_info">Un mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
+                <p class="orange_text info_box" id="mail_info">Un mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
                 <input class="orange_button" type="submit" value="Étape suivante"/>
             </form>
         </div>

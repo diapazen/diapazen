@@ -426,6 +426,7 @@
 {
 	margin-bottom: 15px;
 	display: block;
+	width: inherit;
 }
 
 #poll_connection_form #not_registered, #poll_connection_form #registered
@@ -435,7 +436,7 @@
 
 /* pollCreation.css */
 
-#poll_creation_form .small_title, #poll_creation_form #id_title_input, #poll_creation_form #id_description_input, #poll_creation_form .choice
+#poll_creation_form .choice
 {
 	margin-bottom: 15px;
 }
@@ -454,4 +455,10 @@
 {
 	width:350px;
 	display:inline-block;
+}
+
+#poll_creation_form #datepicker
+{
+	width: 400px;
+	margin-bottom: 15px;
 }
