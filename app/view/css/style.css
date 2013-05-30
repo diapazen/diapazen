@@ -416,13 +416,9 @@
 
 /*pollConnection.css */
 
-#poll_connection_form label
+#poll_connection_form .label_chkbox
 {
 	margin-bottom: 15px;
-}
-
-#poll_connection_form label
-{
 	display: block;
 }
 
