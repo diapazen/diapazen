@@ -220,5 +220,5 @@ footer ul li
 
 .textarea_box label
 {
-    vertical-align: middle;
+    float: left;
 }

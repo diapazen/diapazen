@@ -8,8 +8,10 @@
                 <label class="text" for="poll_link" >Lien</label>
                 <input type="text" id="poll_link" class="text_edit" onClick="this.select();" value="localhost<?php echo $this->getHomeUrl().'/p/'.$pollUrl; ?>" />
                 <h3 class="small_title">Partagez ce lien par e-mail</h3>
-                <label class="text" for="mails">E-mails</label>
-                <textarea class="text_edit" id="mails" name="mails" placeholder="mail.example@mail.com"></textarea>
+                <div class="textarea_box">
+                    <label class="text" for="mails">E-mails</label>
+                    <textarea class="text_edit" id="mails" name="mails" placeholder="mail.example@mail.com"></textarea>
+                </div>
                 <input class="orange_button" type="submit" value="Partager">
                 <a class="orange_button" href="<?php echo $this->getHomeUrl().'/p/'.$pollUrl; ?>">Voir le sondage</a>
             </form>
