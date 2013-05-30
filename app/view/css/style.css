@@ -131,11 +131,6 @@
 	margin-bottom: 20px;
 }
 
-#share_form .big_title, #share_form .title, #share_form .small_title
-{
-	margin-bottom: 15px;
-}
-
 #share_form textarea
 {
 	min-width: 300px;
@@ -286,6 +281,11 @@
 #back_button_dashboard
 {
 	float: right;
+}
+
+h1#result
+{
+	margin-top: 25px;
 }
 
 /* personalData.css */

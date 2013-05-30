@@ -11,6 +11,13 @@
                     <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
                 </div>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
+                <?php 
+                    if ($openedPoll == false) {       
+                ?>
+                <h1 class="big_title" id="result">Le choix ayant recueilli le plus de voix est : <?php echo $choiceList[0]["choiceName"]; ?></h1>
+                <?php
+                    }
+                ?>
                 <form method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">
                     <div id="poll_choices">
                         <table>
@@ -45,7 +52,7 @@
                                         <p class="small_text"><?php echo $row['percent'].'%'; ?></p>
                                     </div>
                                 </td>   
-                                <td class="text" >
+                                <td class="text">
 
                                 <?php
                                     $nbPeople = count($row['checkList']);
@@ -54,7 +61,7 @@
                                         echo $row['checkList'][0].' a voté';
                                     }
                                     elseif ($nbPeople == 2) {
-                                         echo $row['checkList'][0].' et <span id="link_'.$i.'" class="link">1 autre personne</span> ont voté';
+                                         echo $row['checkList'][0].' et '.$row['checkList'][1].' ont voté';
                                     }
                                     elseif ($nbPeople > 2) {
                                          echo $row['checkList'][0].' et <span id="link_'.$i.'" class="link">'.($nbPeople-1).' autres personnes</span> ont voté'; 
@@ -64,7 +71,7 @@
 
                                     }
                                     /*On ajoute la fenêtre pop up pour les autres personnes ayant voté*/
-                                    if ($nbPeople == 2 || $nbPeople >2) {
+                                    if ($nbPeople > 2) {
 
                                 ?>
 

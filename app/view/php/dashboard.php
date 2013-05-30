@@ -7,6 +7,28 @@
                 <a id="dashboard_form" class="orange_button" href="user/profile">Modifier mes données personnelles</a>
             </div>
             <h2 class="small_title small_title_dashboard">Vos sondages</h2>
+
+            <?php
+                if(isset($data_updated)) {
+
+                     if($data_updated) {
+                        ?>
+                        <div class="success_message message_dashboard">Le sondage a été clôturé avec succés.</div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="error_message message_dashboard">Erreur lors de la clôture du sondage.</div>
+                        <?php  
+                    }
+                ?>
+
+                <script>
+                    $('.message_dashboard').delay(4000).slideUp(300);
+                </script>
+
+            <?php
+                }
+            ?>
         
             <div class="text" id="poll_list">
                 <table>
@@ -62,28 +84,6 @@
                     ?>
                 </table>
             </div>
-
-            <?php
-                if(isset($data_updated)) {
-
-                     if($data_updated) {
-                        ?>
-                        <div class="success_message message_dashboard">Le sondage a été clôturé avec succés.</div>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="error_message message_dashboard">Erreur lors de la clôture du sondage.</div>
-                        <?php  
-                    }
-                ?>
-
-                <script>
-                    $('.message_dashboard').delay(4000).slideUp(300);
-                </script>
-
-            <?php
-                }
-            ?>
         </div>
         
 
