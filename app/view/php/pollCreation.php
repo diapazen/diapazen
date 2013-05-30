@@ -7,7 +7,7 @@
                 <label for="id_title_input" class="text">Titre</label>
                 <input class="text_edit" id="id_title_input" name="title_input" type="text" value="">
                 <label for="dp2" class="text">Date limite <span class="small_text">(Optionnel)</span></label>
-                <input class="text_edit" name="date_input" id="datepicker">
+                <input class="text_edit" name="date_input" readonly id="datepicker">
                 <div class="textarea_box" >
                     <label for="id_description_input" class="text">Description</label>
                     <textarea class="text" id="id_description_input" name="description_input"></textarea>

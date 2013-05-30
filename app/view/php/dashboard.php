@@ -11,10 +11,10 @@
             <div class="text" id="poll_list">
                 <table>
                     <tr cols="3" class="head_dash">
-                        <td>Statut</td><td>Titre</td><td>Description</td><td></td>
+                        <td>Statut</td><td>Ouvert le</td><td>Titre</td><td>Description</td><td></td>
                     </tr>
                     <?php
-                        foreach ($pollList as $row)
+                        foreach($pollList as $row)
                         {
 
                             if ($row['open'] == true)
@@ -24,16 +24,17 @@
 
                     <tr class="opened_poll">
                         
-                            <td>Ouvert</td>
-                            <td> <?php echo $row['title']; ?> </td>
-                            <td> <?php echo $row['description']; ?> </td>
-                            <td> 
-                                <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a>
-                                <form action="<?php $this->getHomeUrl(); ?>/dashboard" onsubmit="return confirm('Clôturer le sondage ?');" method="post">
-                                    <input type="hidden" name="close" value="<?php echo $row['POLL_ID']; ?>"> 
-                                    <input type="submit" class="grey_small_button" value="Clôturer">
-                                </form>
-                            </td>
+                        <td>Ouvert</td>
+                        <td><?php echo date("d/m/Y", strtotime($row['creation_date'])); ?></td>
+                        <td> <?php echo $row['title']; ?> </td>
+                        <td> <?php echo $row['description']; ?> </td>
+                        <td> 
+                            <a class="orange_small_button" href="<?php $this->getHomeUrl(); echo '/poll/view/'.$row['url']; ?>">Voir</a>
+                            <form action="<?php $this->getHomeUrl(); ?>/dashboard" onsubmit="return confirm('Clôturer le sondage ?');" method="post">
+                                <input type="hidden" name="close" value="<?php echo $row['POLL_ID']; ?>"> 
+                                <input type="submit" class="grey_small_button" value="Clôturer">
+                            </form>
+                        </td>
                     <?php
                             } 
                             else {
@@ -42,6 +43,7 @@
 
                     <tr class="closed_poll">
                         <td>Fermé</td>
+                        <td><?php echo date("d/m/Y", strtotime($row['creation_date'])); ?></td>
                         <td> <?php echo $row['title']; ?> </td>
                         <td> <?php echo $row['description']; ?> </td>
                         <td> 

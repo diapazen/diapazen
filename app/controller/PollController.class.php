@@ -219,7 +219,7 @@ class PollController extends Controller
 
 			}
 
-			// si l'utilisateur est déja connecté
+			// Lorsque l'utilisateur est connecté
 			if ($this->isUserConnected())
 			{
 				if (isset($_SESSION['poll_title']) && isset($_SESSION['poll_description']) && isset($_SESSION['poll_choices']))
@@ -236,6 +236,7 @@ class PollController extends Controller
 					// Insertion des choix
 					$this->loadModel('choice');
 					foreach ($_SESSION['poll_choices'] as $choice) {
+						if(!empty($choice))
 						$this->getModel()->addChoice($choice, $pollId);
 					}
 
@@ -304,7 +305,7 @@ class PollController extends Controller
 
 
 			// afficher les mails auquel un mail a été envoyé a passer en param
-			header('Location: ' . BASE_URL. '/dashboard');
+			header('Location: '.'/poll/view/'.$_SESSION['poll_url']);
 
 			/*echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
 			echo "<pre>";
