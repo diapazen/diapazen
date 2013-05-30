@@ -18,14 +18,20 @@
             ?>
             <form id="personal_data_form" class="default_form" action="profile" method="post">
                 <p class="big_title">Données personnelles</p>
-                <input type="text" id="user_lastname" class="text_edit" value="<?php if(isset($lastname)){echo $lastname;}?>" placeholder="Nom" name="lastname">
-                <input type="text" id="user_firstname" class="text_edit" value="<?php if(isset($firstname)){echo $firstname;}?>" placeholder="Prénom" name="firstname">
-                <input id="user_mail" type="mail" class="text_edit" value="<?php if(isset($email)){echo $email;}?>" placeholder="E-mail" name="mail">
-                <input type="password" class="text_edit" value="" placeholder="Nouveau mot de passe" name="password">
-                <input type="password" class="text_edit" value="" placeholder="Confirmer le mot de passe" name="passwordConfirm">
+                <label class="text" for="user_lastname">Nom</label>
+                <input type="text" id="user_lastname" class="text_edit" value="<?php if(isset($lastname)){echo $lastname;}?>" name="lastname">
+                <label class="text" for="user_firstname">Prénom</label>
+                <input type="text" id="user_firstname" class="text_edit" value="<?php if(isset($firstname)){echo $firstname;}?>" name="firstname">
+                <label class="text" for="user_mail">E-mail</label>
+                <input id="user_mail" type="mail" class="text_edit" value="<?php if(isset($email)){echo $email;}?>" name="mail">
+                <label class="text" for="new_pwd">Nouveau mot de passe</label>
+                <input type="password" id="new_pwd" class="text_edit" value="" name="password">
+                <label class="text" for="new_pwd_confirm">Confirmation</label>
+                <input type="password" id="new_pwd_confirm" class="text_edit" value="" name="passwordConfirm">
                 <br/>
-                <p class="orange_text">Pour confirmer les modifications, entrez votre mot de passe actuel.</p>
-                <input type="password" class="text_edit" value="" placeholder="Mot de passe" name="passwordSecurity">
+                <p class="orange_text info_box">Pour confirmer les modifications, entrez votre mot de passe actuel.</p>
+                <label class="text" for="pwd_user">Mot de passe</label>
+                <input type="password" id="pwd_user" class="text_edit" value="" name="passwordSecurity">
                 <a class="grey_button" href="<?php $this->getHomeUrl(); ?>/dashboard" >Annuler</a>
                 <input class="orange_button" type="submit" value="Modifier">
             </form>    
