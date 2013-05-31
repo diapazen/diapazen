@@ -55,7 +55,6 @@ class MailUtil
 		$headers .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
 
 		// En-têtes additionnels
-		$mailConfig = Config::getMailConfig();
 		$headers .= 'From: Diapazen <no-reply@diapazen.com>' . "\r\n";
 
 		return @mail($mailTo, $subject, $message);
