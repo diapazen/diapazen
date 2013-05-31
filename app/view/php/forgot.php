@@ -20,7 +20,7 @@
                 }
                 ?>
 	        	<label for="mailRetrieve" class="text">E-mail</label>
-	        	<input type="mail" id="mailRetrieve" name="mailRetrieve" class="text_edit" value="timothee.nicolas@isen.fr" >
+	        	<input type="mail" id="mailRetrieve" name="mailRetrieve" class="text_edit" >
 	        	<input class ="orange_button" type="submit" value="Envoyer">
             </form>
         </div>
