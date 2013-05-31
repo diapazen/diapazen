@@ -285,14 +285,14 @@ class PollController extends Controller
 	}
 
 
-	public function sharePoll($params = null)
+	public function sended($params = null)
 	{
 		if (isset($_POST['mails']) && !empty($_POST['mails']) && isset($_SESSION['poll_url']) && !empty($_SESSION['poll_url']))
 		{
 			try
 			{
 				$this->loadModel('poll');
-				$lien = 'localhost'.BASE_URL.'/poll/view/'.$_SESSION['poll_url'];
+				$lien = BASE_URL.'/p/'.$_SESSION['poll_url'];
 				$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 				$mailSend = $this->getModel()->sharePoll($_POST['mails']);
 
@@ -302,39 +302,26 @@ class PollController extends Controller
 				die($this->render('dbError'));
 			}
 			
-			try
-			{
 
-				$subject = "Invitation à un sondage";
-				$message = new Message();
-				$message->setMessage('share');
-				$tabParamMessage = array('user' => $from, 'linkPoll' => $lien);
-				$message->setParams($tabParamMessage);
-				$messageMail = $message->getMessage();
+			$subject = "Invitation à un sondage";
+			$message = new Message();
+			$message->setMessage('share');
+			$tabParamMessage = array('user' => $from, 'linkPoll' => $lien);
+			$message->setParams($tabParamMessage);
+			$messageMail = $message->getMessage();
 
-				$mailer = new MailUtil();
-				$mailer->sendMailWithCC($mailSend,$subject,$messageMail);
+			$mailer = new MailUtil();
+			$res = $mailer->sendMail($mailSend,$subject,$messageMail);
 
-
-				// afficher les mails auquel un mail a été envoyé a passer en param
-				header('Location: '.'/poll/view/'.$_SESSION['poll_url']);
-
-				/*echo 'les mails ont été envoyé (TODO gerer les erreur mails)';
-				echo "<pre>";
-				print_r($mailSend);
-				echo "</pre>";*/
-
-			}
-			catch(Exception $e)
-			{
-				die($e->getMessage());
-			}
+			$this->set('pollUrl', $lien);
+			$this->set('sended', $res ? 'success' : 'fail');
+			$this->render('shareMail');
 			
 		}
 		else
 		{
 			// renvoyer a Poll share avec un message disant pas de mails
-			header('Location: ' . BASE_URL. '/poll/share');
+			header('Location: ' . BASE_URL);
 		}
 	}
 	

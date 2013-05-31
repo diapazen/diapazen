@@ -2,7 +2,7 @@
 
         <div id="content">
             <?php $this->getAriadneThread(); ?>
-            <form id="share_form" class="default_form" method="post" action="sharePoll">
+            <form id="share_form" class="default_form" method="post" action="<?php $this->getHomeUrl(); ?>/poll/sended">
                 <h2 class="title">Votre sondage a bien été créé !</h2>
                 <h3 class="small_title">Lien du sondage</h3>
                 <label class="text" for="poll_link" >Lien</label>
