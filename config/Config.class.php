@@ -38,15 +38,6 @@ class Config
 								)
 						);
 
-	// Configuration pour le serveur SMTP et le compte mail
-	private static $mMail = array(
-						'default'	=> array(
-								'smtp'	=>	'smtp.numericable.fr'	,
-								'port'	=>	'25',
-								'from'	=>	'Diapazen <no-reply@diapazen.com>'
-								)
-						);
-
 	 /**
 	 * Récupère la configuration de la base de donnée voulue.
 	 * 
@@ -56,11 +47,6 @@ class Config
 	public static function getDatabaseConfig($configName = '')
 	{
 		return (empty($configName) || !array_key_exists($configName, self::$mDb))  ? self::$mDb['default'] : self::$mDb[$configName];
-	}
-
-	public static function getMailConfig($configName = '')
-	{
-		return (empty($configName) || !array_key_exists($configName, self::$mMail))  ? self::$mMail['default'] : self::$mMail[$configName];
 	}
 
 }

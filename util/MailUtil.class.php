@@ -36,9 +36,6 @@ class MailUtil
 	 */
 	public function MailUtil()
 	{
-		$mailConfig = Config::getMailConfig();
-		ini_set("SMTP", $mailConfig['smtp']);
-		ini_set("smtp_port", $mailConfig['port']);
 	}
 
 
@@ -59,7 +56,7 @@ class MailUtil
 
 		// En-têtes additionnels
 		$mailConfig = Config::getMailConfig();
-		$headers .= 'From: '.$mailConfig['from'] . "\r\n";
+		$headers .= 'From: Diapazen <no-reply@diapazen.com>' . "\r\n";
 
 		return @mail($mailTo, $subject, $message);
 	}
