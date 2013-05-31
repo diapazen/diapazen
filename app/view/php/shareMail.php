@@ -5,9 +5,9 @@
                 <h2 class="title">Confirmation de l'envoi</h2>
                 
                 <?php
-                if(isset($sended))
+                if(isset($sent))
             	{
-            		switch($sended)
+            		switch($sent)
             		{
             			case 'fail':
             				echo "<div class='error_message' >Erreur lors de l'envoi de votre sondage.</div>";

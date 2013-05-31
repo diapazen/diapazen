@@ -302,7 +302,7 @@ class PollController extends Controller
 	}
 
 
-	public function sended($params = null)
+	public function sent($params = null)
 	{
 
 		$this->set('title', 'Partager le sondage | Diapazen');
@@ -335,7 +335,7 @@ class PollController extends Controller
 			$res = $mailer->sendMail($mailSend,$subject,$messageMail);
 
 			$this->set('pollUrl', $lien);
-			$this->set('sended', $res ? 'success' : 'fail');
+			$this->set('sent', $res ? 'success' : 'fail');
 			$this->render('shareMail');
 			
 		}
@@ -443,6 +443,8 @@ class PollController extends Controller
 				$this->set('choiceList', $res['choices']);
 				$this->set('creationDate', date("d-m-Y",strtotime($res['creation_date'])));
 				
+
+				$this->set('title', $res['title'] .' | Diapazen');
 				
 				// On fait le rendu
 				$this->render('pollView');
