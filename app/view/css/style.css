@@ -146,7 +146,7 @@
 
 #share_form a.orange_button
 {
-	margin-left: 150px;
+	margin-left: 184px;
 	width: 324px;
 }
 
@@ -305,7 +305,7 @@ h1#result
 
 #personal_data_form .grey_button
 {
-	margin-left: 150px;
+	margin-left: 184px;
 }
 
 .message_personal_data
@@ -454,7 +454,7 @@ h1#result
 }
 
 #poll_creation_form .choice{
-	width: 560px;
+	width: 540px;
 }
 
 #poll_creation_form .choice input[type="text"]
