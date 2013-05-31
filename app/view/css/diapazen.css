@@ -202,16 +202,19 @@ footer ul li
 .default_form .small_title
 {
     margin-bottom: 30px;
+    margin-left: 204px;
 }
 
 .default_form .title
 {
     margin-bottom: 40px;
+    margin-left: 204px;
 }
 
 .default_form .big_title
 {
     margin-bottom: 50px;
+    margin-left: 204px;
 }
 
 .default_form .info_box
