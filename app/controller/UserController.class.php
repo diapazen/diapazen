@@ -221,7 +221,63 @@ class UserController extends Controller
 
 		// Titre de la page
 		$this->set('title', 'Mot de passe oublié | Diapazen');
-		$this->render('forgot');
+		
+
+		$this->loadModel('user');
+		
+
+
+		try
+		{
+			// l'email est présent
+			if (isset($_POST['mailRetrieve']))
+			{
+				// différent de vide
+				if(!empty($_POST['mailRetrieve']))
+				{
+					// présent dans la bdd
+					if ($this->getModel()->isEmailRegistred($_POST['mailRetrieve']))
+					{
+						$password = $this->getModel()->generatorPsw();
+
+						$this->getModel()->changePassword($_POST['mailRetrieve'], $password);
+
+						try
+						{
+							$objMail = new MailUtil();
+							$message = new Message();
+							$message->setMessage('password');
+							$message->setParams(array('password'=>$password));
+							$subject = 'Votre nouveau mot de passe.';
+							$messageMail = $message->getMessage();
+							$objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
+							$this->set('infoLogin','sendPassword');
+							$this->render('login');
+						}
+						catch(Exception $e)
+						{
+							die('Envoi mail échoué '+$password);
+						}
+					}
+					else
+					{
+						$this->set('err', 'mailnotfound');
+						$this->render('forgot');
+					}
+		        }
+				else
+				{
+					$this->set('err', 'mailempty');
+					$this->render('forgot');
+		 		}
+		 	}
+		 	else
+		 		$this->render('forgot');
+		}
+		catch(Exception $e)
+		{
+			die($this->render('dbError'));
+		}
 	}
 
 	/**
@@ -231,44 +287,7 @@ class UserController extends Controller
 	 **/
 	public function retrievePwd($params = null)
 	{
-		$this->loadModel('user');
-		$email = $_POST['mailRetrieve'];
 
-
-		try
-		{
-			if(isset($email) && !empty($email) && $this->getModel()->isEmailRegistred($email))
-			{
-				$password = $this->getModel()->generatorPsw();
-
-				$this->getModel()->changePassword($email, $password);
-
-				try
-				{
-					$objMail = new MailUtil();
-					$message = new Message();
-					$message->setMessage('password');
-					$message->setParams(array('password'=>$password));
-					$subject = 'Votre nouveau mot de passe.';
-					$messageMail = $message->getMessage();
-					$objMail->sendMail($email, $subject, $messageMail);
-					$this->set('infoLogin','sendPassword');
-					$this->render('login');
-				}
-				catch(Exception $e)
-				{
-					die('Envoi mail échoué '+$password);
-				}
-	        }
-			else
-			{
-				header('Location: ' . BASE_URL. '/user/forgot');
-	 		}
-		}
-		catch(Exception $e)
-		{
-			die($this->render('dbError'));
-		}
 
 		
 	}
