@@ -290,16 +290,12 @@ h1#result
 
 /* personalData.css */
 
-#personal_data_form .big_title
-{
-	padding-bottom: 30px;
-}
-
 #personal_data_form .orange_button, #personal_data_form .grey_button
 {
 	padding-left: 0;
 	padding-right: 0;
-	width: 197px;
+	margin-left: 0;
+	width: 277px;
 	display: inline-block;
 }
 

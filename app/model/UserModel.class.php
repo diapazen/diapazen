@@ -100,7 +100,7 @@ class UserModel extends Model
 				if($email != null && $password != null)
 				{
 					// on récupère l'identifiant, le mail et le password avec une clause WHERE sur l'email
-					$request = $this->mDbMySql->prepare("SELECT id,lastname,firstname,email,password FROM diapazen.dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
+					$request = $this->mDbMySql->prepare("SELECT id,lastname,firstname,email,password FROM dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
 					$request->bindValue(':EMAIL', $email);
 					$request->execute();
 					$infos=$request->fetch();
@@ -151,12 +151,12 @@ class UserModel extends Model
 				{
 					// on modifie les données de connexion grace à une clause where sur l'id
 					// ici la date
-					$request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_users SET dpz_users.last_login_date=CURRENT_TIMESTAMP WHERE dpz_users.id=:ID;");
+					$request = $this->mDbMySql->prepare("UPDATE .dpz_users SET dpz_users.last_login_date=CURRENT_TIMESTAMP WHERE dpz_users.id=:ID;");
 					$request->bindValue(':ID', $id);
 					$request->execute();
 
 					// ici l'ip
-					$request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_users SET dpz_users.last_login_ip=:LAST_LOGIN_IP WHERE dpz_users.id=:ID;");
+					$request = $this->mDbMySql->prepare("UPDATE .dpz_users SET dpz_users.last_login_ip=:LAST_LOGIN_IP WHERE dpz_users.id=:ID;");
 					$request->bindValue(':ID', $id);
 					$request->bindValue(':LAST_LOGIN_IP', $login_ip);
 					$request->execute();
@@ -191,7 +191,7 @@ class UserModel extends Model
 				if($id != null)
 				{
 					// on récupère toutes les données de l'utilisateur sauf le password avec une clause WHERE sur l'identifiant
-					$request = $this->mDbMySql->prepare("SELECT firstname,lastname,email,registration_date,last_login_date,last_login_ip FROM diapazen.dpz_view_users WHERE dpz_view_users.id=:ID;");
+					$request = $this->mDbMySql->prepare("SELECT firstname,lastname,email,registration_date,last_login_date,last_login_ip FROM .dpz_view_users WHERE dpz_view_users.id=:ID;");
 					$request->bindValue(':ID', $id);
 					$request->execute();
 					$infos=$request->fetch();
@@ -250,8 +250,8 @@ class UserModel extends Model
 					if(!$this->isEmailRegistred($email))
 					{
 						// on enregistre les données fournies par l'utilisateur
-						$request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_users` 
-							(`id`, `firstname`, `lastname`, `email`, `password`, `registration_date`, `last_login_date`, `last_login_ip`) 
+						$request = $this->mDbMySql->prepare("INSERT INTO dpz_users 
+							(id, firstname, lastname, email, password, registration_date, last_login_date, last_login_ip) 
 	                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
 
 						$request->bindValue(':FIRSTNAME', htmlspecialchars($firstname));
@@ -289,7 +289,7 @@ class UserModel extends Model
          */
         public function changeUser($id, $firstName, $lastName, $email)
         {
-            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `firstname` = :FIRSTNAME,`lastname` = :LASTNAME,`email` = :EMAIL WHERE `id` = :ID");
+            $request = $this->mDbMySql->prepare("UPDATE dpz_users SET firstname = :FIRSTNAME,lastname = :LASTNAME,email = :EMAIL WHERE id = :ID");
             $request->bindValue(':FIRSTNAME', htmlspecialchars($firstName));
             $request->bindValue(':LASTNAME', htmlspecialchars($lastName));
             $request->bindValue(':EMAIL', htmlspecialchars($email));
@@ -310,7 +310,7 @@ class UserModel extends Model
          */
         public function changePassword($email, $password)
         {
-            $request = $this->mDbMySql->prepare("UPDATE `diapazen`.`dpz_users` SET `password` = :PASSWORD WHERE `email` = :EMAIL");
+            $request = $this->mDbMySql->prepare("UPDATE dpz_users SET password = :PASSWORD WHERE email = :EMAIL");
             // On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
 			$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
             $password = crypt($password, '$2a$07$'.$salt.'$');
@@ -328,7 +328,7 @@ class UserModel extends Model
         public function checkPassword($id, $password)
         {
         	// on récupère le password avec une clause WHERE sur l'id
-			$request = $this->mDbMySql->prepare("SELECT password,email FROM diapazen.dpz_view_connexion WHERE dpz_view_connexion.id=:ID;");
+			$request = $this->mDbMySql->prepare("SELECT password,email FROM dpz_view_connexion WHERE dpz_view_connexion.id=:ID;");
 			$request->bindValue(':ID', $id);
 			$request->execute();
 			$infos=$request->fetch();
@@ -375,7 +375,7 @@ class UserModel extends Model
 	    public function isEmailRegistred($email)
 		{
 		
-			$request = $this->mDbMySql->prepare("SELECT count(*) FROM diapazen.dpz_view_users WHERE dpz_view_users.email=:EMAIL;");
+			$request = $this->mDbMySql->prepare("SELECT count(*) FROM dpz_view_users WHERE dpz_view_users.email=:EMAIL;");
 			$request->bindValue(':EMAIL', htmlspecialchars($email));
 			$request->execute();
 			$infos=$request->fetch();

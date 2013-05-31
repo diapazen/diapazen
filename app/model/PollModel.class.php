@@ -159,8 +159,8 @@ class PollModel extends Model
             $this->setPollUrl(substr(md5(uniqid()),5,10));
             
             //on créer la requete pour créer une ligne d'un nouveau sondage
-            $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_polls` 
-                        (`id`, `user_id`, `url`, `title`, `description`, `expiration_date`, `open`) 
+            $request = $this->mDbMySql->prepare("INSERT INTO dpz_polls 
+                        (id, user_id, url, title, description, expiration_date, open) 
                         VALUES (NULL, :USERID, :URL, :TITLE, :DESCRIPTION, :EXPIRATIONDATE, 1);");
             $request->bindValue(':USERID', $userId);
             $request->bindValue(':URL', $this->getPollUrl());
@@ -197,7 +197,7 @@ class PollModel extends Model
         try
         {
             $request = $this->mDbMySql->prepare("INSERT INTO dpz_results
-                        (`id`, `choice_id`, `value`) 
+                        (id, choice_id, value) 
                         VALUES (NULL, :CHOICEID, :VALUE);");
             $request->bindValue(':CHOICEID', $choiceId);
             $request->bindValue(':VALUE', $value);
@@ -218,7 +218,7 @@ class PollModel extends Model
     {
         try
         {
-            $request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_polls SET open=0 WHERE id = :POLLID;");
+            $request = $this->mDbMySql->prepare("UPDATE .dpz_polls SET open=0 WHERE id = :POLLID;");
             $request->bindValue(':POLLID', $pollId);
             return $request->execute();
         }
@@ -242,8 +242,8 @@ class PollModel extends Model
             $this->setPollTitle($pollTitle);
             $this->setPollDescription($pollDescription);
             $this->setPollExpirationDate($poll_expiration_date);
-            $request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_polls SET
-                        `title`=:TITLE,`description`=:DESCRIPTION,`expiration_date`=:EXPIRATIONDATE 
+            $request = $this->mDbMySql->prepare("UPDATE .dpz_polls SET
+                        title=:TITLE,description=:DESCRIPTION,expiration_date=:EXPIRATIONDATE 
                         WHERE dpz_polls.url=:URL;");
             $request->bindValue(':URL', $this->getPollUrl());
             $request->bindValue(':TITLE', $pollTitle);
@@ -271,7 +271,7 @@ class PollModel extends Model
             $this->setPollDescription(NULL);
             $this->setPollExpirationDate(NULL);
             $this->setPollUrl(NULL);
-            $request = $this->mDbMySql->prepare("DELETE FROM `diapazen.dpz_polls` WHERE id=:ID");
+            $request = $this->mDbMySql->prepare("DELETE FROM dpz_polls WHERE id=:ID");
             $request->bindValue(':ID', $pollId);
             return $request->execute();
         }
