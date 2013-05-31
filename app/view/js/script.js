@@ -58,8 +58,8 @@ function manageChoices(input)
 
 			choice = document.createElement("div");
 			choice.className = 'choice';
-			choice.innerHTML =	'<label class="lbl_choice text" ></label>' 
-								+' <input class="text_edit" type="text" name="choices[]" /> '
+			choice.innerHTML =	'<label for="" class="lbl_choice text" ></label>' 
+								+' <input class="text_edit input_choice" id="" type="text" name="choices[]" /> '
 							  +	'<input class="orange_button" type="button" onclick="manageChoices(this);" value="+" />';
 			
 			choices.appendChild(choice);
@@ -81,12 +81,20 @@ function manageChoices(input)
 	}
 
 
-	// Reset des placeholder
+	// Reset des label
 	choices = document.getElementsByClassName('lbl_choice');
 
 	for(i = 1; i <= choices.length; i++)
 	{
 	   choices.item(i-1).innerHTML = "Choix "+i;
+	   choices.item(i-1).setAttribute('for', 'choix'+i);
+	}
+
+	choices = document.getElementsByClassName('input_choice');
+
+	for(i = 1; i <= choices.length; i++)
+	{
+	   choices.item(i-1).setAttribute('id', 'choix'+i);
 	}
 
 }

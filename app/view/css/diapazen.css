@@ -171,6 +171,7 @@ footer ul li
 .default_form
 {
     width: 560px;
+    /*text-align: center;*/
     margin: auto;
 }
 
@@ -183,7 +184,7 @@ footer ul li
 
 .default_form input[type="submit"]
 {
-    margin-left: 204px;
+    margin-left: 150px;
 }
 
 .default_form input[type="submit"]
@@ -194,27 +195,32 @@ footer ul li
 .default_form label
 {
     display: inline-block;
-    width:180px;
+    width:150px;
     text-align: right;
     margin-right: 20px;
+    cursor: pointer;
+}
+.default_form label.lbl_textarea
+{
+    vertical-align: top;
 }
 
 .default_form .small_title
 {
     margin-bottom: 30px;
-    margin-left: 204px;
+    margin-left: 50px;
 }
 
 .default_form .title
 {
     margin-bottom: 40px;
-    margin-left: 204px;
+    margin-left: 50px;
 }
 
 .default_form .big_title
 {
     margin-bottom: 50px;
-    margin-left: 204px;
+    margin-left: 50px;
 }
 
 .default_form .info_box

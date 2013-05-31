@@ -6,27 +6,24 @@
                 <h1 class="small_title">Votre sondage</h1>
                 <label for="id_title_input" class="text">Titre</label>
                 <input class="text_edit" id="id_title_input" name="title_input" type="text" value="">
-                <label for="dp2" class="text">Date limite <span class="small_text">(Optionnel)</span></label>
+                <label for="datepicker" class="text">Date limite <span class="small_text">(Optionnel)</span></label>
                 <input class="text_edit" name="date_input" readonly id="datepicker">
-                <div class="textarea_box" >
-                    <label for="id_description_input" class="text">Description</label>
-                    <textarea class="text" id="id_description_input" name="description_input"></textarea>
-                </div>
+                <label for="id_description_input" class="text lbl_textarea">Description</label><textarea class="text_edit" id="id_description_input" name="description_input"></textarea>
                 <h1 class="small_title">Propositions</h1>
                 <div id="choices">
                     <div class="choice">
-                        <label class="text lbl_choice">Choix 1</label>
-                        <input class="text_edit" type="text" name="choices[]" value="" />
+                        <label for="choix1" class="text lbl_choice">Choix 1</label>
+                        <input class="text_edit input_choice" id="choix1" type="text" name="choices[]" value="" />
                         <input class="grey_button" type="button" onclick="manageChoices(this);" value="x" />
                     </div>
                     <div class="choice">
-                        <label class="text lbl_choice">Choix 2</label>
-                        <input class="text_edit" type="text" name="choices[]" value="" />
+                        <label for="choix2" class="text lbl_choice">Choix 2</label>
+                        <input class="text_edit input_choice" id="choix2" type="text" name="choices[]" value="" />
                         <input class="grey_button" type="button" onclick="manageChoices(this);" value="x" />
                     </div>
                     <div class="choice">
-                        <label class="text lbl_choice">Choix 3</label>
-                        <input class="text_edit" type="text" name="choices[]" value="" />
+                        <label for="choix3" class="text lbl_choice">Choix 3</label>
+                        <input class="text_edit input_choice" id="choix3" type="text" name="choices[]" value="" />
                         <input class="orange_button" type="button" onclick="manageChoices(this);" value="+" />
                     </div>
                 </div>

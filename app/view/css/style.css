@@ -146,7 +146,7 @@
 
 #share_form a.orange_button
 {
-	margin-left: 200px;
+	margin-left: 150px;
 	width: 324px;
 }
 
@@ -290,6 +290,10 @@ h1#result
 
 /* personalData.css */
 
+#personal_data_form #title_personnal_data
+{
+	text-align: center;
+}
 #personal_data_form .orange_button, #personal_data_form .grey_button
 {
 	padding-left: 0;
@@ -301,7 +305,7 @@ h1#result
 
 #personal_data_form .grey_button
 {
-	margin-left: 204px;
+	margin-left: 150px;
 }
 
 .message_personal_data

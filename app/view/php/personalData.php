@@ -17,7 +17,7 @@
                 }
             ?>
             <form id="personal_data_form" class="default_form" action="profile" method="post">
-                <p class="big_title">Données personnelles</p>
+                <p class="big_title" id="title_personnal_data">Données personnelles</p>
                 <label class="text" for="user_lastname">Nom</label>
                 <input type="text" id="user_lastname" class="text_edit" value="<?php if(isset($lastname)){echo $lastname;}?>" name="lastname">
                 <label class="text" for="user_firstname">Prénom</label>
