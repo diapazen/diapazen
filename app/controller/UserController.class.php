@@ -99,6 +99,7 @@ class UserController extends Controller
 		else
 		{
 			// On affiche un formulaire de connexion
+			$this->set('title', 'Connexion | Diapazen');
 			$this->render('login');
 		}
 
