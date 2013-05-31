@@ -37,56 +37,62 @@ class DashboardController extends Controller
 		// on charge le model
 		$this->loadModel('poll');
 
-
-		if (isset($_POST['close']) && !empty($_POST['close']))
+		try
 		{
-			if ($this->getModel()->updatePoll($_POST['close']))
+			if (isset($_POST['close']) && !empty($_POST['close']))
 			{
-				// clôture réusie
-				$this->set('data_updated', true);
+				if ($this->getModel()->updatePoll($_POST['close']))
+				{
+					// clôture réusie
+					$this->set('data_updated', true);
+				}
+				else
+				{
+					// echec de la clôture
+					$this->set('data_updated', false);
+				}
+			}
+
+			if ($this->isUserConnected())
+			{
+				
+				$uid = $this->getUserInfo('id');
+				$polls = $this->getModel()->viewAllPolls($uid);
+				
+				// recherche des sondages expirés
+				foreach ($polls as &$poll)
+				{
+					$exp_date = new DateTime($poll['expiration_date']);
+					$now = new DateTime('now');
+					$interval = $now->diff($exp_date);
+					if($interval->invert && $poll['expiration_date'] != '0000-00-00 00:00:00')
+					{
+						$poll['open'] = false;
+						// On met à jour le sondage dans la bdd
+						try
+						{
+							$this->getModel()->updatePoll($poll['POLL_ID']);
+						}
+						catch (Exception $e)
+						{
+							die("Erreur lors de la mise à jour");
+						}
+					}
+
+				}
+			
+				$this->set('pollList', $polls);
+				$this->render('dashboard');
 			}
 			else
-			{
-				// echec de la clôture
-				$this->set('data_updated', false);
-			}
+				header('Location:' . BASE_URL);
 		}
-
-		if ($this->isUserConnected())
+		catch(Exception $e)
 		{
-			
-			$uid = $this->getUserInfo('id');
-			$polls = $this->getModel()->viewAllPolls($uid);
-			
-			// recherche des sondages expirés
-			foreach ($polls as &$poll)
-			{
-				$exp_date = new DateTime($poll['expiration_date']);
-				$now = new DateTime('now');
-				$interval = $now->diff($exp_date);
-				if($interval->invert && $poll['expiration_date'] != '0000-00-00 00:00:00')
-				{
-					$poll['open'] = false;
-					// On met à jour le sondage dans la bdd
-					try
-					{
-						$this->getModel()->updatePoll($poll['POLL_ID']);
-					}
-					catch (Exception $e)
-					{
-						die("Erreur lors de la mise à jour");
-					}
-				}
-
-			}
-
-			$this->set('pollList', $polls);
-
-
-			$this->render('dashboard');
+			$this->render('dbError');
 		}
-		else
-			header('Location:' . BASE_URL);
+
+			
 	}
 
 }

@@ -35,7 +35,7 @@ class UserController extends Controller
 	 **/
 	public function index($params = null)
 	{
-		// a gérer
+		header('Location: ' . BASE_URL);
 	}
 
 	/**
@@ -71,8 +71,7 @@ class UserController extends Controller
 			}
 			catch(Exception $e)
 			{
-				// IMPORTANT: ERREUR A GERER PROPREMENT !!!!!
-				die('Erreur interne survenue.');
+				die($this->render('dbError'));
 			}
 
 			if ($result == false)
@@ -117,21 +116,21 @@ class UserController extends Controller
 		
 		if ($this->isUserConnected())
 		{
-
-			// chargement du modèle user
-			$this->loadModel('user');
-
-			//Partie: Modifications des données utilisateur
-			if (	isset($_POST['lastname']) && !empty($_POST['lastname'])
-				&&	isset($_POST['firstname']) && !empty($_POST['firstname'])
-				&&	isset($_POST['mail']) && !empty($_POST['mail']) )
+			try
 			{
-				// On teste le mot de passe de confirmation
-				if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
-					&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
+				// chargement du modèle user
+				$this->loadModel('user');
+
+				//Partie: Modifications des données utilisateur
+				if (	isset($_POST['lastname']) && !empty($_POST['lastname'])
+					&&	isset($_POST['firstname']) && !empty($_POST['firstname'])
+					&&	isset($_POST['mail']) && !empty($_POST['mail']) )
 				{
-					try
+					// On teste le mot de passe de confirmation
+					if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
+						&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
 					{
+						
 						// met a jour la bdd
 						$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstname'], $_POST['lastname'], $_POST['mail']);
 
@@ -142,80 +141,67 @@ class UserController extends Controller
 
 						// On informe l'utilisateur de la réussite
 						$this->set('data_updated', true);
+						
 					}
-					catch(Exception $e)
+					else
 					{
-						die('Erreur interne de la base de données.');
+						// Erreur de mot de passe de confirmation
+						$this->set('data_updated', false);
 					}
 				}
-				else
-				{
-					// Erreur de mot de passe de confirmation
-					$this->set('data_updated', false);
-				}
-			}
 
-			// On modifie le mot de passe si il est renseigné
-			if (	isset($_POST['password']) && !empty($_POST['password'])
-				&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
-			{
-				// On teste le mot de passe de confirmation
-				if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
-					&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
+				// On modifie le mot de passe si il est renseigné
+				if (	isset($_POST['password']) && !empty($_POST['password'])
+					&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
 				{
-					if ($_POST['password'] == $_POST['passwordConfirm'])
+					// On teste le mot de passe de confirmation
+					if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
+						&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
 					{
-						try
+						if ($_POST['password'] == $_POST['passwordConfirm'])
 						{
 							$res = $this->getModel()->changePassword($this->getUserInfo('email'), $_POST['password']);
 						
 							// Réussite de la modification du mot de passe
 							$this->set('data_updated', true);
 						}
-						catch(Exception $e)
+						else
 						{
-							die('Erreur interne de la base de données.');
+							// Echec de la modification le mot de passe est différent
+							$this->set('data_updated', false);
 						}
 					}
 					else
 					{
-						// Echec de la modification le mot de passe est différent
+						// Erreur de mot de passe de confirmation
 						$this->set('data_updated', false);
 					}
+					
 				}
-				else
-				{
-					// Erreur de mot de passe de confirmation
-					$this->set('data_updated', false);
-				}
-				
-			}
 
-			// Partie: affichage des données
-			// On récupère l'id de l'utilisateur (session)
-			$id = $this->getUserInfo('id');
+				// Partie: affichage des données
+				// On récupère l'id de l'utilisateur (session)
+				$id = $this->getUserInfo('id');
 
-			// On récupère ses infos dans la bdd
-			try
-			{
+				// On récupère ses infos dans la bdd
 				$user = $this->getModel()->dataProvider($id);
+				
+
+				// Envoie des variables vers la vue
+				if ($user)
+				{
+					$this->set('firstname', $user['firstname']);
+					$this->set('lastname', $user['lastname']);
+					$this->set('email', $user['email']);
+				}
+
+				//  Rendu de la page
+				$this->render('personalData');
 			}
 			catch(Exception $e)
 			{
-				die('Erreur interne de la base de données.');
+				die($this->render('dbError'));
 			}
-
-			// Envoie des variables vers la vue
-			if ($user)
-			{
-				$this->set('firstname', $user['firstname']);
-				$this->set('lastname', $user['lastname']);
-				$this->set('email', $user['email']);
-			}
-
-
-			//  Rendu de la page
-			$this->render('personalData');
 		}
 		else
 			header('Location:' . BASE_URL);
@@ -281,7 +267,7 @@ class UserController extends Controller
 		}
 		catch(Exception $e)
 		{
-			die('Erreur interne de la base de données.');
+			die($this->render('dbError'));
 		}
 
 		
