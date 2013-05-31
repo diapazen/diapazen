@@ -7,8 +7,7 @@
                 </div>
                 <div id="poll_title_box" >
                     <h1 class="title" > <?php echo $eventTitle; ?> </h1>
-                    <p class="small_title" >Sondage créé le <?php echo $creationDate.'.' ?> </p>
-                    <p class="small_title" >Par <?php echo $userFName.' '.$userLName.'. '.$eventDate; ?> </p>
+                    <p class="text" >Créé le <?php echo $creationDate.' | ' ?>Par <?php echo $userFName.' '.$userLName.$eventDate; ?></p>
                 </div>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
                 <?php 

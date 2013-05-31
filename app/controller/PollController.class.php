@@ -396,7 +396,7 @@ class PollController extends Controller
 					}
 				}
 				else if($res['expiration_date'] != '0000-00-00 00:00:00')
-					$this->set('eventDate', $int->format('Le sondage expire dans: %d jour(s) et %h heure(s).'));
+					$this->set('eventDate', $int->format(' | Expire dans: %d jour(s) et %h heure(s).'));
 				else
 					$this->set('eventDate', $int->format(''));
 
