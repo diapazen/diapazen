@@ -25,6 +25,7 @@
 
 require_once 'system/Controller.class.php';
 require_once 'util/MailUtil.class.php';
+require_once 'util/TestForm.class.php';
 
 class PollController extends Controller
 {
@@ -88,18 +89,29 @@ class PollController extends Controller
 			$_SESSION['poll_choices'] = $_POST['choices'];
 			
 
-			if(!isset($_POST['date_input']))
-				$_SESSION['poll_date'] = null;
-			else
-				$_SESSION['poll_date'] = $_POST['date_input'];
-
-			// Test si les variables sont vides // TODO ameliorer le test pour les choix
-			if (empty($_POST['title_input']) || empty($_POST['description_input']) || empty($_POST['choices']))
+			if(isset($_POST['date_input']) && TestForm::testRegexp('expirationDate', $_POST['date_input']))
 			{
-				// renvoyer a Poll create avec un message disant champ(s) vide(s)
-				header('Location: ' . BASE_URL. '/poll/create');
+				$_SESSION['poll_date'] = $_POST['date_input'];
 			}
 			else
+			{
+				$_SESSION['poll_date'] = null;
+			}
+
+			// Test des choix avec regexp
+			$testchoices = true;
+			foreach ($_POST['choices'] as $key => $value)
+			{
+				if (!TestForm::testRegexp('choice', $value))
+				{
+					$testchoices = false;
+				}
+			}
+
+			// Test des variables avec regexp
+			if (TestForm::testRegexp('title', 		$_POST['title_input']) && 
+				TestForm::testRegexp('description', $_POST['description_input']) && 
+				$testchoices)
 			{
 				// si l'utilisateur est déja connecté
 				if ($this->isUserConnected())
@@ -111,6 +123,11 @@ class PollController extends Controller
 					// Sinon on fait le rendu
 					$this->render('pollConnection');
 				}
+			}
+			else
+			{
+				// renvoyer a Poll create avec un message disant champ(s) invalide(s)
+				header('Location: ' . BASE_URL. '/poll/create');
 			}
 		}
 		else
