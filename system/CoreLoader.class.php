@@ -65,6 +65,10 @@ class CoreLoader
             require_once $class.'.class.php';
         elseif (file_exists(MODEL_ROOT .'/' .$class.'.class.php'))
             require_once $class.'.class.php';
+        elseif (file_exists(UTIL_ROOT .'/' .$class.'.class.php'))
+            require_once $class.'.class.php';
+        elseif (file_exists(WRITER_ROOT .'/' .$class.'.class.php'))
+            require_once $class.'.class.php';
         else
             throw new Exception(404);
         

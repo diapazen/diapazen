@@ -41,11 +41,10 @@ class Config
 	// Configuration pour le serveur SMTP et le compte mail
 	private static $mMail = array(
 						'default'	=> array(
-								'login' 	=>	'no-reply@diapazen.com',
-								// 'pwd' 		=>	'Diaisenpa',
-								'nameSMTP'	=>	'smtp.orange.fr'	,
-								'port'		=>	'25'
-																	)
+								'smtp'	=>	'smtp.numericable.fr'	,
+								'port'	=>	'25',
+								'from'	=>	'Diapazen <no-reply@diapazen.com>'
+								)
 						);
 
 	 /**

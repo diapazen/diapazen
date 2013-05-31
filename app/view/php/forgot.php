@@ -3,7 +3,7 @@
 <?php $this->getHeader(); ?>
         
         <div id="content">            
-            <form action="forgot" class="default_form" method="post">
+            <form action="<?php $this->getHomeUrl(); ?>/user/forgot" class="default_form" method="post">
             	<p class="orange_text info_box" >Entrez votre e-mail pour reçevoir un nouveau mot de passe.</p>
 	        	<?php
 	        	if(isset($err)) {
@@ -20,7 +20,7 @@
                 }
                 ?>
 	        	<label for="mailRetrieve" class="text">E-mail</label>
-	        	<input type="mail" id="mailRetrieve" name="mailRetrieve" class="text_edit" >
+	        	<input type="mail" id="mailRetrieve" name="mailRetrieve" class="text_edit" value="timothee.nicolas@isen.fr" >
 	        	<input class ="orange_button" type="submit" value="Envoyer">
             </form>
         </div>

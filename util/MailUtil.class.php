@@ -33,35 +33,12 @@ class MailUtil
 	/**
 	 * Constructeur de MailUtil 
 	 * 
-	 * Constructeur prenant en parametre le mail de celui qui envoie
-	 * Son nom
-	 * Le mot de passe
-	 * Et la configuration du SMTP
-	 * 
-	 * @param     string	$mailFrom	mail d'envoi
-	 * @param     string    $nameMailFrom nom du mail
-	 * @param     string    $pwdFrom mot de passe du compte
-	 * @param     string    $nameSMTP nom du smtp
-	 * @param     string    $portSMTP port du smtp
 	 */
 	public function MailUtil()
 	{
-		
-
 		$mailConfig = Config::getMailConfig();
-
-		if(!empty($mailConfig) && $mailConfig['port']>0)
-		{
-			$this->mailFrom = $mailConfig['login'];
-			$this->nameMailFrom = 'Diapazen';
-			// $this->pwdFrom = $mailConfig['pwd'];
-			$this->configSMTP = $mailConfig['nameSMTP'];
-			// $this->configSMTP = $mailConfig['nameSMTP'].':'.$mailConfig['port'];
-		}
-		else
-		{
-			throw new coreException("Error in MailUtil constructor");	
-		}
+		ini_set("SMTP", $mailConfig['smtp']);
+		ini_set("smtp_port", $mailConfig['port']);
 	}
 
 
@@ -75,40 +52,16 @@ class MailUtil
 	 * @param     string    $message message du mail
 	 */
 	 public function sendMail($mailTo,$subject,$message)
-	{
-		//require de phpmailer et création d'une instance
-		require UTIL_ROOT.'phpmailer'.DS.'class.phpmailer.php';
-		$mail = new PHPmailer();
+	 {
+		// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 
+		// En-têtes additionnels
+		$mailConfig = Config::getMailConfig();
+		$headers .= 'From: '.$mailConfig['from'] . "\r\n";
 
-
-		//configuration du mail
-		$mail->SetLanguage('fr');
-		$mail->CharSet = 'utf-8';
-		$mail->IsSMTP();
-		$mail->Host = $this->configSMTP;
-		$mail->Username = $this->mailFrom;
-		// $mail->Password = $this->pwdFrom;
-		$mail->From = $this->mailFrom;
-		$mail->FromName = $this->nameMailFrom;
-		$mail->AddAddress($mailTo);
-
-		$mail->IsHTML(true);
-		$mail->Subject = $subject;
-		$mail->Body = $message;
-
-		//envoi du mail
-		if(!$mail->Send())
-		{
-		 	echo $mail->ErrorInfo;
-		 	echo $this->pwdFrom;
-		 	return false;
-		}
-
-		$mail->SmtpClose();
-		unset($mail);
-
-		return true;
+		return @mail($mailTo, $subject, $message);
 	}
 
 	 /**
@@ -122,42 +75,7 @@ class MailUtil
 	 */
 	 public function sendMailWithCC($mailsTo,$subjet,$message)
 	{
-		//require de phpmailer et création d'une instance
-		require UTIL_ROOT.'phpmailer'.DS.'class.phpmailer.php';
-		$mail = new PHPmailer();
-
-		//configuration du mail
-		$mail->SetLanguage('fr');
-		$mail->CharSet = 'utf-8';
-		$mail->IsSMTP();
-		$mail->Host = $this->configSMTP;
-		$mail->Username=$this->mailFrom;
-		//$mail->Password=$this->pswFrom;
-		$mail->From = $this->mailFrom;
-		$mail->FromName = $this->nameMailFrom;
-		$mail->AddAddress($this->mailFrom);
-
-		//On ajoute tous les destinataires
-		foreach($mailsTo as $current)
-		{
-			$mail->AddBCC($current);
-		}
-
-		$mail->IsHTML(true);
-		$mail->Subject = $subjet;
-		$mail->Body = $message;
-
-		//envoi du mail
-		if(!$mail->Send())
-		{
-		 	throw new coreException($mail->ErrorInfo);
-		 	return false;
-		}
-
-		$mail->SmtpClose();
-		unset($mail);
-
-		return true;
+		return sendMail($mailsTo,$subjet,$message);
 	}
 }
 

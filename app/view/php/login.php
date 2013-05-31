@@ -16,6 +16,10 @@
             			case 'sendPassword':
             				echo "<div class='success_message' >Votre message vous a été envoyé, tentez de vous connecter.</div>";
             				break;
+
+                        case 'sendFailPassword':
+                            echo "<div class='error_message' >Erreur lors de l'envoi de l'email. Nous allons corriger le problème le plus rapidement possible.</div>";
+                            break;
             		}
             	}
             ?>

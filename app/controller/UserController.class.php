@@ -224,8 +224,6 @@ class UserController extends Controller
 		
 
 		$this->loadModel('user');
-		
-
 
 		try
 		{
@@ -250,8 +248,8 @@ class UserController extends Controller
 							$message->setParams(array('password'=>$password));
 							$subject = 'Votre nouveau mot de passe.';
 							$messageMail = $message->getMessage();
-							$objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
-							$this->set('infoLogin','sendPassword');
+							$result = $objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
+							$this->set('infoLogin',$result ? 'sendPassword' : 'sendFailPassword');
 							$this->render('login');
 						}
 						catch(Exception $e)
@@ -280,17 +278,6 @@ class UserController extends Controller
 		}
 	}
 
-	/**
-	 * Récupération du mot de passe
-	 * 
-	 * url:	diapazen.com/user/retrievePwd
-	 **/
-	public function retrievePwd($params = null)
-	{
-
-
-		
-	}
 
 	/**
 	 * Déconnexion de l'application

@@ -296,6 +296,15 @@ class PollController extends Controller
 				$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 				$mailSend = $this->getModel()->sharePoll($_POST['mails']);
 
+			}
+			catch(Exception $e)
+			{
+				die($this->render('dbError'));
+			}
+			
+			try
+			{
+
 				$subject = "Invitation à un sondage";
 				$message = new Message();
 				$message->setMessage('share');
@@ -314,11 +323,13 @@ class PollController extends Controller
 				echo "<pre>";
 				print_r($mailSend);
 				echo "</pre>";*/
+
 			}
 			catch(Exception $e)
 			{
-				die($this->render('dbError'));
+				die($e->getMessage());
 			}
+			
 		}
 		else
 		{
