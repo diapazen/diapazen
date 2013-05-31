@@ -11,7 +11,6 @@ Diapazen permet de planifier rapidement des événements avec ses collaborateurs
 Diapazen utilise les technologies suivantes:
 
 * PHP 5
- * phpMailer 5.2.4
 * MySQL
 * HTML5 / CSS3
 * jQuery 1.9.1
