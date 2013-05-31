@@ -7,7 +7,7 @@
             <div id="text_404">
             	<p class="big_title" >Erreur 404</p>
             	<p class="title" >La page demandée n'existe pas.</p>
-            	<a class="link" href="<?php $this->getHomeUrl(); ?>">Aller à la page d'accueil</a>
+            	<a class="link" href="<?php $this->getHomeUrl(); ?>">Retour à la page d'accueil</a>
             </div>
         </div>
 
