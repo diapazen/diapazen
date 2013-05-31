@@ -106,7 +106,12 @@ class PollController extends Controller
 				{
 					$testchoices = false;
 				}
+				if (empty($value))
+				{
+					$testchoices = true;
+				}
 			}
+
 
 			// Test des variables avec regexp
 			if (TestForm::testRegexp('title', 		$_POST['title_input']) && 
@@ -167,13 +172,13 @@ class PollController extends Controller
 		try
 		{
 			//test si un choix a été fait entre la connection et l'inscription et qu'il y a un email
-			if(isset($_POST['account']) && isset($_POST['email']) && !empty($_POST['email']))
+			if(isset($_POST['account']) && isset($_POST['email']) && !TestForm::testRegexp('email', $_POST['email']))
 			{
 				$mail = $_POST['email'];
 				$ip_addr = $_SERVER['REMOTE_ADDR'];
 
 				//si on a choisi la connection et qu'il y a le mdp on tente de se connecter
-				if($_POST['account'] == 'registered' && isset($_POST['password']) && !empty($_POST['password']))
+				if($_POST['account'] == 'registered' && isset($_POST['password']) && !TestForm::testRegexp('pwd', $_POST['password']))
 				{
 					$pwd = $_POST['password'];
 
@@ -190,7 +195,7 @@ class PollController extends Controller
 					}
 
 				} //si on a choisi l'inscription et qu'il y a le nom et prenom on l'inscrit
-				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']) && !empty($_POST['firstNameUser']) && !empty($_POST['nameUser']))
+				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']) && !TestForm::testRegexp('firstname', $_POST['firstNameUser']) && !TestForm::testRegexp('lastName', $_POST['nameUser']))
 				{
 					$firstname = $_POST['firstNameUser'];
 					$lastname = $_POST['nameUser'];
@@ -307,7 +312,7 @@ class PollController extends Controller
 
 		$this->set('title', 'Partager le sondage | Diapazen');
 
-		if (isset($_POST['mails']) && !empty($_POST['mails']) && isset($_SESSION['poll_url']) && !empty($_SESSION['poll_url']))
+		if (isset($_POST['mails']) && !TestForm::testRegexp('email', $_POST['mails']) && isset($_SESSION['poll_url']) && !TestForm::testRegexp('pollUrl', $_SESSION['poll_url']))
 		{
 			try
 			{

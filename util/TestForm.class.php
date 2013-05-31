@@ -30,13 +30,14 @@ class TestForm
 	private static $mStrRegexp = array(
 		'email' 			=> 		'#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#',
 		'pwd'				=> 		'#^[a-zA-Zéèôïëñ0-9]{3,}$#',
-		'title'				=>		'#^[a-zA-Zéèôïëñ-]{3,}$#',
+		'title'				=>		'#^[a-zA-Zéèôïëñ0-9-\s]{3,}$#',
 		'expirationDate'	=> 		'#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#',
 		'description'		=> 		'#^.{3,}$#',
-		'choice' 			=> 		'#^[a-zA-Zéèôïëñ0-9]{3,}$#',
+		'choice' 			=> 		'#^[a-zA-Zéèôïëñ0-9\s]{3,}$#',
 		'firstname'			=>		'#^[a-zA-Zéèôïëñ-]{3,}$#',
 		'lastName'			=>		'#^[a-zA-Zéèôïëñ-]{3,}$#',		
-		'voteName'			=>		'#^[a-zA-Zéèôïëñ0-9]{3,}$#');		
+		'voteName'			=>		'#^[a-zA-Zéèôïëñ0-9\s]{3,}$#',		
+		'pollUrl'			=>		'#^[a-zA-Z0-9]{10}$#');		
 
 	/**
 	 * Fonction qui test les une string par regexp
