@@ -144,10 +144,10 @@
     margin-bottom: 10px;
 }
 
-#share_form a[class="orange_button"]
+#share_form a.orange_button
 {
-	margin-left: 155px;
-	width: 374px;
+	margin-left: 200px;
+	width: 324px;
 }
 
 /* pollView.css */
@@ -295,8 +295,13 @@ h1#result
 	padding-left: 0;
 	padding-right: 0;
 	margin-left: 0;
-	width: 277px;
+	width: 175px;
 	display: inline-block;
+}
+
+#personal_data_form .grey_button
+{
+	margin-left: 204px;
 }
 
 .message_personal_data
@@ -423,6 +428,7 @@ h1#result
 	margin-bottom: 15px;
 	display: block;
 	width: inherit;
+	text-align: left;
 }
 
 #poll_connection_form #not_registered, #poll_connection_form #registered
@@ -449,12 +455,12 @@ h1#result
 
 #poll_creation_form .choice input[type="text"]
 {
-	width:350px;
+	width:300px;
 	display:inline-block;
 }
 
 #poll_creation_form #datepicker
 {
-	width: 400px;
+	width: 350px;
 	margin-bottom: 15px;
 }

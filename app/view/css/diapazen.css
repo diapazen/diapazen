@@ -177,13 +177,13 @@ footer ul li
 .default_form input[type="submit"], .default_form input[type="text"], .default_form textarea, .default_form input[type="password"], .default_form input[type="mail"]
 {
     display: inline-block;
-    width: 400px;
+    width: 350px;
     margin-bottom: 15px;
 }
 
 .default_form input[type="submit"]
 {
-    margin-left: 155px;
+    margin-left: 204px;
 }
 
 .default_form input[type="submit"]
@@ -194,7 +194,9 @@ footer ul li
 .default_form label
 {
     display: inline-block;
-    width:150px;
+    width:180px;
+    text-align: right;
+    margin-right: 20px;
 }
 
 .default_form .small_title
@@ -214,7 +216,7 @@ footer ul li
 
 .default_form .info_box
 {
-    text-align: center;
+    text-align: right;
     margin-bottom: 10px;
 }
 
