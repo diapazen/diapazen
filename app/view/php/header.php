@@ -4,8 +4,8 @@
     <head>
         <meta charset="utf-8" />
 
-        <link rel="icon" type="image/ico" href="<?php $this->getPath('images/favicon.ico'); ?>" />
-		<link rel="shortcut icon" type="image/x-icon" href="<?php $this->getPath('images/favicon.ico'); ?>" />
+        <link rel="icon" type="image/ico" href="<?php $this->getPath('media/pictures/favicon.ico'); ?>" />
+		<link rel="shortcut icon" type="image/x-icon" href="<?php $this->getPath('media/pictures/favicon.ico'); ?>" />
 
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/orangeSoberKit.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/diapazen.css'); ?>">
