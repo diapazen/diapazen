@@ -24,6 +24,7 @@
  */
 
 require_once 'Request.class.php';
+require_once 'Controller.class.php';
 
 class Router
 {

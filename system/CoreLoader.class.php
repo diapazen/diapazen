@@ -43,6 +43,13 @@ class CoreLoader
     private function __construct()
     {
 
+        set_include_path(get_include_path() . PATH_SEPARATOR . CONTROLLER_ROOT);
+        set_include_path(get_include_path() . PATH_SEPARATOR . MODEL_ROOT);
+        set_include_path(get_include_path() . PATH_SEPARATOR . UTIL_ROOT);
+        set_include_path(get_include_path() . PATH_SEPARATOR . WRITER_ROOT);
+        
+        spl_autoload_extensions('.class.php, .php, .inc.php');
+
         spl_autoload_register(array($this, 'loadClasses'), false);
         
     }
@@ -54,13 +61,13 @@ class CoreLoader
      */
     private function loadClasses($class)
     {
-        set_include_path(get_include_path() . PATH_SEPARATOR . CONTROLLER_ROOT);
-        set_include_path(get_include_path() . PATH_SEPARATOR . MODEL_ROOT);
-        set_include_path(get_include_path() . PATH_SEPARATOR . UTIL_ROOT);
-        set_include_path(get_include_path() . PATH_SEPARATOR . WRITER_ROOT);
+        if (file_exists(CONTROLLER_ROOT .'/' .$class.'.class.php'))
+            require_once $class.'.class.php';
+        elseif (file_exists(MODEL_ROOT .'/' .$class.'.class.php'))
+            require_once $class.'.class.php';
+        else
+            throw new Exception(404);
         
-        spl_autoload_extensions('.class.php');
-        require $class.".class.php";
         spl_autoload(ucfirst($class));
 
         if (!class_exists($class, false))
