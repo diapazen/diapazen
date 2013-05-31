@@ -27,7 +27,7 @@ class TestForm
 {
 
 
-	private $mStrRegexp = array(
+	private static $mStrRegexp = array(
 		'email' 			=> 		'#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#',
 		'pwd'				=> 		'#^[a-zA-Zéèôïëñ0-9]{3,}$#',
 		'title'				=>		'#^[a-zA-Zéèôïëñ-]{3,}$#',
