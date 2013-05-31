@@ -287,6 +287,9 @@ class PollController extends Controller
 
 	public function sended($params = null)
 	{
+
+		$this->set('title', 'Partager le sondage | Diapazen');
+
 		if (isset($_POST['mails']) && !empty($_POST['mails']) && isset($_SESSION['poll_url']) && !empty($_SESSION['poll_url']))
 		{
 			try
