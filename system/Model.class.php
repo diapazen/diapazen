@@ -60,11 +60,13 @@ class Model
             $options[PDO::ATTR_ERRMODE]				= PDO::ERRMODE_EXCEPTION;	// Exceptions autorisées
             $options[PDO::MYSQL_ATTR_INIT_COMMAND]	= "SET NAMES utf8";			// L'encodage est en utf-8
 
-        	return new PDO('mysql:host='.$dataBaseConfig['host'].';dbname='.$dataBaseConfig['name'], $dataBaseConfig['user'], $dataBaseConfig['pass'], $options);
+            // le @ désactive les warnings
+        	return @new PDO('mysql:host='.$dataBaseConfig['host'].';dbname='.$dataBaseConfig['name'], $dataBaseConfig['user'], $dataBaseConfig['pass'], $options);
         }
         catch(Exception $e) 
         {
-            throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
+        	die('<html><head><meta charset="utf-8" /></head><body><strong>Erreur de connexion à la base de données</strong><div>Vérifiez le fichier de configuration.</div></body></html>');
+            //throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
         }
 
 	}
