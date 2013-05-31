@@ -51,8 +51,8 @@ class ChoiceModel extends Model
             try
             {
                 $this->setChoiceTitle($title);
-                $request = $this->mDbMySql->prepare("INSERT INTO `diapazen`.`dpz_choices`
-                            (`id`, `poll_id`, `choice`) VALUES (NULL,:POLLID,:CHOICE);");
+                $request = $this->mDbMySql->prepare("INSERT INTO dpz_choices
+                            (id, poll_id, choice) VALUES (NULL,:POLLID,:CHOICE);");
                 $request->bindValue(':POLLID', $pollId);
                 $request->bindValue(':CHOICE', $title);
                 $check = $request->execute();
@@ -84,8 +84,8 @@ class ChoiceModel extends Model
             try
             {
                $this->setChoiceTitle($title);
-               $request = $this->mDbMySql->prepare("UPDATE diapazen.dpz_choices 
-                            SET`choice`=:TITLE WHERE dpz_choices.id=:ID;");
+               $request = $this->mDbMySql->prepare("UPDATE dpz_choices 
+                            SET choice=:TITLE WHERE dpz_choices.id=:ID;");
                $request->bindValue(':CHOICE', $title);
                 $check = $request->execute();
 
@@ -110,7 +110,7 @@ class ChoiceModel extends Model
             try
             {
                 $this->setChoiceTitle(NULL);
-                $request = $this->mDbMySql->prepare("DELETE FROM `diapazen.dpz_choices` WHERE id=:ID");
+                $request = $this->mDbMySql->prepare("DELETE FROM dpz_choices WHERE id=:ID");
                 $request->bindValue(':ID', $id);
                 $check = $request->execute();
                 if($check == 1) 
