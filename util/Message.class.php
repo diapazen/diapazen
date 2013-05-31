@@ -27,58 +27,19 @@ class Message
 {
 
 	private static $messageRegistration	=
-		"<html>
-			<head>
-				<meta charset='utf-8'>
-			</head>
-			<body>
-				Bonjour <span name='firstName'></span> <span name='lastName'></span><br>
-				Merci de vous être inscrit sur Diapazen <br>
-				Votre mot de passe est : <span name='password'></span> <br>
-				Changer le dès maintenant en accèdant à votre profil.
-			</body>
-		</html>";
+				"Bonjour %s %s\n\nMerci de vous être inscrit sur Diapazen.\nVotre mot de passe est: %s\nChanger le dès maintenant en accèdant à votre profil.";
 
 	private static $messageCreatePoll	=
-		"<html>
-			<head>
-				<meta charset='utf-8'>
-			</head>
-			<body>
-				Bonjour vous venez de créer le sondage <span name='sondage'></span>
-			</body>
-		</html>";
+				"Bonjour vous venez de créer le sondage %s";
 
 	private static $messagePswForgotten	=
-		"<html>
-			<head>
-				<meta charset='utf-8'>
-			</head>
-			<body>
-				Bonjour votre nouveau mot de passe est : <span name='password'></span>
-			</body>
-		</html>";
+				"Bonjour votre nouveau mot de passe est : <span name='password'></span>";
 		
 	private static $messageLogTooBig	=
-		"<html>
-			<head>
-				<meta charset='utf-8'>
-			</head>
-			<body>
-				Attention: Le fichier de logs de Diapazen est plein.
-			</body>
-		</html>";
+				"Attention: Le fichier de logs de Diapazen est plein.";
 
 	private static $messagePollShare	=
-		"<html>
-			<head>
-				<meta charset='utf-8'>
-			</head>
-			<body>
-				<span name='user'></span> vous invite à répondre a un sondage. <br>
-				Pour y répondre veuillez suivre ce lien : <a name='linkPoll'>Sondage</a>
-			</body>
-		</html>";
+				"%s vous invite à répondre a un sondage.\nPour y répondre veuillez suivre ce lien: %s";
 
 	private $message;
 
@@ -143,29 +104,7 @@ class Message
 	 */
 	public function setParams($params)
 	{
-		$doc = new DOMDocument();  
-		$doc->loadHTML($this->message);
-
-		foreach($params as $key=>$param)
-		{
-			$elements=$doc->getElementsByTagName("span");
-
-			foreach($elements as $element)
-			{
-				if(strcmp($element->getAttribute("name"),$key)==0)
-					$element->nodeValue=$param;
-			}
-
-			$elements=$doc->getElementsByTagName("a");
-
-			foreach($elements as $element)
-			{
-				if(strcmp($element->getAttribute("name"),$key)==0)
-					$element->setAttribute("href",$param);
-			}
-		}
-
-		$this->message=$doc->saveHTML();
+		$this->message= vsprintf($this->message, $params);
 	}
 }
 

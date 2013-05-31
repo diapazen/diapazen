@@ -205,7 +205,7 @@ class PollController extends Controller
 
 					$message = new Message();
 					$message->setMessage('registration');
-					$tabParamMessage = array('password' => $pwd, 'firstName' => $firstname, 'lastName' => $lastname);
+					$tabParamMessage = array('firstName' => $firstname, 'lastName' => $lastname, 'password' => $pwd);
 					$message->setParams($tabParamMessage);
 					$messageMail = $message->getMessage();
 					$subjet = 'Inscription sur Diapazen';
@@ -315,6 +315,7 @@ class PollController extends Controller
 				$lien = BASE_URL.'/p/'.$_SESSION['poll_url'];
 				$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 				$mailSend = $this->getModel()->sharePoll($_POST['mails']);
+				$mailSend = implode(', ', $mailSend);
 
 			}
 			catch(Exception $e)

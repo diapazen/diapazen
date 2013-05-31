@@ -55,7 +55,7 @@ class MailUtil
 	 {
 		// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
 		$headers  = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+		$headers .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
 
 		// En-têtes additionnels
 		$mailConfig = Config::getMailConfig();
