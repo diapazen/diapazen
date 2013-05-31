@@ -37,7 +37,7 @@ class Request
 	public function __construct()
 	{
 		// URL de base
-		$baseUrl = explode('/',trim(BASE_URL,'/'));
+		$baseUrl = explode('/',trim(dirname($_SERVER['SCRIPT_NAME']),'/'));
 		
 		// Partie ré-ecrite de l'URL
 		$dynUrl = explode('/', trim($_SERVER['REQUEST_URI'], '/'));

@@ -28,22 +28,26 @@ session_start();
 
 //Constantes pour les inclusions PHP
 define("DS", DIRECTORY_SEPARATOR);
-define("ROOT", dirname(__FILE__).DS.'..'.DS);
-define("SYSTEM_ROOT", dirname(__FILE__).DS);
-define("APP_ROOT", ROOT.'app'.DS);
-define("MODEL_ROOT", APP_ROOT.'model'.DS);
-define("VIEW_ROOT",APP_ROOT.'view'.DS);
-define("CONTROLLER_ROOT", APP_ROOT.'controller'.DS);
-define("UTIL_ROOT", ROOT.'util'.DS);
-define("WRITER_ROOT", SYSTEM_ROOT.DS.'LOG'.DS);
+define("ROOT", dirname(dirname(__FILE__)));
+define("SYSTEM_ROOT", dirname(__FILE__));
+define("APP_ROOT", ROOT.DS.'app');
+define("MODEL_ROOT", APP_ROOT.DS.'model');
+define("VIEW_ROOT",APP_ROOT.DS.'view');
+define("CONTROLLER_ROOT", APP_ROOT.DS.'controller');
+define("UTIL_ROOT", ROOT.DS.'util');
+define("WRITER_ROOT", SYSTEM_ROOT.DS.'LOG');
 define('LOADER', SYSTEM_ROOT.DS.'CoreLoader.class.php');
 
+
 // Constantes pour les inclusions HTML/CSS
-define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
-define('VIEW_WEBROOT', '/'.'app'.'/'.'view');
-// define('VIEW_WEBROOT', DS.'app'.DS.'view');
-define('CONTROLLER_WEBROOT', DS.'app'.DS.'controller');
-define('MODEL_WEBROOT', DS.'app'.DS.'model');
+if (dirname($_SERVER['SCRIPT_NAME']) == DS)
+	$sub_dir = '';
+else
+	$sub_dir = dirname($_SERVER['SCRIPT_NAME']);
+
+define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].$sub_dir);
+define('VIEW_WEBROOT', '/app'.'/'.'view');
+define('CONTROLLER_WEBROOT', '/app'.DS.'controller');
 
 
 // Constantes pour le système de journalisation

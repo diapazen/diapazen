@@ -6,7 +6,7 @@
                 <h2 class="title">Votre sondage a bien été créé !</h2>
                 <h3 class="small_title">Lien du sondage</h3>
                 <label class="text" for="poll_link" >Lien</label>
-                <input type="text" id="poll_link" class="text_edit" onClick="this.select();" value="localhost<?php echo $this->getHomeUrl().'/p/'.$pollUrl; ?>" />
+                <input type="text" id="poll_link" class="text_edit" onClick="this.select();" value="<?php echo $this->getHomeUrl().'/p/'.$pollUrl; ?>" />
                 <h3 class="small_title">Partagez ce lien par e-mail</h3>
                 <div class="textarea_box">
                     <label class="text" for="mails">E-mails</label>

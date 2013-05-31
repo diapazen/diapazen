@@ -43,13 +43,8 @@ class CoreLoader
     private function __construct()
     {
 
-        // Les dossiers à inclures
-        spl_autoload_register(array($this, 'loadControllers'), false);
-        spl_autoload_register(array($this, 'loadModels'), false);
-        spl_autoload_register(array($this, 'loadUtils'), false);
-        spl_autoload_register(array($this, 'loadWriters'), false);
-
-        spl_autoload_register(array($this, 'checkErrors'), false);
+        spl_autoload_register(array($this, 'loadClasses'), false);
+        
     }
 
     /** Vérifie si la classe est présente et lance une exception sinon
@@ -57,70 +52,22 @@ class CoreLoader
      * @param   string  $className  Nom de la classe à inclure
      * 
      */
-    private function checkErrors($class)
+    private function loadClasses($class)
     {
+        set_include_path(get_include_path() . PATH_SEPARATOR . CONTROLLER_ROOT);
+        set_include_path(get_include_path() . PATH_SEPARATOR . MODEL_ROOT);
+        set_include_path(get_include_path() . PATH_SEPARATOR . UTIL_ROOT);
+        set_include_path(get_include_path() . PATH_SEPARATOR . WRITER_ROOT);
+        
+        spl_autoload_extensions('.class.php');
+        require $class.".class.php";
+        spl_autoload(ucfirst($class));
+
         if (!class_exists($class, false))
         {
             throw new Exception(404);
         }
     }
-
-    /** Fonction de chargement des contrôleurs
-     *
-     * Charge si possible la classe qu'il faut inclure
-     * 
-     * @param   string  $className  Nom de la classe à inclure
-     * 
-     */
-    private function loadControllers($class)
-    {
-        set_include_path(CONTROLLER_ROOT);
-        spl_autoload_extensions('.class.php');
-        spl_autoload(ucfirst($class));
-    }
-
-    /** Fonction de chargement des modèles
-     *
-     * Charge si possible la classe qu'il faut inclure
-     * 
-     * @param   string  $className  Nom de la classe à inclure
-     * 
-     */
-    private function loadModels($class)
-    {
-        set_include_path(MODEL_ROOT);
-        spl_autoload_extensions('.class.php');
-        spl_autoload(ucfirst($class));
-    }
-
-    /** Fonction de chargement des utilitaires
-     *
-     * Charge si possible la classe qu'il faut inclure
-     * 
-     * @param   string  $className  Nom de la classe à inclure
-     * 
-     */
-    private function loadUtils($class)
-    {
-        set_include_path(UTIL_ROOT);
-        spl_autoload_extensions('.class.php');
-        spl_autoload(ucfirst($class));
-    }
-
-    /** Fonction de chargement des writers
-     *
-     * Charge si possible la classe qu'il faut inclure
-     * 
-     * @param   string  $className  Nom de la classe à inclure
-     * 
-     */
-    private function loadWriters($class)
-    {
-        set_include_path(WRITER_ROOT);
-        spl_autoload_extensions('.class.php');
-        spl_autoload(ucfirst($class));
-    }
-
 
     /** Récuperation d'un loader
      *
