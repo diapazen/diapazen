@@ -30,16 +30,16 @@ class Message
 				"Bonjour %s %s\n\nMerci de vous être inscrit sur Diapazen.\nVotre mot de passe est: %s\nChanger le dès maintenant en accèdant à votre profil.";
 
 	private static $messageCreatePoll	=
-				"Bonjour vous venez de créer le sondage %s";
+				"Bonjour\n\nVous venez de créer le sondage %s";
 
 	private static $messagePswForgotten	=
-				"Bonjour votre nouveau mot de passe est : <span name='password'></span>";
+				"Bonjour\n\nVoici votre nouveau mot de passe: %s\nVous pouvez vous connecter de nouveau sur http://diapazen.com afin de le modifier.";
 		
 	private static $messageLogTooBig	=
-				"Attention: Le fichier de logs de Diapazen est plein.";
+				"Bonjour\n\nAttention: Le fichier de logs de Diapazen est plein.";
 
 	private static $messagePollShare	=
-				"%s vous invite à répondre a un sondage.\nPour y répondre veuillez suivre ce lien: %s";
+				"Bonjour\n\n%s vous invite à répondre à un sondage.\nPour y répondre, il suffit de suivre ce lien: %s";
 
 	private $message;
 
@@ -105,6 +105,9 @@ class Message
 	public function setParams($params)
 	{
 		$this->message= vsprintf($this->message, $params);
+
+		// A la fin de tt les messages
+		$this->message .= "\n\nL'équipe de Diapazen.\n\nPS: Ceci est un message automatique, il est inutile d'y répondre.";
 	}
 }
 
