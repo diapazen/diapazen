@@ -241,22 +241,17 @@ class UserController extends Controller
 
 						$this->getModel()->changePassword($_POST['mailRetrieve'], $password);
 
-						try
-						{
-							$objMail = new MailUtil();
-							$message = new Message();
-							$message->setMessage('password');
-							$message->setParams(array('password'=>$password));
-							$subject = 'Votre nouveau mot de passe.';
-							$messageMail = $message->getMessage();
-							$result = $objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
-							$this->set('infoLogin',$result ? 'sendPassword' : 'sendFailPassword');
-							$this->render('login');
-						}
-						catch(Exception $e)
-						{
-							die('Envoi mail échoué '+$password);
-						}
+						
+						$objMail = new MailUtil();
+						$message = new Message();
+						$message->setMessage('password');
+						$message->setParams(array('password'=>$password));
+						$subject = 'Votre nouveau mot de passe.';
+						$messageMail = $message->getMessage();
+						$result = $objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
+						$this->set('infoLogin',$result ? 'sendPassword' : 'sendFailPassword');
+						$this->render('login');
+						
 					}
 					else
 					{
