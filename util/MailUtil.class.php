@@ -56,8 +56,9 @@ class MailUtil
 
 		// En-têtes additionnels
 		$headers .= 'From: Diapazen <no-reply@diapazen.com>' . "\r\n";
+		$headers .= 'Content-Transfer-Encoding: 8bit' . "\r\n"; 
 
-		return @mail($mailTo, $subject, $message);
+		return @mail($mailTo, utf8_decode($subject), utf8_decode($message));
 	}
 
 	 /**
