@@ -3,7 +3,7 @@
         
 		<div id="content">
                 <h2 class="title">Confirmation de l'envoi</h2>
-                
+                <br>
                 <?php
                 if(isset($sent))
             	{
@@ -19,8 +19,10 @@
             		}
             	}
                 ?>
-
-                <a class="orange_button" href="<?php echo $pollUrl; ?>">Voir le sondage</a>
+                <br>
+                <div style="text-align: center;">
+                    <a class="orange_button" href="<?php echo $pollUrl; ?>">Retour vers le sondage</a>
+                </div>
             </form>
         </div>
 
