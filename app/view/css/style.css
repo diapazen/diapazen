@@ -443,11 +443,6 @@ h1#result
 
 /* pollCreation.css */
 
-#poll_creation_form .choice
-{
-	margin-bottom: 15px;
-}
-
 #poll_creation_form #id_description_input
 {
 	height: 150px;
