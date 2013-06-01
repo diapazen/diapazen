@@ -84,6 +84,7 @@ class Controller
 	 */
 	public function e404()
 	{
+		$this->set('title', 'Page introuvable | Diapazen');
 		extract($this->mVars);
 		require(VIEW_ROOT.DS.'php'.DS.'404.php');
 	}
