@@ -409,7 +409,7 @@ class PollController extends Controller
 				if (($int->invert == 1 || !$res['open']) && $res['expiration_date'] != '0000-00-00 00:00:00')
 				{
 					$res['open'] = false;
-					$this->set('eventDate', 'Le sondage est fermé.');
+					$this->set('eventDate', ' | Le sondage est fermé.');
 					try
 					{
 						$this->getModel()->updatePoll($res['POLL_ID']);
