@@ -246,7 +246,7 @@ class UserController extends Controller
 						$message = new Message();
 						$message->setMessage('password');
 						$message->setParams(array('password'=>$password));
-						$subject = 'Votre nouveau mot de passe.';
+						$subject = 'Réinitialisation de votre mot de passe';
 						$messageMail = $message->getMessage();
 						$result = $objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
 						$this->set('infoLogin',$result ? 'sendPassword' : 'sendFailPassword');
