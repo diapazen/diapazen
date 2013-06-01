@@ -13,6 +13,18 @@
 	margin-bottom: 10px;
 }
 
+#connected_box a.orangelink
+{
+	text-decoration: none;
+    font-family: candela_book;
+    color: #FF4820;
+    cursor: pointer;
+}
+
+#connected_box a.orangelink:hover
+{
+	border-bottom: 1px solid #FF4820;
+}
 /* page 404 */
 
 #broken_diapason

@@ -36,7 +36,7 @@
 						<a class="small_link" href="<?php $this->getHomeUrl(); ?>/user/forgot" >Mot de passe oublié ?</a>
 					</div>
 				<?php } else { ?>
-						<div id="connected_box" ><p class="text" >Bonjour <span class="orange_text"><?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?></span></p><a class="link" href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
+						<div id="connected_box" ><p class="text" >Bonjour <a class="orangelink" href="<?php $this->getHomeUrl();?>/user/profile"><span class="orange_text"><?php echo $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname').' '; ?></span></a></p><a class="link" href="<?php $this->getHomeUrl(); ?>/user/logout">Se déconnecter</a></div>
 				<?php } ?>
 				
 			</div>
