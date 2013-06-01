@@ -470,3 +470,8 @@ h1#result
 	width: 350px;
 	margin-bottom: 15px;
 }
+
+#poll_creation_form .choice .grey_button, #poll_creation_form .choice .orange_button
+{
+	margin-left: 7px;
+}
