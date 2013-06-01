@@ -1,0 +1,5 @@
+User-Agent: *    
+Disallow: /p/
+Disallow: /poll/
+Disallow: /user/
+Disallow: /dashboard/
