@@ -312,7 +312,7 @@ class PollController extends Controller
 
 		$this->set('title', 'Partager le sondage | Diapazen');
 
-		if (isset($_POST['mails']) && TestForm::testRegexp('email', $_POST['mails']) && isset($_SESSION['poll_url']) && TestForm::testRegexp('pollUrl', $_SESSION['poll_url']))
+		if (isset($_POST['mails']) && isset($_SESSION['poll_url']) && TestForm::testRegexp('pollUrl', $_SESSION['poll_url']))
 		{
 			try
 			{
