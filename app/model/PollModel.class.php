@@ -56,7 +56,7 @@ class PollModel extends Model
         {   
             // On récupère les informations de base du sondage
             $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description, creation_date, expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
-            $request->bindValue(':URL', $pollUrl);
+            $request->bindValue(':URL', htmlspecialchars($pollUrl));
             $request->execute();
             $pollInfo=$request->fetch(PDO::FETCH_ASSOC);
             
@@ -81,14 +81,14 @@ class PollModel extends Model
                 foreach($choices as $choice)
                 {
                     $id = $choice['CHOICE_ID'];
-                    $list[$id]['choiceName'] = $choice['choice'];
+                    $list[$id]['choiceName'] = htmlspecialchars($choice['choice']);
                     $list[$id]['checkList'] = array();
                     foreach($results as $result)
                     {
                         $rid = $result['CHOICE_ID'];
                         if ($id == $rid)
                         {
-                            $list[$id]['checkList'][] = $result['value'];
+                            $list[$id]['checkList'][] = htmlspecialchars($result['value']);
                             $nbTotalVotes++;
                         }
                     }
@@ -128,7 +128,7 @@ class PollModel extends Model
         try
         {   
             $request = $this->mDbMySql->prepare("SELECT title,description,open,url,POLL_ID,expiration_date,creation_date FROM dpz_view_users_join_polls WHERE USER_ID=:UID ORDER BY open DESC,creation_date DESC;");
-            $request->bindValue(':UID', $userId);
+            $request->bindValue(':UID', htmlspecialchars($userId));
             $request->execute();
             return $request->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -151,9 +151,9 @@ class PollModel extends Model
         try
         {
             //on set les valeurs
-            $this->setPollTitle($pollTitle);
-            $this->setPollDescription($pollDescription);
-            $this->setPollExpirationDate($poll_expiration_date);
+            $this->setPollTitle(htmlspecialchars($pollTitle));
+            $this->setPollDescription(htmlspecialchars($pollDescription));
+            $this->setPollExpirationDate(htmlspecialchars($poll_expiration_date));
             
             // Url unique du sondage. ex: h8ddf2e561
             $this->setPollUrl(substr(md5(uniqid()),5,10));
@@ -164,9 +164,9 @@ class PollModel extends Model
                         VALUES (NULL, :USERID, :URL, :TITLE, :DESCRIPTION, :EXPIRATIONDATE, 1);");
             $request->bindValue(':USERID', $userId);
             $request->bindValue(':URL', $this->getPollUrl());
-            $request->bindValue(':TITLE', $pollTitle);
-            $request->bindValue(':DESCRIPTION', $pollDescription);
-            $request->bindValue(':EXPIRATIONDATE', $poll_expiration_date);
+            $request->bindValue(':TITLE', $this->getPollTitle());
+            $request->bindValue(':DESCRIPTION', $this->getPollDescription());
+            $request->bindValue(':EXPIRATIONDATE', $this->getPollExpirationDate());
             $check = $request->execute();
             
             //on renvoie true si l'ajout a été un succés sinon false
@@ -199,8 +199,8 @@ class PollModel extends Model
             $request = $this->mDbMySql->prepare("INSERT INTO dpz_results
                         (id, choice_id, value) 
                         VALUES (NULL, :CHOICEID, :VALUE);");
-            $request->bindValue(':CHOICEID', $choiceId);
-            $request->bindValue(':VALUE', $value);
+            $request->bindValue(':CHOICEID', htmlspecialchars($choiceId));
+            $request->bindValue(':VALUE', htmlspecialchars($value));
             
             return $request->execute();
         }
@@ -219,7 +219,7 @@ class PollModel extends Model
         try
         {
             $request = $this->mDbMySql->prepare("UPDATE .dpz_polls SET open=0 WHERE id = :POLLID;");
-            $request->bindValue(':POLLID', $pollId);
+            $request->bindValue(':POLLID', htmlspecialchars($pollId));
             return $request->execute();
         }
         catch(Exception $e)
@@ -239,16 +239,17 @@ class PollModel extends Model
     {
         try
         {
-            $this->setPollTitle($pollTitle);
-            $this->setPollDescription($pollDescription);
-            $this->setPollExpirationDate($poll_expiration_date);
+            $this->setPollTitle(htmlspecialchars($pollTitle));
+            $this->setPollDescription(htmlspecialchars($pollDescription));
+            $this->setPollExpirationDate(htmlspecialchars($poll_expiration_date));
+
             $request = $this->mDbMySql->prepare("UPDATE .dpz_polls SET
                         title=:TITLE,description=:DESCRIPTION,expiration_date=:EXPIRATIONDATE 
                         WHERE dpz_polls.url=:URL;");
-            $request->bindValue(':URL', $this->getPollUrl());
-            $request->bindValue(':TITLE', $pollTitle);
-            $request->bindValue(':DESCRIPTION', $pollDescription);
-            $request->bindValue(':EXPIRATIONDATE', $poll_expiration_date);
+            $request->bindValue(':URL', htmlspecialchars($this->getPollUrl()));
+            $request->bindValue(':TITLE', $this->getPollTitle());
+            $request->bindValue(':DESCRIPTION', $this->getPollDescription());
+            $request->bindValue(':EXPIRATIONDATE', $this->getPollExpirationDate());
             return $request->execute();
             
         }
@@ -272,7 +273,7 @@ class PollModel extends Model
             $this->setPollExpirationDate(NULL);
             $this->setPollUrl(NULL);
             $request = $this->mDbMySql->prepare("DELETE FROM dpz_polls WHERE id=:ID");
-            $request->bindValue(':ID', $pollId);
+            $request->bindValue(':ID', htmlspecialchars($pollId));
             return $request->execute();
         }
         catch(Exception $e)
@@ -288,7 +289,7 @@ class PollModel extends Model
     public function sharePoll($texteareaContent)
     {
 
-        $emails = preg_split("/[\r\n,; ]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
+        $emails = preg_split("/[\r\n\t,; ]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
 
         $emails = array_unique($emails);
 
@@ -306,7 +307,7 @@ class PollModel extends Model
             return null;
         }
 
-        return $emails;
+        return htmlspecialchars($emails);
     }
     
     /**

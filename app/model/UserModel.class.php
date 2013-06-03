@@ -101,7 +101,7 @@ class UserModel extends Model
 				{
 					// on récupère l'identifiant, le mail et le password avec une clause WHERE sur l'email
 					$request = $this->mDbMySql->prepare("SELECT id,lastname,firstname,email,password FROM dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
-					$request->bindValue(':EMAIL', $email);
+					$request->bindValue(':EMAIL', htmlspecialchars($email));
 					$request->execute();
 					$infos=$request->fetch();
 
@@ -315,7 +315,7 @@ class UserModel extends Model
 			$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
             $password = crypt($password, '$2a$07$'.$salt.'$');
             $request->bindValue(':PASSWORD', $password);
-            $request->bindValue(':EMAIL', $email);
+            $request->bindValue(':EMAIL', htmlspecialchars($email));
             return $request->execute();
         }
 

@@ -53,19 +53,9 @@ class ChoiceModel extends Model
                 $this->setChoiceTitle($title);
                 $request = $this->mDbMySql->prepare("INSERT INTO dpz_choices
                             (id, poll_id, choice) VALUES (NULL,:POLLID,:CHOICE);");
-                $request->bindValue(':POLLID', $pollId);
-                $request->bindValue(':CHOICE', $title);
-                $check = $request->execute();
-
-                //on renvoie true si l'ajout a été un succés sinon false
-                if($check == 1) 
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                $request->bindValue(':POLLID', htmlspecialchars($pollId));
+                $request->bindValue(':CHOICE', htmlspecialchars($title));
+                return $request->execute();
             }
             catch(Exception $e)
             {
@@ -83,21 +73,11 @@ class ChoiceModel extends Model
         {
             try
             {
-               $this->setChoiceTitle($title);
-               $request = $this->mDbMySql->prepare("UPDATE dpz_choices 
+                $this->setChoiceTitle($title);
+                $request = $this->mDbMySql->prepare("UPDATE dpz_choices 
                             SET choice=:TITLE WHERE dpz_choices.id=:ID;");
-               $request->bindValue(':CHOICE', $title);
-                $check = $request->execute();
-
-                //on renvoie true si l'ajout a été un succés sinon false
-                if($check == 1) 
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                $request->bindValue(':CHOICE', htmlspecialchars($title));
+                return $request->execute();
             }
             catch(Exception $e)
             {
@@ -111,16 +91,8 @@ class ChoiceModel extends Model
             {
                 $this->setChoiceTitle(NULL);
                 $request = $this->mDbMySql->prepare("DELETE FROM dpz_choices WHERE id=:ID");
-                $request->bindValue(':ID', $id);
-                $check = $request->execute();
-                if($check == 1) 
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                $request->bindValue(':ID', htmlspecialchars($id));
+                return $request->execute();
             }
             catch(Exception $e)
             {
