@@ -1,6 +1,6 @@
 <?php $this->getHeader(); ?>
         
-        <div id="content">
+        <div id="content" class="about">
             <p class="title">À propos de Diapazen</p>
             <br>
             <p class="text">Diapazen permet de planifier rapidement des événements avec ses collaborateurs.</p>

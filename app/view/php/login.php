@@ -14,7 +14,7 @@
             				break;
 
             			case 'sendPassword':
-            				echo "<div class='success_message' >Votre message vous a été envoyé, tentez de vous connecter.</div>";
+            				echo "<div class='success_message' >Votre mot de passe vous a été envoyé, tentez de vous connecter.</div>";
             				break;
 
                         case 'sendFailPassword':
