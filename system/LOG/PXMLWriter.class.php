@@ -24,7 +24,7 @@
  *
  */
 require_once "IWriter.php";
-require_once "XmlUtil.class.php";
+require_once "../CoreLoader.class.php";
 
 class PXMLWriter implements IWriter
 {
@@ -70,6 +70,7 @@ class PXMLWriter implements IWriter
 
 
 }
+
 
 
 
