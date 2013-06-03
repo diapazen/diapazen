@@ -21,9 +21,9 @@ Diapazen est libre et gratuit. Il est distribué dans les termes de la license [
 
 ## Prérequis
 
-* Un serveur web avec PHP 5. Recommandé: Apache2
-* Le module `mod_rewrite` installé et activé
-* Une base de données MySQL
+* Un serveur web avec PHP 5.2 Recommandé: Apache2
+* Le module `mod_rewrite` de Apache, installé et activé
+* Une base de données MySQL avec phpMyAdmin
 
 ## Installation
 
