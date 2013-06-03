@@ -3,20 +3,18 @@
         <div id="content">
             <div id ="poll">
                 <div id="back_button_dashboard">
-                    <a class="orange_button" href="<?php $this->getHomeUrl(); ?>/dashboard" >Retour</a>
+                    <a class="orange_button" href="<?php $this->getHomeUrl(); ?>" >Retour</a>
                 </div>
                 <div id="poll_title_box" >
                     <h1 class="title" > <?php echo $eventTitle; ?> </h1>
-                    <p class="text" >Créé le <?php echo $creationDate.' | ' ?>Par <?php echo $userFName.' '.$userLName.$eventDate; ?></p>
+                    <p class="text"><?php echo sprintf('Créé le %s | Par %s %s %s', $creationDate, $userFName, $userLName, $eventDate); ?></p>
                 </div>
                 <p class="text" > <?php echo $eventDescription; ?> </p>
-                <?php 
-                    if ($openedPoll == false) {       
-                ?>
-                <h1 class="big_title" id="result">Le choix ayant recueilli le plus de voix est : <?php echo $choiceList[0]["choiceName"]; ?></h1>
-                <?php
-                    }
-                ?>
+                
+                <?php if (!$openedPoll) { ?>
+                <h1 class="big_title" id="result"><?php echo sprintf('Le choix ayant recueilli le plus de voix est: %s', $choiceList[0]["choiceName"]); ?></h1>
+                <?php } ?>
+                
                 <form method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">
                     <div id="poll_choices">
                         <table>
