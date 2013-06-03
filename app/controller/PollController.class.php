@@ -98,41 +98,15 @@ class PollController extends Controller
 				$_SESSION['poll_date'] = null;
 			}
 
-			// Test des choix avec regexp
-			$testchoices = true;
-			foreach ($_POST['choices'] as $key => $value)
+			// si l'utilisateur est déja connecté
+			if ($this->isUserConnected())
 			{
-				if (!TestForm::testRegexp('choice', $value))
-				{
-					$testchoices = false;
-				}
-				if (empty($value))
-				{
-					$testchoices = true;
-				}
-			}
-
-
-			// Test des variables avec regexp
-			if (TestForm::testRegexp('title', 		$_POST['title_input']) && 
-				TestForm::testRegexp('description', $_POST['description_input']) && 
-				$testchoices)
-			{
-				// si l'utilisateur est déja connecté
-				if ($this->isUserConnected())
-				{
-					header('Location: ' . BASE_URL. '/poll/share');
-				}
-				else
-				{
-					// Sinon on fait le rendu
-					$this->render('pollConnection');
-				}
+				header('Location: ' . BASE_URL. '/poll/share');
 			}
 			else
 			{
-				// renvoyer a Poll create avec un message disant champ(s) invalide(s)
-				header('Location: ' . BASE_URL. '/poll/create');
+				// Sinon on fait le rendu
+				$this->render('pollConnection');
 			}
 		}
 		else
@@ -438,6 +412,18 @@ class PollController extends Controller
 					usort($res['choices'], 'cmp');
 				}
 
+				// On transforme les liens http(s).. en vrai lien avec des balises
+				$res['description'] = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"$3\" >$3</a>", $res['description']);
+			    $res['description'] = preg_replace("/(^|[\n ])([\w]*?)((www|ftp)\.[^ \,\"\t\n\r<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"http://$3\" >$3</a>", $res['description']);
+			    $res['description'] = preg_replace("/(^|[\n ])([a-z0-9&\-_\.]+?)@([\w\-]+\.([\w\-\.]+)+)/i", "$1<a class=\"link\" rel=\"nofollow\" href=\"mailto:$2@$3\">$2@$3</a>", $res['description']);
+
+			    // On transforme les retours à la ligne en balise html
+			    $res['description'] = str_replace("\n", "<br>", $res['description']);
+
+			    // Tableau pour stocker les jours de la semaine
+				$jour = array("lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"); 
+				$mois = array("","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"); 
+				
 				// on définit les variables à envoyer à la vue
 				$this->set('openedPoll', $res['open']);
 				$this->set('urlPoll', $res['url']);
@@ -446,7 +432,14 @@ class PollController extends Controller
 				$this->set('eventTitle', $res['title']);
 				$this->set('eventDescription', $res['description']);
 				$this->set('choiceList', $res['choices']);
-				$this->set('creationDate', date("d-m-Y",strtotime($res['creation_date'])));
+
+				// Traduction de la date
+				$week	= $jour[date('w', strtotime($res['creation_date']))];
+				$day	= date('d', strtotime($res['creation_date'])); 
+				$month	= $mois[date('n', strtotime($res['creation_date']))];
+				$year	= date('Y', strtotime($res['creation_date']));
+				$dateFr	= sprintf('%s %s %s %s', $week, $day, $month, $year);
+				$this->set('creationDate', $dateFr);
 				
 
 				$this->set('title', $res['title'] .' | Diapazen');
