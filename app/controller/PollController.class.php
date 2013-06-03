@@ -146,31 +146,31 @@ class PollController extends Controller
 		try
 		{
 			//test si un choix a été fait entre la connection et l'inscription et qu'il y a un email
-			if(isset($_POST['account']) && isset($_POST['email']) && TestForm::testRegexp('email', $_POST['email']))
+			if(isset($_POST['account']) && isset($_POST['email']))
 			{
 				$mail = $_POST['email'];
 				$ip_addr = $_SERVER['REMOTE_ADDR'];
 
 				//si on a choisi la connection et qu'il y a le mdp on tente de se connecter
-				if($_POST['account'] == 'registered' && isset($_POST['password']) && TestForm::testRegexp('pwd', $_POST['password']))
+				if($_POST['account'] == 'registered' && isset($_POST['password']))
 				{
+					// On teste l'adresse mail
+					if (!TestForm::testRegexp('email', $mail))
+						throw new Exception('error_mail');
+
 					$pwd = $_POST['password'];
 
-					try
-					{
-						// on vérifie les infos avec la bdd
-						$this->loadModel('user');
-						$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
-					}
-					catch(Exception $e)
-					{
-						// IMPORTANT: ERREUR A GERER PROPREMENT !!!!!
-						die('Erreur interne survenue.');
-					}
+					// on vérifie les infos avec la bdd
+					$this->loadModel('user');
+					$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
 
 				} //si on a choisi l'inscription et qu'il y a le nom et prenom on l'inscrit
-				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']) && TestForm::testRegexp('firstname', $_POST['firstNameUser']) && TestForm::testRegexp('lastName', $_POST['nameUser']))
+				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']))
 				{
+					// On teste l'adresse mail
+					if (!TestForm::testRegexp('email', $mail))
+						throw new Exception('error_mail');
+
 					$firstname = $_POST['firstNameUser'];
 					$lastname = $_POST['nameUser'];
 					// On crée le mot de passe
@@ -191,20 +191,17 @@ class PollController extends Controller
 
 					$mailer = new MailUtil();
 					$mailer->sendMail($mail,$subjet,$messageMail);
-
-					//TODO envoyer un mail avec le mdp
 				}
+				else
+					$connectStatus = false;
 
 
 				if($connectStatus == false)
 				{
 					// La connexion a échoué
 					$this->setUserDisconnected();
-
-					// On choisi le rendu
-					$this->set('class_connect', 'orange');
-					$this->set('class_share', 'grey');
-					$render = 'pollConnection';
+					throw new Exception('error_connection');
+					
 				}
 				else
 				{
@@ -252,21 +249,30 @@ class PollController extends Controller
 					header('Location: ' . BASE_URL. '/poll/create');
 				}
 			}
-			else
-			{
-				// renvoyer a Poll connect avec un message disant user non connecté
-				header('Location: ' . BASE_URL. '/poll/connect');
-			}
 
 
 		}
 		catch(Exception $e)
 		{
 			switch ($e->getMessage()) {
-				case 'Email already in db':
-					$this->set('title', ' Connect ');
+				case 'email_already_in_db':
 					$this->set('class_connect', 'orange');
 					$this->set('class_share', 'grey');
+					$this->set('err', 'registrationError');
+					$render = 'pollConnection';
+					break;
+
+				case 'error_connection':
+					$this->set('class_connect', 'orange');
+					$this->set('class_share', 'grey');
+					$this->set('err', 'connectionError');
+					$render = 'pollConnection';
+					break;
+
+				case 'error_mail':
+					$this->set('class_connect', 'orange');
+					$this->set('class_share', 'grey');
+					$this->set('err', 'mailError');
 					$render = 'pollConnection';
 					break;
 				

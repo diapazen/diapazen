@@ -267,7 +267,7 @@ class UserModel extends Model
 					}
 					else
 					{
-						throw new Exception("Email already in db");						
+						throw new Exception();						
 					}
 				}
 			}
@@ -275,7 +275,7 @@ class UserModel extends Model
 		}
 		catch(Exception $e) 
 		{
-			throw new Exception('Erreur lors de la tentative d\'enregistrement :</br>' . $e->getMessage());
+			throw new Exception('email_already_in_db');
 		}
 	}
         
