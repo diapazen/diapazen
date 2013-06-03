@@ -1,4 +1,4 @@
-jQuery(function($){
+function datepickerLoader() {
 
 	$('#datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
@@ -6,15 +6,12 @@ jQuery(function($){
 		regional : 'fr'
 	});
 
-	// $("datepicker").datepicker( $.datepicker.regional[ "fr" ] );
-
-});
 
 /* French initialisation for the jQuery UI date picker plugin. */
 /* Written by Keith Wood (kbwood{at}iinet.com.au),
               StÃ©phane Nahmani (sholby@sholby.net),
               StÃ©phane Raimbault <stephane.raimbault@gmail.com> */
-jQuery(function($){
+
 	$.datepicker.regional['fr'] = {
 		closeText: 'Fermer',
 		prevText: 'Précédent',
@@ -22,8 +19,8 @@ jQuery(function($){
 		currentText: 'Aujourd\'hui',
 		monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin',
 		'Juillet','Aout','Septembre','Octobre','Novembre','Décembre'],
-		monthNamesShort: ['Janv.','FÃ©vr.','Mars','Avril','Mai','Juin',
-		'Juil.','Aout','Sept.','Oct.','Nov.','Déc.'],
+		monthNamesShort: ['Janv.','Fév.','Mars','Avril','Mai','Juin',
+		'Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
 		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
 		dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
 		dayNamesMin: ['D','L','M','M','J','V','S'],
@@ -34,7 +31,7 @@ jQuery(function($){
 		showMonthAfterYear: false,
 		yearSuffix: ''};
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
-});
+}
 
 function manageChoices(input)
 {
@@ -97,4 +94,30 @@ function manageChoices(input)
 	   choices.item(i-1).setAttribute('id', 'choix'+i);
 	}
 
+}
+
+
+function manageConnectionForm(radio) {
+
+	switch(radio.id) {
+
+		case "registered":
+			document.getElementById('infos_user').style.display = 'none';
+			document.getElementById('mail_info').style.display = 'none';
+			document.getElementById('pwd_user').style.display = 'inline-block';
+			document.getElementById('pwd_user').previousSibling.previousSibling.style.display = 'inline-block';
+		break;
+
+		case "not_registered":
+			document.getElementById('infos_user').style.display = 'inline-block';
+			document.getElementById('mail_info').style.display = 'block';
+			document.getElementById('pwd_user').style.display = 'none';
+			document.getElementById('pwd_user').previousSibling.previousSibling.style.display = 'none';
+		break;
+
+		default:
+			alert('Erreur');
+
+
+	}
 }

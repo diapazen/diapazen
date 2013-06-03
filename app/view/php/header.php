@@ -13,6 +13,9 @@
         <link rel="stylesheet" type="text/css" href="<?php $this->getPath('css/Aristo.css'); ?>">
         <!-- jQuery 1.9-->
         <script src="<?php $this->getPath('js/jquery.js'); ?>"> </script>
+        <script src="<?php $this->getPath('js/script.js'); ?>"> </script>
+        <script src="<?php $this->getPath('js/formCheck.js'); ?>"> </script>
+
         
         
         <title><?php if (isset($title)){ echo $title; } ?></title>
