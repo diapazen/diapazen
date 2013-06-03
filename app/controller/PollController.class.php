@@ -98,41 +98,15 @@ class PollController extends Controller
 				$_SESSION['poll_date'] = null;
 			}
 
-			// Test des choix avec regexp
-			$testchoices = true;
-			foreach ($_POST['choices'] as $key => $value)
+			// si l'utilisateur est déja connecté
+			if ($this->isUserConnected())
 			{
-				if (!TestForm::testRegexp('choice', $value))
-				{
-					$testchoices = false;
-				}
-				if (empty($value))
-				{
-					$testchoices = true;
-				}
-			}
-
-
-			// Test des variables avec regexp
-			if (TestForm::testRegexp('title', 		$_POST['title_input']) && 
-				TestForm::testRegexp('description', $_POST['description_input']) && 
-				$testchoices)
-			{
-				// si l'utilisateur est déja connecté
-				if ($this->isUserConnected())
-				{
-					header('Location: ' . BASE_URL. '/poll/share');
-				}
-				else
-				{
-					// Sinon on fait le rendu
-					$this->render('pollConnection');
-				}
+				header('Location: ' . BASE_URL. '/poll/share');
 			}
 			else
 			{
-				// renvoyer a Poll create avec un message disant champ(s) invalide(s)
-				header('Location: ' . BASE_URL. '/poll/create');
+				// Sinon on fait le rendu
+				$this->render('pollConnection');
 			}
 		}
 		else
