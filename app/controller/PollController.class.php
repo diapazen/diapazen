@@ -412,6 +412,18 @@ class PollController extends Controller
 					usort($res['choices'], 'cmp');
 				}
 
+				// On transforme les liens http(s).. en vrai lien avec des balises
+				$res['description'] = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"$3\" >$3</a>", $res['description']);
+			    $res['description'] = preg_replace("/(^|[\n ])([\w]*?)((www|ftp)\.[^ \,\"\t\n\r<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"http://$3\" >$3</a>", $res['description']);
+			    $res['description'] = preg_replace("/(^|[\n ])([a-z0-9&\-_\.]+?)@([\w\-]+\.([\w\-\.]+)+)/i", "$1<a class=\"link\" rel=\"nofollow\" href=\"mailto:$2@$3\">$2@$3</a>", $res['description']);
+
+			    // On transforme les retours à la ligne en balise html
+			    $res['description'] = str_replace("\n", "<br>", $res['description']);
+
+			    // Tableau pour stocker les jours de la semaine
+				$jour = array("lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"); 
+				$mois = array("","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"); 
+				
 				// on définit les variables à envoyer à la vue
 				$this->set('openedPoll', $res['open']);
 				$this->set('urlPoll', $res['url']);
@@ -420,7 +432,14 @@ class PollController extends Controller
 				$this->set('eventTitle', $res['title']);
 				$this->set('eventDescription', $res['description']);
 				$this->set('choiceList', $res['choices']);
-				$this->set('creationDate', date("d-m-Y",strtotime($res['creation_date'])));
+
+				// Traduction de la date
+				$week	= $jour[date('w', strtotime($res['creation_date']))];
+				$day	= date('d', strtotime($res['creation_date'])); 
+				$month	= $mois[date('n', strtotime($res['creation_date']))];
+				$year	= date('Y', strtotime($res['creation_date']));
+				$dateFr	= sprintf('%s %s %s %s', $week, $day, $month, $year);
+				$this->set('creationDate', $dateFr);
 				
 
 				$this->set('title', $res['title'] .' | Diapazen');
