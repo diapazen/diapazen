@@ -24,12 +24,12 @@
             	}
             ?>
             
-            <form action="<?php $this->getHomeUrl(); ?>/user/login" class="default_form" id="connect_box_fail" method="post">
+            <form onsubmit="return formCheck(this)" action="<?php $this->getHomeUrl(); ?>/user/login" class="default_form" id="connect_box_fail" method="post">
             	<p class="title" >Réessayer de vous connecter !</p>
                 <label for="mail_connect_fail" class="text" >E-mail</label>
-	        	<input id="mail_connect_fail" name="mailConnect" class="text_edit" type="mail" >
+	        	<input id="mail_connect_fail" name="email" class="text_edit" type="mail" >
 	        	<label for="password_connect_fail" class="text" >Mot de passe</label>
-                <input id="password_connect_fail" name="passwordConnect" class="text_edit" type="password" >
+                <input id="password_connect_fail" name="password" class="text_edit" type="password" >
 	        	<input class ="orange_button" type="submit" value="Connexion">
             </form>
         </div>

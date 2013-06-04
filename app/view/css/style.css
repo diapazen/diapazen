@@ -454,7 +454,8 @@ h1#result
 	text-align: left;
 }
 
-#poll_connection_form #infos_user, #poll_connection_form #mail_info {
+#poll_connection_form .infos_user
+{
 	display: none;
 }
 

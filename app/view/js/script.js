@@ -101,17 +101,16 @@ function manageConnectionForm(radio) {
 
 	switch(radio.id) {
 
-		case "registered":
-			document.getElementById('infos_user').style.display = 'none';
-			document.getElementById('mail_info').style.display = 'none';
-			document.getElementById('pwd_user').style.display = 'inline-block';
+		case 'registered':
+			$('.infos_user').css({display:'none'});
+			$('#pwd_user').css({display:'inline-block'});
 			document.getElementById('pwd_user').previousSibling.previousSibling.style.display = 'inline-block';
 		break;
 
-		case "not_registered":
-			document.getElementById('infos_user').style.display = 'inline-block';
-			document.getElementById('mail_info').style.display = 'block';
-			document.getElementById('pwd_user').style.display = 'none';
+		case 'not_registered':
+			$('.infos_user').css({display:'inline-block'});
+			$('.info_box').css({display:'block'});
+			$("#pwd_user").css({display:'none'});
 			document.getElementById('pwd_user').previousSibling.previousSibling.style.display = 'none';
 		break;
 

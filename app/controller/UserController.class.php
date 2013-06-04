@@ -55,12 +55,12 @@ class UserController extends Controller
 			header('Location: ' . BASE_URL. '/dashboard');
 		}
 
-		if (	isset($_POST['mailConnect'])		&& !empty($_POST['mailConnect'])
-			&&	isset($_POST['passwordConnect'])	&& !empty($_POST['passwordConnect']))
+		if (	isset($_POST['email'])		&& !empty($_POST['email'])
+			&&	isset($_POST['password'])	&& !empty($_POST['password']))
 		{
 
-			$email	 	= $_POST['mailConnect'];
-			$passwd 	= $_POST['passwordConnect'];
+			$email	 	= $_POST['email'];
+			$passwd 	= $_POST['password'];
 			$ip_addr 	= $_SERVER['REMOTE_ADDR'];
 
 			
@@ -123,22 +123,22 @@ class UserController extends Controller
 				$this->loadModel('user');
 
 				//Partie: Modifications des données utilisateur
-				if (	isset($_POST['lastname']) && !empty($_POST['lastname'])
-					&&	isset($_POST['firstname']) && !empty($_POST['firstname'])
-					&&	isset($_POST['mail']) && !empty($_POST['mail']) )
+				if (	isset($_POST['lastNameUser']) && !empty($_POST['lastNameUser'])
+					&&	isset($_POST['firstNameUser']) && !empty($_POST['firstNameUser'])
+					&&	isset($_POST['email']) && !empty($_POST['email']) )
 				{
 					// On teste le mot de passe de confirmation
-					if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
-						&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
+					if (isset($_POST['password']) && !empty($_POST['password'])
+						&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['password']))
 					{
 						
 						// met a jour la bdd
-						$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstname'], $_POST['lastname'], $_POST['mail']);
+						$res = $this->getModel()->changeUser($this->getUserInfo('id'), $_POST['firstNameUser'], $_POST['lastNameUser'], $_POST['email']);
 
 						//met a jour la session
-						$this->setUserInfo('firstname', $_POST['firstname']);
-						$this->setUserInfo('lastname', $_POST['lastname']);
-						$this->setUserInfo('email', $_POST['mail']);
+						$this->setUserInfo('firstname', $_POST['firstNameUser']);
+						$this->setUserInfo('lastname', $_POST['lastNameUser']);
+						$this->setUserInfo('email', $_POST['email']);
 
 						// On informe l'utilisateur de la réussite
 						$this->set('data_updated', true);
@@ -152,16 +152,16 @@ class UserController extends Controller
 				}
 
 				// On modifie le mot de passe si il est renseigné
-				if (	isset($_POST['password']) && !empty($_POST['password'])
+				if (	isset($_POST['newPassword']) && !empty($_POST['newPassword'])
 					&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
 				{
 					// On teste le mot de passe de confirmation
-					if (isset($_POST['passwordSecurity']) && !empty($_POST['passwordSecurity'])
-						&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['passwordSecurity']))
+					if (isset($_POST['password']) && !empty($_POST['password'])
+						&& $this->getModel()->checkPassword($this->getUserInfo('id'), $_POST['password']))
 					{
-						if ($_POST['password'] == $_POST['passwordConfirm'])
+						if ($_POST['newPassword'] == $_POST['passwordConfirm'])
 						{
-							$res = $this->getModel()->changePassword($this->getUserInfo('email'), $_POST['password']);
+							$res = $this->getModel()->changePassword($this->getUserInfo('email'), $_POST['newPassword']);
 						
 							// Réussite de la modification du mot de passe
 							$this->set('data_updated', true);

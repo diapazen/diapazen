@@ -1,50 +1,123 @@
-$(function(){
-    
-    /*
-    * Vérification du nom lors de l'inscription
-    */
-    $("#user_lastname").blur(function(e){
-        var regex = "^[a-zA-Z\çéèêï]+[-\'\s]?[a-zA-Z\çéèêï]+$";
-        if(!$("#user_lastname").val().match(regex, "gi")){
-            $("#user_lastname").css({borderLeft:"2px solid red"});
-            return false
+function formCheck(form) {
+
+    var i;
+    var j;
+    var valReturn = true;
+    var strRegexp = {
+                    "default"       :   /^.{3,}$/,
+                    "choice"         :   /^.{1,}$/,
+                    "date_input"    :   /^.{0}|[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
+                    "firstname"    :   /^[a-zA-Z\çéèêï]+[-]?[a-zA-Z\çéèêï]+$/,
+                    "lastname"    :   /^[a-zA-Z\çéèêï]+[-\'\s]?[a-zA-Z\çéèêï]+$/,
+                    "email"         :   /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
+                };
+
+    var fields = $("#"+form.id+" input, textarea");
+
+    for(i=0; i<fields.length; i++)
+    {
+        if( ((fields[i].tagName == 'INPUT' && (fields[i].type == 'text'
+            || fields[i].type == 'password')) 
+            || fields[i].tagName == 'TEXTAREA') && getStyleProperty(fields[i], 'display') != 'none')
+        {
+            switch(fields[i].name) {
+
+                case 'title_input':
+                case 'description_input':
+                case 'password':
+                    regexp = strRegexp['default'];
+                break;
+
+                case 'date_input':
+                    regexp = strRegexp['date_input'];
+                break;
+
+                case 'choices[]':
+                    regexp = strRegexp['choice'];
+                break;
+
+                case 'email':
+                    regexp = strRegexp['email'];
+                break;
+
+                case 'mails':
+                    var reg = new RegExp("[ \n,;]+", "g");
+                    var emails = fields[i].value.split(reg);
+                    for (j=0; j<emails.length; j++)
+                    {
+                        if(!emails[j].match(strRegexp['email']))
+                        {
+                            valReturn = false;
+                        }
+                    }
+                    if(!valReturn)
+                    {
+                        fields[i].style.borderLeft = '2px solid red';
+                    }
+                    else
+                    {
+                        fields[i].style.borderLeft = '1px solid #D0D0D0';
+                    }
+
+                    regexp = null;
+                break;
+
+                case 'firstNameUser':
+                    regexp = strRegexp['firstname'];
+                break;
+                case 'lastNameUser':
+                    regexp = strRegexp['lastname'];
+                break;
+
+                case 'newPassword':
+                    if(fields[i].value.match(strRegexp['default']))
+                        var newPassword = true;
+                    
+                    regexp = null;
+                break;
+                case 'passwordConfirm':
+                    if(newPassword)
+                        regexp = strRegexp['default'];
+                    else
+                    {
+                        regexp = null;
+                        fields[i].style.borderLeft = '1px solid #D0D0D0';
+                    }
+                break;
+
+                default:
+                    regexp = null;
+            }
+
+            if(regexp != null)
+            {
+                if(!fields[i].value.match(regexp))
+                {
+                    valReturn = false;
+                    fields[i].style.borderLeft = '2px solid red';
+                }
+                else
+                {
+                    fields[i].style.borderLeft = '1px solid #D0D0D0';
+                }
+            }
         }
-        else{
-            $("#user_lastname").css({borderLeft:"2px solid green"});
-            return true
-        }
-          
-    });
-    
-    /*
-     * Vérification du prénom lors de la modif des données perso
-     * La syntaxe est légèrement différente de celle du nom (pas d'espaces ni d'apostrophes possibles)
-     */
-    $("#user_firstname").blur(function(e){
-        var regex = "^[a-zA-Z\çéèêï]+[-]?[a-zA-Z\çéèêï]+$";
-        if(!$("#user_firstname").val().match(regex, "gi")){
-            $("#user_firstname").css({borderLeft:"2px solid red"});
-            return false
-        }
-        else{
-            $("#user_firstname").css({borderLeft:"2px solid green"});
-            return true
-        }
-          
-    }); 
-    
-    /*
-     * Vérification de la syntaxe du mail lors de la modif des données perso
-     */
-    $("#user_mail").blur(function(e){
-        var regex = "^[a-zA-Z0-9\-_]+[a-zA-Z0-9\.\-_]*@[a-zA-Z0-9\-_]+[.][a-zA-Z\.\-_]{1,}[a-zA-Z\-_]+";
-        if(!$("#user_mail").val().match(regex, "gi")){
-            $("#user_mail").css({borderLeft:"2px solid red"});
-            return false
-        }
-        else{
-            $("#user_mail").css({borderLeft:"2px solid green"});
-            return true
-        }
-    });
-});
+    }
+
+    return valReturn;
+
+}
+
+function getStyleProperty(element, styleProperty)
+{
+ 
+    var prop = "";
+ 
+    if (element.currentStyle)
+        prop = element.currentStyle[styleProperty];
+    else if (window.getComputedStyle)
+        prop = document.defaultView.getComputedStyle(element,null).getPropertyValue(styleProperty);
+ 
+    return prop;
+ 
+}

@@ -15,7 +15,7 @@
                 <h1 class="big_title" id="result"><?php echo sprintf('Le choix ayant recueilli le plus de voix est: %s', $choiceList[0]["choiceName"]); ?></h1>
                 <?php } ?>
                 
-                <form method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">
+                <form onsubmit="return formCheck(this)" method="post" action="<?php $this->getHomeUrl(); echo '/poll/view/'.$urlPoll;?>">
                     <div id="poll_choices">
                         <table>
                             <?php

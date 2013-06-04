@@ -29,15 +29,13 @@
                 <label for="not_registered" class="text label_chkbox"><input onchange="manageConnectionForm(this)" id="not_registered" value="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>
                 <label for="email" class="text">E-mail</label>
                 <input class="text_edit" id="email" name="email" type="mail" placeholder="" value="">
-                <span id="infos_user">
-                    <label for="firstname_user" class="text">Prénom</label>
-                    <input class="text_edit" id="firstname_user" name="firstNameUser" type="text">
-                    <label for="name_user" class="text">Nom</label>
-                    <input class="text_edit" id="lastname_user" name="nameUser" type="text">
-                </span>
+                <label for="firstname_user" class="text infos_user">Prénom</label>
+                <input class="text_edit infos_user" id="firstname_user" name="firstNameUser" type="text">
+                <label for="name_user" class="text infos_user">Nom</label>
+                <input class="text_edit infos_user" id="lastname_user" name="lastNameUser" type="text">
                 <label for="pwd_user" class="text">Mot de passe</label>
                 <input class="text_edit" id="pwd_user" type="password" name="password" placeholder="" value="">
-                <p class="orange_text info_box" id="mail_info">Un mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
+                <p class="orange_text info_box infos_user">Un mot de passe vous sera envoyé à l'adresse e-mail renseignée.</p>
                 <input class="orange_button" type="submit" value="Étape suivante"/>
             </form>
         </div>

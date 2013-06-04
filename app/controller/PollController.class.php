@@ -165,14 +165,14 @@ class PollController extends Controller
 					$connectStatus = $this->getModel()->connectionToApp($mail, $pwd, $ip_addr);
 
 				} //si on a choisi l'inscription et qu'il y a le nom et prenom on l'inscrit
-				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['nameUser']))
+				else if($_POST['account'] == 'not_registered' && isset($_POST['firstNameUser']) && isset($_POST['lastNameUser']))
 				{
 					// On teste l'adresse mail
 					if (!TestForm::testRegexp('email', $mail))
 						throw new Exception('error_mail');
 
 					$firstname = $_POST['firstNameUser'];
-					$lastname = $_POST['nameUser'];
+					$lastname = $_POST['lastNameUser'];
 					// On crée le mot de passe
 					$this->loadModel('user');
 					$pwd = $this->getModel()->generatorPsw();
