@@ -94,6 +94,8 @@ function manageChoices(input)
 	   choices.item(i-1).setAttribute('id', 'choix'+i);
 	}
 
+	initBlur();
+
 }
 
 

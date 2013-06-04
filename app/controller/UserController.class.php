@@ -229,17 +229,17 @@ class UserController extends Controller
 		try
 		{
 			// l'email est présent
-			if (isset($_POST['mailRetrieve']))
+			if (isset($_POST['email']))
 			{
 				// différent de vide
-				if(!empty($_POST['mailRetrieve']))
+				if(!empty($_POST['email']))
 				{
 					// présent dans la bdd
-					if ($this->getModel()->isEmailRegistred($_POST['mailRetrieve']))
+					if ($this->getModel()->isEmailRegistred($_POST['email']))
 					{
 						$password = $this->getModel()->generatorPsw();
 
-						$this->getModel()->changePassword($_POST['mailRetrieve'], $password);
+						$this->getModel()->changePassword($_POST['email'], $password);
 
 						
 						$objMail = new MailUtil();
@@ -248,7 +248,7 @@ class UserController extends Controller
 						$message->setParams(array('password'=>$password));
 						$subject = 'Réinitialisation de votre mot de passe';
 						$messageMail = $message->getMessage();
-						$result = $objMail->sendMail($_POST['mailRetrieve'], $subject, $messageMail);
+						$result = $objMail->sendMail($_POST['email'], $subject, $messageMail);
 						$this->set('infoLogin',$result ? 'sendPassword' : 'sendFailPassword');
 						$this->render('login');
 						
