@@ -296,6 +296,9 @@ class PollModel extends Model
         $regexMail = '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#';
         foreach($emails as $current)
         {
+            // Evite les failles XSS
+            $current = htmlspecialchars($current);
+            
             if(!preg_match($regexMail, $current))
             {
                 unset($emails[array_search($current, $emails)]);
@@ -307,7 +310,7 @@ class PollModel extends Model
             return null;
         }
 
-        return htmlspecialchars($emails);
+        return $emails;
     }
     
     /**

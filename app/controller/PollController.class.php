@@ -66,6 +66,9 @@ class PollController extends Controller
 	{
 
 		$this->set('title', 'Création d\'un sondage | Diapazen');
+		$this->set('class_create', 'grey');
+		$this->set('class_connect', 'orange');
+		$this->set('class_share', 'grey');
 
 		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
 		{
@@ -78,9 +81,6 @@ class PollController extends Controller
 			header('Location: ' . BASE_URL. '/poll/create');
 		}
 
-		$this->set('class_create', 'grey');
-		$this->set('class_connect', 'orange');
-		$this->set('class_share', 'grey');
 		// test si le formulaire de creation de sondage est existant
 		if (isset($_POST['title_input']) && isset($_POST['description_input']) && isset($_POST['choices']))
 		{
@@ -98,55 +98,16 @@ class PollController extends Controller
 				$_SESSION['poll_date'] = null;
 			}
 
-			// si l'utilisateur est déja connecté
-			if ($this->isUserConnected())
-			{
-				header('Location: ' . BASE_URL. '/poll/share');
-			}
-			else
-			{
-				// Sinon on fait le rendu
-				$this->render('pollConnection');
-			}
-		}
-		else
-		{
-			// renvoyer a Poll create avec un message disant champs inexistants
-			header('Location: ' . BASE_URL. '/poll/create');
 		}
 
-		
-	}
-
-	/**
-	 * Création d'un sondage
-	 * 
-	 * url:	diapazen.com/poll/share
-	 **/
-	public function share($params = null)
-	{
-		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
-		{
-			$this->set('show_ariadne', $_SESSION['show_ariadne']);
-			$this->set('width_ariadne', $_SESSION['width_ariadne']);
-		}
-		else
-		{
-			// renvoyer a Poll create ces variable devrais etre initialisées
-			header('Location: ' . BASE_URL. '/poll/create');
-		}
-
-		// On choisi le rendu par default
-		$this->set('title', 'Création d\'un sondage | Diapazen');
-		$this->set('class_create', 'grey');
-		$this->set('class_connect', 'orange');
-		$this->set('class_share', 'grey');
-		$render = 'pollConnection';
+		// Si l'utilisateur est déja connecté, on le redirige vers le partage
+		if ($this->isUserConnected())
+			header('Location: ' . BASE_URL. '/poll/share');
 
 		try
 		{
 			//test si un choix a été fait entre la connection et l'inscription et qu'il y a un email
-			if(isset($_POST['account']) && isset($_POST['email']))
+			if (isset($_POST['account']) && isset($_POST['email']))
 			{
 				$mail = $_POST['email'];
 				$ip_addr = $_SERVER['REMOTE_ADDR'];
@@ -207,10 +168,66 @@ class PollController extends Controller
 				{
 					// La connexion a réussie
 					$this->setUserConnected($connectStatus);
-
+					header('Location: ' . BASE_URL. '/poll/share');
 				}
 
 			}
+		}
+		catch(Exception $e)
+		{
+			switch ($e->getMessage())
+			{
+				case 'email_already_in_db':
+					$this->set('err', 'registrationError');
+					break;
+
+				case 'error_connection':
+					$this->set('err', 'connectionError');
+					break;
+
+				case 'error_mail':
+					$this->set('err', 'mailError');
+					break;
+				
+				// Erreur de la bdd (typiquement des erreurs SQL)
+				default:
+					$this->render('dbError');
+					break;
+			}
+		}
+
+		$this->render('pollConnection');
+
+		
+	}
+
+	/**
+	 * Création d'un sondage
+	 * 
+	 * url:	diapazen.com/poll/share
+	 **/
+	public function share($params = null)
+	{
+		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
+		{
+			$this->set('show_ariadne', $_SESSION['show_ariadne']);
+			$this->set('width_ariadne', $_SESSION['width_ariadne']);
+		}
+		else
+		{
+			// renvoyer a Poll create ces variable devrais etre initialisées
+			header('Location: ' . BASE_URL. '/poll/create');
+		}
+
+		// On choisi le rendu par default
+		$this->set('title', 'Création d\'un sondage | Diapazen');
+		$this->set('class_create', 'grey');
+		$this->set('class_connect', 'orange');
+		$this->set('class_share', 'grey');
+
+		try
+		{
+			
 
 			// Lorsque l'utilisateur est connecté
 			if ($this->isUserConnected())
@@ -241,7 +258,7 @@ class PollController extends Controller
 					// On choisit le rendu
 					$this->set('class_connect', 'grey');
 					$this->set('class_share', 'orange');
-					$render = 'pollShare';
+					$this->render('pollShare');
 				}
 				else
 				{
@@ -250,40 +267,12 @@ class PollController extends Controller
 				}
 			}
 
-
 		}
 		catch(Exception $e)
 		{
-			switch ($e->getMessage()) {
-				case 'email_already_in_db':
-					$this->set('class_connect', 'orange');
-					$this->set('class_share', 'grey');
-					$this->set('err', 'registrationError');
-					$render = 'pollConnection';
-					break;
-
-				case 'error_connection':
-					$this->set('class_connect', 'orange');
-					$this->set('class_share', 'grey');
-					$this->set('err', 'connectionError');
-					$render = 'pollConnection';
-					break;
-
-				case 'error_mail':
-					$this->set('class_connect', 'orange');
-					$this->set('class_share', 'grey');
-					$this->set('err', 'mailError');
-					$render = 'pollConnection';
-					break;
-				
-				// Erreur de la bdd (typiquement des erreurs SQL)
-				default:
-					$render = 'dbError';
-					break;
-			}
+			$this->render('dbError');
 		}
-		// On fait le rendu
-		$this->render($render);
+
 	}
 
 

@@ -24,7 +24,7 @@
             ?>
 
 
-            <form onsubmit="return formCheck(this)" action="share" method="post" class="default_form" id="poll_connection_form">
+            <form onsubmit="return formCheck(this)" action="<?php $this->getHomeUrl(); ?>/poll/connect" method="post" class="default_form" id="poll_connection_form">
                 <label for="registered" class="text label_chkbox"><input id="registered" value="registered" type="radio" name="account" checked="checked" onchange="manageConnectionForm(this)">J'ai déjà un compte</label>
                 <label for="not_registered" class="text label_chkbox"><input onchange="manageConnectionForm(this)" id="not_registered" value="not_registered" type="radio" name="account">C'est rapide, je m'inscris</label>
                 <label for="email" class="text">E-mail</label>
