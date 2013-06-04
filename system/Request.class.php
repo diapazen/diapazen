@@ -81,7 +81,7 @@ class Request
 	/**
 	 * Récupère les paramètres
 	 *
-	 * @return	string	Nom des paramètres
+	 * @return	array	Nom des paramètres
 	 */
 	public function getParams()
 	{
