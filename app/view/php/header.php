@@ -31,9 +31,9 @@
 
 				<?php if (!$this->isUserConnected()){ ?>
 					<div id="connect_box" >
-				    	<form action="<?php $this->getHomeUrl(); ?>/user/login" method="post"><!-- <h3 class="small_title">Se connecter</h3> -->
-				        	<input id="mail_connect" name="mailConnect" class="small_text_edit" type="mail" placeholder="E-mail">
-				        	<input id="password_connect" name="passwordConnect" class="small_text_edit" type="password" placeholder="Mot de passe">
+				    	<form action="<?php $this->getHomeUrl(); ?>/user/login" method="post">
+				        	<input id="mail_connect" name="email" class="small_text_edit" type="mail" placeholder="E-mail">
+				        	<input id="password_connect" name="password" class="small_text_edit" type="password" placeholder="Mot de passe">
 				        	<input class ="orange_small_button" type="submit" value="Connexion">
 						</form>
 						<a class="small_link" href="<?php $this->getHomeUrl(); ?>/user/forgot" >Mot de passe oublié ?</a>
