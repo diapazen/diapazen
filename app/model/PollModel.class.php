@@ -37,7 +37,7 @@ class PollModel extends Model
         private $poll_expiration_date;
 
 
-        /**
+    /**
 	 * Constructeur par défaut
 	 */
 	public function __construct()
@@ -55,7 +55,7 @@ class PollModel extends Model
         try
         {   
             // On récupère les informations de base du sondage
-            $request = $this->mDbMySql->prepare("SELECT firstname,lastname,POLL_ID,title,description, creation_date, expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
+            $request = $this->getPDO()->prepare("SELECT firstname,lastname,POLL_ID,title,description, creation_date, expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
             $request->bindValue(':URL', htmlspecialchars($pollUrl));
             $request->execute();
             $pollInfo=$request->fetch(PDO::FETCH_ASSOC);
@@ -64,13 +64,13 @@ class PollModel extends Model
             if($pollInfo)
             {
                 // On récupère les informations de chaque choix du sondage de la bdd
-                $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
+                $request = $this->getPDO()->prepare("SELECT CHOICE_ID,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
                 $request->bindValue(':ID', $pollInfo['POLL_ID']);
                 $request->execute();
                 $results=$request->fetchAll(PDO::FETCH_ASSOC);
 
                 // On récupère les informations de chaque résultat des choixdu sondage de la bdd
-                $request = $this->mDbMySql->prepare("SELECT CHOICE_ID,choice FROM dpz_view_poll WHERE POLL_ID=:ID;");
+                $request = $this->getPDO()->prepare("SELECT CHOICE_ID,choice FROM dpz_view_poll WHERE POLL_ID=:ID;");
                 $request->bindValue(':ID', $pollInfo['POLL_ID']);
                 $request->execute();
                 $choices=$request->fetchAll(PDO::FETCH_ASSOC);
@@ -125,17 +125,13 @@ class PollModel extends Model
      */
     public function viewAllPolls($userId)
     {
-        try
-        {   
-            $request = $this->mDbMySql->prepare("SELECT title,description,open,url,POLL_ID,expiration_date,creation_date FROM dpz_view_users_join_polls WHERE USER_ID=:UID ORDER BY open DESC,creation_date DESC;");
-            $request->bindValue(':UID', htmlspecialchars($userId));
-            $request->execute();
-            return $request->fetchAll(PDO::FETCH_ASSOC);
-        }
-        catch(Exception $e) 
-        {
-            throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
-        }
+
+        $fields = array('title', 'description', 'open', 'url', 'POLL_ID', 'expiration_date', 'creation_date');
+        $view   = 'dpz_view_users_join_polls';
+        $where  = array('USER_ID' => $userId);
+        $orderBy = array('open desc', 'creation_date desc');
+        
+        return $this->selectWhereOrderBy($fields, $view, $where, $orderBy, 'assoc');
     }
     
     /**
@@ -159,7 +155,7 @@ class PollModel extends Model
             $this->setPollUrl(substr(md5(uniqid()),5,10));
             
             //on créer la requete pour créer une ligne d'un nouveau sondage
-            $request = $this->mDbMySql->prepare("INSERT INTO dpz_polls 
+            $request = $this->getPDO()->prepare("INSERT INTO dpz_polls 
                         (id, user_id, url, title, description, expiration_date, open) 
                         VALUES (NULL, :USERID, :URL, :TITLE, :DESCRIPTION, :EXPIRATIONDATE, 1);");
             $request->bindValue(':USERID', $userId);
@@ -172,7 +168,7 @@ class PollModel extends Model
             //on renvoie true si l'ajout a été un succés sinon false
             if($check == 1) 
             {
-                $this->setPollId($this->mDbMySql->lastInsertId());
+                $this->setPollId($this->getPDO()->lastInsertId());
                 return true;
             }
             else
@@ -196,7 +192,7 @@ class PollModel extends Model
     {
         try
         {
-            $request = $this->mDbMySql->prepare("INSERT INTO dpz_results
+            $request = $this->getPDO()->prepare("INSERT INTO dpz_results
                         (id, choice_id, value) 
                         VALUES (NULL, :CHOICEID, :VALUE);");
             $request->bindValue(':CHOICEID', htmlspecialchars($choiceId));
@@ -218,7 +214,7 @@ class PollModel extends Model
     {
         try
         {
-            $request = $this->mDbMySql->prepare("UPDATE .dpz_polls SET open=0 WHERE id = :POLLID;");
+            $request = $this->getPDO()->prepare("UPDATE .dpz_polls SET open=0 WHERE id = :POLLID;");
             $request->bindValue(':POLLID', htmlspecialchars($pollId));
             return $request->execute();
         }
@@ -243,7 +239,7 @@ class PollModel extends Model
             $this->setPollDescription(htmlspecialchars($pollDescription));
             $this->setPollExpirationDate(htmlspecialchars($poll_expiration_date));
 
-            $request = $this->mDbMySql->prepare("UPDATE .dpz_polls SET
+            $request = $this->getPDO()->prepare("UPDATE .dpz_polls SET
                         title=:TITLE,description=:DESCRIPTION,expiration_date=:EXPIRATIONDATE 
                         WHERE dpz_polls.url=:URL;");
             $request->bindValue(':URL', htmlspecialchars($this->getPollUrl()));
@@ -272,7 +268,7 @@ class PollModel extends Model
             $this->setPollDescription(NULL);
             $this->setPollExpirationDate(NULL);
             $this->setPollUrl(NULL);
-            $request = $this->mDbMySql->prepare("DELETE FROM dpz_polls WHERE id=:ID");
+            $request = $this->getPDO()->prepare("DELETE FROM dpz_polls WHERE id=:ID");
             $request->bindValue(':ID', htmlspecialchars($pollId));
             return $request->execute();
         }

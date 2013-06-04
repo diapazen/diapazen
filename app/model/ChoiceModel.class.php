@@ -51,7 +51,7 @@ class ChoiceModel extends Model
             try
             {
                 $this->setChoiceTitle($title);
-                $request = $this->mDbMySql->prepare("INSERT INTO dpz_choices
+                $request = $this->getPDO()->prepare("INSERT INTO dpz_choices
                             (id, poll_id, choice) VALUES (NULL,:POLLID,:CHOICE);");
                 $request->bindValue(':POLLID', htmlspecialchars($pollId));
                 $request->bindValue(':CHOICE', htmlspecialchars($title));
@@ -74,7 +74,7 @@ class ChoiceModel extends Model
             try
             {
                 $this->setChoiceTitle($title);
-                $request = $this->mDbMySql->prepare("UPDATE dpz_choices 
+                $request = $this->getPDO()->prepare("UPDATE dpz_choices 
                             SET choice=:TITLE WHERE dpz_choices.id=:ID;");
                 $request->bindValue(':CHOICE', htmlspecialchars($title));
                 return $request->execute();
@@ -90,7 +90,7 @@ class ChoiceModel extends Model
             try
             {
                 $this->setChoiceTitle(NULL);
-                $request = $this->mDbMySql->prepare("DELETE FROM dpz_choices WHERE id=:ID");
+                $request = $this->getPDO()->prepare("DELETE FROM dpz_choices WHERE id=:ID");
                 $request->bindValue(':ID', htmlspecialchars($id));
                 return $request->execute();
             }

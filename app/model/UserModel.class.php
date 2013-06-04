@@ -70,17 +70,6 @@ class UserModel extends Model
 		}
 	}
 
-
-	/**
-	 * Déconnexion de l'utilisateur à l'application
-	 *
-	 * @return	bool true si la déconnexion s'est bien passé
-	 */
-	public function disconnectionFromApp()
-	{
-
-	}
-
 	/**
 	 * Connexion de l'utilisateur
 	 *
@@ -100,25 +89,26 @@ class UserModel extends Model
 				if($email != null && $password != null)
 				{
 					// on récupère l'identifiant, le mail et le password avec une clause WHERE sur l'email
-					$request = $this->mDbMySql->prepare("SELECT id,lastname,firstname,email,password FROM dpz_view_connexion WHERE dpz_view_connexion.email=:EMAIL;");
-					$request->bindValue(':EMAIL', htmlspecialchars($email));
-					$request->execute();
-					$infos=$request->fetch();
+					$fields = array('id', 'lastname', 'firstname', 'email', 'password');
+					$view	= 'dpz_view_connexion';
+					$where 	= array('email' => $email);
+
+					$infos = $this->selectWhere($fields, $view, $where, 'assoc');
 
 					// si on a un résultat, c'est que ce mail est dans la bdd
 					// maintenant, on doit vérifier le password
 					if (!is_null($infos))
 					{
-						if (crypt($password, $infos['password']) == $infos['password']) 
+						if (crypt($password, $infos[0]['password']) == $infos[0]['password']) 
 						{
-							$this->mId = $infos['id'];
+							$this->mId = $infos[0]['id'];
 
-							$this->updateConnectionData($infos['id'],$login_ip);
+							$this->updateConnectionData($infos[0]['id'],$login_ip);
 
-							return array(		'id' 		=> $infos['id'],
-												'firstname' => $infos['firstname'],
-												'lastname'	=> $infos['lastname'],
-												'email' 	=> $infos['email']
+							return array(		'id' 		=> $infos[0]['id'],
+												'firstname' => $infos[0]['firstname'],
+												'lastname'	=> $infos[0]['lastname'],
+												'email' 	=> $infos[0]['email']
 											);
 						}
 					}
@@ -151,12 +141,12 @@ class UserModel extends Model
 				{
 					// on modifie les données de connexion grace à une clause where sur l'id
 					// ici la date
-					$request = $this->mDbMySql->prepare("UPDATE .dpz_users SET dpz_users.last_login_date=CURRENT_TIMESTAMP WHERE dpz_users.id=:ID;");
+					$request = $this->getPDO()->prepare("UPDATE .dpz_users SET dpz_users.last_login_date=CURRENT_TIMESTAMP WHERE dpz_users.id=:ID;");
 					$request->bindValue(':ID', $id);
 					$request->execute();
 
 					// ici l'ip
-					$request = $this->mDbMySql->prepare("UPDATE .dpz_users SET dpz_users.last_login_ip=:LAST_LOGIN_IP WHERE dpz_users.id=:ID;");
+					$request = $this->getPDO()->prepare("UPDATE .dpz_users SET dpz_users.last_login_ip=:LAST_LOGIN_IP WHERE dpz_users.id=:ID;");
 					$request->bindValue(':ID', $id);
 					$request->bindValue(':LAST_LOGIN_IP', $login_ip);
 					$request->execute();
@@ -191,7 +181,7 @@ class UserModel extends Model
 				if($id != null)
 				{
 					// on récupère toutes les données de l'utilisateur sauf le password avec une clause WHERE sur l'identifiant
-					$request = $this->mDbMySql->prepare("SELECT firstname,lastname,email,registration_date,last_login_date,last_login_ip FROM .dpz_view_users WHERE dpz_view_users.id=:ID;");
+					$request = $this->getPDO()->prepare("SELECT firstname,lastname,email,registration_date,last_login_date,last_login_ip FROM .dpz_view_users WHERE dpz_view_users.id=:ID;");
 					$request->bindValue(':ID', $id);
 					$request->execute();
 					$infos=$request->fetch();
@@ -250,7 +240,7 @@ class UserModel extends Model
 					if(!$this->isEmailRegistred($email))
 					{
 						// on enregistre les données fournies par l'utilisateur
-						$request = $this->mDbMySql->prepare("INSERT INTO dpz_users 
+						$request = $this->getPDO()->prepare("INSERT INTO dpz_users 
 							(id, firstname, lastname, email, password, registration_date, last_login_date, last_login_ip) 
 	                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
 
@@ -289,7 +279,7 @@ class UserModel extends Model
          */
         public function changeUser($id, $firstName, $lastName, $email)
         {
-            $request = $this->mDbMySql->prepare("UPDATE dpz_users SET firstname = :FIRSTNAME,lastname = :LASTNAME,email = :EMAIL WHERE id = :ID");
+            $request = $this->getPDO()->prepare("UPDATE dpz_users SET firstname = :FIRSTNAME,lastname = :LASTNAME,email = :EMAIL WHERE id = :ID");
             $request->bindValue(':FIRSTNAME', htmlspecialchars($firstName));
             $request->bindValue(':LASTNAME', htmlspecialchars($lastName));
             $request->bindValue(':EMAIL', htmlspecialchars($email));
@@ -310,7 +300,7 @@ class UserModel extends Model
          */
         public function changePassword($email, $password)
         {
-            $request = $this->mDbMySql->prepare("UPDATE dpz_users SET password = :PASSWORD WHERE email = :EMAIL");
+            $request = $this->getPDO()->prepare("UPDATE dpz_users SET password = :PASSWORD WHERE email = :EMAIL");
             // On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
 			$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
             $password = crypt($password, '$2a$07$'.$salt.'$');
@@ -328,15 +318,12 @@ class UserModel extends Model
         public function checkPassword($id, $password)
         {
         	// on récupère le password avec une clause WHERE sur l'id
-			$request = $this->mDbMySql->prepare("SELECT password,email FROM dpz_view_connexion WHERE dpz_view_connexion.id=:ID;");
-			$request->bindValue(':ID', $id);
-			$request->execute();
-			$infos=$request->fetch();
+			$infos = $this->selectWhere('password, email', 'dpz_view_connexion', array('id' => $id));
 
 			if(!is_null($infos))
 			{
 				// vérification du hash
-				if( crypt($password, $infos['password']) == $infos['password']) 
+				if( crypt($password, $infos[0]['password']) == $infos[0]['password']) 
 					return true;
 			}
 
@@ -374,19 +361,14 @@ class UserModel extends Model
          */
 	    public function isEmailRegistred($email)
 		{
-		
-			$request = $this->mDbMySql->prepare("SELECT count(*) FROM dpz_view_users WHERE dpz_view_users.email=:EMAIL;");
-			$request->bindValue(':EMAIL', htmlspecialchars($email));
-			$request->execute();
-			$infos=$request->fetch();
+			$infos = $this->selectWhere('count(*)', 'dpz_view_users', array('email' => $email));
 
-			if($infos[0]<1)
+			if($infos[0][0] < 1)
 			{		
 				return false;
 			}
 			
 			return true;
-			
 		}
 
 }

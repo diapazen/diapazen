@@ -25,101 +25,176 @@
  *
  */
 
-//require_once 'system/Config.class.php';
-
 class Model
 {
 
 	/*
 	 * Instance de PDO
 	 */
-	protected $mDbMySql;
+	protected static $mPDO;
 
 	/**
 	 * Constructeur
 	 *
 	 */
 	public function __construct()
-	{
-		
-		$this->mDbMySql = $this->connectToDatabase();
-	}
-
-	/**
-	 * Connexion de la classe à la database
-	 *
-	 * @return	l'instance de PDO
-	 */
-	public function connectToDatabase()
-	{
+	{	
 		try
 		{
-
-			$dataBaseConfig = Config::getDatabaseConfig();
-			
             $options[PDO::ATTR_ERRMODE]				= PDO::ERRMODE_EXCEPTION;	// Exceptions autorisées
             $options[PDO::MYSQL_ATTR_INIT_COMMAND]	= "SET NAMES utf8";			// L'encodage est en utf-8
 
-            // le @ désactive les warnings
-        	return @new PDO('mysql:host='.$dataBaseConfig['host'].';dbname='.$dataBaseConfig['name'], $dataBaseConfig['user'], $dataBaseConfig['pass'], $options);
+            if (isset(Model::$mPDO))
+            {
+            	// La connexion est déja active
+            	return true;
+            }
+            else
+            {
+            	// On se connecte à la base de données
+            	// le @ désactive les warnings
+            	$dbConfig = Config::getDatabaseConfig();
+            	$driver = sprintf('mysql:host=%s;dbname=%s', $dbConfig['host'], $dbConfig['name']);
+        		Model::$mPDO = @new PDO($driver, $dbConfig['user'], $dbConfig['pass'], $options);
+        	}
         }
         catch(Exception $e) 
         {
-        	die('<html><head><meta charset="utf-8" /></head><body><strong>Erreur de connexion à la base de données</strong><div>Vérifiez le fichier de configuration.</div></body></html>');
-            //throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
+        	die('<html><head><meta charset="utf-8" /></head><body><strong>Impossible de se connecter à la base de données.</strong><div>Vérifiez le fichier de configuration.</div></body></html>');
         }
-
 	}
 
 	/**
-	 * Lecture
+	 * Récupère l'instance de PDO
 	 *
-	 * @return	tableau
+	 * @return	Instance de PDO
 	 */
-	public function read()
+	public function getPDO()
 	{
-		echo'4';
+		return Model::$mPDO;
 	}
 
+
 	/**
-	 * Fait une recherche dans la base de données
+	 * Récupère des informations d'une table ou d'une vue de la base de données.
 	 *
-	 * @param 	array $data Paramètres de la recherche
+	 * @param 	array|string 	$fields Champs de la table
+	 * @param	string			$table	Table de la base de données
 	 * @return	Un tableau de résultats
 	 */
-	public function find($data=array())
+	public function select($fields, $table, $fetchMode = 'both')
 	{
-		try
+		// Accepte un tableau ou une string
+		$fields = is_array($fields) ? implode(', ', $fields) : $fields;
+		$query = sprintf("SELECT %s FROM %s", $fields, $table);
+		$request = $this->getPDO()->prepare($query);
+		$request->execute();
+		switch ($fetchMode)
 		{
-			$conditions= "1=1";
-			$fields= "*";
-			$limit= "";
-			$order= "id DESC";
+			case 'assoc':
+				$ret = $request->fetchAll(PDO::FETCH_ASSOC);
+				break;
 
-			if(isset($data['conditions'])) $conditions=$data['conditions'];
-			if(isset($data['fields'])) $fields=$data['fields'];
-			if(isset($data['limit'])) $limit=$data['limit'];
-			if(isset($data['order'])) $order=$data['order'];
-
-			// selon les paramètres, on récupère les champs, avec conditions, avec un ordre, avec une limite
-			$request = $this->mDbMySql->prepare("SELECT $fields FROM diapazen.dpz_view_users WHERE $conditions ORDER BY $order $limit");
-			//$request->bindValue(':FIELDS', $fields);
-			//$request->bindValue(':CONDITIONS', $conditions);
-			//$request->bindValue(':ORDER', $order);
-			//$request->bindValue(':LIMITATION', $limit);
-			$request->execute();
-
-			$result=array();
-			while($data = $request->fetch()){
-				$result[]= $data;
-			}
-
-			return $result;
+			case 'num':
+				$ret = $request->fetchAll(PDO::FETCH_NUM);
+				break;
+			
+			default:
+				$ret = $request->fetchAll(PDO::FETCH_BOTH);
+				break;
 		}
-		catch(Exception $e) 
-        {
-            throw new Exception('Erreur connexion base de donnée ' . $e->getMessage());
-        }
+		return $ret;
+	}
+
+	/**
+	 * Récupère des informations d'une table ou d'une vue de la base de données.
+	 *
+	 * @param 	array|string 	$fields 	Champs de la table
+	 * @param	string			$table		Table de la base de données
+	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
+	 * @return	Un tableau de résultats
+	 */
+	public function selectWhere($fields, $table, $conditions, $fetchMode = 'both')
+	{
+		$fields = is_array($fields) ? implode(', ', $fields) : $fields;
+
+		// On met en forme la partie de la requête sql
+		$sqlWhere = "";
+		for($i = 0; $i < count($conditions); $i++)
+		{
+			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
+		}
+		
+		$query = sprintf("SELECT %s FROM %s WHERE %s", $fields, $table, $sqlWhere);
+		$request = $this->getPDO()->prepare($query);
+
+		// On binde les conditions
+		foreach ($conditions as $key => $value)
+			$request->bindValue(strtoupper(':'.$key), htmlspecialchars($value));
+
+		$request->execute();
+		switch ($fetchMode)
+		{
+			case 'assoc':
+				$ret = $request->fetchAll(PDO::FETCH_ASSOC);
+				break;
+
+			case 'num':
+				$ret = $request->fetchAll(PDO::FETCH_NUM);
+				break;
+			
+			default:
+				$ret = $request->fetchAll(PDO::FETCH_BOTH);
+				break;
+		}
+		return $ret;
+	}
+
+	/**
+	 * Récupère des informations d'une table ou d'une vue de la base de données.
+	 *
+	 * @param 	array|string 	$fields 	Champs de la table
+	 * @param	string			$table		Table de la base de données
+	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
+	 * @param	array			$orderby	Un tableau ex: array('nom desc', 'prenom asc')
+	 * @return	Un tableau de résultats
+	 */
+	public function selectWhereOrderBy($fields, $table, $conditions, $orderby, $fetchMode = 'both')
+	{
+		$fields = is_array($fields) ? implode(', ', $fields) : $fields;
+
+		// On met en forme la partie de la requête sql
+		$sqlWhere = "";
+		for($i = 0; $i < count($conditions); $i++)
+		{
+			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
+		}
+		
+		$query = sprintf("SELECT %s FROM %s WHERE %s ORDER BY %s", $fields, $table, $sqlWhere, implode(', ', $orderby));
+		$request = $this->getPDO()->prepare($query);
+
+		// On binde les conditions
+		foreach ($conditions as $key => $value)
+			$request->bindValue(strtoupper(':'.$key), htmlspecialchars($value));
+
+		$request->execute();
+		switch ($fetchMode)
+		{
+			case 'assoc':
+				$ret = $request->fetchAll(PDO::FETCH_ASSOC);
+				break;
+
+			case 'num':
+				$ret = $request->fetchAll(PDO::FETCH_NUM);
+				break;
+			
+			default:
+				$ret = $request->fetchAll(PDO::FETCH_BOTH);
+				break;
+		}
+		return $ret;
 	}
 
 }
