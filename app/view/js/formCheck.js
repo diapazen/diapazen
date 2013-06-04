@@ -4,7 +4,7 @@ function formCheck(form) {
     var j;
     var valReturn = true;
     var strRegexp = {
-                    "default"       :   /^.{3,}$/,
+                    "default"       :   /^(.|\n){3,}$/,
                     "choice"         :   /^.{1,}$/,
                     "date_input"    :   /^.{0}|[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
                     "firstname"    :   /^[a-zA-Z\çéèêï]+[-]?[a-zA-Z\çéèêï]+$/,
@@ -23,8 +23,8 @@ function formCheck(form) {
             switch(fields[i].name) {
 
                 case 'title_input':
-                case 'description_input':
                 case 'password':
+                case 'description_input':
                     regexp = strRegexp['default'];
                 break;
 
