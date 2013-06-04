@@ -197,6 +197,99 @@ class Model
 		return $ret;
 	}
 
+	/**
+	 * Insère des données dans la base de données
+	 *
+	 * @param 	array		 	$values 	Tableau ASSOCIATIF des valeurs à insérer
+	 * @param	string			$table		Table de la base de données
+	 * @return	Vrai si réussite sinon Faux
+	 */
+	public function insert($values, $table)
+	{
+		$sqlValues = "";
+		for($i = 0; $i < count($values); $i++)
+		{
+			$sqlValues .= strtoupper(":".array_keys($values)[$i]);
+			$sqlValues .= $i < count($values) - 1 ? ", " : ""; 
+		}
+
+		$query = sprintf("INSERT INTO %s (%s) VALUES (%s)", 
+							$table,
+							implode(', ', array_keys($values)),
+							$sqlValues
+							);
+
+		$request = $this->getPDO()->prepare($query);
+		
+		// On binde les valeurs
+		foreach ($values as $key => $value)
+			$request->bindValue(strtoupper(':'.$key), htmlspecialchars($value));
+
+		return $request->execute();
+	}
+
+
+	/**
+	 * Met à jour un enregistrement de la table
+	 *
+	 * @param 	array		 	$values 	Un tableau ASSOCIATIF des valeurs
+	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
+	 * @param	string			$table		Table de la base de données
+	 * @return	Vrai si réussite sinon Faux
+	 */
+	public function updateWhere($values, $conditions, $table)
+	{
+		$sqlSet = "";
+		for($i = 0; $i < count($values); $i++)
+		{
+			$sqlSet .= array_keys($values)[$i]."= :".strtoupper(array_keys($values)[$i]);
+			$sqlSet .= $i < count($values) - 1 ? ", " : ""; 
+		}
+
+		$sqlWhere = "";
+		for($i = 0; $i < count($conditions); $i++)
+		{
+			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
+		}
+		
+		$query = sprintf("UPDATE %s SET %s WHERE %s", $table, $sqlSet, $sqlWhere);
+		$request = $this->getPDO()->prepare($query);
+
+		foreach ($conditions as $key => $value)
+			$request->bindValue(strtoupper(':'.$key), htmlspecialchars($value));
+		foreach ($values as $key => $value)
+			$request->bindValue(strtoupper(':'.$key), htmlspecialchars($value));
+
+		return $request->execute();
+	}
+
+	/**
+	 * Supprime un enregistrement de la table
+	 *
+	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
+	 * @param	string			$table		Table de la base de données
+	 * @return	Vrai si réussite sinon Faux
+	 */
+	public function deleteFrom($conditions, $table)
+	{
+		$sqlWhere = "";
+		for($i = 0; $i < count($conditions); $i++)
+		{
+			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
+		}
+		
+		$query = sprintf("DELETE FROM %s WHERE %s", $table, $sqlWhere);
+		$request = $this->getPDO()->prepare($query);
+
+		// On binde les conditions
+		foreach ($conditions as $key => $value)
+			$request->bindValue(strtoupper(':'.$key), htmlspecialchars($value));
+
+		return $request->execute();
+	}
+
 }
 
 ?>

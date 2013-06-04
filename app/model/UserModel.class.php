@@ -97,7 +97,7 @@ class UserModel extends Model
 
 					// si on a un résultat, c'est que ce mail est dans la bdd
 					// maintenant, on doit vérifier le password
-					if (!is_null($infos))
+					if (!empty($infos))
 					{
 						if (crypt($password, $infos[0]['password']) == $infos[0]['password']) 
 						{
@@ -139,20 +139,11 @@ class UserModel extends Model
 			{
 				if( $id != null)
 				{
+
 					// on modifie les données de connexion grace à une clause where sur l'id
-					// ici la date
-					$request = $this->getPDO()->prepare("UPDATE .dpz_users SET dpz_users.last_login_date=CURRENT_TIMESTAMP WHERE dpz_users.id=:ID;");
-					$request->bindValue(':ID', $id);
-					$request->execute();
-
-					// ici l'ip
-					$request = $this->getPDO()->prepare("UPDATE .dpz_users SET dpz_users.last_login_ip=:LAST_LOGIN_IP WHERE dpz_users.id=:ID;");
-					$request->bindValue(':ID', $id);
-					$request->bindValue(':LAST_LOGIN_IP', $login_ip);
-					$request->execute();
-					
-
-					return true;
+					$values = array('last_login_date' => date("Y-m-d H:i:s"), 'last_login_ip' => $login_ip);
+					$conditions = array('id' => $id);
+					return $this->updateWhere($values, $conditions, 'dpz_users');
 				}				
 			}
 			return false;
@@ -181,10 +172,12 @@ class UserModel extends Model
 				if($id != null)
 				{
 					// on récupère toutes les données de l'utilisateur sauf le password avec une clause WHERE sur l'identifiant
-					$request = $this->getPDO()->prepare("SELECT firstname,lastname,email,registration_date,last_login_date,last_login_ip FROM .dpz_view_users WHERE dpz_view_users.id=:ID;");
-					$request->bindValue(':ID', $id);
-					$request->execute();
-					$infos=$request->fetch();
+					$fields = 'firstname, lastname, email, registration_date, last_login_date, last_login_ip';
+					$view	= 'dpz_view_users';
+					$where	= array('id' => $id);
+					
+					$infos = $this->selectWhere($fields, $view, $where, 'assoc');
+					$infos = $infos[0];
 
 					// si on a un résultat, c'est qu'il n'y a pas d'erreur sur l'identifiant
 					if(!is_null($infos))
@@ -239,21 +232,21 @@ class UserModel extends Model
 					
 					if(!$this->isEmailRegistred($email))
 					{
-						// on enregistre les données fournies par l'utilisateur
-						$request = $this->getPDO()->prepare("INSERT INTO dpz_users 
-							(id, firstname, lastname, email, password, registration_date, last_login_date, last_login_ip) 
-	                                                VALUES (NULL, :FIRSTNAME, :LASTNAME, :EMAIL, :PASSWORD, CURRENT_TIMESTAMP, '', NULL);");
-
-						$request->bindValue(':FIRSTNAME', htmlspecialchars($firstname));
-						$request->bindValue(':LASTNAME', htmlspecialchars($lastname));
-						$request->bindValue(':EMAIL', htmlspecialchars($email));
-
 						// On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
 						$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
 						$password = crypt($password, '$2a$07$'.$salt.'$');
-						$request->bindValue(':PASSWORD', $password);
 
-						return $request->execute();
+						$values = array('id'                => 'NULL',
+										'firstname'			=> $firstname,
+										'lastname'			=> $lastname,
+										'email'				=> $email,
+										'password'			=> $password,
+				                        'registration_date' => date("Y-m-d H:i:s"),
+				                        'last_login_date'   => '',
+				                        'last_login_ip'     => 'NULL'
+				                        );
+
+						return $this->insert($values, 'dpz_users');
 					}
 					else
 					{
@@ -269,107 +262,101 @@ class UserModel extends Model
 		}
 	}
         
-        /**
-         * Modification du profil de l'utilisateur
-         * @param type $id id de l'utilisateur
-         * @param firstname prénom renseigné par l'utilisateur
-	 * @param lastname nom de famille renseigné par l'utilisateur
-	 * @param email email renseigné par l'utilisateur
-         * @return boolean true si la modification s'est bien passé
-         */
-        public function changeUser($id, $firstName, $lastName, $email)
-        {
-            $request = $this->getPDO()->prepare("UPDATE dpz_users SET firstname = :FIRSTNAME,lastname = :LASTNAME,email = :EMAIL WHERE id = :ID");
-            $request->bindValue(':FIRSTNAME', htmlspecialchars($firstName));
-            $request->bindValue(':LASTNAME', htmlspecialchars($lastName));
-            $request->bindValue(':EMAIL', htmlspecialchars($email));
-            $request->bindValue(':ID', $id);
-            $check = $request->execute();
-            if($check == 1)
-            {
-                return true;
-            }
-            return false;
-        }
-        
-        /**
-         * Modification du mot de passe de l'utilisateur
-         * @param type $email email de l'utilisateur
-         * @param type $password mot de passe renseigné par l'utilisateur
-         * @return boolean si la modification s'est bien passé
-         */
-        public function changePassword($email, $password)
-        {
-            $request = $this->getPDO()->prepare("UPDATE dpz_users SET password = :PASSWORD WHERE email = :EMAIL");
-            // On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
-			$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
-            $password = crypt($password, '$2a$07$'.$salt.'$');
-            $request->bindValue(':PASSWORD', $password);
-            $request->bindValue(':EMAIL', htmlspecialchars($email));
-            return $request->execute();
-        }
+    /**
+     * Modification du profil de l'utilisateur
+     * @param type $id id de l'utilisateur
+     * @param firstname prénom renseigné par l'utilisateur
+ 	 * @param lastname nom de famille renseigné par l'utilisateur
+     * @param email email renseigné par l'utilisateur
+     * @return boolean true si la modification s'est bien passé
+     */
+    public function changeUser($id, $firstName, $lastName, $email)
+    {
+       	$values = array('firstname' => $firstName,
+        				'lastname'	=> $lastName,
+        				'email'		=> $email);
 
-        /**
-         * Vérification du mot de passe de l'utilisateur
-         * @param type $id id de l'utilisateur
-         * @param type $password mot de passe renseigné par l'utilisateur
-         * @return boolean si la vérification s'est bien passé
-         */
-        public function checkPassword($id, $password)
-        {
-        	// on récupère le password avec une clause WHERE sur l'id
-			$infos = $this->selectWhere('password, email', 'dpz_view_connexion', array('id' => $id));
+        return $this->updateWhere($values, array('id' => $id), 'dpz_users');
+    }
+    
+    /**
+     * Modification du mot de passe de l'utilisateur
+     * @param type $email email de l'utilisateur
+     * @param type $password mot de passe renseigné par l'utilisateur
+     * @return boolean si la modification s'est bien passé
+     */
+    public function changePassword($email, $password)
+    {
+        // On hash le mot de passe avec BlowFish (md5 et sha1 etant unsecure)
+		$salt = substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/."), 0, 20);
+        $password = crypt($password, '$2a$07$'.$salt.'$');
 
-			if(!is_null($infos))
-			{
-				// vérification du hash
-				if( crypt($password, $infos[0]['password']) == $infos[0]['password']) 
-					return true;
-			}
+		$values = array('password' => $password);
+		$conditions = array('email' => $email);
+        return $this->updateWhere($values, $conditions, 'dpz_users');
+    }
 
-			return false;
-        }
+    /**
+     * Vérification du mot de passe de l'utilisateur
+     * @param type $id id de l'utilisateur
+     * @param type $password mot de passe renseigné par l'utilisateur
+     * @return boolean si la vérification s'est bien passé
+     */
+    public function checkPassword($id, $password)
+    {
+    	// on récupère le password avec une clause WHERE sur l'id
+		$infos = $this->selectWhere('password, email', 'dpz_view_connexion', array('id' => $id));
 
-        /**
-		 * Fonction qui génère un mot de passe aléatoire
-		 * 
-		 * Cette méthode génère un mot de passe aléatoire
-		 * 
-		 * @param     int	$size	taille du mot de passe
-		 * @return retourne le mot de passe
-		 */
-        public function generatorPsw($size=8)
-        {
-        	$list = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	
-			mt_srand((double)microtime()*1000000);
-
-			$psw="";
-
-			while( strlen( $psw )< 9 ) 
-			{
-				$psw .= $list[mt_rand(0, strlen($list)-1)];
-			}
-
-			return $psw;
-        }
-       
-        /**
-         * Vérification si email contenu dans bdd
-         * @param type $email email à vérifier
-         * @return boolean true si l'email est présent
-         */
-	    public function isEmailRegistred($email)
+		if(!is_null($infos))
 		{
-			$infos = $this->selectWhere('count(*)', 'dpz_view_users', array('email' => $email));
-
-			if($infos[0][0] < 1)
-			{		
-				return false;
-			}
-			
-			return true;
+			// vérification du hash
+			if( crypt($password, $infos[0]['password']) == $infos[0]['password']) 
+				return true;
 		}
+
+		return false;
+    }
+
+    /**
+	 * Fonction qui génère un mot de passe aléatoire
+	 * 
+	 * Cette méthode génère un mot de passe aléatoire
+	 * 
+	 * @param     int	$size	taille du mot de passe
+	 * @return retourne le mot de passe
+	 */
+    public function generatorPsw($size=8)
+    {
+    	$list = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		mt_srand((double)microtime()*1000000);
+
+		$psw="";
+
+		while( strlen( $psw )< 9 ) 
+		{
+			$psw .= $list[mt_rand(0, strlen($list)-1)];
+		}
+
+		return $psw;
+    }
+   
+    /**
+     * Vérification si email contenu dans bdd
+     * @param type $email email à vérifier
+     * @return boolean true si l'email est présent
+     */
+    public function isEmailRegistred($email)
+	{
+		$infos = $this->selectWhere('count(*)', 'dpz_view_users', array('email' => $email));
+
+		if($infos[0][0] < 1)
+		{		
+			return false;
+		}
+		
+		return true;
+	}
 
 }
 

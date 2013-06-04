@@ -55,25 +55,20 @@ class PollModel extends Model
         try
         {   
             // On récupère les informations de base du sondage
-            $request = $this->getPDO()->prepare("SELECT firstname,lastname,POLL_ID,title,description, creation_date, expiration_date,open,url FROM dpz_view_users_join_polls WHERE url=:URL;");
-            $request->bindValue(':URL', htmlspecialchars($pollUrl));
-            $request->execute();
-            $pollInfo=$request->fetch(PDO::FETCH_ASSOC);
+            $fields = 'firstname, lastname, POLL_ID, title, description, creation_date, expiration_date, open, url';
+            $conditions = array('url' => $pollUrl);
+            $pollInfo = $this->selectWhere($fields, 'dpz_view_users_join_polls', $conditions, 'assoc');
             
             // On traite le résultat
-            if($pollInfo)
+            if(!empty($pollInfo))
             {
-                // On récupère les informations de chaque choix du sondage de la bdd
-                $request = $this->getPDO()->prepare("SELECT CHOICE_ID,value FROM dpz_view_choice WHERE POLL_ID=:ID;");
-                $request->bindValue(':ID', $pollInfo['POLL_ID']);
-                $request->execute();
-                $results=$request->fetchAll(PDO::FETCH_ASSOC);
+                $pollInfo = $pollInfo[0];
 
-                // On récupère les informations de chaque résultat des choixdu sondage de la bdd
-                $request = $this->getPDO()->prepare("SELECT CHOICE_ID,choice FROM dpz_view_poll WHERE POLL_ID=:ID;");
-                $request->bindValue(':ID', $pollInfo['POLL_ID']);
-                $request->execute();
-                $choices=$request->fetchAll(PDO::FETCH_ASSOC);
+                // On récupère les informations de chaque choix du sondage de la bdd
+                $results = $this->selectWhere('CHOICE_ID,value', 'dpz_view_choice', array('POLL_ID' => $pollInfo['POLL_ID']), 'assoc');
+
+                // On récupère les informations de chaque résultat des choix du sondage de la bdd
+                $choices = $this->selectWhere('CHOICE_ID,choice', 'dpz_view_poll', array('POLL_ID' => $pollInfo['POLL_ID']), 'assoc');
 
                 // Traitements des résultats
                 $list = array();
@@ -144,42 +139,31 @@ class PollModel extends Model
      */
     public function addPoll($userId, $pollTitle, $pollDescription, $poll_expiration_date)
     {
-        try
+
+        //on set les valeurs
+        $this->setPollTitle($pollTitle);
+        $this->setPollDescription($pollDescription);
+        $this->setPollExpirationDate($poll_expiration_date);
+
+        // Url unique du sondage. ex: h8ddf2e561
+        $this->setPollUrl(substr(md5(uniqid()),5,10));
+
+        $values = array('id'                => 'NULL',
+                        'user_id'           => $userId,
+                        'url'               => $this->getPollUrl(),
+                        'title'             => $this->getPollTitle(),
+                        'description'       => $this->getPollDescription(),
+                        'expiration_date'   => $this->getPollExpirationDate(),
+                        'open'              => '1'
+                        );
+        // Insertion dans la base de données
+        if ($this->insert($values, 'dpz_polls'))
         {
-            //on set les valeurs
-            $this->setPollTitle(htmlspecialchars($pollTitle));
-            $this->setPollDescription(htmlspecialchars($pollDescription));
-            $this->setPollExpirationDate(htmlspecialchars($poll_expiration_date));
-            
-            // Url unique du sondage. ex: h8ddf2e561
-            $this->setPollUrl(substr(md5(uniqid()),5,10));
-            
-            //on créer la requete pour créer une ligne d'un nouveau sondage
-            $request = $this->getPDO()->prepare("INSERT INTO dpz_polls 
-                        (id, user_id, url, title, description, expiration_date, open) 
-                        VALUES (NULL, :USERID, :URL, :TITLE, :DESCRIPTION, :EXPIRATIONDATE, 1);");
-            $request->bindValue(':USERID', $userId);
-            $request->bindValue(':URL', $this->getPollUrl());
-            $request->bindValue(':TITLE', $this->getPollTitle());
-            $request->bindValue(':DESCRIPTION', $this->getPollDescription());
-            $request->bindValue(':EXPIRATIONDATE', $this->getPollExpirationDate());
-            $check = $request->execute();
-            
-            //on renvoie true si l'ajout a été un succés sinon false
-            if($check == 1) 
-            {
-                $this->setPollId($this->getPDO()->lastInsertId());
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            $this->setPollId($this->getPDO()->lastInsertId());
+            return true;
         }
-        catch(Exception $e)
-        {
-            throw new Exception('Erreur lors de la tentative d\'ajout d\'un sondage :</br>' . $e->getMessage());
-        }
+
+        return false;
     }
 
     /**
@@ -190,20 +174,7 @@ class PollModel extends Model
      */
     public function votePoll($choiceId, $value)
     {
-        try
-        {
-            $request = $this->getPDO()->prepare("INSERT INTO dpz_results
-                        (id, choice_id, value) 
-                        VALUES (NULL, :CHOICEID, :VALUE);");
-            $request->bindValue(':CHOICEID', htmlspecialchars($choiceId));
-            $request->bindValue(':VALUE', htmlspecialchars($value));
-            
-            return $request->execute();
-        }
-        catch(Exception $e)
-        {
-            throw new Exception('Erreur lors de la tentative d\'ajout d\'une réponse :</br>' . $e->getMessage());
-        }
+        return $this->insert(array('id' => 'NULL', 'choice_id' => $choiceId, 'value' => $value), 'dpz_results');
     }
     
     /**
@@ -212,70 +183,7 @@ class PollModel extends Model
      */
     public function updatePoll($pollId)
     {
-        try
-        {
-            $request = $this->getPDO()->prepare("UPDATE .dpz_polls SET open=0 WHERE id = :POLLID;");
-            $request->bindValue(':POLLID', htmlspecialchars($pollId));
-            return $request->execute();
-        }
-        catch(Exception $e)
-        {
-            throw new Exception('Erreur lors de la mise a jour de la table sondage :</br>' . $e->getMessage());
-        }
-    }
-    
-    /**
-     * Modification d'un sondage
-     * @param type $pollTitle titre du sondage
-     * @param type $pollDescription description du sondage
-     * @param type $poll_expiration_date date d'expiration du sondage
-     * @return boolean true si la modification s'est bien exécuté sinon false
-     */
-    public function modifPoll($pollTitle, $pollDescription, $poll_expiration_date)
-    {
-        try
-        {
-            $this->setPollTitle(htmlspecialchars($pollTitle));
-            $this->setPollDescription(htmlspecialchars($pollDescription));
-            $this->setPollExpirationDate(htmlspecialchars($poll_expiration_date));
-
-            $request = $this->getPDO()->prepare("UPDATE .dpz_polls SET
-                        title=:TITLE,description=:DESCRIPTION,expiration_date=:EXPIRATIONDATE 
-                        WHERE dpz_polls.url=:URL;");
-            $request->bindValue(':URL', htmlspecialchars($this->getPollUrl()));
-            $request->bindValue(':TITLE', $this->getPollTitle());
-            $request->bindValue(':DESCRIPTION', $this->getPollDescription());
-            $request->bindValue(':EXPIRATIONDATE', $this->getPollExpirationDate());
-            return $request->execute();
-            
-        }
-        catch(Exception $e)
-        {
-            throw new Exception('Erreur lors de la modification du sondage :</br>' . $e->getMessage());
-        }
-    }
-    
-    /**
-     * Suppression d'un sondage
-     * @param type $pollId identifient du sondage
-     * @return boolean true si la suppression s'est bien exécuté sinon false
-     */
-    public function deletePoll($pollId)
-    {
-        try
-        {
-            $this->setPollTitle(NULL);
-            $this->setPollDescription(NULL);
-            $this->setPollExpirationDate(NULL);
-            $this->setPollUrl(NULL);
-            $request = $this->getPDO()->prepare("DELETE FROM dpz_polls WHERE id=:ID");
-            $request->bindValue(':ID', htmlspecialchars($pollId));
-            return $request->execute();
-        }
-        catch(Exception $e)
-        {
-            throw new Exception('Erreur lors de la suppression du sondage :</br>' . $e->getMessage());
-        }
+        return $this->updateWhere(array('open' => '0'), array('id' => $pollId), 'dpz_polls');
     }
 
     /**

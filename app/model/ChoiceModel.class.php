@@ -29,93 +29,55 @@ require_once 'system/Model.class.php';
 
 class ChoiceModel extends Model
 {
-        private $title;
-        private $value;
+    private $title;
+    private $value;
 
-        /**
-        *Constructeur par défaut 
-        */
-        public function __construct()
-        {
-            parent::__construct();
-        }
+    /**
+    *Constructeur par défaut 
+    */
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
-        /**
-        * Ajout d'un choix
-        * @param type $title titre du choix
-        * @param type $pollId id du sondage
-        * @return boolean true si l'ajout s'est bien exécuté sinon false
-        */
-        public function addChoice($title, $pollId)
-        {
-            try
-            {
-                $this->setChoiceTitle($title);
-                $request = $this->getPDO()->prepare("INSERT INTO dpz_choices
-                            (id, poll_id, choice) VALUES (NULL,:POLLID,:CHOICE);");
-                $request->bindValue(':POLLID', htmlspecialchars($pollId));
-                $request->bindValue(':CHOICE', htmlspecialchars($title));
-                return $request->execute();
-            }
-            catch(Exception $e)
-            {
-                throw new Exception('Erreur lors de la tentative d\'ajout d\'un choix :</br>' . $e->getMessage());
-            }
-        }
-        
-        /**
-         * Mise à Jour d'un choix
-         * @param type $title titre du choix
-         * @param type $id id du choix
-         * @return boolean true si l'ajout s'est bien exécuté sinon false
-         */
-        public function updateChoice($title, $id)
-        {
-            try
-            {
-                $this->setChoiceTitle($title);
-                $request = $this->getPDO()->prepare("UPDATE dpz_choices 
-                            SET choice=:TITLE WHERE dpz_choices.id=:ID;");
-                $request->bindValue(':CHOICE', htmlspecialchars($title));
-                return $request->execute();
-            }
-            catch(Exception $e)
-            {
-                throw new Exception('Erreur lors de la tentative de mise à jour d\'un choix :</br>' . $e->getMessage());
-            }
-        }
-        
-        public function deleteChoice($id)
-        {
-            try
-            {
-                $this->setChoiceTitle(NULL);
-                $request = $this->getPDO()->prepare("DELETE FROM dpz_choices WHERE id=:ID");
-                $request->bindValue(':ID', htmlspecialchars($id));
-                return $request->execute();
-            }
-            catch(Exception $e)
-            {
-                throw new Exception('Erreur lors de la tentative de suppression d\'un choix :</br>' . $e->getMessage());
-            }
-        }
+    /**
+    * Ajout d'un choix
+    * @param type $title titre du choix
+    * @param type $pollId id du sondage
+    * @return boolean true si l'ajout s'est bien exécuté sinon false
+    */
+    public function addChoice($title, $pollId)
+    {
+        return $this->insert(array('id' => 'NULL', 'poll_id' => $pollId, 'choice' => $title), 'dpz_choices');
+    }
+    
+    /**
+     * Mise à Jour d'un choix
+     * @param type $title titre du choix
+     * @param type $id id du choix
+     * @return boolean true si l'ajout s'est bien exécuté sinon false
+     */
+    public function updateChoice($title, $id)
+    {
+        return $this->updateWhere(array('choice' => $title), array('id' => $id), 'dpz_choices');
+    }
 
-        /**
-        * Setteur du titre du choix
-        * @param type $title titre du choix
-        */
-        public function setChoiceTitle($title)
-        {
-            $this->title = $title;
-        }
+    /**
+    * Setteur du titre du choix
+    * @param type $title titre du choix
+    */
+    public function setChoiceTitle($title)
+    {
+        $this->title = $title;
+    }
 
-        /**
-        * Getteur du titre du choix
-        */
-        public function getChoiceTitle()
-        {
-            return $this->title;
-        }
+    /**
+    * Getteur du titre du choix
+    */
+    public function getChoiceTitle()
+    {
+        return $this->title;
+    }
 }
 
 ?>
