@@ -36,7 +36,7 @@
                                     else {
                                 ?>
 
-                                <td><input type="checkbox" disabled="disabled"></td>
+                                <td class="text"><?php echo $key+1; ?></td>
 
                                 <?php
                                     }
