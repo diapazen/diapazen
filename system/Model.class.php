@@ -120,9 +120,10 @@ class Model
 
 		// On met en forme la partie de la requête sql
 		$sqlWhere = "";
+		$keys = array_keys($conditions);
 		for($i = 0; $i < count($conditions); $i++)
 		{
-			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $keys[$i]."= :".strtoupper($keys[$i]);
 			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
 		}
 		
@@ -166,9 +167,10 @@ class Model
 
 		// On met en forme la partie de la requête sql
 		$sqlWhere = "";
+		$keys = array_keys($conditions);
 		for($i = 0; $i < count($conditions); $i++)
 		{
-			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $keys[$i]."= :".strtoupper($keys[$i]);
 			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
 		}
 		
@@ -207,9 +209,10 @@ class Model
 	public function insert($values, $table)
 	{
 		$sqlValues = "";
+		$keys = array_keys($values);
 		for($i = 0; $i < count($values); $i++)
 		{
-			$sqlValues .= strtoupper(":".array_keys($values)[$i]);
+			$sqlValues .= strtoupper(":".$keys[$i]);
 			$sqlValues .= $i < count($values) - 1 ? ", " : ""; 
 		}
 
@@ -240,16 +243,18 @@ class Model
 	public function updateWhere($values, $conditions, $table)
 	{
 		$sqlSet = "";
+		$keys = array_keys($values);
 		for($i = 0; $i < count($values); $i++)
 		{
-			$sqlSet .= array_keys($values)[$i]."= :".strtoupper(array_keys($values)[$i]);
+			$sqlSet .= $keys[$i]."= :".strtoupper($keys[$i]);
 			$sqlSet .= $i < count($values) - 1 ? ", " : ""; 
 		}
 
 		$sqlWhere = "";
+		$keys = array_keys($conditions);
 		for($i = 0; $i < count($conditions); $i++)
 		{
-			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $keys[$i]."= :".strtoupper($keys[$i]);
 			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
 		}
 		
@@ -274,9 +279,10 @@ class Model
 	public function deleteFrom($conditions, $table)
 	{
 		$sqlWhere = "";
+		$keys = array_keys($conditions);
 		for($i = 0; $i < count($conditions); $i++)
 		{
-			$sqlWhere .= array_keys($conditions)[$i]."= :".strtoupper(array_keys($conditions)[$i]);
+			$sqlWhere .= $keys[$i]."= :".strtoupper($keys[$i]);
 			$sqlWhere .= $i < count($conditions) - 1 ? " AND " : ""; 
 		}
 		
