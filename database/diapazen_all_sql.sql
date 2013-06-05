@@ -33,7 +33,7 @@ CREATE  TABLE IF NOT EXISTS `diapazen`.`dpz_polls` (
   `user_id` INT UNSIGNED NOT NULL ,
   `url` VARCHAR(30) NOT NULL ,
   `title` VARCHAR(45) NOT NULL ,
-  `description` VARCHAR(400) NULL ,
+  `description` VARCHAR(1000) NULL ,
   `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `expiration_date` timestamp NULL ,
   `open` TINYINT(1) NOT NULL ,

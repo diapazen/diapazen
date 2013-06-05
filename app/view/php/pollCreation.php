@@ -9,7 +9,7 @@
                 <label for="datepicker" class="text">Date limite</label>
                 <input class="text_edit" name="date_input" readonly id="datepicker">
                 <label for="id_description_input" class="text lbl_textarea">Description<span class="asterisc"> *</span></label>
-                <textarea class="text_edit" id="id_description_input" name="description_input"></textarea>
+                <textarea class="text_edit" id="id_description_input" placeholder="1000 caractères maximum." name="description_input"></textarea>
                 <h1 class="small_title">Propositions</h1>
                 <div id="choices">
                     <div class="choice">
