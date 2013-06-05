@@ -45,19 +45,19 @@ function manageChoices(input)
 
 			// Le choix selectionné passe en grisé		
 
-			input.className = 'grey_button';
-			input.innerHTML = 'x';
+			//input.className = 'grey_button';
+			//input.innerHTML = 'x';
 			
 
 			// Ajout d'un champ de choix
 
-			choices = input.parentNode.parentNode;
+			choices = document.getElementById("choices");
 
 			choice = document.createElement("div");
 			choice.className = 'choice';
 			choice.innerHTML =	'<label for="" class="lbl_choice text" ></label>' 
 								+' <input class="text_edit input_choice" id="" type="text" name="choices[]" /> '
-							  +	'<a class="orange_button" type="button" onclick="manageChoices(this);">+</a>';
+							  +	'<a class="grey_button" type="button" onclick="manageChoices(this);">x</a>';
 			
 			choices.appendChild(choice);
 			
