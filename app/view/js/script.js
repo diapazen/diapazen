@@ -57,7 +57,7 @@ function manageChoices(input)
 			choice.className = 'choice';
 			choice.innerHTML =	'<label for="" class="lbl_choice text" ></label>' 
 								+' <input class="text_edit input_choice" id="" type="text" name="choices[]" /> '
-							  +	'<a class="grey_button" type="button" onclick="manageChoices(this);">x</a>';
+							  +	'<a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>';
 			
 			choices.appendChild(choice);
 			
@@ -94,6 +94,7 @@ function manageChoices(input)
 
 	if($('#choices .choice').length == 1)
 	{
+		$('#choices .choice:first .grey_button').css('cursor', 'no-drop');
 		$('#choices .choice:first .grey_button').css('cursor', 'no-drop');
 	}
 	else

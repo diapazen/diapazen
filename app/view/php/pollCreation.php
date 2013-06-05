@@ -15,21 +15,21 @@
                     <div class="choice">
                         <label for="choix1" class="text lbl_choice">Choix 1</label>
                         <input class="text_edit input_choice" id="choix1" type="text" name="choices[]" value="" />
-                        <a class="grey_button" type="button" onclick="manageChoices(this);">x</a>
+                        <a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>
                     </div>
                     <div class="choice">
                         <label for="choix2" class="text lbl_choice">Choix 2</label>
                         <input class="text_edit input_choice" id="choix2" type="text" name="choices[]" value="" />
-                        <a class="grey_button" type="button" onclick="manageChoices(this);">x</a>
+                        <a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>
                     </div>
                     <div class="choice">
                         <label for="choix3" class="text lbl_choice">Choix 3</label>
                         <input class="text_edit input_choice" id="choix3" type="text" name="choices[]" value="" />
-                        <a class="grey_button" type="button" onclick="manageChoices(this);">x</a>
+                        <a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>
                     </div>
                 </div>
                 <input class="orange_button" type="submit" value="Étape suivante" />
-                <a class="orange_button" id="add_choice_button" type="button" onclick="manageChoices(this);">+</a>
+                <a class="orange_button" title="Ajouter un champ" id="add_choice_button" type="button" onclick="manageChoices(this);">+</a>
             </form>
         </div>
 
