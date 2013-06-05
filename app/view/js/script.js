@@ -67,8 +67,11 @@ function manageChoices(input)
 
 			// Suppression du champ de choix
 
-			choices = input.parentNode.parentNode;
-			choices.removeChild(input.parentNode);
+			if($('#choices .choice').length > 1)
+			{
+				choices = input.parentNode.parentNode;
+				choices.removeChild(input.parentNode);
+			}
 
 		break;
 
@@ -79,20 +82,25 @@ function manageChoices(input)
 
 
 	// Reset des label
-	choices = document.getElementsByClassName('lbl_choice');
-
-	for(i = 1; i <= choices.length; i++)
+	lbl_choice = document.getElementsByClassName('lbl_choice');
+	input_choice = document.getElementsByClassName('input_choice');
+	for(i = 1; i <= lbl_choice.length; i++)
 	{
-	   choices.item(i-1).innerHTML = "Choix "+i;
-	   choices.item(i-1).setAttribute('for', 'choix'+i);
+	   lbl_choice.item(i-1).innerHTML = "Choix "+i;
+	   lbl_choice.item(i-1).setAttribute('for', 'choix'+i);
+
+	   input_choice.item(i-1).setAttribute('id', 'choix'+i);
 	}
 
-	choices = document.getElementsByClassName('input_choice');
-
-	for(i = 1; i <= choices.length; i++)
+	if($('#choices .choice').length == 1)
 	{
-	   choices.item(i-1).setAttribute('id', 'choix'+i);
+		$('#choices .choice:first .grey_button').css('cursor', 'no-drop');
 	}
+	else
+	{
+	   $('#choices .choice:first .grey_button').css('cursor', 'pointer');
+	}
+
 
 	initBlur();
 
