@@ -335,119 +335,128 @@ class PollController extends Controller
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
-		try
+		// test pour savoir si on revote de la meme facon (f5/rafraichir la page)
+		if (isset($_POST['choiceId']) && isset($_POST['value']) && isset($_SESSION['voteChoiceId']) && (count(array_diff($_SESSION['voteChoiceId'], $_POST['choiceId'])) == 0) && isset($_SESSION['voteName']) && ($_SESSION['voteName'] == $_POST['value']) ) {
+			header('Location: ' . BASE_URL . '/poll/view/' . $params[0]);
+		}
+		else
 		{
-			// Ajout d'un vote
-			if (isset($_POST['value']))
+
+			try
 			{
-				if (!empty($_POST['value']) && isset($_POST['choiceId']))
+				// Ajout d'un vote
+				if (isset($_POST['value']))
 				{
-					foreach($_POST['choiceId'] as $choice)
+					if (!empty($_POST['value']) && isset($_POST['choiceId']))
 					{
-						if ($this->getModel()->votePoll($choice,$_POST['value']))
+						foreach($_POST['choiceId'] as $choice)
 						{
-							// vote pris en compte
-							$this->set('data_updated', true);
+							if ($this->getModel()->votePoll($choice, $_POST['value']))
+							{
+								// vote pris en compte
+								$this->set('data_updated', true);
+							}
+							else
+							{
+								// echec du vote
+								$this->set('data_updated', false);
+							}
 						}
-						else
-						{
-							// echec du vote
-							$this->set('data_updated', false);
-						}
+						$_SESSION['voteChoiceId'] = $_POST['choiceId'];
+						$_SESSION['voteName'] = $_POST['value'];
 					}
+					else
+					{
+						//echec du vote
+						$this->set('data_updated', false);
+					}	
 				}
+
+				// On récupère les choix et résultats
+				$res = $this->getModel()->viewPoll($params[0]);
+
+				// Si le sondage n'a pas été trouvé
+				if (!$res)
+					$this->e404();
 				else
 				{
-					//echec du vote
-					$this->set('data_updated', false);
-				}	
+					// Si le sondage est expiré
+					$date = new DateTime($res['expiration_date']);
+	            	$now  = new DateTime('now');
+	            	$int = $now->diff($date);
+					if (($int->invert == 1 || !$res['open']) && $res['expiration_date'] != '0000-00-00 00:00:00')
+					{
+						$res['open'] = false;
+						$this->set('eventDate', ' | Le sondage est fermé.');
+						try
+						{
+							$this->getModel()->updatePoll($res['POLL_ID']);
+						}
+						catch(Exception $e)
+						{
+							die("erreur de mise à jour");
+						}
+					}
+					else if($res['expiration_date'] != '0000-00-00 00:00:00')
+						$this->set('eventDate', $int->format(' | Expire dans: %d jour(s) et %h heure(s).'));
+					else
+						$this->set('eventDate', $int->format(''));
+
+
+					// Si le sondage est fermé, on trie les résultats
+					// du meilleur au moins bon.
+					if (!$res['open'])
+					{
+						function cmp($a, $b)
+						{
+							if ($a['percent'] == $b['percent'])
+								return 0;
+							return ($a['percent'] > $b['percent']) ? -1 : 1;
+						}
+						usort($res['choices'], 'cmp');
+					}
+
+					// On transforme les liens http(s).. en vrai lien avec des balises
+					$res['description'] = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"$3\" >$3</a>", $res['description']);
+				    $res['description'] = preg_replace("/(^|[\n ])([\w]*?)((www|ftp)\.[^ \,\"\t\n\r<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"http://$3\" >$3</a>", $res['description']);
+				    $res['description'] = preg_replace("/(^|[\n ])([a-z0-9&\-_\.]+?)@([\w\-]+\.([\w\-\.]+)+)/i", "$1<a class=\"link\" rel=\"nofollow\" href=\"mailto:$2@$3\">$2@$3</a>", $res['description']);
+
+				    // On transforme les retours à la ligne en balise html
+				    $res['description'] = str_replace("\n", "<br>", $res['description']);
+
+				    // Tableau pour stocker les jours de la semaine
+					$jour = array("lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"); 
+					$mois = array("","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"); 
+					
+					// on définit les variables à envoyer à la vue
+					$this->set('openedPoll', $res['open']);
+					$this->set('urlPoll', $res['url']);
+					$this->set('userFName', $res['firstname']);
+					$this->set('userLName', $res['lastname']);
+					$this->set('eventTitle', $res['title']);
+					$this->set('eventDescription', $res['description']);
+					$this->set('choiceList', $res['choices']);
+
+					// Traduction de la date
+					$week	= $jour[date('w', strtotime($res['creation_date']))];
+					$day	= date('d', strtotime($res['creation_date'])); 
+					$month	= $mois[date('n', strtotime($res['creation_date']))];
+					$year	= date('Y', strtotime($res['creation_date']));
+					$dateFr	= sprintf('%s %s %s %s', $week, $day, $month, $year);
+					$this->set('creationDate', $dateFr);
+					
+
+					$this->set('title', $res['title'] .' | Diapazen');
+					
+					// On fait le rendu
+					$this->render('pollView');
+				}
 			}
-
-			// On récupère les choix et résultats
-			$res = $this->getModel()->viewPoll($params[0]);
-
-			// Si le sondage n'a pas été trouvé
-			if (!$res)
-				$this->e404();
-			else
+			catch(Exception $e)
 			{
-				// Si le sondage est expiré
-				$date = new DateTime($res['expiration_date']);
-            	$now  = new DateTime('now');
-            	$int = $now->diff($date);
-				if (($int->invert == 1 || !$res['open']) && $res['expiration_date'] != '0000-00-00 00:00:00')
-				{
-					$res['open'] = false;
-					$this->set('eventDate', ' | Le sondage est fermé.');
-					try
-					{
-						$this->getModel()->updatePoll($res['POLL_ID']);
-					}
-					catch(Exception $e)
-					{
-						die("erreur de mise à jour");
-					}
-				}
-				else if($res['expiration_date'] != '0000-00-00 00:00:00')
-					$this->set('eventDate', $int->format(' | Expire dans: %d jour(s) et %h heure(s).'));
-				else
-					$this->set('eventDate', $int->format(''));
-
-
-				// Si le sondage est fermé, on trie les résultats
-				// du meilleur au moins bon.
-				if (!$res['open'])
-				{
-					function cmp($a, $b)
-					{
-						if ($a['percent'] == $b['percent'])
-							return 0;
-						return ($a['percent'] > $b['percent']) ? -1 : 1;
-					}
-					usort($res['choices'], 'cmp');
-				}
-
-				// On transforme les liens http(s).. en vrai lien avec des balises
-				$res['description'] = preg_replace("/(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ \,\"\n\r\t<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"$3\" >$3</a>", $res['description']);
-			    $res['description'] = preg_replace("/(^|[\n ])([\w]*?)((www|ftp)\.[^ \,\"\t\n\r<]*)/is", "$1$2<a class=\"link\" rel=\"nofollow\" href=\"http://$3\" >$3</a>", $res['description']);
-			    $res['description'] = preg_replace("/(^|[\n ])([a-z0-9&\-_\.]+?)@([\w\-]+\.([\w\-\.]+)+)/i", "$1<a class=\"link\" rel=\"nofollow\" href=\"mailto:$2@$3\">$2@$3</a>", $res['description']);
-
-			    // On transforme les retours à la ligne en balise html
-			    $res['description'] = str_replace("\n", "<br>", $res['description']);
-
-			    // Tableau pour stocker les jours de la semaine
-				$jour = array("lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"); 
-				$mois = array("","janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"); 
-				
-				// on définit les variables à envoyer à la vue
-				$this->set('openedPoll', $res['open']);
-				$this->set('urlPoll', $res['url']);
-				$this->set('userFName', $res['firstname']);
-				$this->set('userLName', $res['lastname']);
-				$this->set('eventTitle', $res['title']);
-				$this->set('eventDescription', $res['description']);
-				$this->set('choiceList', $res['choices']);
-
-				// Traduction de la date
-				$week	= $jour[date('w', strtotime($res['creation_date']))];
-				$day	= date('d', strtotime($res['creation_date'])); 
-				$month	= $mois[date('n', strtotime($res['creation_date']))];
-				$year	= date('Y', strtotime($res['creation_date']));
-				$dateFr	= sprintf('%s %s %s %s', $week, $day, $month, $year);
-				$this->set('creationDate', $dateFr);
-				
-
-				$this->set('title', $res['title'] .' | Diapazen');
-				
-				// On fait le rendu
-				$this->render('pollView');
+				die($this->render('dbError'));
 			}
 		}
-		catch(Exception $e)
-		{
-			die($this->render('dbError'));
-		}
-		
 	}
 }
 
