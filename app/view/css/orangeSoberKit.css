@@ -279,18 +279,24 @@ tipomatika@gmail.com*/
 .orange_button:hover, .orange_small_button:hover, .orange_big_button:hover, 
 .grey_button:hover, .grey_small_button:hover, .grey_big_button:hover
 {
+    cursor: pointer;
+}
+
+.orange_button:active, .orange_small_button:active, .orange_big_button:active, 
+.grey_button:active, .grey_small_button:active, .grey_big_button:active
+{
     position: relative;
     left: 1px;
     top: 1px;
     cursor: pointer;
 }
 
-.orange_button:hover, .orange_small_button:hover, .orange_big_button:hover
+.orange_button:active, .orange_small_button:active, .orange_big_button:active
 {
     box-shadow: 1px 1px 2px #ED2C00;
 }
 
-.grey_button:hover, .grey_small_button:hover, .grey_big_button:hover
+.grey_button:active, .grey_small_button:active, .grey_big_button:active
 {
     box-shadow: 1px 1px 2px #919191;
 } 
