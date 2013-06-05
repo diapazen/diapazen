@@ -4,26 +4,26 @@
             <?php $this->getAriadneThread(); ?>
             <form onsubmit="return formCheck(this);" id="poll_creation_form" class="default_form" action="connect" method="post">
                 <h1 class="small_title">Votre sondage</h1>
-                <label for="id_title_input" class="text">Titre</label>
+                <label for="id_title_input" class="text">Titre<span class="asterisc"> *</span></label>
                 <input class="text_edit" id="id_title_input" name="title_input" type="text" value="">
                 <label for="datepicker" class="text">Date limite <span class="small_text">(Optionnel)</span></label>
                 <input class="text_edit" name="date_input" readonly id="datepicker">
-                <label for="id_description_input" class="text lbl_textarea">Description</label>
+                <label for="id_description_input" class="text lbl_textarea">Description<span class="asterisc"> *</span></label>
                 <textarea class="text_edit" id="id_description_input" name="description_input"></textarea>
                 <h1 class="small_title">Propositions</h1>
                 <div id="choices">
                     <div class="choice">
-                        <label for="choix1" class="text lbl_choice">Choix 1</label>
+                        <label for="choix1" class="text lbl_choice">Choix 1<span class="asterisc"> *</span></label>
                         <input class="text_edit input_choice" id="choix1" type="text" name="choices[]" value="" />
                         <a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>
                     </div>
                     <div class="choice">
-                        <label for="choix2" class="text lbl_choice">Choix 2</label>
+                        <label for="choix2" class="text lbl_choice">Choix 2<span class="asterisc"> *</span></label>
                         <input class="text_edit input_choice" id="choix2" type="text" name="choices[]" value="" />
                         <a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>
                     </div>
                     <div class="choice">
-                        <label for="choix3" class="text lbl_choice">Choix 3</label>
+                        <label for="choix3" class="text lbl_choice">Choix 3<span class="asterisc"> *</span></label>
                         <input class="text_edit input_choice" id="choix3" type="text" name="choices[]" value="" />
                         <a class="grey_button" title="Supprimer" type="button" onclick="manageChoices(this);">x</a>
                     </div>

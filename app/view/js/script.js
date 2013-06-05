@@ -40,14 +40,7 @@ function manageChoices(input)
 	switch(input.className)
 	{
 
-		case 'orange_button':
-
-
-			// Le choix selectionné passe en grisé		
-
-			//input.className = 'grey_button';
-			//input.innerHTML = 'x';
-			
+		case 'orange_button':			
 
 			// Ajout d'un champ de choix
 
@@ -86,7 +79,7 @@ function manageChoices(input)
 	input_choice = document.getElementsByClassName('input_choice');
 	for(i = 1; i <= lbl_choice.length; i++)
 	{
-	   lbl_choice.item(i-1).innerHTML = "Choix "+i;
+	   lbl_choice.item(i-1).innerHTML = "Choix "+i+'<span class="asterisc"> *</span>';
 	   lbl_choice.item(i-1).setAttribute('for', 'choix'+i);
 
 	   input_choice.item(i-1).setAttribute('id', 'choix'+i);

@@ -277,6 +277,12 @@ tipomatika@gmail.com*/
     line-height: 1.4em;
 }
 
+.orange_button:hover, .orange_small_button:hover, .orange_big_button:hover, 
+.grey_button:hover, .grey_small_button:hover, .grey_big_button:hover
+{
+    opacity: 0.95;
+}
+
 .orange_button:active, .orange_small_button:active, .orange_big_button:active, 
 .grey_button:active, .grey_small_button:active, .grey_big_button:active
 {
