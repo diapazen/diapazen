@@ -24,6 +24,7 @@
  */
 
 // Démarrage de la session 
+ini_set('session.use_trans_sid', 0);
 session_start();
 
 //Constantes pour les inclusions PHP
