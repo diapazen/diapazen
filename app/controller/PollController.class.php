@@ -335,8 +335,9 @@ class PollController extends Controller
 		// On charge le modèle des sondages
 		$this->loadModel('poll');
 
-		// test pour savoir si on revote de la meme facon (f5/rafraichir la page)
-		if (isset($_POST['choiceId']) && isset($_POST['value']) && isset($_SESSION['voteChoiceId']) && (count(array_diff($_SESSION['voteChoiceId'], $_POST['choiceId'])) == 0) && isset($_SESSION['voteName']) && ($_SESSION['voteName'] == $_POST['value']) ) {
+		// test pour empecher le revote par f5/rafraichir la page
+		if (isset($_POST['choiceId']) && isset($_POST['value']) && isset($_SESSION['voteChoiceId']) && (count(array_diff($_SESSION['voteChoiceId'], $_POST['choiceId'])) == 0) && isset($_SESSION['voteName']) && ($_SESSION['voteName'] == $_POST['value']) )
+		{
 			header('Location: ' . BASE_URL . '/poll/view/' . $params[0]);
 		}
 		else
