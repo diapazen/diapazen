@@ -9,7 +9,7 @@
                 <input name="poll_link" type="text" id="poll_link" class="text_edit" readonly onClick="this.select();" value="<?php echo $this->getHomeUrl().'/p/'.$pollUrl; ?>" />
                 <h3 class="small_title">Partagez ce lien par e-mail</h3>
                 <label class="text lbl_textarea" for="mails">E-mails</label>
-                <textarea class="text_edit" id="mails" name="mails" placeholder="mail.example@mail.com            Séparateurs : ; | ,"></textarea>
+                <textarea class="small_text_edit" id="mails" name="mails" placeholder="mail.example@mail.com                                             Séparer les adresses par ; ou , ou retour à la ligne"></textarea>
                 <input class="orange_button" type="submit" value="Partager">
                 <a class="orange_button" href="<?php echo $this->getHomeUrl().'/p/'.$pollUrl; ?>">Voir le sondage</a>
             </form>

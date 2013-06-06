@@ -31,16 +31,24 @@ function initBlur()
                 
                 $("#"+fields[i].id).blur(function(e) {
 
-                    regexp = getRegexp(this);
+                    regexp = getRegexp(this, "blur");
 
-                    if(!this.value.match(regexp) && regexp != null)
+                    if(this.name != 'mails')
                     {
-                        this.style.borderLeft = '2px solid red';
+                        if(!this.value.match(regexp) && regexp != null)
+                        {
+                            this.style.borderLeft = '2px solid red';
+                        }
+                        else if(regexp != null)
+                        { 
+                            this.style.borderLeft = '2px solid green';
+                        }
+                        else if(regexp == null)
+                        {
+                            this.style.borderLeft = '1px solid #D0D0D0';
+                        }
                     }
-                    else if(regexp != null)
-                    { 
-                        this.style.borderLeft = '2px solid green';
-                    }
+                       
                 });
             }
         }
@@ -59,39 +67,42 @@ function formCheck(form) {
 
     for(i=0; i<fields.length; i++)
     {
-        if( ((fields[i].tagName == 'INPUT' && (fields[i].type == 'text'
+        if( ((fields[i].tagName == 'INPUT' && fields[i].id != 'poll_link' && (fields[i].type == 'text'
             || fields[i].type == 'password')) 
             || fields[i].tagName == 'TEXTAREA') && getStyleProperty(fields[i], 'display') != 'none')
         {
-            regexp = getRegexp(fields[i]);
+            regexp = getRegexp(fields[i], "submit");
 
-            if(regexp != null && regexp != false)
+            if(regexp != null && regexp != false && fields[i].name != 'mails')
             {
                 if(!fields[i].value.match(regexp))
                 {
-                    valReturn = false;
                     fields[i].style.borderLeft = '2px solid red';
+                    valReturn = false;
+                    
                 }
                 else
                 {
                     fields[i].style.borderLeft = '2px solid green';
+                    valReturn = true;
                 }
             }
             else if(!regexp)
             {
                 valReturn = false;
-            }
+            }            
         }
     }
 
     return valReturn;
-
 }
 
-var newPassword = false;
-function getRegexp(element)
+var newPassword;
+function getRegexp(element, call)
 {
 
+
+    // On récupère la regexp suivant le name de l'input
     switch(element.name)
     {
 
@@ -114,30 +125,37 @@ function getRegexp(element)
         break;
 
         case 'mails':
+
+            // Cas spécial pour la textarea des mails à partager
             var reg = new RegExp("[ \n,;]+", "g");
             var emails;
             emails = element.value.split(reg);
-            var valReturn = true;
 
-            for (j=0; j<emails.length; j++)
+            if(call == 'blur' && emails.length == 1 && emails[0] == '')
             {
-                
-                if(!emails[j].match(strRegexp['email']))
-                {
-                    valReturn = false;
-                }
-            }
-
-            if(!valReturn)
-            {
-                element.style.borderLeft = '2px solid red';
+                element.style.borderLeft = '1px solid #D0D0D0';
+                return null;
             }
             else
             {
-                element.style.borderLeft = '2px solid green';
-            }
 
-            return false;
+
+                for (j=0; j<emails.length; j++)
+                {
+                    
+                    if(!emails[j].match(strRegexp['email']))
+                    {   
+                        element.style.borderLeft = '2px solid red';
+                        return false;
+                    }
+                }
+            
+                element.style.borderLeft = '2px solid green';
+                return true;
+            
+            }
+           
+
         break;
 
         case 'firstNameUser':
@@ -148,20 +166,29 @@ function getRegexp(element)
         break;
 
         case 'newPassword':
-            if(element.value.match(strRegexp['default']))
-                newPassword = true;
             
-            return false;
+            if(element.value == '')
+                newPassword = null;
+            else if(element.value.match(strRegexp['default']))
+                newPassword = true;
+            else
+                newPassword = false;
+            
+            return null;
         break;
         case 'passwordConfirm':
             if(newPassword)
             {
                 return strRegexp['default'];
             }
-            else
+            else if(newPassword = false)
             {
+               
                 return false;
             }
+            else
+                 element.style.borderLeft = '1px solid #D0D0D0';
+                
         break;
 
         default:

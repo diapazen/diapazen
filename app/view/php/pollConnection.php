@@ -13,7 +13,7 @@
                             break;
 
                         case 'registrationError':
-                            echo "<div class='error_message' >Un utilisateur possède déja cette adresse e-mail.</div><br>";
+                            echo "<div class='error_message' >Cette adresse e-mail est déjà utilisée.</div><br>";
                             break;
 
                         case 'mailError':
@@ -39,5 +39,8 @@
                 <input class="orange_button" type="submit" value="Étape suivante"/>
             </form>
         </div>
+
+        
+        <script src="<?php $this->getPath('js/script.js'); ?>"> </script>
 <?php $this->getFooter(); ?>
 

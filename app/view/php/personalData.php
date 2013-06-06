@@ -25,7 +25,7 @@
             <label class="text" for="user_mail">E-mail<span class="asterisc"> *</span></label>
             <input id="user_mail" type="mail" class="text_edit" value="<?php if(isset($email)){echo $email;}?>" name="email">
             <label class="text" for="new_pwd">Nouveau mot de passe</label>
-            <input type="password" id="new_pwd" class="text_edit" value="" name="newPassword">
+            <input type="password" id="new_pwd" class="text_edit" placeholder="3 carac. minimum" name="newPassword">
             <label class="text" for="new_pwd_confirm">Confirmation</label>
             <input type="password" id="new_pwd_confirm" class="text_edit" value="" name="passwordConfirm">
             <br/>

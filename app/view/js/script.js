@@ -88,7 +88,6 @@ function manageChoices(input)
 	if($('#choices .choice').length == 1)
 	{
 		$('#choices .choice:first .grey_button').css('cursor', 'no-drop');
-		$('#choices .choice:first .grey_button').css('cursor', 'no-drop');
 	}
 	else
 	{
