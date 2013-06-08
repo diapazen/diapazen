@@ -30,7 +30,7 @@ class UserController extends Controller
 
 	/**
 	 * Action par dÃ©faut
-	 * 
+	 * mène a la page home.
 	 * url:	diapazen.com/user
 	 **/
 	public function index($params = null)
@@ -40,7 +40,12 @@ class UserController extends Controller
 
 	/**
 	 * Connection Ã  l'application
-	 * 
+	 * On charge le modèle de l'utilisateur, et si l'utlisateur est déjà
+         * connecter alors on le dirige vers la page home. Sinon on vérifie le
+         * mail et le mot de passe dans la base de données et on connecte
+         * l'utilisateur et on l'envoie vers le dashboard. Si le mot de passe ou
+         * le mail est erroné alors on créer la variable infoLogin et on
+         * affiche le formulaire de connection.
 	 * url:	diapazen.com/user/login
 	 **/
 	public function login($params = null)
@@ -107,7 +112,20 @@ class UserController extends Controller
 
 	/**
 	 * Modification des information personnelles
-	 * 
+	 * on dirige l'utilisateur vers la page de profil, en affichant ses
+         * données on vérifie qu'il est connecter. Si tel est le cas on charge
+         * le modelUser et si l'utilisateur veut modifier ses données on le fait
+         * grâce à ce model et on teste le mot de passe de confirmation. Si le
+         * mot de passe est erroné on ne modifie rien par contre si c'est le bon
+         * mot de passe on met alors à jour la base de données, on met à jour la 
+         * session et on informe l'utilisateur de la réussite. Si l'utilisateur
+         * veut modifier son mot de passe alors on teste le mot de passe de
+         * confirmation. Si le mot de passe est erroné on ne modifie rien par
+         * contre si c'est le bon mot de passe on met alors à jour la base de
+         * données. Pour afficher les données de l'utilisateur, on récupère l'id
+         * de l'utilisateur, on prend les informations de la base de données et
+         * on les affiche dans la vue. Si l'utilisateur est déconnecter il est
+         * dirigé vers la page home.
 	 * url:	diapazen.com/user/profile
 	 **/
 	public function profile($params = null)
@@ -210,7 +228,13 @@ class UserController extends Controller
 
 	/**
 	 * Mot de passe oubliÃ©
-	 * 
+	 * on verifie que l'utilisateur est déconnecter, si ce n'est pas le cas
+         * alors on redirige vers la page home. Si il est déconnecter on le
+         * dirige vers la page du mot de passe oublié. Si l'email est présent
+         * différent de vide et est présent dans la base de données, alors on
+         * créer un nouveau mot de passe et on l'affecte comme nouveau mot de
+         * passe de l'utilisateur. On le lui envoi par mail et on lui notifit la
+         * présence de ce mail.
 	 * url:	diapazen.com/user/forgot
 	 **/
 	public function forgot($params = null)
@@ -277,7 +301,7 @@ class UserController extends Controller
 
 	/**
 	 * DÃ©connexion de l'application
-	 * 
+	 * Deconnect l'utilisateur et le renvoi sur la page home
 	 * url:	diapazen.com/user/logout
 	 **/
 	public function logout($params = null)
