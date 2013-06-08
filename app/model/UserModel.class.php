@@ -73,11 +73,17 @@ class UserModel extends Model
 	/**
 	 * Connexion de l'utilisateur
 	 *
+	 * On test tout d’abords si l’email et le password sont bien renseignés, 
+	 * puis avec une requête Select on récupère les infos en faisant un Where sur le password. 
+	 * Puis si on a un résultat et que le password passé en paramètre correspond à celui de la base de donnée,
+	 * on met à jour la dernière connection grâce à updateConnectionDate 
+	 * et on renvoie un tableau avec toutes les données.
+	 *
 	 * @param email email renseigné par l'utilisateur
 	 * @param password mot de passe renseigné par l'utilisateur
 	 * @param login_ip ip de l'utilisateur
 	 *
-	 * @return	bool true si la connexion s'est bien passé
+	 * @return	array tableau avec toutes les infos si tout s’est bien passé et false sinon
 	 */
 	public function connectionToApp($email,$password,$login_ip=null)
 	{
@@ -126,6 +132,10 @@ class UserModel extends Model
 	/**
 	 * Mise à jour des données de connexion de l'utilisateur (adresse ip et date de derniere connexion)
 	 *
+	 * On test d’abord si l’id renseigné est bon ,
+	 * puis si c’est le cas on update d’abords la date de dernière connexion dans la table ‘dpz_users’ avec une clause Where sur l’id. 
+	 * Puis on met à jour de la même manière l’ip.
+	 *
 	 * @param login_ip ip de l'utilisateur
 	 *
 	 * @return	bool true si la mise à jour s'est bien passé
@@ -158,9 +168,13 @@ class UserModel extends Model
 	/**
 	 * Récupération des données de l'utilisateur (sauf mot de passe)
 	 *
+	 * On test d’abord si l’id renseigné est bon 
+	 * puis si c’est le cas avec une requête Select on récupère les infos en faisant un Where sur l’id. 
+	 * Si il y a un résultat on le renvoi sous forme de tableau.
+	 *
 	 * @param id id de l'utilisateur
 	 *
-	 * @return	bool true si on a bien récupéré les données de l'utilisateur
+	 * @return	array un tableau avec toutes les infos si tout s’est bien passé et false sinon
 	 */
 	public function dataProvider($id)
 	{
@@ -213,6 +227,11 @@ class UserModel extends Model
 	/**
 	 * Enregistrement d'un nouvel utilisateur
 	 *
+	 * On test d’abords si les paramètres puis si ils sont bien renseignés. 
+	 * Ensuite on test si l’utilisateur n’est pas déjà enregistré 
+	 * on fait l’insertion des données dans la table dpz_users. 
+	 * On hash le mot de passe avec BlowFish (md5 et sha1 étant unsecure).
+	 *
 	 * @param firstname prénom renseigné par l'utilisateur
 	 * @param lastname nom de famille renseigné par l'utilisateur
 	 * @param email email renseigné par l'utilisateur
@@ -264,10 +283,15 @@ class UserModel extends Model
         
     /**
      * Modification du profil de l'utilisateur
+     *
+     * On fait l’update des informations à partir de l’id de l’utilisateur. 
+     * Puis si l’update s’est bien passé on retourne true.
+     *
      * @param type $id id de l'utilisateur
      * @param firstname prénom renseigné par l'utilisateur
  	 * @param lastname nom de famille renseigné par l'utilisateur
      * @param email email renseigné par l'utilisateur
+     *
      * @return boolean true si la modification s'est bien passé
      */
     public function changeUser($id, $firstName, $lastName, $email)
@@ -281,8 +305,13 @@ class UserModel extends Model
     
     /**
      * Modification du mot de passe de l'utilisateur
+     *
+     * On fait l’update du mot de passe à partir de l’email de l’utilisateur. 
+     * On le hash avec BlowFish (md5 et sha1 étant unsecure).
+     *
      * @param type $email email de l'utilisateur
      * @param type $password mot de passe renseigné par l'utilisateur
+     *
      * @return boolean si la modification s'est bien passé
      */
     public function changePassword($email, $password)
@@ -298,8 +327,12 @@ class UserModel extends Model
 
     /**
      * Vérification du mot de passe de l'utilisateur
+     *
+     * On fait un Select pour récupérer le mot de passe de la base de donnée et on le test avec celui passé en paramètre.
+     *
      * @param type $id id de l'utilisateur
      * @param type $password mot de passe renseigné par l'utilisateur
+     *
      * @return boolean si la vérification s'est bien passé
      */
     public function checkPassword($id, $password)
@@ -320,9 +353,10 @@ class UserModel extends Model
     /**
 	 * Fonction qui génère un mot de passe aléatoire
 	 * 
-	 * Cette méthode génère un mot de passe aléatoire
+	 * On choisit aléatoirement un élément dans une liste de caractère autant de fois que spécifié en paramètre.
 	 * 
-	 * @param     int	$size	taille du mot de passe
+	 * @param     int	$size	taille du mot de passe(8 par defaut)
+	 *
 	 * @return retourne le mot de passe
 	 */
     public function generatorPsw($size=8)
@@ -343,6 +377,11 @@ class UserModel extends Model
    
     /**
      * Vérification si email contenu dans bdd
+     *
+     * On fait un Select sur la table ‘dpz_view_users’ 
+     * avec en clause Where le password passé en paramètre. 
+     * Puis on test si il y a un résultat.
+     *
      * @param type $email email à vérifier
      * @return boolean true si l'email est présent
      */
