@@ -37,38 +37,6 @@ class UserModel extends Model
 		parent::__construct();
 	}
 
-	/**
-	 * Test des paramêtres du constructeur
-	 * @param  params liste des paramêtres du constructeur
-	 *
-	 * @return bool true si les paramêtres sont bons
-	 */
-	private function testParamConstruct($params)
-	{
-		$regex = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/'; 
-
-		//si le premier paramêtre est true
-		//test du nom, prénom, email
-		if($params[0] && count($params)==4)
-		{
-			if(!empty($params[1]) && !empty($params[2]) && preg_match($regex, ($params[3])))
-				return true;
-			else
-				return false;
-		}
-		//test de l'id, email, password
-		else if(!$params[0] && count($params)==4)
-		{
-			if(!empty($params[1]) && preg_match($regex, ($params[2])) && !empty($params[3]))
-				return true;
-			else
-				return false;
-		}
-		else
-		{
-			return false;
-		}
-	}
 
 	/**
 	 * Connexion de l'utilisateur
