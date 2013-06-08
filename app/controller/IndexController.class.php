@@ -27,7 +27,12 @@ require_once 'system/Controller.class.php';
 
 class IndexController extends Controller
 {
-
+        /**
+         * On set la variable à afficher sur dans la vue et on teste si
+         * l'utilisateur est conn�cter. Si tel est le cas alors on redirige vers
+         * le dashboard, sino on se rend sur la page home.
+         * @param type $params 
+         */
 	public function index($params = null)
 	{
 		// On set la variable à afficher sur dans la vue
