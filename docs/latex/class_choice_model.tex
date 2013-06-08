@@ -1,0 +1,110 @@
+\section{Choice\-Model Class Reference}
+\label{class_choice_model}\index{Choice\-Model@{Choice\-Model}}
+Inheritance diagram for Choice\-Model\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_choice_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf \-\_\-\-\_\-construct} ()
+\item 
+{\bf add\-Choice} (\$title, \$poll\-Id)
+\item 
+{\bf update\-Choice} (\$title, \$id)
+\item 
+{\bf set\-Choice\-Title} (\$title)
+\item 
+{\bf get\-Choice\-Title} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Choice\-Model@{Choice\-Model}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!ChoiceModel@{Choice\-Model}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_choice_model_a095c5d389db211932136b53f25f39685}
+Constructeur par défaut 
+
+\subsection{Member Function Documentation}
+\index{Choice\-Model@{Choice\-Model}!add\-Choice@{add\-Choice}}
+\index{add\-Choice@{add\-Choice}!ChoiceModel@{Choice\-Model}}
+\subsubsection[{add\-Choice}]{\setlength{\rightskip}{0pt plus 5cm}add\-Choice (
+\begin{DoxyParamCaption}
+\item[{}]{\$title, }
+\item[{}]{\$poll\-Id}
+\end{DoxyParamCaption}
+)}\label{class_choice_model_a3014aa88191d070415381739c9bb7821}
+Ajout d'un choix
+
+Insert dans la base de donnée 'dpz\-\_\-choices' un nouveau choix. Méthode utilisé grâce à la méthode 'inser' de \doxyref{Model}{p.}{class_model}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$title} & titre du choix \\
+\hline
+type & {\em \$poll\-Id} & id du sondage\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true si l'ajout s'est bien exécuté sinon false 
+\end{DoxyReturn}
+\index{Choice\-Model@{Choice\-Model}!get\-Choice\-Title@{get\-Choice\-Title}}
+\index{get\-Choice\-Title@{get\-Choice\-Title}!ChoiceModel@{Choice\-Model}}
+\subsubsection[{get\-Choice\-Title}]{\setlength{\rightskip}{0pt plus 5cm}get\-Choice\-Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_choice_model_a7e8b7bec78fac1c4a2225604d5658ebd}
+Getteur du titre du choix
+
+\begin{DoxyReturn}{Returns}
+type titre du choix 
+\end{DoxyReturn}
+\index{Choice\-Model@{Choice\-Model}!set\-Choice\-Title@{set\-Choice\-Title}}
+\index{set\-Choice\-Title@{set\-Choice\-Title}!ChoiceModel@{Choice\-Model}}
+\subsubsection[{set\-Choice\-Title}]{\setlength{\rightskip}{0pt plus 5cm}set\-Choice\-Title (
+\begin{DoxyParamCaption}
+\item[{}]{\$title}
+\end{DoxyParamCaption}
+)}\label{class_choice_model_a585b6c305e04e88c094aeab9d9e39888}
+Setteur du titre du choix
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$title} & titre du choix \\
+\hline
+\end{DoxyParams}
+\index{Choice\-Model@{Choice\-Model}!update\-Choice@{update\-Choice}}
+\index{update\-Choice@{update\-Choice}!ChoiceModel@{Choice\-Model}}
+\subsubsection[{update\-Choice}]{\setlength{\rightskip}{0pt plus 5cm}update\-Choice (
+\begin{DoxyParamCaption}
+\item[{}]{\$title, }
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}\label{class_choice_model_ad50c401b9a5705a5c307c9a17fd671a1}
+Mise à Jour d'un choix
+
+Met à jour dans la base de donnée 'dpz\-\_\-choices' du titre et de l'id du choix. Méthode utilisé grâce à la méthode 'update\-Where' de \doxyref{Model}{p.}{class_model}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$title} & titre du choix \\
+\hline
+type & {\em \$id} & id du choix \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true si l'ajout s'est bien exécuté sinon false 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Documents/\-Git\-Hub/diapazen/app/model/Choice\-Model.\-class.\-php\end{DoxyCompactItemize}

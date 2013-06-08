@@ -1,0 +1,214 @@
+\section{Model Class Reference}
+\label{class_model}\index{Model@{Model}}
+Inheritance diagram for Model\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf \-\_\-\-\_\-construct} ()
+\item 
+{\bf get\-P\-D\-O} ()
+\item 
+{\bf select} (\$fields, \$table, \$fetch\-Mode= 'both')
+\item 
+{\bf select\-Where} (\$fields, \$table, \$conditions, \$fetch\-Mode= 'both')
+\item 
+{\bf select\-Where\-Order\-By} (\$fields, \$table, \$conditions, \$orderby, \$fetch\-Mode= 'both')
+\item 
+{\bf insert} (\$values, \$table)
+\item 
+{\bf update\-Where} (\$values, \$conditions, \$table)
+\item 
+{\bf delete\-From} (\$conditions, \$table)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static {\bfseries \$m\-P\-D\-O}\label{class_model_a9c654cd1eac60f691cf2b4dbdfc0c4bd}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Model@{Model}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!Model@{Model}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_model_a095c5d389db211932136b53f25f39685}
+Constructeur 
+
+\subsection{Member Function Documentation}
+\index{Model@{Model}!delete\-From@{delete\-From}}
+\index{delete\-From@{delete\-From}!Model@{Model}}
+\subsubsection[{delete\-From}]{\setlength{\rightskip}{0pt plus 5cm}delete\-From (
+\begin{DoxyParamCaption}
+\item[{}]{\$conditions, }
+\item[{}]{\$table}
+\end{DoxyParamCaption}
+)}\label{class_model_af425d27609307a8678fbd649083bd94f}
+Supprime un enregistrement de la table
+
+Permet de réaliser une requête Delete sur la table '\$table' avec comme paramêtre '\$conditions'
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$conditions} & Un tableau A\-S\-S\-O\-C\-I\-A\-T\-I\-F des conditions \\
+\hline
+string & {\em \$table} & Table de la base de données\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vrai si réussite sinon Faux 
+\end{DoxyReturn}
+\index{Model@{Model}!get\-P\-D\-O@{get\-P\-D\-O}}
+\index{get\-P\-D\-O@{get\-P\-D\-O}!Model@{Model}}
+\subsubsection[{get\-P\-D\-O}]{\setlength{\rightskip}{0pt plus 5cm}get\-P\-D\-O (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_model_af708fa20ff0c04a5a9bd8badd63e632c}
+Récupère l'instance de P\-D\-O
+
+\begin{DoxyReturn}{Returns}
+Instance de P\-D\-O 
+\end{DoxyReturn}
+\index{Model@{Model}!insert@{insert}}
+\index{insert@{insert}!Model@{Model}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}insert (
+\begin{DoxyParamCaption}
+\item[{}]{\$values, }
+\item[{}]{\$table}
+\end{DoxyParamCaption}
+)}\label{class_model_a8c4aa25cad6375a8a41f4d822aad70de}
+Insère des données dans la base de données
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$values} & Tableau A\-S\-S\-O\-C\-I\-A\-T\-I\-F des valeurs à insérer \\
+\hline
+string & {\em \$table} & Table de la base de données\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vrai si réussite sinon Faux 
+\end{DoxyReturn}
+\index{Model@{Model}!select@{select}}
+\index{select@{select}!Model@{Model}}
+\subsubsection[{select}]{\setlength{\rightskip}{0pt plus 5cm}select (
+\begin{DoxyParamCaption}
+\item[{}]{\$fields, }
+\item[{}]{\$table, }
+\item[{}]{\$fetch\-Mode = {\ttfamily 'both'}}
+\end{DoxyParamCaption}
+)}\label{class_model_a4a144616f9727cd503fb5fb117ea9e9a}
+Récupère des informations d'une table ou d'une vue de la base de données.
+
+Permet de réaliser une requête Select simple sur la table '\$table' et qui retourne les paramêtres '\$fields' On peut choisir le type fetch de retour \-: assoc ou num (par défaut both)
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | string & {\em \$fields} & Champs de la table \\
+\hline
+string & {\em \$table} & Table de la base de données \\
+\hline
+type & {\em \$fetch\-Mode} & Permet de choisir quel 'fetch' utiliser par défaut 'both'\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un tableau de résultats 
+\end{DoxyReturn}
+\index{Model@{Model}!select\-Where@{select\-Where}}
+\index{select\-Where@{select\-Where}!Model@{Model}}
+\subsubsection[{select\-Where}]{\setlength{\rightskip}{0pt plus 5cm}select\-Where (
+\begin{DoxyParamCaption}
+\item[{}]{\$fields, }
+\item[{}]{\$table, }
+\item[{}]{\$conditions, }
+\item[{}]{\$fetch\-Mode = {\ttfamily 'both'}}
+\end{DoxyParamCaption}
+)}\label{class_model_ad3544d723ab065f4acd12e52c28336da}
+Récupère des informations d'une table ou d'une vue de la base de données.
+
+Permet de réaliser une requête Select sur la table '\$table' avec comme paramêtre '\$conditions' et qui retourne les paramêtres '\$fields' On peut choisir le type fetch de retour \-: assoc ou num (par défaut both)
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | string & {\em \$fields} & Champs de la table \\
+\hline
+string & {\em \$table} & Table de la base de données \\
+\hline
+array & {\em \$conditions} & Un tableau A\-S\-S\-O\-C\-I\-A\-T\-I\-F des conditions \\
+\hline
+type & {\em \$fetch\-Mode} & Permet de choisir quel 'fetch' utiliser par défaut 'both'\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un tableau de résultats 
+\end{DoxyReturn}
+\index{Model@{Model}!select\-Where\-Order\-By@{select\-Where\-Order\-By}}
+\index{select\-Where\-Order\-By@{select\-Where\-Order\-By}!Model@{Model}}
+\subsubsection[{select\-Where\-Order\-By}]{\setlength{\rightskip}{0pt plus 5cm}select\-Where\-Order\-By (
+\begin{DoxyParamCaption}
+\item[{}]{\$fields, }
+\item[{}]{\$table, }
+\item[{}]{\$conditions, }
+\item[{}]{\$orderby, }
+\item[{}]{\$fetch\-Mode = {\ttfamily 'both'}}
+\end{DoxyParamCaption}
+)}\label{class_model_a36ca044fc8dd4808f6c6206d2cfc4d62}
+Récupère des informations d'une table ou d'une vue de la base de données.
+
+Permet de réaliser une requête Select sur la table '\$table' avec comme paramêtre '\$conditions' et les ordonnant avec 'orderby' et qui retourne les paramêtres '\$fields' On peut choisir le type fetch de retour \-: assoc ou num (par défaut both)
+
+
+\begin{DoxyParams}[1]{Parameters}
+array | string & {\em \$fields} & Champs de la table \\
+\hline
+string & {\em \$table} & Table de la base de données \\
+\hline
+array & {\em \$conditions} & Un tableau A\-S\-S\-O\-C\-I\-A\-T\-I\-F des conditions \\
+\hline
+array & {\em \$orderby} & Un tableau ex\-: array('nom desc', 'prenom asc') \\
+\hline
+type & {\em \$fetch\-Mode} & Permet de choisir quel 'fetch' utiliser par défaut 'both'\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un tableau de résultats 
+\end{DoxyReturn}
+\index{Model@{Model}!update\-Where@{update\-Where}}
+\index{update\-Where@{update\-Where}!Model@{Model}}
+\subsubsection[{update\-Where}]{\setlength{\rightskip}{0pt plus 5cm}update\-Where (
+\begin{DoxyParamCaption}
+\item[{}]{\$values, }
+\item[{}]{\$conditions, }
+\item[{}]{\$table}
+\end{DoxyParamCaption}
+)}\label{class_model_aeac063e0a8b8048310967c496cb7d561}
+Met à jour un enregistrement de la table
+
+Permet de réaliser une requête Update sur la table '\$table' avec comme paramêtre '\$conditions' et qui met à jour avec '\$values'
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$values} & Un tableau A\-S\-S\-O\-C\-I\-A\-T\-I\-F des valeurs \\
+\hline
+array & {\em \$conditions} & Un tableau A\-S\-S\-O\-C\-I\-A\-T\-I\-F des conditions \\
+\hline
+string & {\em \$table} & Table de la base de données\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vrai si réussite sinon Faux 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Documents/\-Git\-Hub/diapazen/system/Model.\-class.\-php\end{DoxyCompactItemize}

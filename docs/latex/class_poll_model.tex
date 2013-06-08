@@ -1,0 +1,256 @@
+\section{Poll\-Model Class Reference}
+\label{class_poll_model}\index{Poll\-Model@{Poll\-Model}}
+Inheritance diagram for Poll\-Model\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_poll_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf \-\_\-\-\_\-construct} ()
+\item 
+{\bf view\-Poll} (\$poll\-Url)
+\item 
+{\bf view\-All\-Polls} (\$user\-Id)
+\item 
+{\bf add\-Poll} (\$user\-Id, \$poll\-Title, \$poll\-Description, \$poll\-\_\-expiration\-\_\-date)
+\item 
+{\bf vote\-Poll} (\$choice\-Id, \$value)
+\item 
+{\bf update\-Poll} (\$poll\-Id)
+\item 
+{\bf share\-Poll} (\$textearea\-Content)
+\item 
+{\bf set\-Poll\-Title} (\$poll\-Title)
+\item 
+{\bf set\-Poll\-Id} (\$poll\-Id)
+\item 
+{\bf set\-Poll\-Description} (\$poll\-Description)
+\item 
+{\bf set\-Poll\-Expiration\-Date} (\$poll\-\_\-expiration\-\_\-date)
+\item 
+{\bf set\-Poll\-Url} (\$poll\-Url)
+\item 
+{\bf get\-Poll\-Id} ()
+\item 
+{\bf get\-Poll\-Title} ()
+\item 
+{\bf get\-Poll\-Description} ()
+\item 
+{\bf get\-Poll\-Expiration\-Date} ()
+\item 
+{\bf get\-Poll\-Url} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Poll\-Model@{Poll\-Model}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!PollModel@{Poll\-Model}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a095c5d389db211932136b53f25f39685}
+Constructeur par défaut 
+
+\subsection{Member Function Documentation}
+\index{Poll\-Model@{Poll\-Model}!add\-Poll@{add\-Poll}}
+\index{add\-Poll@{add\-Poll}!PollModel@{Poll\-Model}}
+\subsubsection[{add\-Poll}]{\setlength{\rightskip}{0pt plus 5cm}add\-Poll (
+\begin{DoxyParamCaption}
+\item[{}]{\$user\-Id, }
+\item[{}]{\$poll\-Title, }
+\item[{}]{\$poll\-Description, }
+\item[{}]{\$poll\-\_\-expiration\-\_\-date}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_af3934538e9ecfaab4c57c99eb3c27b41}
+Ajout d'un sondage On commence par affecter les valeurs des propriétés de l’objet et on ajoute la ligne correspondante à la base de données. 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$user\-Id} & id de l'utilisateur \\
+\hline
+type & {\em \$poll\-Title} & titre du sondage \\
+\hline
+type & {\em \$poll\-Description} & description du sondage \\
+\hline
+type & {\em \$poll\-\_\-expiration\-\_\-date} & date d'expiration du sondage \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true si l'ajout s'est bien exécuté sinon false 
+\end{DoxyReturn}
+\index{Poll\-Model@{Poll\-Model}!get\-Poll\-Description@{get\-Poll\-Description}}
+\index{get\-Poll\-Description@{get\-Poll\-Description}!PollModel@{Poll\-Model}}
+\subsubsection[{get\-Poll\-Description}]{\setlength{\rightskip}{0pt plus 5cm}get\-Poll\-Description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a2a9c8903e596a9545465e5de17db0dfc}
+Getteur de la description du sondage \index{Poll\-Model@{Poll\-Model}!get\-Poll\-Expiration\-Date@{get\-Poll\-Expiration\-Date}}
+\index{get\-Poll\-Expiration\-Date@{get\-Poll\-Expiration\-Date}!PollModel@{Poll\-Model}}
+\subsubsection[{get\-Poll\-Expiration\-Date}]{\setlength{\rightskip}{0pt plus 5cm}get\-Poll\-Expiration\-Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_ac1e26034a3ac51c188cd1d903747bf08}
+Getteur de la date d'expiration du sondage \index{Poll\-Model@{Poll\-Model}!get\-Poll\-Id@{get\-Poll\-Id}}
+\index{get\-Poll\-Id@{get\-Poll\-Id}!PollModel@{Poll\-Model}}
+\subsubsection[{get\-Poll\-Id}]{\setlength{\rightskip}{0pt plus 5cm}get\-Poll\-Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a55f7df314c542c220c7d19bc6bfe6921}
+Getteur du titre du sondage \index{Poll\-Model@{Poll\-Model}!get\-Poll\-Title@{get\-Poll\-Title}}
+\index{get\-Poll\-Title@{get\-Poll\-Title}!PollModel@{Poll\-Model}}
+\subsubsection[{get\-Poll\-Title}]{\setlength{\rightskip}{0pt plus 5cm}get\-Poll\-Title (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_ac53f9f9366ccd0ee4c493f8d9585641c}
+Getteur de l'id du sondage \index{Poll\-Model@{Poll\-Model}!get\-Poll\-Url@{get\-Poll\-Url}}
+\index{get\-Poll\-Url@{get\-Poll\-Url}!PollModel@{Poll\-Model}}
+\subsubsection[{get\-Poll\-Url}]{\setlength{\rightskip}{0pt plus 5cm}get\-Poll\-Url (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a59162fd7493193e799f6d85318904f3d}
+Getteur de l'url du sondage \index{Poll\-Model@{Poll\-Model}!set\-Poll\-Description@{set\-Poll\-Description}}
+\index{set\-Poll\-Description@{set\-Poll\-Description}!PollModel@{Poll\-Model}}
+\subsubsection[{set\-Poll\-Description}]{\setlength{\rightskip}{0pt plus 5cm}set\-Poll\-Description (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-Description}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a23a8113e19599e2b1783baf00680e7c5}
+Setteur de la description du sondage 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-Description} & description du sondage \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Model@{Poll\-Model}!set\-Poll\-Expiration\-Date@{set\-Poll\-Expiration\-Date}}
+\index{set\-Poll\-Expiration\-Date@{set\-Poll\-Expiration\-Date}!PollModel@{Poll\-Model}}
+\subsubsection[{set\-Poll\-Expiration\-Date}]{\setlength{\rightskip}{0pt plus 5cm}set\-Poll\-Expiration\-Date (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-\_\-expiration\-\_\-date}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a1cea7eb81f3cc7b83135712f1870f6ac}
+Setteur de la date d'expiration du sondage 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-\_\-expiration\-\_\-date} & date d'expiration du sondage \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Model@{Poll\-Model}!set\-Poll\-Id@{set\-Poll\-Id}}
+\index{set\-Poll\-Id@{set\-Poll\-Id}!PollModel@{Poll\-Model}}
+\subsubsection[{set\-Poll\-Id}]{\setlength{\rightskip}{0pt plus 5cm}set\-Poll\-Id (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-Id}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a2fafeb8f9432d4d6f293c2662e2e3ce4}
+Setteur de l'id du sondage 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-Id} & Id du sondage \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Model@{Poll\-Model}!set\-Poll\-Title@{set\-Poll\-Title}}
+\index{set\-Poll\-Title@{set\-Poll\-Title}!PollModel@{Poll\-Model}}
+\subsubsection[{set\-Poll\-Title}]{\setlength{\rightskip}{0pt plus 5cm}set\-Poll\-Title (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-Title}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a4ef3e29c3777e4813e34a426d4d4e5e5}
+Setteur du titre du sondage 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-Title} & titre du sondage \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Model@{Poll\-Model}!set\-Poll\-Url@{set\-Poll\-Url}}
+\index{set\-Poll\-Url@{set\-Poll\-Url}!PollModel@{Poll\-Model}}
+\subsubsection[{set\-Poll\-Url}]{\setlength{\rightskip}{0pt plus 5cm}set\-Poll\-Url (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-Url}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a9fb57052af60b04cc3f9a5f6c63826b3}
+Setteur de l'url du sondage 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-Url} & url du sondage \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Model@{Poll\-Model}!share\-Poll@{share\-Poll}}
+\index{share\-Poll@{share\-Poll}!PollModel@{Poll\-Model}}
+\subsubsection[{share\-Poll}]{\setlength{\rightskip}{0pt plus 5cm}share\-Poll (
+\begin{DoxyParamCaption}
+\item[{}]{\$textearea\-Content}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a947a4723935496599a5c9f16dd923545}
+Récupère le contenu du textarea et parse les emails au moyen d'une regexp. Elle retourne un tableau avec les email si le parsage est réussi et null sinon. 
+\begin{DoxyParams}{Parameters}
+{\em \$textearea\-Content} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tableau avec les emails valides auquels les mails ont été envoyé 
+\end{DoxyReturn}
+\index{Poll\-Model@{Poll\-Model}!update\-Poll@{update\-Poll}}
+\index{update\-Poll@{update\-Poll}!PollModel@{Poll\-Model}}
+\subsubsection[{update\-Poll}]{\setlength{\rightskip}{0pt plus 5cm}update\-Poll (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-Id}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a67c4aa7fb79831e0e6401e72974671d9}
+Mise à jour de la table Sondage clos le sondage en mettant à 0 dans la colonne open de la table du sondage. \begin{DoxyReturn}{Returns}
+boolean true si la mise à jour s'est bien exécuté sinon false 
+\end{DoxyReturn}
+\index{Poll\-Model@{Poll\-Model}!view\-All\-Polls@{view\-All\-Polls}}
+\index{view\-All\-Polls@{view\-All\-Polls}!PollModel@{Poll\-Model}}
+\subsubsection[{view\-All\-Polls}]{\setlength{\rightskip}{0pt plus 5cm}view\-All\-Polls (
+\begin{DoxyParamCaption}
+\item[{}]{\$user\-Id}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a3aa12da9f991255d673ee280b6b4608c}
+Affichage de la liste des sondages créé par l’utilisateur en prenant en paramètre l’\-Id de l’utilisateur avec une requête select sur la vue dpz\-\_\-view\-\_\-users\-\_\-join\-\_\-polls. 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-Url} & url du sondage \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array contenu du sondage 
+\end{DoxyReturn}
+\index{Poll\-Model@{Poll\-Model}!view\-Poll@{view\-Poll}}
+\index{view\-Poll@{view\-Poll}!PollModel@{Poll\-Model}}
+\subsubsection[{view\-Poll}]{\setlength{\rightskip}{0pt plus 5cm}view\-Poll (
+\begin{DoxyParamCaption}
+\item[{}]{\$poll\-Url}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a59ebd496c5314a98f881b3017ac5e831}
+Affichage d'un sondage en récupèrant les informations stockées dans la base de données au moyen d’une requête sql Select sur la vue dpz\-\_\-view\-\_\-users\-\_\-join\-\_\-polls. On traite le résultat obtenu en récupérant les informations de chaque choix du sondage ainsi que les informations de chaque résultat des choix du sondage. Les résultats obtenus sont ensuite transférés dans un tableau et on calcule le pourcentage de chaque choix du sondage. Le tableau est donc complété avec ces mêmes pourcentages. 
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$poll\-Url} & url du sondage \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array contenu du sondage 
+\end{DoxyReturn}
+\index{Poll\-Model@{Poll\-Model}!vote\-Poll@{vote\-Poll}}
+\index{vote\-Poll@{vote\-Poll}!PollModel@{Poll\-Model}}
+\subsubsection[{vote\-Poll}]{\setlength{\rightskip}{0pt plus 5cm}vote\-Poll (
+\begin{DoxyParamCaption}
+\item[{}]{\$choice\-Id, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}\label{class_poll_model_a25cacb3dabfcb04e5d45b50c7fc74a8f}
+Vote d'un sondage pour le choix du sondage grâce à l’\-Id du choix et la valeur du votant. On insère cette ligne dans la base de données, dans la table dpz\-\_\-results. 
+\begin{DoxyParams}[1]{Parameters}
+int & {\em \$choice\-Id} & L'id du choix \\
+\hline
+string & {\em \$poll\-Title} & valeur à insérer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true si l'ajout s'est bien exécuté sinon false 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Documents/\-Git\-Hub/diapazen/app/model/Poll\-Model.\-class.\-php\end{DoxyCompactItemize}

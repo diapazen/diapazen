@@ -1,0 +1,65 @@
+\section{User\-Controller Class Reference}
+\label{class_user_controller}\index{User\-Controller@{User\-Controller}}
+Inheritance diagram for User\-Controller\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_user_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf index} (\$params=null)
+\item 
+{\bf login} (\$params=null)
+\item 
+{\bf profile} (\$params=null)
+\item 
+{\bf forgot} (\$params=null)
+\item 
+{\bf logout} (\$params=null)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{User\-Controller@{User\-Controller}!forgot@{forgot}}
+\index{forgot@{forgot}!UserController@{User\-Controller}}
+\subsubsection[{forgot}]{\setlength{\rightskip}{0pt plus 5cm}forgot (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_user_controller_a77de54d6af94e12fa48395a5f7639417}
+Mot de passe oubliÃ© on verifie que l'utilisateur est déconnecter, si ce n'est pas le cas alors on redirige vers la page home. Si il est déconnecter on le dirige vers la page du mot de passe oublié. Si l'email est présent différent de vide et est présent dans la base de données, alors on créer un nouveau mot de passe et on l'affecte comme nouveau mot de passe de l'utilisateur. On le lui envoi par mail et on lui notifit la présence de ce mail. url\-: diapazen.\-com/user/forgot \index{User\-Controller@{User\-Controller}!index@{index}}
+\index{index@{index}!UserController@{User\-Controller}}
+\subsubsection[{index}]{\setlength{\rightskip}{0pt plus 5cm}index (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_user_controller_a749de566b023589025bfebbc37537d65}
+Action par dÃ©faut mène a la page home. url\-: diapazen.\-com/user \index{User\-Controller@{User\-Controller}!login@{login}}
+\index{login@{login}!UserController@{User\-Controller}}
+\subsubsection[{login}]{\setlength{\rightskip}{0pt plus 5cm}login (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_user_controller_a9956e2e490942a4ee673a077aaf55138}
+Connection Ã  l'application On charge le modèle de l'utilisateur, et si l'utlisateur est déjà connecter alors on le dirige vers la page home. Sinon on vérifie le mail et le mot de passe dans la base de données et on connecte l'utilisateur et on l'envoie vers le dashboard. Si le mot de passe ou le mail est erroné alors on créer la variable info\-Login et on affiche le formulaire de connection. url\-: diapazen.\-com/user/login \index{User\-Controller@{User\-Controller}!logout@{logout}}
+\index{logout@{logout}!UserController@{User\-Controller}}
+\subsubsection[{logout}]{\setlength{\rightskip}{0pt plus 5cm}logout (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_user_controller_a5606eef2ce2955733c1823a2e199a392}
+DÃ©connexion de l'application Deconnect l'utilisateur et le renvoi sur la page home url\-: diapazen.\-com/user/logout \index{User\-Controller@{User\-Controller}!profile@{profile}}
+\index{profile@{profile}!UserController@{User\-Controller}}
+\subsubsection[{profile}]{\setlength{\rightskip}{0pt plus 5cm}profile (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_user_controller_acc2e0b5ce375a9d6638f31a4a765f65f}
+Modification des information personnelles on dirige l'utilisateur vers la page de profil, en affichant ses données on vérifie qu'il est connecter. Si tel est le cas on charge le model\-User et si l'utilisateur veut modifier ses données on le fait grâce à ce model et on teste le mot de passe de confirmation. Si le mot de passe est erroné on ne modifie rien par contre si c'est le bon mot de passe on met alors à jour la base de données, on met à jour la session et on informe l'utilisateur de la réussite. Si l'utilisateur veut modifier son mot de passe alors on teste le mot de passe de confirmation. Si le mot de passe est erroné on ne modifie rien par contre si c'est le bon mot de passe on met alors à jour la base de données. Pour afficher les données de l'utilisateur, on récupère l'id de l'utilisateur, on prend les informations de la base de données et on les affiche dans la vue. Si l'utilisateur est déconnecter il est dirigé vers la page home. url\-: diapazen.\-com/user/profile 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Documents/\-Git\-Hub/diapazen/app/controller/User\-Controller.\-class.\-php\end{DoxyCompactItemize}

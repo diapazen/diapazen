@@ -1,0 +1,282 @@
+\section{Controller Class Reference}
+\label{class_controller}\index{Controller@{Controller}}
+Inheritance diagram for Controller\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.623188cm]{class_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf \-\_\-\-\_\-construct} (\$request)
+\item 
+{\bf render} (\$view)
+\item 
+{\bf e404} ()
+\item 
+{\bf get\-Path} (\$filename)
+\item 
+{\bf get\-Header} ()
+\item 
+{\bf get\-Footer} ()
+\item 
+{\bf get\-Ariadne\-Thread} ()
+\item 
+{\bf get\-Home\-Url} ()
+\item 
+{\bf set\-User\-Connected} (\$user\-Infos)
+\item 
+{\bf set\-User\-Disconnected} ()
+\item 
+{\bf is\-User\-Connected} ()
+\item 
+{\bf get\-User\-Info} (\$key)
+\item 
+{\bf set\-User\-Info} (\$key, \$value)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf load\-Model} (\$model)
+\item 
+{\bf get\-Model} ()
+\item 
+{\bf set} (\$key, \$value)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \$m\-Model}\label{class_controller_a192d6493adb043f7a7f016b6070e1257}
+
+\item 
+{\bfseries \$m\-Request}\label{class_controller_a6f829f0dd59d9c64b6023f1fc9062c4a}
+
+\item 
+{\bfseries \$m\-Vars} = array()\label{class_controller_a58a15773596277a8f58eb4d1d500ed02}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Controller@{Controller}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!Controller@{Controller}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$request}
+\end{DoxyParamCaption}
+)}\label{class_controller_a81bdf9b2f742c664208230ca9ad44f28}
+Constructeur 
+\begin{DoxyParams}{Parameters}
+{\em \doxyref{Request}{p.}{class_request}} & request Requête H\-T\-T\-P \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Controller@{Controller}!e404@{e404}}
+\index{e404@{e404}!Controller@{Controller}}
+\subsubsection[{e404}]{\setlength{\rightskip}{0pt plus 5cm}e404 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_a2163fbc31872b3c99dbfafe45a768fbb}
+Affiche l'erreur 404 \index{Controller@{Controller}!get\-Ariadne\-Thread@{get\-Ariadne\-Thread}}
+\index{get\-Ariadne\-Thread@{get\-Ariadne\-Thread}!Controller@{Controller}}
+\subsubsection[{get\-Ariadne\-Thread}]{\setlength{\rightskip}{0pt plus 5cm}get\-Ariadne\-Thread (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_a71e04a4cb75e764599a305b1089945bd}
+Inclut le fichier du fil d'arianne. A utiliser dans les fichiers de vue
+
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!get\-Footer@{get\-Footer}}
+\index{get\-Footer@{get\-Footer}!Controller@{Controller}}
+\subsubsection[{get\-Footer}]{\setlength{\rightskip}{0pt plus 5cm}get\-Footer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_afd65368c3ca63e81eeefe796a85201ba}
+Inclut le fichier de pied de page. A utiliser dans les fichiers de vue
+
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!get\-Header@{get\-Header}}
+\index{get\-Header@{get\-Header}!Controller@{Controller}}
+\subsubsection[{get\-Header}]{\setlength{\rightskip}{0pt plus 5cm}get\-Header (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_a614834f1605e407376028e8c82298c82}
+Inclut le fichier d'entête. A utiliser dans les fichiers de vue
+
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!get\-Home\-Url@{get\-Home\-Url}}
+\index{get\-Home\-Url@{get\-Home\-Url}!Controller@{Controller}}
+\subsubsection[{get\-Home\-Url}]{\setlength{\rightskip}{0pt plus 5cm}get\-Home\-Url (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_ada8fa4fecbe408317fc25c98ab506296}
+Récupère l'url de la page d'accueil
+
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!get\-Model@{get\-Model}}
+\index{get\-Model@{get\-Model}!Controller@{Controller}}
+\subsubsection[{get\-Model}]{\setlength{\rightskip}{0pt plus 5cm}get\-Model (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_controller_a0a086ca877b41192556a2de7e4a97b98}
+Retourne le modèle de données \begin{DoxyReturn}{Returns}
+\doxyref{Model}{p.}{class_model} model Modèle de données 
+\end{DoxyReturn}
+\index{Controller@{Controller}!get\-Path@{get\-Path}}
+\index{get\-Path@{get\-Path}!Controller@{Controller}}
+\subsubsection[{get\-Path}]{\setlength{\rightskip}{0pt plus 5cm}get\-Path (
+\begin{DoxyParamCaption}
+\item[{}]{\$filename}
+\end{DoxyParamCaption}
+)}\label{class_controller_af7b2ad7d99459b3e105ca7ba0fa14069}
+Récupère le chemin d'un fichier css,js,png ...
+
+Exemple d'utilisation\-: \$this-\/$>$get\-Path('css/style.\-css'); Donne le chemin du fichier style.\-css
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & filename chemin relatif du fichier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string chemin complet du fichier 
+\end{DoxyReturn}
+\index{Controller@{Controller}!get\-User\-Info@{get\-User\-Info}}
+\index{get\-User\-Info@{get\-User\-Info}!Controller@{Controller}}
+\subsubsection[{get\-User\-Info}]{\setlength{\rightskip}{0pt plus 5cm}get\-User\-Info (
+\begin{DoxyParamCaption}
+\item[{}]{\$key}
+\end{DoxyParamCaption}
+)}\label{class_controller_a918b69dab8f9fe8e0cc8a7f5d530d1e4}
+Récupère les informations de l'utilisateur (stocké en session)
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & key clé \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string Information voulue 
+\end{DoxyReturn}
+\index{Controller@{Controller}!is\-User\-Connected@{is\-User\-Connected}}
+\index{is\-User\-Connected@{is\-User\-Connected}!Controller@{Controller}}
+\subsubsection[{is\-User\-Connected}]{\setlength{\rightskip}{0pt plus 5cm}is\-User\-Connected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_aba0fa3d6e5fdb720397f057b6f98aca9}
+L'utilisateur est-\/il connecté ?
+
+\begin{DoxyReturn}{Returns}
+bool Vrai si il est connecté, Faux sinon 
+\end{DoxyReturn}
+\index{Controller@{Controller}!load\-Model@{load\-Model}}
+\index{load\-Model@{load\-Model}!Controller@{Controller}}
+\subsubsection[{load\-Model}]{\setlength{\rightskip}{0pt plus 5cm}load\-Model (
+\begin{DoxyParamCaption}
+\item[{}]{\$model}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_controller_ab25941a477cf4f0f98439627cefbca08}
+Charge le modèle de données 
+\begin{DoxyParams}{Parameters}
+{\em \doxyref{Model}{p.}{class_model}} & model Modèle de données \\
+\hline
+\end{DoxyParams}
+\index{Controller@{Controller}!render@{render}}
+\index{render@{render}!Controller@{Controller}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}render (
+\begin{DoxyParamCaption}
+\item[{}]{\$view}
+\end{DoxyParamCaption}
+)}\label{class_controller_a402c6c924d6f21d17da89bc29e65956d}
+Fait le rendu de la vue
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & filename chemin relatif du fichier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!set@{set}}
+\index{set@{set}!Controller@{Controller}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}set (
+\begin{DoxyParamCaption}
+\item[{}]{\$key, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_controller_aab787bd83f84f4215dceb35f7c305eee}
+Ajoute une variable pour la vue
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & filename chemin relatif du fichier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!set\-User\-Connected@{set\-User\-Connected}}
+\index{set\-User\-Connected@{set\-User\-Connected}!Controller@{Controller}}
+\subsubsection[{set\-User\-Connected}]{\setlength{\rightskip}{0pt plus 5cm}set\-User\-Connected (
+\begin{DoxyParamCaption}
+\item[{}]{\$user\-Infos}
+\end{DoxyParamCaption}
+)}\label{class_controller_ad81438963e946370065e5018c4d0fe49}
+Connecte l'utilisateur
+
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!set\-User\-Disconnected@{set\-User\-Disconnected}}
+\index{set\-User\-Disconnected@{set\-User\-Disconnected}!Controller@{Controller}}
+\subsubsection[{set\-User\-Disconnected}]{\setlength{\rightskip}{0pt plus 5cm}set\-User\-Disconnected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_controller_a4709000ecaa3d4cc3d6ad2a0954d75f3}
+Déconnecte l'utilisateur
+
+\begin{DoxyReturn}{Returns}
+void Rien 
+\end{DoxyReturn}
+\index{Controller@{Controller}!set\-User\-Info@{set\-User\-Info}}
+\index{set\-User\-Info@{set\-User\-Info}!Controller@{Controller}}
+\subsubsection[{set\-User\-Info}]{\setlength{\rightskip}{0pt plus 5cm}set\-User\-Info (
+\begin{DoxyParamCaption}
+\item[{}]{\$key, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}\label{class_controller_a3b5b4a9a7d7b387fef4c37770c604c44}
+Définit les informations de l'utilisateur (stocké en session)
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & key clé \\
+\hline
+{\em string} & Information voulue \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Documents/\-Git\-Hub/diapazen/system/Controller.\-class.\-php\end{DoxyCompactItemize}

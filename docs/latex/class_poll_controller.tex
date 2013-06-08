@@ -1,0 +1,167 @@
+\section{Poll\-Controller Class Reference}
+\label{class_poll_controller}\index{Poll\-Controller@{Poll\-Controller}}
+Inheritance diagram for Poll\-Controller\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_poll_controller}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf index} (\$params=null)
+\item 
+{\bf create} (\$params=null)
+\item 
+{\bf connect} (\$params=null)
+\item 
+{\bf share} (\$params=null)
+\item 
+{\bf sent} (\$params=null)
+\item 
+{\bf view} (\$params=null)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{Poll\-Controller@{Poll\-Controller}!connect@{connect}}
+\index{connect@{connect}!PollController@{Poll\-Controller}}
+\subsubsection[{connect}]{\setlength{\rightskip}{0pt plus 5cm}connect (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_poll_controller_aef0c1d8cc930dc55039b74f6d1a4bbb3}
+Page connec lors de la création d'un sondage
+
+Gère \-:
+\begin{DoxyItemize}
+\item Met le titre de la page à 'Création d\textbackslash{}'un sondage $|$ \doxyref{Diapazen}{p.}{namespace_diapazen}'.
+\item Renvoi à la partie create si on y a pas été
+\item Envoi directement l'utilisateur à la partie 'partage' si il est déjà connecté
+\item Si on est déjà inscrit on tente de se connecter
+\item Si on n'est pas inscrit, on inscrit l'utilisateur et on lui envoi un mail avec son mot de passe
+\item Gère si des erreurs sont survenues
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$params} & null par défaut \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Controller@{Poll\-Controller}!create@{create}}
+\index{create@{create}!PollController@{Poll\-Controller}}
+\subsubsection[{create}]{\setlength{\rightskip}{0pt plus 5cm}create (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_poll_controller_ad4a15717b6326aeddf9e36a4e578fc62}
+Création d'un sondage
+
+Gère \-:
+\begin{DoxyItemize}
+\item Lance le render de la vue 'poll\-Creation'
+\item Met le titre de la page à 'Création d\textbackslash{}'un sondage $|$ \doxyref{Diapazen}{p.}{namespace_diapazen}'.
+\item Récupère les renseignements donnés si on fait 'précédent'
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$params} & null par défaut \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Controller@{Poll\-Controller}!index@{index}}
+\index{index@{index}!PollController@{Poll\-Controller}}
+\subsubsection[{index}]{\setlength{\rightskip}{0pt plus 5cm}index (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_poll_controller_a749de566b023589025bfebbc37537d65}
+Index des sondages
+
+Lance la méthode 'create' de \doxyref{Poll\-Controller}{p.}{class_poll_controller}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$params} & null par défaut \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Controller@{Poll\-Controller}!sent@{sent}}
+\index{sent@{sent}!PollController@{Poll\-Controller}}
+\subsubsection[{sent}]{\setlength{\rightskip}{0pt plus 5cm}sent (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_poll_controller_a62467d03c837586c4708d1b21d0120b7}
+Partage d'un sondage
+
+Gère \-:
+\begin{DoxyItemize}
+\item Met le titre de la page à 'Création d\textbackslash{}'un sondage $|$ \doxyref{Diapazen}{p.}{namespace_diapazen}'.
+\item Renvoi à la page d'accueil si nous ne venons pas créer un sondage
+\item Envois des mails de partage au mails spécifiés
+\item Lance le render de la vue 'share\-Mail'
+\item Gère si des erreurs sont survenues
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$params} & null par défaut \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Controller@{Poll\-Controller}!share@{share}}
+\index{share@{share}!PollController@{Poll\-Controller}}
+\subsubsection[{share}]{\setlength{\rightskip}{0pt plus 5cm}share (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_poll_controller_adc75f0e1d90a818ec6f956f0bea0506f}
+Partage d'un sondage
+
+Gère \-:
+\begin{DoxyItemize}
+\item Met le titre de la page à 'Création d\textbackslash{}'un sondage $|$ \doxyref{Diapazen}{p.}{namespace_diapazen}'.
+\item Renvoi à la partie create si on y a pas été
+\item Ajoute le sondage dans la base de donnée
+\item Ajoute les choix dans la base de donnée
+\item Lance le render de la vue 'poll\-Share'
+\item Gère si des erreurs sont survenues
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$params} & null par défaut \\
+\hline
+\end{DoxyParams}
+\index{Poll\-Controller@{Poll\-Controller}!view@{view}}
+\index{view@{view}!PollController@{Poll\-Controller}}
+\subsubsection[{view}]{\setlength{\rightskip}{0pt plus 5cm}view (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}\label{class_poll_controller_af05c3382fc723fd84e5d49c18af43913}
+Visualisation d'un sondage
+
+Gère \-:
+\begin{DoxyItemize}
+\item Met le titre de la page à 'Création d\textbackslash{}'un sondage $|$ \doxyref{Diapazen}{p.}{namespace_diapazen}'.
+\item Renvoi à la page d'accueil si l'url du sondage n'est pas specifiée
+\item Renvoi un 404 si le sondage n'a pas été trouvé
+\item Empêche le revote grâce à la fonction 'rafraichir la page'
+\item L'ajout de vote dans le sondage
+\item Trie les choix en fonction des résultats pour un sondage fermé
+\item Affiche qui a voté quoi
+\item Lance le render de la vue 'poll\-View'
+\item Gère si des erreurs sont survenues
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+type & {\em \$params} & null par défaut \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Documents/\-Git\-Hub/diapazen/app/controller/Poll\-Controller.\-class.\-php\end{DoxyCompactItemize}
