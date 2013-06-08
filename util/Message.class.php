@@ -27,7 +27,7 @@ class Message
 {
 
 	private static $messageRegistration	=
-				"Bonjour %s %s\n\nMerci de vous être inscrit sur Diapazen.\nVotre mot de passe est: %s\nChanger le dès maintenant en accèdant à votre profil.";
+				"Bonjour %s %s\n\nMerci de vous être inscrit sur Diapazen.\nVotre mot de passe est: %s\nChangez le dès maintenant en accèdant à votre profil.";
 
 	private static $messageCreatePoll	=
 				"Bonjour\n\nVous venez de créer le sondage %s";
@@ -55,6 +55,8 @@ class Message
 
 	/**
 	 * Récupère le message à envoyer
+	 *
+	 * On utilise un switch sur '$name' afin de savoir quel message récupérer
 	 *
 	 * @param name nom permettant de savoir quel message choisir
 	 */
@@ -98,7 +100,10 @@ class Message
 
 	/**
 	 * Set les paramêtres des messages (ex : mot de passe)
-	 * Ceci doivent avoir été mis dans des balises <span> ayant le même name qu'une key du tableau
+	 *
+	 * Set les paramêtres des messages grâce à la fonction vsprintf
+	 * Rajoute une ligne à la fin de tous les messages
+	 *
 	 * @param  params tableau des paramêtres du message
 	 *
 	 */

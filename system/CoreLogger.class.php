@@ -69,10 +69,13 @@ class CoreLogger
        
     }
 
-    /** Affecte un writer
+    /** 
+     * Affecte un writer
      *
      * Determine quel objet writter est utiliser pour
      * ecrire notre log
+     * 
+     * @param type ObjWriter
      *
      * @return boolean affectation reussi
      */
@@ -98,6 +101,7 @@ class CoreLogger
     * 
     * @param     String message message du log
     * @param    String level niveau du log
+    *
     */
     public function log($message,$level)
     {

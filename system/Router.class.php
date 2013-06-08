@@ -33,6 +33,11 @@ class Router
 
 	/**
 	 * Constructeur
+	 *
+	 * Récupère le nom du controller et instancie en conséquence le controller désiré
+	 * Appelle de l'action spécifié par l'url au controller
+	 * Si il y a un problème on lève une exception
+	 *
 	 */
 	public function __construct()
 	{

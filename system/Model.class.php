@@ -78,8 +78,14 @@ class Model
 	/**
 	 * Récupère des informations d'une table ou d'une vue de la base de données.
 	 *
+	 * Permet de réaliser une requête Select simple sur la table '$table'
+	 * et qui retourne les paramêtres '$fields'
+	 * On peut choisir le type fetch de retour : assoc ou num (par défaut both)
+	 *
 	 * @param 	array|string 	$fields Champs de la table
 	 * @param	string			$table	Table de la base de données
+	 * @param   type       		$fetchMode  Permet de choisir quel 'fetch' utiliser par défaut 'both'
+	 *
 	 * @return	Un tableau de résultats
 	 */
 	public function select($fields, $table, $fetchMode = 'both')
@@ -109,9 +115,16 @@ class Model
 	/**
 	 * Récupère des informations d'une table ou d'une vue de la base de données.
 	 *
+	 * Permet de réaliser une requête Select sur la table '$table'
+	 * avec comme paramêtre '$conditions'
+	 * et qui retourne les paramêtres '$fields'
+	 * On peut choisir le type fetch de retour : assoc ou num (par défaut both)
+	 *
 	 * @param 	array|string 	$fields 	Champs de la table
 	 * @param	string			$table		Table de la base de données
 	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
+	 * @param   type       		$fetchMode  Permet de choisir quel 'fetch' utiliser par défaut 'both'
+	 *
 	 * @return	Un tableau de résultats
 	 */
 	public function selectWhere($fields, $table, $conditions, $fetchMode = 'both')
@@ -155,10 +168,17 @@ class Model
 	/**
 	 * Récupère des informations d'une table ou d'une vue de la base de données.
 	 *
+	 * Permet de réaliser une requête Select sur la table '$table'
+	 * avec comme paramêtre '$conditions' et les ordonnant avec 'orderby'
+	 * et qui retourne les paramêtres '$fields'
+	 * On peut choisir le type fetch de retour : assoc ou num (par défaut both)
+	 *
 	 * @param 	array|string 	$fields 	Champs de la table
 	 * @param	string			$table		Table de la base de données
 	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
 	 * @param	array			$orderby	Un tableau ex: array('nom desc', 'prenom asc')
+	 * @param   type       		$fetchMode  Permet de choisir quel 'fetch' utiliser par défaut 'both'
+	 *
 	 * @return	Un tableau de résultats
 	 */
 	public function selectWhereOrderBy($fields, $table, $conditions, $orderby, $fetchMode = 'both')
@@ -204,6 +224,7 @@ class Model
 	 *
 	 * @param 	array		 	$values 	Tableau ASSOCIATIF des valeurs à insérer
 	 * @param	string			$table		Table de la base de données
+	 *
 	 * @return	Vrai si réussite sinon Faux
 	 */
 	public function insert($values, $table)
@@ -235,9 +256,14 @@ class Model
 	/**
 	 * Met à jour un enregistrement de la table
 	 *
+	 * Permet de réaliser une requête Update sur la table '$table'
+	 * avec comme paramêtre '$conditions' 
+	 * et qui met à jour avec '$values'
+	 *
 	 * @param 	array		 	$values 	Un tableau ASSOCIATIF des valeurs
 	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
 	 * @param	string			$table		Table de la base de données
+	 *
 	 * @return	Vrai si réussite sinon Faux
 	 */
 	public function updateWhere($values, $conditions, $table)
@@ -272,8 +298,12 @@ class Model
 	/**
 	 * Supprime un enregistrement de la table
 	 *
+	 * Permet de réaliser une requête Delete sur la table '$table'
+	 * avec comme paramêtre '$conditions' 
+	 *
 	 * @param	array			$conditions	Un tableau ASSOCIATIF des conditions
 	 * @param	string			$table		Table de la base de données
+	 *
 	 * @return	Vrai si réussite sinon Faux
 	 */
 	public function deleteFrom($conditions, $table)

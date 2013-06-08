@@ -34,7 +34,7 @@ class PXMLWriter implements IWriter
    private $xml;
 
 
-       /**
+    /**
     * Constructeur
     * 
     * Constructeur du writer texten defini le fichier du log
@@ -54,7 +54,7 @@ class PXMLWriter implements IWriter
     * Ajout d'un log implemente l'interface IWRITER
     * 
     * @param     string message  log
-     */
+    */
    public function write($message,$level)
    {
       

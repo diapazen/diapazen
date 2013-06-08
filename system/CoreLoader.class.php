@@ -54,7 +54,8 @@ class CoreLoader
         
     }
 
-    /** Vérifie si la classe est présente et lance une exception sinon
+    /** 
+     * Vérifie si la classe est présente et lance une exception sinon
      * 
      * @param   string  $className  Nom de la classe à inclure
      * 

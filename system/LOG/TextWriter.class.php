@@ -59,7 +59,7 @@ class TextWriter implements IWriter
     * Ajout d'un log implemente l'interface IWRITER
     * 
     * @param     string message  log
-     */
+    */
    public function write($message,$level)
    {
       $logSize = $this->testSize();
@@ -79,7 +79,7 @@ class TextWriter implements IWriter
       
    }
 
-        /**
+     /**
      * Test size
      * 
      * retourne la taille du fichier de log
