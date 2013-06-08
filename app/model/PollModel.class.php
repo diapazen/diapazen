@@ -46,7 +46,14 @@ class PollModel extends Model
 	}
 
     /**
-     * Affichage d'un sondage
+     * Affichage d'un sondage en
+     * récupèrant les informations stockées dans la base de données au moyen
+     * d’une requête sql Select sur la vue dpz_view_users_join_polls. On traite
+     * le résultat obtenu en récupérant les informations de chaque choix du
+     * sondage ainsi que les informations de chaque résultat des choix du
+     * sondage. Les résultats obtenus sont ensuite transférés dans un tableau
+     * et on calcule le pourcentage de chaque choix du sondage. Le tableau est
+     * donc complété avec ces mêmes pourcentages.
      * @param type $pollUrl url du sondage
      * @return array contenu du sondage
      */
@@ -115,6 +122,8 @@ class PollModel extends Model
 
     /**
      * Affichage de la liste des sondages
+     * créé par l’utilisateur en prenant en paramètre l’Id de l’utilisateur avec
+     * une requête select sur la vue dpz_view_users_join_polls.
      * @param type $pollUrl url du sondage
      * @return array contenu du sondage
      */
@@ -131,6 +140,8 @@ class PollModel extends Model
     
     /**
      * Ajout d'un sondage
+     * On commence par affecter les valeurs des propriétés de l’objet et on
+     * ajoute la ligne correspondante à la base de données.
      * @param type $userId id de l'utilisateur
      * @param type $pollTitle titre du sondage
      * @param type $pollDescription description du sondage
@@ -167,7 +178,9 @@ class PollModel extends Model
     }
 
     /**
-     * Ajout d'un sondage
+     * Vote d'un sondage
+     * pour le choix du sondage grâce à l’Id du choix et la valeur du votant.
+     * On insère cette ligne dans la base de données, dans la table dpz_results.
      * @param int $choiceId L'id du choix
      * @param string $pollTitle valeur à insérer
      * @return boolean true si l'ajout s'est bien exécuté sinon false
@@ -179,6 +192,7 @@ class PollModel extends Model
     
     /**
      * Mise à jour de la table Sondage
+     * clos le sondage en mettant à 0 dans la colonne open de la table du sondage.
      * @return boolean true si la mise à jour s'est bien exécuté sinon false
      */
     public function updatePoll($pollId)
@@ -187,7 +201,10 @@ class PollModel extends Model
     }
 
     /**
-     * Récupère le contenu du textarea et parse les emails
+     * Récupère le contenu du textarea et parse les emails au moyen d'une
+     * regexp. Elle retourne un tableau avec les email si le parsage est réussi
+     * et null sinon.
+     * @param $texteareaContent
      * @return Tableau avec les emails valides auquels les mails ont été envoyé
      */
     public function sharePoll($texteareaContent)
