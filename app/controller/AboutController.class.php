@@ -28,6 +28,15 @@ require_once 'system/Controller.class.php';
 class AboutController extends Controller
 {
 
+	/**
+    * Index de la page "à propos"
+    *
+    * Met le titre de la page à 'À propos | Diapazen'
+    * Lance un render de la vue 'about'
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function index($params = null)
 	{
 		// Titre de la page
