@@ -28,6 +28,20 @@ require_once 'system/Controller.class.php';
 class DashboardController extends Controller
 {
 
+	/**
+    * Index du Dashboard
+    *
+    * Met le titre de la page à 'Tableau de bord | Diapazen'.
+    * Récupère le model 'poll'
+    * Gère  : 
+    * - La fermeture de sondage
+    * - Met à jour les sondages expirés dans la BDD
+    * - Lance le render de la vue 'dashboard' (si l'utilisateur est connecté)
+    * - Retourne à la page d'accueil (si l'utilisateur n'est aps connecté)
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function index($params = null)
 	{
 
@@ -39,6 +53,7 @@ class DashboardController extends Controller
 
 		try
 		{
+			//si on a fermé un sondage
 			if (isset($_POST['close']) && !empty($_POST['close']))
 			{
 				if ($this->getModel()->updatePoll($_POST['close']))
@@ -53,9 +68,10 @@ class DashboardController extends Controller
 				}
 			}
 
+			//test si l'utilisateur est connecté
 			if ($this->isUserConnected())
 			{
-				
+				//récupération de l'id du user et de ses sondages
 				$uid = $this->getUserInfo('id');
 				$polls = $this->getModel()->viewAllPolls($uid);
 				
