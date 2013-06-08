@@ -31,9 +31,9 @@ class DashboardController extends Controller
 	/**
     * Index du Dashboard
     *
-    * Met le titre de la page à 'Tableau de bord | Diapazen'.
     * Récupère le model 'poll'
     * Gère  : 
+    * - Met le titre de la page à 'Tableau de bord | Diapazen'.
     * - La fermeture de sondage
     * - Met à jour les sondages expirés dans la BDD
     * - Lance le render de la vue 'dashboard' (si l'utilisateur est connecté)

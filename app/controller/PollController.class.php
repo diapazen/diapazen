@@ -30,11 +30,30 @@ require_once 'util/TestForm.class.php';
 class PollController extends Controller
 {
 
+	/**
+    * Index des sondages
+    *
+    * Lance la méthode 'create' de PollController
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function index($params = null)
 	{
 		$this->create($params);
 	}
 
+	/**
+    * Création d'un sondage
+    *
+    * Gère  : 
+    * - Lance le render de la vue 'pollCreation' 
+    * - Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+    * - Récupère les renseignements donnés si on fait 'précédent'
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function create($params = null)
 	{
 		//si l'utilisateur est deja connecter alors on affiche pas le le bouton connexion dans le fil d'arianne
@@ -62,6 +81,22 @@ class PollController extends Controller
 		$this->render('pollCreation');
 	}
 
+
+	/**
+    * Page connec lors de la création d'un sondage
+    *
+    * Gère  : 
+    * - Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+    * - Renvoi à la partie create si on y a pas été
+    * - Envoi directement l'utilisateur à la partie 'partage' si il est déjà connecté
+    * - Si on est déjà inscrit on tente de se connecter
+    * - Si on n'est pas inscrit, on inscrit l'utilisateur et
+    *	on lui envoi un mail avec son mot de passe
+    * - Gère si des erreurs sont survenues
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function connect($params = null)
 	{
 
@@ -70,6 +105,7 @@ class PollController extends Controller
 		$this->set('class_connect', 'orange');
 		$this->set('class_share', 'grey');
 
+		//récupération des valeurs du fil d'arianne
 		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
 		{
 			$this->set('show_ariadne', $_SESSION['show_ariadne']);
@@ -202,10 +238,19 @@ class PollController extends Controller
 	}
 
 	/**
-	 * Création d'un sondage
-	 * 
-	 * url:	diapazen.com/poll/share
-	 **/
+    * Partage d'un sondage
+    *
+    * Gère  : 
+    * - Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+    * - Renvoi à la partie create si on y a pas été
+    * - Ajoute le sondage dans la base de donnée
+    * - Ajoute les choix dans la base de donnée
+    * - Lance le render de la vue 'pollShare' 
+    * - Gère si des erreurs sont survenues
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function share($params = null)
 	{
 		if (isset($_SESSION['show_ariadne']) && isset($_SESSION['width_ariadne']))
@@ -275,7 +320,19 @@ class PollController extends Controller
 
 	}
 
-
+	/**
+    * Partage d'un sondage
+    *
+    * Gère  : 
+    * - Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+    * - Renvoi à la page d'accueil si nous ne venons pas créer un sondage
+    * - Envois des mails de partage au mails spécifiés
+    * - Lance le render de la vue 'shareMail' 
+    * - Gère si des erreurs sont survenues
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function sent($params = null)
 	{
 
@@ -321,10 +378,22 @@ class PollController extends Controller
 	}
 	
 	/**
-	 * Affichage d'un sondage
-	 * 
-	 * url:	diapazen.com/poll/view/.../
-	 **/
+    * Visualisation d'un sondage
+    *
+    * Gère  : 
+    * - Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+    * - Renvoi à la page d'accueil si l'url du sondage n'est pas specifiée
+    * - Renvoi un 404 si le sondage n'a pas été trouvé
+    * - Empêche le revote grâce à la fonction 'rafraichir la page'
+    * - L'ajout de vote dans le sondage
+    * - Trie les choix en fonction des résultats pour un sondage fermé
+    * - Affiche qui a voté quoi
+    * - Lance le render de la vue 'pollView' 
+    * - Gère si des erreurs sont survenues
+    *
+    * @param type $params null par défaut
+    *
+    */
 	public function view($params = null)
 	{
 		
