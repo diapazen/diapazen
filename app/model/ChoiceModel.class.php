@@ -42,8 +42,13 @@ class ChoiceModel extends Model
 
     /**
     * Ajout d'un choix
+    *
+    * Insert dans la base de donnée 'dpz_choices' un nouveau choix.
+    * Méthode utilisé grâce à la méthode 'inser' de Model
+    *
     * @param type $title titre du choix
     * @param type $pollId id du sondage
+    *
     * @return boolean true si l'ajout s'est bien exécuté sinon false
     */
     public function addChoice($title, $pollId)
@@ -53,6 +58,10 @@ class ChoiceModel extends Model
     
     /**
      * Mise à Jour d'un choix
+     *
+     * Met à jour dans la base de donnée 'dpz_choices' du titre et de l'id du choix.
+     * Méthode utilisé grâce à la méthode 'updateWhere' de Model
+     *
      * @param type $title titre du choix
      * @param type $id id du choix
      * @return boolean true si l'ajout s'est bien exécuté sinon false
@@ -64,6 +73,7 @@ class ChoiceModel extends Model
 
     /**
     * Setteur du titre du choix
+    *
     * @param type $title titre du choix
     */
     public function setChoiceTitle($title)
@@ -73,6 +83,8 @@ class ChoiceModel extends Model
 
     /**
     * Getteur du titre du choix
+    *
+    * @return type titre du choix
     */
     public function getChoiceTitle()
     {
