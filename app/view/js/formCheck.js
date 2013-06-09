@@ -1,12 +1,12 @@
 /*
- *Expressions régulières utlisées
+ *Expressions rÃ©guliÃ¨res utlisÃ©es
  */
 var strRegexp = {
                     "default"       :   /^(.|\n){3,}$/,
                     "choice"         :   /^.{1,}$/,
                     "date_input"    :   /^.{0}|[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
-                    "firstname"    :   /^[a-zA-Z\çéèêï]+[-]?[a-zA-Z\çéèêï]+$/,
-                    "lastname"    :   /^[a-zA-Z\çéèêï]+[-\'\s]?[a-zA-Z\çéèêï]+$/,
+                    "firstname"    :   /^[a-zA-Z\Ã§Ã©Ã¨ÃªÃ¯]+[-]?[a-zA-Z\Ã§Ã©Ã¨ÃªÃ¯]+$/,
+                    "lastname"    :   /^[a-zA-Z\Ã§Ã©Ã¨ÃªÃ¯]+[-\'\s]?[a-zA-Z\Ã§Ã©Ã¨ÃªÃ¯]+$/,
                     "email"         :   /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
                 };
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
 });
 
 /*
- *Fonction de vérification des champs
+ *Fonction de vÃ©rification des champs
  */
 function initBlur()
 {
@@ -26,7 +26,7 @@ function initBlur()
     {
         for(var i=0; i<fields.length; i++)
         {
-			//Liste des champs vérifiés
+			//Liste des champs vÃ©rifiÃ©s
             if( ((fields[i].tagName == 'INPUT' && (fields[i].type == 'text'
                 || fields[i].type == 'password')) 
                 || fields[i].tagName == 'TEXTAREA')
@@ -64,7 +64,7 @@ function initBlur()
 }
 
 /*
- *Fonction de vérification des formulaires
+ *Fonction de vÃ©rification des formulaires
  *Lors du clic sur le bouton submit
  */
 function formCheck(form) {
@@ -78,14 +78,14 @@ function formCheck(form) {
 
     for(i=0; i<fields.length; i++)
     {
-		//Liste des champs vérifiés
+		//Liste des champs vÃ©rifiÃ©s
         if( ((fields[i].tagName == 'INPUT' && fields[i].id != 'poll_link' && (fields[i].type == 'text'
             || fields[i].type == 'password')) 
             || fields[i].tagName == 'TEXTAREA') && getStyleProperty(fields[i], 'display') != 'none')
         {
             regexp = getRegexp(fields[i], "submit");
 			
-			//Vérification de la regexp, exception pour la liste de mails de partage
+			//VÃ©rification de la regexp, exception pour la liste de mails de partage
             if(regexp != null && regexp != false && fields[i].name != 'mails')
             {
                 if(!fields[i].value.match(regexp))
@@ -113,13 +113,13 @@ function formCheck(form) {
 var newPassword;
 
 /*
- *Fonction de récupération des regexps 
+ *Fonction de rÃ©cupÃ©ration des regexps 
  */
 function getRegexp(element, call)
 {
 
 
-    // On récupère la regexp suivant le name de l'input
+    // On rÃ©cupÃ¨re la regexp suivant le name de l'input
     switch(element.name)
     {
 
@@ -143,7 +143,7 @@ function getRegexp(element, call)
 
         case 'mails':
 
-            // Cas spécial pour la textarea des mails à partager
+            // Cas spÃ©cial pour la textarea des mails Ã  partager
             var reg = new RegExp("[ \n,;]+", "g");
             var emails;
             emails = element.value.split(reg);
@@ -175,7 +175,7 @@ function getRegexp(element, call)
 
         break;
 
-        case 'firstNameUser':	//Prénom de l'utilisateur
+        case 'firstNameUser':	//PrÃ©nom de l'utilisateur
             return strRegexp['firstname'];
         break;
         case 'lastNameUser':	//Nom de l'utilisateur
@@ -214,7 +214,7 @@ function getRegexp(element, call)
 
 }
 
-//Retourne le style de l'élément
+//Retourne le style de l'Ã©lÃ©ment
 function getStyleProperty(element, styleProperty)
 {
  
