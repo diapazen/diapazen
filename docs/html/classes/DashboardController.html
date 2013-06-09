@@ -1,0 +1,437 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \DashboardController</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Packages</a></li>
+<li><a href="../packages/Diapazen.html"><i class="icon-folder-open"></i> Diapazen</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public inherited"><a href="#method___construct" title="__construct :: Constructeur"><span class="description">Constructeur</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#method_e404" title="e404 :: Affiche l'erreur 404"><span class="description">Affiche l'erreur 404</span><pre>e404()</pre></a></li>
+<li class="method public inherited"><a href="#method_getAriadneThread" title="getAriadneThread :: Inclut le fichier du fil d'arianne."><span class="description">Inclut le fichier du fil d'arianne.</span><pre>getAriadneThread()</pre></a></li>
+<li class="method public inherited"><a href="#method_getFooter" title="getFooter :: Inclut le fichier de pied de page."><span class="description">Inclut le fichier de pied de page.</span><pre>getFooter()</pre></a></li>
+<li class="method public inherited"><a href="#method_getHeader" title="getHeader :: Inclut le fichier d'entête."><span class="description">Inclut le fichier d'entête.</span><pre>getHeader()</pre></a></li>
+<li class="method public inherited"><a href="#method_getHomeUrl" title="getHomeUrl :: Récupère l'url de la page d'accueil"><span class="description">Récupère l'url de la page d'accueil</span><pre>getHomeUrl()</pre></a></li>
+<li class="method public inherited"><a href="#method_getPath" title="getPath :: Récupère le chemin d'un fichier css,js,png ."><span class="description">Récupère le chemin d'un fichier css,js,png .</span><pre>getPath()</pre></a></li>
+<li class="method public inherited"><a href="#method_getUserInfo" title="getUserInfo :: Récupère les informations de l'utilisateur (stocké en session)"><span class="description">Récupère les informations de l'utilisateur (stocké en session)</span><pre>getUserInfo()</pre></a></li>
+<li class="method public "><a href="#method_index" title="index :: Index du Dashboard"><span class="description">Index du Dashboard</span><pre>index()</pre></a></li>
+<li class="method public inherited"><a href="#method_isUserConnected" title="isUserConnected :: L'utilisateur est-il connecté ?"><span class="description">L'utilisateur est-il connecté ?</span><pre>isUserConnected()</pre></a></li>
+<li class="method public inherited"><a href="#method_render" title="render :: Fait le rendu de la vue"><span class="description">Fait le rendu de la vue</span><pre>render()</pre></a></li>
+<li class="method public inherited"><a href="#method_setUserConnected" title="setUserConnected :: Connecte l'utilisateur"><span class="description">Connecte l'utilisateur</span><pre>setUserConnected()</pre></a></li>
+<li class="method public inherited"><a href="#method_setUserDisconnected" title="setUserDisconnected :: Déconnecte l'utilisateur"><span class="description">Déconnecte l'utilisateur</span><pre>setUserDisconnected()</pre></a></li>
+<li class="method public inherited"><a href="#method_setUserInfo" title="setUserInfo :: Définit les informations de l'utilisateur (stocké en session)"><span class="description">Définit les informations de l'utilisateur (stocké en session)</span><pre>setUserInfo()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="method protected inherited"><a href="#method_getModel" title="getModel :: Retourne le modèle de données"><span class="description">Retourne le modèle de données</span><pre>getModel()</pre></a></li>
+<li class="method protected inherited"><a href="#method_loadModel" title="loadModel :: Charge le modèle de données"><span class="description">Charge le modèle de données</span><pre>loadModel()</pre></a></li>
+<li class="method protected inherited"><a href="#method_set" title="set :: Ajoute une variable pour la vue"><span class="description">Ajoute une variable pour la vue</span><pre>set()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header protected">» Protected
+                    <ul>
+<li class="property protected inherited"><a href="#property_mModel" title="$mModel :: Instance du modèle"><span class="description"></span><pre>$mModel</pre></a></li>
+<li class="property protected inherited"><a href="#property_mRequest" title="$mRequest :: Requête de l'utilisateur"><span class="description"></span><pre>$mRequest</pre></a></li>
+<li class="property protected inherited"><a href="#property_mVars" title="$mVars :: Variables à envoyer à la vue"><span class="description"></span><pre>$mVars</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\DashboardController"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/global.html">global</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/DashboardController.html">DashboardController</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">DashboardController</p>
+<div class="details">
+<div class="long_description"><p>Contrôleur de la page de gestion des sondages</p></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/Diapazen.Controller.html">Diapazen</a></td>
+</tr>
+<tr>
+<th>subpackage</th>
+<td>Controller</td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Constructeur</h2>
+<pre>__construct(<a href="../classes/Request.html">\Request</a> $request) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::__construct()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$request</h4>
+<code><a href="../classes/Request.html">\Request</a></code><p>request		Requête HTTP</p></div>
+</div></div>
+</div>
+<a id="method_e404"></a><div class="element clickable method public method_e404" data-toggle="collapse" data-target=".method_e404 .collapse">
+<h2>Affiche l'erreur 404</h2>
+<pre>e404() </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::e404()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getAriadneThread"></a><div class="element clickable method public method_getAriadneThread" data-toggle="collapse" data-target=".method_getAriadneThread .collapse">
+<h2>Inclut le fichier du fil d'arianne.</h2>
+<pre>getAriadneThread() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A utiliser dans les fichiers de vue</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getAriadneThread()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getFooter"></a><div class="element clickable method public method_getFooter" data-toggle="collapse" data-target=".method_getFooter .collapse">
+<h2>Inclut le fichier de pied de page.</h2>
+<pre>getFooter() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A utiliser dans les fichiers de vue</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getFooter()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getHeader"></a><div class="element clickable method public method_getHeader" data-toggle="collapse" data-target=".method_getHeader .collapse">
+<h2>Inclut le fichier d'entête.</h2>
+<pre>getHeader() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>A utiliser dans les fichiers de vue</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getHeader()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getHomeUrl"></a><div class="element clickable method public method_getHomeUrl" data-toggle="collapse" data-target=".method_getHomeUrl .collapse">
+<h2>Récupère l'url de la page d'accueil</h2>
+<pre>getHomeUrl() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getHomeUrl()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_getPath"></a><div class="element clickable method public method_getPath" data-toggle="collapse" data-target=".method_getPath .collapse">
+<h2>Récupère le chemin d'un fichier css,js,png .</h2>
+<pre>getPath(string $filename) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>..</p>
+
+<p>Exemple d'utilisation: $this->getPath('css/style.css');
+Donne le chemin du fichier style.css</p></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getPath()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filename</h4>
+<code>string</code><p>filename	chemin relatif du fichier</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>chemin complet du fichier</div>
+</div></div>
+</div>
+<a id="method_getUserInfo"></a><div class="element clickable method public method_getUserInfo" data-toggle="collapse" data-target=".method_getUserInfo .collapse">
+<h2>Récupère les informations de l'utilisateur (stocké en session)</h2>
+<pre>getUserInfo(string $key) : string</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getUserInfo()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>key clé</p>
+</div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>string</code>Information voulue</div>
+</div></div>
+</div>
+<a id="method_index"></a><div class="element clickable method public method_index" data-toggle="collapse" data-target=".method_index .collapse">
+<h2>Index du Dashboard</h2>
+<pre>index(\type $params) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"><p>Récupère le model 'poll'
+Gère  :
+- Met le titre de la page à 'Tableau de bord | Diapazen'.
+- La fermeture de sondage
+- Met à jour les sondages expirés dans la BDD
+- Lance le render de la vue 'dashboard' (si l'utilisateur est connecté)
+- Retourne à la page d'accueil (si l'utilisateur n'est aps connecté)</p></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$params</h4>
+<code>\type</code><p>null par défaut</p>
+</div>
+</div></div>
+</div>
+<a id="method_isUserConnected"></a><div class="element clickable method public method_isUserConnected" data-toggle="collapse" data-target=".method_isUserConnected .collapse">
+<h2>L'utilisateur est-il connecté ?</h2>
+<pre>isUserConnected() : bool</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::isUserConnected()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>bool</code>Vrai si il est connecté, Faux sinon</div>
+</div></div>
+</div>
+<a id="method_render"></a><div class="element clickable method public method_render" data-toggle="collapse" data-target=".method_render .collapse">
+<h2>Fait le rendu de la vue</h2>
+<pre>render(string $view) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::render()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$view</h4>
+<code>string</code><p>view	nom de la vue à utiliser</p></div>
+</div></div>
+</div>
+<a id="method_setUserConnected"></a><div class="element clickable method public method_setUserConnected" data-toggle="collapse" data-target=".method_setUserConnected .collapse">
+<h2>Connecte l'utilisateur</h2>
+<pre>setUserConnected(string $userInfos) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::setUserConnected()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$userInfos</h4>
+<code>string</code><p>userInfos   tableau contenant les infos de l'utilisateur</p>
+</div>
+</div></div>
+</div>
+<a id="method_setUserDisconnected"></a><div class="element clickable method public method_setUserDisconnected" data-toggle="collapse" data-target=".method_setUserDisconnected .collapse">
+<h2>Déconnecte l'utilisateur</h2>
+<pre>setUserDisconnected() : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::setUserDisconnected()</td>
+</tr></table>
+</div></div>
+</div>
+<a id="method_setUserInfo"></a><div class="element clickable method public method_setUserInfo" data-toggle="collapse" data-target=".method_setUserInfo .collapse">
+<h2>Définit les informations de l'utilisateur (stocké en session)</h2>
+<pre>setUserInfo(string $key, string $value) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::setUserInfo()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>key clé</p>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>Information voulue</p></div>
+</div></div>
+</div>
+<a id="method_getModel"></a><div class="element clickable method protected method_getModel" data-toggle="collapse" data-target=".method_getModel .collapse">
+<h2>Retourne le modèle de données</h2>
+<pre>getModel() : <a href="../classes/Model.html">\Model</a></pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::getModel()</td>
+</tr></table>
+<h3>Returns</h3>
+<div class="subelement response">
+<code><a href="../classes/Model.html">\Model</a></code>model		Modèle de données</div>
+</div></div>
+</div>
+<a id="method_loadModel"></a><div class="element clickable method protected method_loadModel" data-toggle="collapse" data-target=".method_loadModel .collapse">
+<h2>Charge le modèle de données</h2>
+<pre>loadModel(<a href="../classes/Model.html">\Model</a> $model) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::loadModel()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$model</h4>
+<code><a href="../classes/Model.html">\Model</a></code><p>model       Modèle de données</p>
+</div>
+</div></div>
+</div>
+<a id="method_set"></a><div class="element clickable method protected method_set" data-toggle="collapse" data-target=".method_set .collapse">
+<h2>Ajoute une variable pour la vue</h2>
+<pre>set(string $key, string $value) : void</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::set()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$key</h4>
+<code>string</code><p>key		nom de la variable à utiliser</p></div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code>string</code><p>value	valeur de la variable</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_mModel"> </a><div class="element clickable property protected property_mModel" data-toggle="collapse" data-target=".property_mModel .collapse">
+<h2></h2>
+<pre>$mModel </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::$$mModel</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_mRequest"> </a><div class="element clickable property protected property_mRequest" data-toggle="collapse" data-target=".property_mRequest .collapse">
+<h2></h2>
+<pre>$mRequest </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::$$mRequest</td>
+</tr></table>
+</div></div>
+</div>
+<a id="property_mVars"> </a><div class="element clickable property protected property_mVars" data-toggle="collapse" data-target=".property_mVars .collapse">
+<h2></h2>
+<pre>$mVars </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Controller::$$mVars</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2013-06-09T17:52:17+02:00.<br></footer></div>
+</div>
+</body>
+</html>

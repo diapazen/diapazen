@@ -1,0 +1,3458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="">
+  <file path="app\controller\AboutController.class.php" hash="9be6da420e4545f2c5249822ac60e608" package="Diapazen">
+    <docblock line="2">
+      <description>Contrôleur de la page À propos</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>system/Controller.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="35" package="Diapazen\Controller">
+      <extends>\Controller</extends>
+      <name>AboutController</name>
+      <full_name>\AboutController</full_name>
+      <docblock line="28">
+        <description>AboutController
+Gestion de la page À propos</description>
+        <long-description></long-description>
+        <tag line="28" name="package" description="Diapazen"/>
+        <tag line="28" name="subpackage" description="Controller"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="47" package="Diapazen\Controller">
+        <name>index</name>
+        <full_name>index</full_name>
+        <docblock line="38">
+          <description>Index de la page "à propos"</description>
+          <long-description>&lt;p&gt;Met le titre de la page à 'À propos | Diapazen'
+Lance un render de la vue 'about'&lt;/p&gt;</long-description>
+          <tag line="38" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="47">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="app\controller\DashboardController.class.php" hash="0b7bbf53542687d9950f8bececbae19f" package="Diapazen">
+    <docblock line="2">
+      <description>Contrôleur de la page de gestion des sondages</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>system/Controller.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="36" package="Diapazen\Controller">
+      <extends>\Controller</extends>
+      <name>DashboardController</name>
+      <full_name>\DashboardController</full_name>
+      <docblock line="28">
+        <description>DashboardController</description>
+        <long-description>&lt;p&gt;Contrôleur de la page de gestion des sondages&lt;/p&gt;</long-description>
+        <tag line="28" name="package" description="Diapazen"/>
+        <tag line="28" name="subpackage" description="Controller"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="53" package="Diapazen\Controller">
+        <name>index</name>
+        <full_name>index</full_name>
+        <docblock line="39">
+          <description>Index du Dashboard</description>
+          <long-description>&lt;p&gt;Récupère le model 'poll'
+Gère  :
+- Met le titre de la page à 'Tableau de bord | Diapazen'.
+- La fermeture de sondage
+- Met à jour les sondages expirés dans la BDD
+- Lance le render de la vue 'dashboard' (si l'utilisateur est connecté)
+- Retourne à la page d'accueil (si l'utilisateur n'est aps connecté)&lt;/p&gt;</long-description>
+          <tag line="39" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="53">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="app\controller\IndexController.class.php" hash="a323e76d688d14b45eef132be8354a0f" package="Diapazen">
+    <docblock line="2">
+      <description>Contrôleur de la page d'accueil</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>system/Controller.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="36" package="Diapazen\Controller">
+      <extends>\Controller</extends>
+      <name>IndexController</name>
+      <full_name>\IndexController</full_name>
+      <docblock line="28">
+        <description>IndexController</description>
+        <long-description>&lt;p&gt;Contrôleur de la page d'accueil&lt;/p&gt;</long-description>
+        <tag line="28" name="package" description="Diapazen"/>
+        <tag line="28" name="subpackage" description="Controller"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Diapazen\Controller">
+        <name>index</name>
+        <full_name>index</full_name>
+        <docblock line="39">
+          <description>Page d'accueil</description>
+          <long-description>&lt;p&gt;On set la variable à afficher sur dans la vue et on teste si
+l'utilisateur est connécter. Si tel est le cas alors on redirige vers
+le dashboard, sino on se rend sur la page home.&lt;/p&gt;</long-description>
+          <tag line="39" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="48">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="app\controller\PollController.class.php" hash="f77615ac76a662643690cc22be2ab049" package="Diapazen">
+    <docblock line="2">
+      <description>Contrôleur de la page d'un sondage</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>system/Controller.class.php</name>
+    </include>
+    <include line="27" type="Require Once" package="Default">
+      <name>util/MailUtil.class.php</name>
+    </include>
+    <include line="28" type="Require Once" package="Default">
+      <name>util/TestForm.class.php</name>
+    </include>
+    <function namespace="global" line="497" package="Diapazen">
+      <name>cmp</name>
+      <full_name>\cmp</full_name>
+      <docblock line="490">
+        <description>Fonction interne de comparaison</description>
+        <long-description></long-description>
+        <tag line="490" name="param" description="a paremètres a" type="string" variable="$a">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="490" name="param" description="a paremètres a" type="string" variable="$b">
+          <type by_reference="false">string</type>
+        </tag>
+        <tag line="490" name="return" description="ou b." type="\a">
+          <type by_reference="false">\a</type>
+        </tag>
+      </docblock>
+      <argument line="497">
+        <name>$a</name>
+        <default></default>
+        <type/>
+      </argument>
+      <argument line="497">
+        <name>$b</name>
+        <default></default>
+        <type/>
+      </argument>
+    </function>
+    <class final="false" abstract="false" namespace="global" line="37" package="Diapazen\Controller">
+      <extends>\Controller</extends>
+      <name>PollController</name>
+      <full_name>\PollController</full_name>
+      <docblock line="30">
+        <description>PollController
+Contrôleur de la page d'un sondage</description>
+        <long-description></long-description>
+        <tag line="30" name="package" description="Diapazen"/>
+        <tag line="30" name="subpackage" description="Controller"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Diapazen\Controller">
+        <name>index</name>
+        <full_name>index</full_name>
+        <docblock line="40">
+          <description>Index des sondages</description>
+          <long-description>&lt;p&gt;Lance la méthode 'create' de PollController&lt;/p&gt;</long-description>
+          <tag line="40" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="48">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="64" package="Diapazen\Controller">
+        <name>create</name>
+        <full_name>create</full_name>
+        <docblock line="53">
+          <description>Création d'un sondage</description>
+          <long-description>&lt;p&gt;Gère  :
+- Lance le render de la vue 'pollCreation'
+- Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+- Récupère les renseignements donnés si on fait 'précédent'&lt;/p&gt;</long-description>
+          <tag line="53" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="107" package="Diapazen\Controller">
+        <name>connect</name>
+        <full_name>connect</full_name>
+        <docblock line="92">
+          <description>Page connec lors de la création d'un sondage</description>
+          <long-description>&lt;p&gt;Gère  :
+- Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+- Renvoi à la partie create si on y a pas été
+- Envoi directement l'utilisateur à la partie 'partage' si il est déjà connecté
+- Si on est déjà inscrit on tente de se connecter
+- Si on n'est pas inscrit, on inscrit l'utilisateur et
+on lui envoi un mail avec son mot de passe
+- Gère si des erreurs sont survenues&lt;/p&gt;</long-description>
+          <tag line="92" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="107">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="261" package="Diapazen\Controller">
+        <name>share</name>
+        <full_name>share</full_name>
+        <docblock line="247">
+          <description>Partage d'un sondage</description>
+          <long-description>&lt;p&gt;Gère  :
+- Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+- Renvoi à la partie create si on y a pas été
+- Ajoute le sondage dans la base de donnée
+- Ajoute les choix dans la base de donnée
+- Lance le render de la vue 'pollShare'
+- Gère si des erreurs sont survenues&lt;/p&gt;</long-description>
+          <tag line="247" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="261">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="344" package="Diapazen\Controller">
+        <name>sent</name>
+        <full_name>sent</full_name>
+        <docblock line="331">
+          <description>Partage d'un sondage</description>
+          <long-description>&lt;p&gt;Gère  :
+- Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+- Renvoi à la page d'accueil si nous ne venons pas créer un sondage
+- Envois des mails de partage au mails spécifiés
+- Lance le render de la vue 'shareMail'
+- Gère si des erreurs sont survenues&lt;/p&gt;</long-description>
+          <tag line="331" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="344">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="407" package="Diapazen\Controller">
+        <name>view</name>
+        <full_name>view</full_name>
+        <docblock line="390">
+          <description>Visualisation d'un sondage</description>
+          <long-description>&lt;p&gt;Gère  :
+- Met le titre de la page à 'Création d\'un sondage | Diapazen'.
+- Renvoi à la page d'accueil si l'url du sondage n'est pas specifiée
+- Renvoi un 404 si le sondage n'a pas été trouvé
+- Empêche le revote grâce à la fonction 'rafraichir la page'
+- L'ajout de vote dans le sondage
+- Trie les choix en fonction des résultats pour un sondage fermé
+- Affiche qui a voté quoi
+- Lance le render de la vue 'pollView'
+- Gère si des erreurs sont survenues&lt;/p&gt;</long-description>
+          <tag line="390" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="407">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="app\controller\UserController.class.php" hash="7870f3a45172d4e693ffcb96cadbe24d" package="Diapazen">
+    <docblock line="2">
+      <description>Contrôleur de la page des utilisateurs</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="25" type="Require Once" package="Default">
+      <name>system/Controller.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="35" package="Diapazen\Controller">
+      <extends>\Controller</extends>
+      <name>UserController</name>
+      <full_name>\UserController</full_name>
+      <docblock line="27">
+        <description>UserController</description>
+        <long-description>&lt;p&gt;Contrôleur de la page des utilisateurs&lt;/p&gt;</long-description>
+        <tag line="27" name="package" description="Diapazen"/>
+        <tag line="27" name="subpackage" description="Controller"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="45" package="Diapazen\Controller">
+        <name>index</name>
+        <full_name>index</full_name>
+        <docblock line="38">
+          <description>Action par défaut</description>
+          <long-description>&lt;p&gt;Redirige vers la page home.
+url:    diapazen.com/user&lt;/p&gt;</long-description>
+          <tag line="38" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="45">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="63" package="Diapazen\Controller">
+        <name>login</name>
+        <full_name>login</full_name>
+        <docblock line="50">
+          <description>Connection à l'application</description>
+          <long-description>&lt;p&gt;On charge le modèle de l'utilisateur, et si l'utlisateur est déjà
+connecter alors on le dirige vers la page home. Sinon on vérifie le
+mail et le mot de passe dans la base de données et on connecte
+l'utilisateur et on l'envoie vers le dashboard. Si le mot de passe ou
+le mail est erroné alors on créer la variable infoLogin et on
+affiche le formulaire de connection.
+url:    diapazen.com/user/login&lt;/p&gt;</long-description>
+          <tag line="50" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="63">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="146" package="Diapazen\Controller">
+        <name>profile</name>
+        <full_name>profile</full_name>
+        <docblock line="125">
+          <description>Modification des information personnelles</description>
+          <long-description>&lt;p&gt;On dirige l'utilisateur vers la page de profil, en affichant ses
+données on vérifie qu'il est connecter. Si tel est le cas on charge
+le modelUser et si l'utilisateur veut modifier ses données on le fait
+grâce à ce model et on teste le mot de passe de confirmation. Si le
+mot de passe est erroné on ne modifie rien par contre si c'est le bon
+mot de passe on met alors à jour la base de données, on met à jour la
+session et on informe l'utilisateur de la réussite. Si l'utilisateur
+veut modifier son mot de passe alors on teste le mot de passe de
+confirmation. Si le mot de passe est erroné on ne modifie rien par
+contre si c'est le bon mot de passe on met alors à jour la base de
+données. Pour afficher les données de l'utilisateur, on récupère l'id
+de l'utilisateur, on prend les informations de la base de données et
+on les affiche dans la vue. Si l'utilisateur est déconnecter il est
+dirigé vers la page home.
+url:    diapazen.com/user/profile&lt;/p&gt;</long-description>
+          <tag line="125" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="146">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="257" package="Diapazen\Controller">
+        <name>forgot</name>
+        <full_name>forgot</full_name>
+        <docblock line="244">
+          <description>Mot de passe oublié</description>
+          <long-description>&lt;p&gt;on verifie que l'utilisateur est déconnecter, si ce n'est pas le cas
+alors on redirige vers la page home. Si il est déconnecter on le
+dirige vers la page du mot de passe oublié. Si l'email est présent
+différent de vide et est présent dans la base de données, alors on
+créer un nouveau mot de passe et on l'affecte comme nouveau mot de
+passe de l'utilisateur. On le lui envoi par mail et on lui notifit la
+présence de ce mail.
+url:    diapazen.com/user/forgot&lt;/p&gt;</long-description>
+          <tag line="244" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="257">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="326" package="Diapazen\Controller">
+        <name>logout</name>
+        <full_name>logout</full_name>
+        <docblock line="319">
+          <description>Déconnexion de l'application</description>
+          <long-description>&lt;p&gt;Deconnect l'utilisateur et le renvoi sur la page home
+url:    diapazen.com/user/logout&lt;/p&gt;</long-description>
+          <tag line="319" name="param" description="null par défaut" type="\type" variable="$params">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="326">
+          <name>$params</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="app\model\ChoiceModel.class.php" hash="c748b9e781cf28195c15b3418150fcb1" package="Diapazen">
+    <docblock line="4">
+      <description>Class model d'un choix</description>
+      <long-description></long-description>
+      <tag line="4" name="package" description="Diapazen"/>
+      <tag line="4" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="4" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="28" type="Require Once" package="Default">
+      <name>system/Model.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="38" package="Diapazen\Model">
+      <extends>\Model</extends>
+      <name>ChoiceModel</name>
+      <full_name>\ChoiceModel</full_name>
+      <docblock line="30">
+        <description>ChoiceModel</description>
+        <long-description>&lt;p&gt;Classe gérant les choix&lt;/p&gt;</long-description>
+        <tag line="30" name="package" description="Diapazen"/>
+        <tag line="30" name="subpackage" description="Model"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
+        <name>$title</name>
+        <default></default>
+        <docblock line="40">
+          <description>Titre du choix</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
+        <name>$value</name>
+        <default></default>
+        <docblock line="45">
+          <description>Valeur du vote</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="53" package="Diapazen\Model">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="50">
+          <description>Constructeur par défaut</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="69" package="Diapazen\Model">
+        <name>addChoice</name>
+        <full_name>addChoice</full_name>
+        <docblock line="58">
+          <description>Ajout d'un choix</description>
+          <long-description>&lt;p&gt;Insert dans la base de donnée 'dpz_choices' un nouveau choix.
+Méthode utilisé grâce à la méthode 'inser' de Model&lt;/p&gt;</long-description>
+          <tag line="58" name="param" description="titre du choix" type="\type" variable="$title">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="58" name="param" description="id du sondage" type="\type" variable="$pollId">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="58" name="return" description="true si l'ajout s'est bien exécuté sinon false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="69">
+          <name>$title</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="69">
+          <name>$pollId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="84" package="Diapazen\Model">
+        <name>updateChoice</name>
+        <full_name>updateChoice</full_name>
+        <docblock line="74">
+          <description>Mise à Jour d'un choix</description>
+          <long-description>&lt;p&gt;Met à jour dans la base de donnée 'dpz_choices' du titre et de l'id du choix.
+Méthode utilisé grâce à la méthode 'updateWhere' de Model&lt;/p&gt;</long-description>
+          <tag line="74" name="param" description="titre du choix" type="\type" variable="$title">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="74" name="param" description="id du choix" type="\type" variable="$id">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="74" name="return" description="true si l'ajout s'est bien exécuté sinon false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="84">
+          <name>$title</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="84">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="94" package="Diapazen\Model">
+        <name>setChoiceTitle</name>
+        <full_name>setChoiceTitle</full_name>
+        <docblock line="89">
+          <description>Setteur du titre du choix</description>
+          <long-description></long-description>
+          <tag line="89" name="param" description="titre du choix" type="\type" variable="$title">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="94">
+          <name>$title</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="104" package="Diapazen\Model">
+        <name>getChoiceTitle</name>
+        <full_name>getChoiceTitle</full_name>
+        <docblock line="99">
+          <description>Getteur du titre du choix</description>
+          <long-description></long-description>
+          <tag line="99" name="return" description="titre du choix" type="\type">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="app\model\PollModel.class.php" hash="754cdb42f834cbd6a6d94c2c023d64c1" package="Diapazen">
+    <docblock line="3">
+      <description>Class model d'un sondage</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="27" type="Require Once" package="Default">
+      <name>system/Model.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="37" package="Diapazen\Model">
+      <extends>\Model</extends>
+      <name>PollModel</name>
+      <full_name>\PollModel</full_name>
+      <docblock line="29">
+        <description>PollModel</description>
+        <long-description>&lt;p&gt;Classe gérant les sondages dans la base de données&lt;/p&gt;</long-description>
+        <tag line="29" name="package" description="Diapazen"/>
+        <tag line="29" name="subpackage" description="Model"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
+        <name>$pollId</name>
+        <default></default>
+        <docblock line="40">
+          <description>Identifiant unique du sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
+        <name>$pollUrl</name>
+        <default></default>
+        <docblock line="45">
+          <description>Identifiant dans l'url du sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="53" namespace="global" package="Default">
+        <name>$pollTitle</name>
+        <default></default>
+        <docblock line="50">
+          <description>Titre du sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="58" namespace="global" package="Default">
+        <name>$pollDescription</name>
+        <default></default>
+        <docblock line="55">
+          <description>Description du sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="63" namespace="global" package="Default">
+        <name>$poll_expiration_date</name>
+        <default></default>
+        <docblock line="60">
+          <description>Date d'expiration du sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="69" package="Diapazen\Model">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="66">
+          <description>Constructeur par défaut</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="87" package="Diapazen\Model">
+        <name>viewPoll</name>
+        <full_name>viewPoll</full_name>
+        <docblock line="74">
+          <description>Affichage d'un sondage</description>
+          <long-description>&lt;p&gt;En récupèrant les informations stockées dans la base de données au moyen
+d’une requête sql Select sur la vue dpz_view_users_join_polls. On traite
+le résultat obtenu en récupérant les informations de chaque choix du
+sondage ainsi que les informations de chaque résultat des choix du
+sondage. Les résultats obtenus sont ensuite transférés dans un tableau
+et on calcule le pourcentage de chaque choix du sondage. Le tableau est
+donc complété avec ces mêmes pourcentages.&lt;/p&gt;</long-description>
+          <tag line="74" name="param" description="url du sondage" type="\type" variable="$pollUrl">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="74" name="return" description="contenu du sondage" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="87">
+          <name>$pollUrl</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="158" package="Diapazen\Model">
+        <name>viewAllPolls</name>
+        <full_name>viewAllPolls</full_name>
+        <docblock line="150">
+          <description>Affichage de la liste des sondages</description>
+          <long-description>&lt;p&gt;Créé par l’utilisateur en prenant en paramètre l’Id de l’utilisateur avec
+une requête select sur la vue dpz_view_users_join_polls.&lt;/p&gt;</long-description>
+          <tag line="150" name="param" description="userId id de l'utilisateur" type="\type" variable="$userId">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="150" name="return" description="contenu du sondage" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="158">
+          <name>$userId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="180" package="Diapazen\Model">
+        <name>addPoll</name>
+        <full_name>addPoll</full_name>
+        <docblock line="169">
+          <description>Ajout d'un sondage</description>
+          <long-description>&lt;p&gt;On commence par affecter les valeurs des propriétés de l’objet et on
+ajoute la ligne correspondante à la base de données.&lt;/p&gt;</long-description>
+          <tag line="169" name="param" description="id de l'utilisateur" type="\type" variable="$userId">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="169" name="param" description="titre du sondage" type="\type" variable="$pollTitle">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="169" name="param" description="description du sondage" type="\type" variable="$pollDescription">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="169" name="param" description="date d'expiration du sondage" type="\type" variable="$poll_expiration_date">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="169" name="return" description="true si l'ajout s'est bien exécuté sinon false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="180">
+          <name>$userId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="180">
+          <name>$pollTitle</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="180">
+          <name>$pollDescription</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="180">
+          <name>$poll_expiration_date</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="218" package="Diapazen\Model">
+        <name>votePoll</name>
+        <full_name>votePoll</full_name>
+        <docblock line="209">
+          <description>Vote d'un sondage</description>
+          <long-description>&lt;p&gt;Pour le choix du sondage grâce à l’Id du choix et la valeur du votant.
+On insère cette ligne dans la base de données, dans la table dpz_results.&lt;/p&gt;</long-description>
+          <tag line="209" name="param" description="L'id du choix" type="int" variable="$choiceId">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="209" name="param" description="valeur à insérer" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="209" name="return" description="true si l'ajout s'est bien exécuté sinon false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="218">
+          <name>$choiceId</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="218">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="229" package="Diapazen\Model">
+        <name>updatePoll</name>
+        <full_name>updatePoll</full_name>
+        <docblock line="223">
+          <description>Mise à jour de la table Sondage
+clôture le sondage en mettant à 0 dans la colonne open de la table du sondage.</description>
+          <long-description></long-description>
+          <tag line="223" name="param" description="valeur à insérer" type="string" variable="$pollId">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="223" name="return" description="true si la mise à jour s'est bien exécuté sinon false" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="229">
+          <name>$pollId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="243" package="Diapazen\Model">
+        <name>sharePoll</name>
+        <full_name>sharePoll</full_name>
+        <docblock line="234">
+          <description>Parse les adresses emails</description>
+          <long-description>&lt;p&gt;Récupère le contenu du textarea et parse les emails au moyen d'une
+regexp. Elle retourne un tableau avec les email si le parsage est réussi
+et null sinon.&lt;/p&gt;</long-description>
+          <tag line="234" name="param" description="" type="\" variable="$texteareaContent"/>
+          <tag line="234" name="return" description="avec les emails valides auquels les mails ont été envoyé" type="\Tableau">
+            <type by_reference="false">\Tableau</type>
+          </tag>
+        </docblock>
+        <argument line="243">
+          <name>$texteareaContent</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="275" package="Diapazen\Model">
+        <name>setPollTitle</name>
+        <full_name>setPollTitle</full_name>
+        <docblock line="270">
+          <description>Setteur du titre du sondage</description>
+          <long-description></long-description>
+          <tag line="270" name="param" description="titre du sondage" type="\type" variable="$pollTitle">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="275">
+          <name>$pollTitle</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="284" package="Diapazen\Model">
+        <name>setPollId</name>
+        <full_name>setPollId</full_name>
+        <docblock line="279">
+          <description>Setteur de l'id du sondage</description>
+          <long-description></long-description>
+          <tag line="279" name="param" description="Id du sondage" type="\type" variable="$pollId">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="284">
+          <name>$pollId</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="294" package="Diapazen\Model">
+        <name>setPollDescription</name>
+        <full_name>setPollDescription</full_name>
+        <docblock line="289">
+          <description>Setteur de la description du sondage</description>
+          <long-description></long-description>
+          <tag line="289" name="param" description="description du sondage" type="\type" variable="$pollDescription">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="294">
+          <name>$pollDescription</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="304" package="Diapazen\Model">
+        <name>setPollExpirationDate</name>
+        <full_name>setPollExpirationDate</full_name>
+        <docblock line="299">
+          <description>Setteur de la date d'expiration du sondage</description>
+          <long-description></long-description>
+          <tag line="299" name="param" description="date d'expiration du sondage" type="\type" variable="$poll_expiration_date">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="304">
+          <name>$poll_expiration_date</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="314" package="Diapazen\Model">
+        <name>setPollUrl</name>
+        <full_name>setPollUrl</full_name>
+        <docblock line="309">
+          <description>Setteur de l'url du sondage</description>
+          <long-description></long-description>
+          <tag line="309" name="param" description="url du sondage" type="\type" variable="$pollUrl">
+            <type by_reference="false">\type</type>
+          </tag>
+        </docblock>
+        <argument line="314">
+          <name>$pollUrl</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="323" package="Diapazen\Model">
+        <name>getPollId</name>
+        <full_name>getPollId</full_name>
+        <docblock line="319">
+          <description>Getteur du titre du sondage</description>
+          <long-description></long-description>
+          <tag line="319" name="return" description="la valeur du getter" type="\Renvoie">
+            <type by_reference="false">\Renvoie</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="331" package="Diapazen\Model">
+        <name>getPollTitle</name>
+        <full_name>getPollTitle</full_name>
+        <docblock line="327">
+          <description>Getteur de l'id du sondage</description>
+          <long-description></long-description>
+          <tag line="327" name="return" description="la valeur du getter" type="\Renvoie">
+            <type by_reference="false">\Renvoie</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="340" package="Diapazen\Model">
+        <name>getPollDescription</name>
+        <full_name>getPollDescription</full_name>
+        <docblock line="336">
+          <description>Getteur de la description du sondage</description>
+          <long-description></long-description>
+          <tag line="336" name="return" description="la valeur du getter" type="\Renvoie">
+            <type by_reference="false">\Renvoie</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="349" package="Diapazen\Model">
+        <name>getPollExpirationDate</name>
+        <full_name>getPollExpirationDate</full_name>
+        <docblock line="345">
+          <description>Getteur de la date d'expiration du sondage</description>
+          <long-description></long-description>
+          <tag line="345" name="return" description="la valeur du getter" type="\Renvoie">
+            <type by_reference="false">\Renvoie</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="358" package="Diapazen\Model">
+        <name>getPollUrl</name>
+        <full_name>getPollUrl</full_name>
+        <docblock line="354">
+          <description>Getteur de l'url du sondage</description>
+          <long-description></long-description>
+          <tag line="354" name="return" description="la valeur du getter" type="\Renvoie">
+            <type by_reference="false">\Renvoie</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="app\model\UserModel.class.php" hash="892c91d60a611ca54d17f65a364a391c" package="Diapazen">
+    <docblock line="4">
+      <description>Class model d'utilisateur</description>
+      <long-description></long-description>
+      <tag line="4" name="package" description="Diapazen"/>
+      <tag line="4" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="4" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="28" type="Require Once" package="Default">
+      <name>system/Model.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="38" package="Diapazen\Model">
+      <extends>\Model</extends>
+      <name>UserModel</name>
+      <full_name>\UserModel</full_name>
+      <docblock line="30">
+        <description>UserModel</description>
+        <long-description>&lt;p&gt;Classe gérant les utilisateurs dans la base de données&lt;/p&gt;</long-description>
+        <tag line="30" name="package" description="Diapazen"/>
+        <tag line="30" name="subpackage" description="Model"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="43" package="Diapazen\Model">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="40">
+          <description>Constructeur</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="64" package="Diapazen\Model">
+        <name>connectionToApp</name>
+        <full_name>connectionToApp</full_name>
+        <docblock line="49">
+          <description>Connexion de l'utilisateur</description>
+          <long-description>&lt;p&gt;On test tout d’abords si l’email et le password sont bien renseignés,
+puis avec une requête Select on récupère les infos en faisant un Where sur le password.
+Puis si on a un résultat et que le password passé en paramètre correspond à celui de la base de donnée,
+on met à jour la dernière connection grâce à updateConnectionDate
+et on renvoie un tableau avec toutes les données.&lt;/p&gt;</long-description>
+          <tag line="49" name="param" description="email email renseigné par l'utilisateur" type="string" variable="$email">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="password mot de passe renseigné par l'utilisateur" type="string" variable="$password">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="param" description="login_ip Adresse IP de l'utilisateur" type="string" variable="$login_ip">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="return" description="avec toutes les infos si tout s’est bien passé et false sinon" type="\tableau">
+            <type by_reference="false">\tableau</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$email</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$password</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="64">
+          <name>$login_ip</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="119" package="Diapazen\Model">
+        <name>updateConnectionData</name>
+        <full_name>updateConnectionData</full_name>
+        <docblock line="108">
+          <description>Mise à jour des données de connexion de l'utilisateur (adresse ip et date de derniere connexion)</description>
+          <long-description>&lt;p&gt;On test d’abord si l’id renseigné est bon ,
+puis si c’est le cas on update d’abords la date de dernière connexion dans la table ‘dpz_users’ avec une clause Where sur l’id.
+Puis on met à jour de la même manière l’ip.&lt;/p&gt;</long-description>
+          <tag line="108" name="param" description="id de l'utilisateur" type="\id" variable="$id">
+            <type by_reference="false">\id</type>
+          </tag>
+          <tag line="108" name="param" description="ip de l'utilisateur" type="\login_ip" variable="$login_ip">
+            <type by_reference="false">\login_ip</type>
+          </tag>
+          <tag line="108" name="return" description="true si la mise à jour s'est bien passé" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="119">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="119">
+          <name>$login_ip</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="155" package="Diapazen\Model">
+        <name>dataProvider</name>
+        <full_name>dataProvider</full_name>
+        <docblock line="144">
+          <description>Récupération des données de l'utilisateur (sauf mot de passe)</description>
+          <long-description>&lt;p&gt;On test d’abord si l’id renseigné est bon
+puis si c’est le cas avec une requête Select on récupère les infos en faisant un Where sur l’id.
+Si il y a un résultat on le renvoi sous forme de tableau.&lt;/p&gt;</long-description>
+          <tag line="144" name="param" description="id de l'utilisateur" type="\id" variable="$id">
+            <type by_reference="false">\id</type>
+          </tag>
+          <tag line="144" name="return" description="un tableau avec toutes les infos si tout s’est bien passé et false sinon" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="155">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="218" package="Diapazen\Model">
+        <name>registration</name>
+        <full_name>registration</full_name>
+        <docblock line="203">
+          <description>Enregistrement d'un nouvel utilisateur</description>
+          <long-description>&lt;p&gt;On test d’abords si les paramètres puis si ils sont bien renseignés.
+Ensuite on test si l’utilisateur n’est pas déjà enregistré
+on fait l’insertion des données dans la table dpz_users.
+On hash le mot de passe avec BlowFish (md5 et sha1 étant unsecure).&lt;/p&gt;</long-description>
+          <tag line="203" name="param" description="prénom renseigné par l'utilisateur" type="\firstname" variable="$firstname">
+            <type by_reference="false">\firstname</type>
+          </tag>
+          <tag line="203" name="param" description="nom de famille renseigné par l'utilisateur" type="\lastname" variable="$lastname">
+            <type by_reference="false">\lastname</type>
+          </tag>
+          <tag line="203" name="param" description="email renseigné par l'utilisateur" type="\email" variable="$email">
+            <type by_reference="false">\email</type>
+          </tag>
+          <tag line="203" name="param" description="mot de passe renseigné par l'utilisateur" type="\password" variable="$password">
+            <type by_reference="false">\password</type>
+          </tag>
+          <tag line="203" name="return" description="true si l'enregistrement s'est bien passé" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="218">
+          <name>$firstname</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="218">
+          <name>$lastname</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="218">
+          <name>$email</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="218">
+          <name>$password</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="273" package="Diapazen\Model">
+        <name>changeUser</name>
+        <full_name>changeUser</full_name>
+        <docblock line="260">
+          <description>Modification du profil de l'utilisateur</description>
+          <long-description>&lt;p&gt;On fait l’update des informations à partir de l’id de l’utilisateur.
+Puis si l’update s’est bien passé on retourne true.&lt;/p&gt;</long-description>
+          <tag line="260" name="param" description="id de l'utilisateur" type="\type" variable="$id">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="260" name="param" description="prénom renseigné par l'utilisateur" type="\firstname" variable="$firstName">
+            <type by_reference="false">\firstname</type>
+          </tag>
+          <tag line="260" name="param" description="nom de famille renseigné par l'utilisateur" type="\lastname" variable="$lastName">
+            <type by_reference="false">\lastname</type>
+          </tag>
+          <tag line="260" name="param" description="email renseigné par l'utilisateur" type="\email" variable="$email">
+            <type by_reference="false">\email</type>
+          </tag>
+          <tag line="260" name="return" description="true si la modification s'est bien passé" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="273">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="273">
+          <name>$firstName</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="273">
+          <name>$lastName</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="273">
+          <name>$email</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="293" package="Diapazen\Model">
+        <name>changePassword</name>
+        <full_name>changePassword</full_name>
+        <docblock line="282">
+          <description>Modification du mot de passe de l'utilisateur</description>
+          <long-description>&lt;p&gt;On fait l’update du mot de passe à partir de l’email de l’utilisateur.
+On le hash avec BlowFish (md5 et sha1 étant unsecure).&lt;/p&gt;</long-description>
+          <tag line="282" name="param" description="email de l'utilisateur" type="\type" variable="$email">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="282" name="param" description="mot de passe renseigné par l'utilisateur" type="\type" variable="$password">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="282" name="return" description="si la modification s'est bien passé" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="293">
+          <name>$email</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="293">
+          <name>$password</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="314" package="Diapazen\Model">
+        <name>checkPassword</name>
+        <full_name>checkPassword</full_name>
+        <docblock line="304">
+          <description>Vérification du mot de passe de l'utilisateur</description>
+          <long-description>&lt;p&gt;On fait un Select pour récupérer le mot de passe de la base de donnée et on le test avec celui passé en paramètre.&lt;/p&gt;</long-description>
+          <tag line="304" name="param" description="id de l'utilisateur" type="\type" variable="$id">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="304" name="param" description="mot de passe renseigné par l'utilisateur" type="\type" variable="$password">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="304" name="return" description="si la vérification s'est bien passé" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="314">
+          <name>$id</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="314">
+          <name>$password</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="338" package="Diapazen\Model">
+        <name>generatorPsw</name>
+        <full_name>generatorPsw</full_name>
+        <docblock line="329">
+          <description>Fonction qui génère un mot de passe aléatoire</description>
+          <long-description>&lt;p&gt;On choisit aléatoirement un élément dans une liste de caractère autant de fois que spécifié en paramètre.&lt;/p&gt;</long-description>
+          <tag line="329" name="param" description="taille du mot de passe(8 par defaut)" type="int" variable="$size">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="329" name="return" description="le mot de passe" type="\retourne">
+            <type by_reference="false">\retourne</type>
+          </tag>
+        </docblock>
+        <argument line="338">
+          <name>$size</name>
+          <default>8</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="364" package="Diapazen\Model">
+        <name>isEmailRegistred</name>
+        <full_name>isEmailRegistred</full_name>
+        <docblock line="354">
+          <description>Vérification si email contenu dans bdd</description>
+          <long-description>&lt;p&gt;On fait un Select sur la table ‘dpz_view_users’
+avec en clause Where le password passé en paramètre.
+Puis on test si il y a un résultat.&lt;/p&gt;</long-description>
+          <tag line="354" name="param" description="email à vérifier" type="\type" variable="$email">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="354" name="return" description="true si l'email est présent" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="364">
+          <name>$email</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="app\view\php\404.php" hash="0e6e75a8a2a6f706cd9228504094208e" package="Diapazen\View">
+    <docblock line="3">
+      <description>Page d'erreur 404</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="subpackage" description="View"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\about.php" hash="acbf16e6a15d3eaf1e38e4fa24871cb1" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page À propos</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\ariadneThread.php" hash="93d7f165527b87a3cd0c585a4bb8f300" package="Diapazen\View">
+    <docblock line="2">
+      <description>Fil d'arianne</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\dashboard.php" hash="3b10c81cdbf45ffe63796f0d3558cf1e" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page du dashboard</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\dbError.php" hash="e639386d80d1fa516f5cc244dcd98edf" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page d'erreur de la base de données</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\footer.php" hash="6033ee3352c736f05a925b8fd66aa6e7" package="Diapazen\View">
+    <docblock line="2">
+      <description>Footer des pages du site</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\forgot.php" hash="546cbb9c62962f302980b6389544ad7f" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page de récupération du mot de passe</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\header.php" hash="917308989f1b95f556e93587032d1717" package="Diapazen\View">
+    <docblock line="2">
+      <description>Header du site</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\home.php" hash="75882fd941c13ffaaaa4a9f7af3d201d" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page d'accueil du site</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\login.php" hash="76ad338d1f3bd950456a993eab19b11b" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page de connexion</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\personalData.php" hash="61585cfe99ae68a33260ec9d0a053cb3" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page de modification des données personnelles</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\pollConnection.php" hash="6efbfc47e7a0c3957bd3feb465a88da3" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page de connexion lors de la création d'un sondage</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\pollCreation.php" hash="87504a385f19953a003ce3f09e5791c3" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page de création d'un sondage</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\pollShare.php" hash="130af9a834263f4166adbc2dfa484cbe" package="Default"/>
+  <file path="app\view\php\pollView.php" hash="7f4f27468678139cd90ff0755ac56414" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page d'affichage d'un sondage</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="app\view\php\shareMail.php" hash="381180c8bced5fd2f7446154573136c9" package="Diapazen\View">
+    <docblock line="2">
+      <description>Page de confirmation de partage par email</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="subpackage" description="View"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+  </file>
+  <file path="config\Config.class.php" hash="7b8d94909f56499e52eb6bda1caf31b9" package="Diapazen">
+    <docblock line="2">
+      <description>Fichier de configuration de Diapazen</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="34" package="Diapazen\Framework">
+      <extends/>
+      <name>Config</name>
+      <full_name>\Config</full_name>
+      <docblock line="26">
+        <description>Config</description>
+        <long-description>&lt;p&gt;Classe gérant la configuration de la base de données&lt;/p&gt;</long-description>
+        <tag line="26" name="package" description="Diapazen"/>
+        <tag line="26" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="40" namespace="global" package="Default">
+        <name>$mDb</name>
+        <default>array('default' =&gt; array('host' =&gt; 'localhost', 'user' =&gt; 'root', 'pass' =&gt; '', 'name' =&gt; 'diapazen'))</default>
+        <docblock line="37">
+          <description>Configuration de la connexion à la base de données</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="55" package="Diapazen\Framework">
+        <name>getDatabaseConfig</name>
+        <full_name>getDatabaseConfig</full_name>
+        <docblock line="49">
+          <description>Récupère la configuration de la base de donnée voulue.</description>
+          <long-description></long-description>
+          <tag line="49" name="param" description="Nom de la configuration à utiliser" type="string" variable="$configName">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="49" name="return" description="La configuration voulue" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$configName</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="index.php" hash="34c9bd37fc568eabf904e9a5e425083b" package="Diapazen">
+    <docblock line="2">
+      <description>Page d'index de Diapazen</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>config/Config.class.php</name>
+    </include>
+    <include line="27" type="Require Once" package="Default">
+      <name>system/defineConstant.inc.php</name>
+    </include>
+    <include line="28" type="Require Once" package="Default">
+      <name>system/CoreLoader.class.php</name>
+    </include>
+    <include line="29" type="Require Once" package="Default">
+      <name>system/Router.class.php</name>
+    </include>
+  </file>
+  <file path="system\Controller.class.php" hash="5c31332a3259621e1821d32653bb8a29" package="Diapazen">
+    <docblock line="2">
+      <description>Contrôleur principal</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="98" type="Require" package="Default">
+      <name/>
+    </include>
+    <include line="108" type="Require" package="Default">
+      <name/>
+    </include>
+    <include line="146" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="157" type="Include" package="Default">
+      <name/>
+    </include>
+    <include line="168" type="Include" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="34" package="Diapazen\Framework">
+      <extends/>
+      <name>Controller</name>
+      <full_name>\Controller</full_name>
+      <docblock line="26">
+        <description>Controller</description>
+        <long-description>&lt;p&gt;Classe gérant les utilisateurs dans la base de données&lt;/p&gt;</long-description>
+        <tag line="26" name="package" description="Diapazen"/>
+        <tag line="26" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="40" namespace="global" package="Default">
+        <name>$mModel</name>
+        <default></default>
+        <docblock line="37">
+          <description>Instance du modèle</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" namespace="global" package="Default">
+        <name>$mRequest</name>
+        <default></default>
+        <docblock line="42">
+          <description>Requête de l'utilisateur</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="50" namespace="global" package="Default">
+        <name>$mVars</name>
+        <default>array()</default>
+        <docblock line="47">
+          <description>Variables à envoyer à la vue</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="56" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="52">
+          <description>Constructeur</description>
+          <long-description></long-description>
+          <tag line="52" name="param" description="request&#9;&#9;Requête HTTP" type="\Request" variable="$request">
+            <type by_reference="false">\Request</type>
+          </tag>
+        </docblock>
+        <argument line="56">
+          <name>$request</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="65" package="Diapazen\Framework">
+        <name>loadModel</name>
+        <full_name>loadModel</full_name>
+        <docblock line="61">
+          <description>Charge le modèle de données</description>
+          <long-description></long-description>
+          <tag line="61" name="param" description="model&#9;&#9;Modèle de données" type="\Model" variable="$model">
+            <type by_reference="false">\Model</type>
+          </tag>
+        </docblock>
+        <argument line="65">
+          <name>$model</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="82" package="Diapazen\Framework">
+        <name>getModel</name>
+        <full_name>getModel</full_name>
+        <docblock line="78">
+          <description>Retourne le modèle de données</description>
+          <long-description></long-description>
+          <tag line="78" name="return" description="model&#9;&#9;Modèle de données" type="\Model">
+            <type by_reference="false">\Model</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="93" package="Diapazen\Framework">
+        <name>render</name>
+        <full_name>render</full_name>
+        <docblock line="87">
+          <description>Fait le rendu de la vue</description>
+          <long-description></long-description>
+          <tag line="87" name="param" description="view&#9;nom de la vue à utiliser" type="string" variable="$view">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="87" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="93">
+          <name>$view</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="104" package="Diapazen\Framework">
+        <name>e404</name>
+        <full_name>e404</full_name>
+        <docblock line="101">
+          <description>Affiche l'erreur 404</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="global" line="118" package="Diapazen\Framework">
+        <name>set</name>
+        <full_name>set</full_name>
+        <docblock line="111">
+          <description>Ajoute une variable pour la vue</description>
+          <long-description></long-description>
+          <tag line="111" name="param" description="key&#9;&#9;nom de la variable à utiliser" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="param" description="value&#9;valeur de la variable" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="111" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="118">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="118">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="132" package="Diapazen\Framework">
+        <name>getPath</name>
+        <full_name>getPath</full_name>
+        <docblock line="123">
+          <description>Récupère le chemin d'un fichier css,js,png .</description>
+          <long-description>&lt;p&gt;..&lt;/p&gt;
+
+&lt;p&gt;Exemple d'utilisation: $this-&gt;getPath('css/style.css');
+Donne le chemin du fichier style.css&lt;/p&gt;</long-description>
+          <tag line="123" name="param" description="filename&#9;chemin relatif du fichier" type="string" variable="$filename">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="return" description="chemin complet du fichier" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="132">
+          <name>$filename</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="143" package="Diapazen\Framework">
+        <name>getHeader</name>
+        <full_name>getHeader</full_name>
+        <docblock line="138">
+          <description>Inclut le fichier d'entête.</description>
+          <long-description>&lt;p&gt;A utiliser dans les fichiers de vue&lt;/p&gt;</long-description>
+          <tag line="138" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="154" package="Diapazen\Framework">
+        <name>getFooter</name>
+        <full_name>getFooter</full_name>
+        <docblock line="149">
+          <description>Inclut le fichier de pied de page.</description>
+          <long-description>&lt;p&gt;A utiliser dans les fichiers de vue&lt;/p&gt;</long-description>
+          <tag line="149" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="165" package="Diapazen\Framework">
+        <name>getAriadneThread</name>
+        <full_name>getAriadneThread</full_name>
+        <docblock line="160">
+          <description>Inclut le fichier du fil d'arianne.</description>
+          <long-description>&lt;p&gt;A utiliser dans les fichiers de vue&lt;/p&gt;</long-description>
+          <tag line="160" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="176" package="Diapazen\Framework">
+        <name>getHomeUrl</name>
+        <full_name>getHomeUrl</full_name>
+        <docblock line="171">
+          <description>Récupère l'url de la page d'accueil</description>
+          <long-description></long-description>
+          <tag line="171" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="187" package="Diapazen\Framework">
+        <name>setUserConnected</name>
+        <full_name>setUserConnected</full_name>
+        <docblock line="181">
+          <description>Connecte l'utilisateur</description>
+          <long-description></long-description>
+          <tag line="181" name="param" description="userInfos&#9;tableau contenant les infos de l'utilisateur" type="string" variable="$userInfos">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="181" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="187">
+          <name>$userInfos</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="198" package="Diapazen\Framework">
+        <name>setUserDisconnected</name>
+        <full_name>setUserDisconnected</full_name>
+        <docblock line="193">
+          <description>Déconnecte l'utilisateur</description>
+          <long-description></long-description>
+          <tag line="193" name="return" description="Rien" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="209" package="Diapazen\Framework">
+        <name>isUserConnected</name>
+        <full_name>isUserConnected</full_name>
+        <docblock line="204">
+          <description>L'utilisateur est-il connecté ?</description>
+          <long-description></long-description>
+          <tag line="204" name="return" description="Vrai si il est connecté, Faux sinon" type="bool">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="220" package="Diapazen\Framework">
+        <name>getUserInfo</name>
+        <full_name>getUserInfo</full_name>
+        <docblock line="214">
+          <description>Récupère les informations de l'utilisateur (stocké en session)</description>
+          <long-description></long-description>
+          <tag line="214" name="param" description="key&#9;clé" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="214" name="return" description="Information voulue" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="220">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="231" package="Diapazen\Framework">
+        <name>setUserInfo</name>
+        <full_name>setUserInfo</full_name>
+        <docblock line="225">
+          <description>Définit les informations de l'utilisateur (stocké en session)</description>
+          <long-description></long-description>
+          <tag line="225" name="param" description="key&#9;clé" type="string" variable="$key">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="225" name="param" description="Information voulue" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="231">
+          <name>$key</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="231">
+          <name>$value</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="system\CoreException.class.php" hash="902c93213bf8b627a96a5f8c2e260208" package="Diapazen">
+    <docblock line="4">
+      <description>Fichier de gestion des exception</description>
+      <long-description></long-description>
+      <tag line="4" name="package" description="Diapazen"/>
+      <tag line="4" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="4" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="28" type="Require Once" package="Default">
+      <name>defineConstant.inc.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="38" package="Diapazen\Framework">
+      <extends>\Exception</extends>
+      <name>CoreException</name>
+      <full_name>\CoreException</full_name>
+      <docblock line="30">
+        <description>CoreException</description>
+        <long-description>&lt;p&gt;Classe gérant les exceptions&lt;/p&gt;</long-description>
+        <tag line="30" name="package" description="Diapazen"/>
+        <tag line="30" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="44" namespace="global" package="Default">
+        <name>$meMessage</name>
+        <default></default>
+        <docblock line="41">
+          <description>Message de l'exception</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="48" namespace="global" package="Default">
+        <name>$meCode</name>
+        <default></default>
+        <docblock line="45">
+          <description>Code de l'exception</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="52" namespace="global" package="Default">
+        <name>$meFile</name>
+        <default></default>
+        <docblock line="49">
+          <description>Fichier dans lequel l'exception a été levée</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="56" namespace="global" package="Default">
+        <name>$meLine</name>
+        <default></default>
+        <docblock line="53">
+          <description>Line à laquelle l'exception a été levée</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="60" namespace="global" package="Default">
+        <name>$meDate</name>
+        <default></default>
+        <docblock line="57">
+          <description>Date et heure de l'exception</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="72" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="62">
+          <description>Constructeur de la classe d exception</description>
+          <long-description>&lt;p&gt;Constructeur de la classe d exception personnalisé, qui cree notre exception mais
+aussi utilise un systeme de log&lt;/p&gt;</long-description>
+          <tag line="62" name="param" description="eMessage    message de l exception" type="string" variable="$eMessage">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="62" name="param" description="int  eCode       code de l exception" type="\unsigned" variable="$eCode">
+            <type by_reference="false">\unsigned</type>
+          </tag>
+          <tag line="62" name="param" description="log         Doit logguer l'exception ou non. Par défaut: oui" type="bool" variable="$log">
+            <type by_reference="false">bool</type>
+          </tag>
+        </docblock>
+        <argument line="72">
+          <name>$eMessage</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="72">
+          <name>$eCode</name>
+          <default>0</default>
+          <type/>
+        </argument>
+        <argument line="72">
+          <name>$log</name>
+          <default>false</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="88" package="Diapazen\Framework">
+        <name>getMessageFormate</name>
+        <full_name>getMessageFormate</full_name>
+        <docblock line="83">
+          <description>Formate le message</description>
+          <long-description></long-description>
+          <tag line="83" name="return" description="messageFormate message de l exception formaté" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="system\CoreLoader.class.php" hash="fe83e6efef2e239343e390899c74ec81" package="Diapazen">
+    <docblock line="4">
+      <description>Fichier d'auto-inclusion des classes</description>
+      <long-description></long-description>
+      <tag line="4" name="package" description="Diapazen"/>
+      <tag line="4" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="4" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="28" type="Require Once" package="Default">
+      <name>defineConstant.inc.php</name>
+    </include>
+    <include line="76" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="78" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="80" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <include line="82" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="38" package="Diapazen\Framework">
+      <extends/>
+      <name>CoreLoader</name>
+      <full_name>\CoreLoader</full_name>
+      <docblock line="30">
+        <description>CoreLoader</description>
+        <long-description>&lt;p&gt;Classe gérant le chargement des autres classes&lt;/p&gt;</long-description>
+        <tag line="30" name="package" description="Diapazen"/>
+        <tag line="30" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="44" namespace="global" package="Default">
+        <name>$_instance</name>
+        <default>null</default>
+        <docblock line="41">
+          <description>Instance du CoreLoader</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="53" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="46">
+          <description>Constructeur de la classe coreLoader</description>
+          <long-description>&lt;p&gt;Active l'autoload.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="73" package="Diapazen\Framework">
+        <name>loadClasses</name>
+        <full_name>loadClasses</full_name>
+        <docblock line="67">
+          <description>Vérifie si la classe est présente et lance une exception sinon</description>
+          <long-description></long-description>
+          <tag line="67" name="param" description="Nom de la classe à inclure" type="string" variable="$class">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$class</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="101" package="Diapazen\Framework">
+        <name>getInstance</name>
+        <full_name>getInstance</full_name>
+        <docblock line="94">
+          <description>Récuperation d'un loader</description>
+          <long-description>&lt;p&gt;Permet de récuperer un loader selon le design pattern
+ singleton.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="system\CoreLogger.class.php" hash="f420460e7e4b6df80a6e889a271bb12e" package="Diapazen">
+    <docblock line="4">
+      <description>Fichier permetant d'effectuer des logs</description>
+      <long-description></long-description>
+      <tag line="4" name="package" description="Diapazen"/>
+      <tag line="4" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="4" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="28" type="Require Once" package="Default">
+      <name>defineConstant.inc.php</name>
+    </include>
+    <include line="29" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="39" package="Diapazen\Framework">
+      <extends/>
+      <name>CoreLogger</name>
+      <full_name>\CoreLogger</full_name>
+      <docblock line="31">
+        <description>CoreLogger</description>
+        <long-description>&lt;p&gt;Classe gérant la journalisation des messages d'erreurs ou autres&lt;/p&gt;</long-description>
+        <tag line="31" name="package" description="Diapazen"/>
+        <tag line="31" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="46" namespace="global" package="Default">
+        <name>$_instance</name>
+        <default>null</default>
+        <docblock line="43">
+          <description>Instance du logger</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="51" namespace="global" package="Default">
+        <name>$mwriter</name>
+        <default>null</default>
+        <docblock line="48">
+          <description>Instance du writer</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="62" package="Diapazen\Framework">
+        <name>getInstance</name>
+        <full_name>getInstance</full_name>
+        <docblock line="55">
+          <description>Récuperation d'un logger</description>
+          <long-description>&lt;p&gt;Permet de récuperer un logger selon le design pattern
+ singleton.&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="80" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="74">
+          <description>Contructeur d'un logger</description>
+          <long-description>&lt;p&gt;Permet d'instancier notre logger&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="99" package="Diapazen\Framework">
+        <name>setWriter</name>
+        <full_name>setWriter</full_name>
+        <docblock line="89">
+          <description>Affecte un writer</description>
+          <long-description>&lt;p&gt;Determine quel objet writter est utiliser pour
+ecrire notre log&lt;/p&gt;</long-description>
+          <tag line="89" name="param" description="ObjWriter" type="\type" variable="$ObjWriter">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="89" name="return" description="affectation reussi" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="99">
+          <name>$ObjWriter</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="123" package="Diapazen\Framework">
+        <name>log</name>
+        <full_name>log</full_name>
+        <docblock line="114">
+          <description>Log</description>
+          <long-description>&lt;p&gt;Long description&lt;/p&gt;</long-description>
+          <tag line="114" name="param" description="message message du log" type="String" variable="$message">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="114" name="param" description="level niveau du log" type="String" variable="$level">
+            <type by_reference="false">String</type>
+          </tag>
+        </docblock>
+        <argument line="123">
+          <name>$message</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="123">
+          <name>$level</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="system\defineConstant.inc.php" hash="867a93be0b4d6f996e6578e574ff5ac9" package="Diapazen">
+    <docblock line="2">
+      <description>Fichier de définitions des constantes</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <constant namespace="global" line="31" package="Diapazen">
+      <name>DS</name>
+      <full_name>\DS</full_name>
+      <value>DIRECTORY_SEPARATOR</value>
+    </constant>
+    <constant namespace="global" line="32" package="Diapazen">
+      <name>ROOT</name>
+      <full_name>\ROOT</full_name>
+      <value>dirname(dirname(__FILE__))</value>
+    </constant>
+    <constant namespace="global" line="33" package="Diapazen">
+      <name>SYSTEM_ROOT</name>
+      <full_name>\SYSTEM_ROOT</full_name>
+      <value>dirname(__FILE__)</value>
+    </constant>
+    <constant namespace="global" line="34" package="Diapazen">
+      <name>APP_ROOT</name>
+      <full_name>\APP_ROOT</full_name>
+      <value>ROOT . DS . 'app'</value>
+    </constant>
+    <constant namespace="global" line="35" package="Diapazen">
+      <name>MODEL_ROOT</name>
+      <full_name>\MODEL_ROOT</full_name>
+      <value>APP_ROOT . DS . 'model'</value>
+    </constant>
+    <constant namespace="global" line="36" package="Diapazen">
+      <name>VIEW_ROOT</name>
+      <full_name>\VIEW_ROOT</full_name>
+      <value>APP_ROOT . DS . 'view'</value>
+    </constant>
+    <constant namespace="global" line="37" package="Diapazen">
+      <name>CONTROLLER_ROOT</name>
+      <full_name>\CONTROLLER_ROOT</full_name>
+      <value>APP_ROOT . DS . 'controller'</value>
+    </constant>
+    <constant namespace="global" line="38" package="Diapazen">
+      <name>UTIL_ROOT</name>
+      <full_name>\UTIL_ROOT</full_name>
+      <value>ROOT . DS . 'util'</value>
+    </constant>
+    <constant namespace="global" line="39" package="Diapazen">
+      <name>WRITER_ROOT</name>
+      <full_name>\WRITER_ROOT</full_name>
+      <value>SYSTEM_ROOT . DS . 'LOG'</value>
+    </constant>
+    <constant namespace="global" line="40" package="Diapazen">
+      <name>LOADER</name>
+      <full_name>\LOADER</full_name>
+      <value>SYSTEM_ROOT . DS . 'CoreLoader.class.php'</value>
+    </constant>
+    <constant namespace="global" line="49" package="Diapazen">
+      <name>BASE_URL</name>
+      <full_name>\BASE_URL</full_name>
+      <value>'http://' . $_SERVER['HTTP_HOST'] . $sub_dir</value>
+    </constant>
+    <constant namespace="global" line="50" package="Diapazen">
+      <name>VIEW_WEBROOT</name>
+      <full_name>\VIEW_WEBROOT</full_name>
+      <value>'/app' . '/' . 'view'</value>
+    </constant>
+    <constant namespace="global" line="51" package="Diapazen">
+      <name>CONTROLLER_WEBROOT</name>
+      <full_name>\CONTROLLER_WEBROOT</full_name>
+      <value>'/app' . DS . 'controller'</value>
+    </constant>
+    <constant namespace="global" line="55" package="Diapazen">
+      <name>EXCEPTION</name>
+      <full_name>\EXCEPTION</full_name>
+      <value>'EXCEPTION'</value>
+    </constant>
+    <constant namespace="global" line="56" package="Diapazen">
+      <name>ERROR</name>
+      <full_name>\ERROR</full_name>
+      <value>'ERROR'</value>
+    </constant>
+    <constant namespace="global" line="57" package="Diapazen">
+      <name>DEBUG</name>
+      <full_name>\DEBUG</full_name>
+      <value>'DEBUG'</value>
+    </constant>
+    <constant namespace="global" line="58" package="Diapazen">
+      <name>INFO</name>
+      <full_name>\INFO</full_name>
+      <value>'INFO'</value>
+    </constant>
+    <constant namespace="global" line="59" package="Diapazen">
+      <name>WARNING</name>
+      <full_name>\WARNING</full_name>
+      <value>'WARNING'</value>
+    </constant>
+    <constant namespace="global" line="60" package="Diapazen">
+      <name>LOG_ALL</name>
+      <full_name>\LOG_ALL</full_name>
+      <value>FALSE</value>
+    </constant>
+    <constant namespace="global" line="64" package="Diapazen">
+      <name>PRODUCTION</name>
+      <full_name>\PRODUCTION</full_name>
+      <value>false</value>
+    </constant>
+  </file>
+  <file path="system\LOG\IWriter.php" hash="5b83b2cb171434a5b734fac17a38cc7c" package="Diapazen">
+    <docblock line="3">
+      <description>Interface des writer</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <interface namespace="global" line="35" package="Diapazen\Framework">
+      <name>IWriter</name>
+      <full_name>\IWriter</full_name>
+      <docblock line="27">
+        <description>IWriter</description>
+        <long-description>&lt;p&gt;Interface décrivant un writer&lt;/p&gt;</long-description>
+        <tag line="27" name="package" description="Diapazen"/>
+        <tag line="27" name="subpackage" description="Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="46" package="Diapazen\Framework">
+        <name>write</name>
+        <full_name>write</full_name>
+        <docblock line="38">
+          <description>write</description>
+          <long-description>&lt;p&gt;Ajout d'un log&lt;/p&gt;</long-description>
+          <tag line="38" name="param" description="message  Message à stocker" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="38" name="param" description="level niveau de log" type="string" variable="$level">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="46">
+          <name>$message</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="46">
+          <name>$level</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+  </file>
+  <file path="system\LOG\PXMLWriter.class.php" hash="e004f57cafc4a5a6406fb01273752e0f" package="Diapazen">
+    <docblock line="3">
+      <description>Writer xml</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>IWriter.php</name>
+    </include>
+    <include line="27" type="Require Once" package="Default">
+      <name>../CoreLoader.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="37" package="Diapazen\Framework">
+      <extends/>
+      <implements>\IWriter</implements>
+      <name>PXMLWriter</name>
+      <full_name>\PXMLWriter</full_name>
+      <docblock line="29">
+        <description>PXMLWriter</description>
+        <long-description>&lt;p&gt;Classe PXMLWriter&lt;/p&gt;</long-description>
+        <tag line="29" name="package" description="Diapazen"/>
+        <tag line="29" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
+        <name>$mFileName</name>
+        <default>""</default>
+        <docblock line="40">
+          <description>Nom du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
+        <name>$xml</name>
+        <default></default>
+        <docblock line="45">
+          <description>Instance de XmlUtil</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="58" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="51">
+          <description>Constructeur</description>
+          <long-description>&lt;p&gt;Constructeur du writer texten defini le fichier du log&lt;/p&gt;</long-description>
+          <tag line="51" name="param" description="file&#9;url du fichier de log text" type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$file</name>
+          <default>""</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="73" package="Diapazen\Framework">
+        <name>write</name>
+        <full_name>write</full_name>
+        <docblock line="65">
+          <description>write</description>
+          <long-description>&lt;p&gt;Ajout d'un log implemente l'interface IWRITER&lt;/p&gt;</long-description>
+          <tag line="65" name="param" description="message  log" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="65" name="param" description="level  log" type="string" variable="$level">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$message</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$level</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="system\LOG\TextWriter.class.php" hash="59dbc869df65358b3183cc2611b09b69" package="Diapazen">
+    <docblock line="3">
+      <description>Writer text</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>IWriter.php</name>
+    </include>
+    <include line="27" type="Require Once" package="Default">
+      <name>./defineConstant.inc.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="37" package="Diapazen\Framework">
+      <extends/>
+      <implements>\IWriter</implements>
+      <name>TextWriter</name>
+      <full_name>\TextWriter</full_name>
+      <docblock line="29">
+        <description>TextWriter</description>
+        <long-description>&lt;p&gt;Classe TextWriter&lt;/p&gt;</long-description>
+        <tag line="29" name="package" description="Diapazen"/>
+        <tag line="29" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
+        <name>$mlogSizeMax</name>
+        <default>5242880</default>
+        <docblock line="40">
+          <description>Taille max du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
+        <name>$mlogSizeAlert</name>
+        <default>5138020</default>
+        <docblock line="45">
+          <description>Taille max pour l'alerte</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="53" namespace="global" package="Default">
+        <name>$mfile</name>
+        <default></default>
+        <docblock line="50">
+          <description>Instance du fichier de log</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="64" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="57">
+          <description>Constructeur</description>
+          <long-description>&lt;p&gt;Constructeur du writer texten defini le fichier du log&lt;/p&gt;</long-description>
+          <tag line="57" name="param" description="file&#9;url du fichier de log text" type="string" variable="$file">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="64">
+          <name>$file</name>
+          <default>""</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="85" package="Diapazen\Framework">
+        <name>write</name>
+        <full_name>write</full_name>
+        <docblock line="77">
+          <description>write</description>
+          <long-description>&lt;p&gt;Ajout d'un log implemente l'interface IWRITER&lt;/p&gt;</long-description>
+          <tag line="77" name="param" description="message  log" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="77" name="param" description="level  log" type="string" variable="$level">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="85">
+          <name>$message</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="85">
+          <name>$level</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="global" line="112" package="Diapazen\Framework">
+        <name>testSize</name>
+        <full_name>testSize</full_name>
+        <docblock line="104">
+          <description>Test size</description>
+          <long-description>&lt;p&gt;retourne la taille du fichier de log&lt;/p&gt;</long-description>
+          <tag line="104" name="return" description="taille du fichier de log" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="system\Model.class.php" hash="d38c57ed50343a0271876cfe10c72cd3" package="Diapazen">
+    <docblock line="4">
+      <description>Cette classe fait le lien entre la base de données et les contrôleurs</description>
+      <long-description></long-description>
+      <tag line="4" name="package" description="Diapazen"/>
+      <tag line="4" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="4" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="36" package="Diapazen\Framework">
+      <extends/>
+      <name>Model</name>
+      <full_name>\Model</full_name>
+      <docblock line="28">
+        <description>Model</description>
+        <long-description>&lt;p&gt;Classe de base de la gestion des modèles&lt;/p&gt;</long-description>
+        <tag line="28" name="package" description="Diapazen"/>
+        <tag line="28" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="protected" line="42" namespace="global" package="Default">
+        <name>$mPDO</name>
+        <default></default>
+        <docblock line="39">
+          <description>Instance de PDO</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="48" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="44">
+          <description>Constructeur</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="80" package="Diapazen\Framework">
+        <name>getPDO</name>
+        <full_name>getPDO</full_name>
+        <docblock line="75">
+          <description>Récupère l'instance de PDO</description>
+          <long-description></long-description>
+          <tag line="75" name="return" description="de PDO" type="\Instance">
+            <type by_reference="false">\Instance</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="99" package="Diapazen\Framework">
+        <name>select</name>
+        <full_name>select</full_name>
+        <docblock line="86">
+          <description>Récupère des informations d'une table ou d'une vue de la base de données.</description>
+          <long-description>&lt;p&gt;Permet de réaliser une requête Select simple sur la table '$table'
+et qui retourne les paramêtres '$fields'
+On peut choisir le type fetch de retour : assoc ou num (par défaut both)&lt;/p&gt;</long-description>
+          <tag line="86" name="param" description="Champs de la table" type="array|string" variable="$fields">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="86" name="param" description="Table de la base de données" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="86" name="param" description="Permet de choisir quel 'fetch' utiliser par défaut 'both'" type="\type" variable="$fetchMode">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="86" name="return" description="tableau de résultats" type="\Un">
+            <type by_reference="false">\Un</type>
+          </tag>
+        </docblock>
+        <argument line="99">
+          <name>$fields</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="99">
+          <name>$table</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="99">
+          <name>$fetchMode</name>
+          <default>'both'</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="138" package="Diapazen\Framework">
+        <name>selectWhere</name>
+        <full_name>selectWhere</full_name>
+        <docblock line="123">
+          <description>Récupère des informations d'une table ou d'une vue de la base de données.</description>
+          <long-description>&lt;p&gt;Permet de réaliser une requête Select sur la table '$table'
+avec comme paramêtre '$conditions'
+et qui retourne les paramêtres '$fields'
+On peut choisir le type fetch de retour : assoc ou num (par défaut both)&lt;/p&gt;</long-description>
+          <tag line="123" name="param" description="Champs de la table" type="array|string" variable="$fields">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="param" description="Table de la base de données" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="param" description="Un tableau ASSOCIATIF des conditions" type="array" variable="$conditions">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="123" name="param" description="Permet de choisir quel 'fetch' utiliser par défaut 'both'" type="\type" variable="$fetchMode">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="123" name="return" description="tableau de résultats" type="\Un">
+            <type by_reference="false">\Un</type>
+          </tag>
+        </docblock>
+        <argument line="138">
+          <name>$fields</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="138">
+          <name>$table</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="138">
+          <name>$conditions</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="138">
+          <name>$fetchMode</name>
+          <default>'both'</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="192" package="Diapazen\Framework">
+        <name>selectWhereOrderBy</name>
+        <full_name>selectWhereOrderBy</full_name>
+        <docblock line="176">
+          <description>Récupère des informations d'une table ou d'une vue de la base de données.</description>
+          <long-description>&lt;p&gt;Permet de réaliser une requête Select sur la table '$table'
+avec comme paramêtre '$conditions' et les ordonnant avec 'orderby'
+et qui retourne les paramêtres '$fields'
+On peut choisir le type fetch de retour : assoc ou num (par défaut both)&lt;/p&gt;</long-description>
+          <tag line="176" name="param" description="Champs de la table" type="array|string" variable="$fields">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="176" name="param" description="Table de la base de données" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="176" name="param" description="Un tableau ASSOCIATIF des conditions" type="array" variable="$conditions">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="176" name="param" description="Un tableau ex: array('nom desc', 'prenom asc')" type="array" variable="$orderby">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="176" name="param" description="Permet de choisir quel 'fetch' utiliser par défaut 'both'" type="\type" variable="$fetchMode">
+            <type by_reference="false">\type</type>
+          </tag>
+          <tag line="176" name="return" description="tableau de résultats" type="\Un">
+            <type by_reference="false">\Un</type>
+          </tag>
+        </docblock>
+        <argument line="192">
+          <name>$fields</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="192">
+          <name>$table</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="192">
+          <name>$conditions</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="192">
+          <name>$orderby</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="192">
+          <name>$fetchMode</name>
+          <default>'both'</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="238" package="Diapazen\Framework">
+        <name>insert</name>
+        <full_name>insert</full_name>
+        <docblock line="230">
+          <description>Insère des données dans la base de données</description>
+          <long-description></long-description>
+          <tag line="230" name="param" description="Tableau ASSOCIATIF des valeurs à insérer" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="230" name="param" description="Table de la base de données" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="230" name="return" description="si réussite sinon Faux" type="\Vrai">
+            <type by_reference="false">\Vrai</type>
+          </tag>
+        </docblock>
+        <argument line="238">
+          <name>$values</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="238">
+          <name>$table</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="277" package="Diapazen\Framework">
+        <name>updateWhere</name>
+        <full_name>updateWhere</full_name>
+        <docblock line="264">
+          <description>Met à jour un enregistrement de la table</description>
+          <long-description>&lt;p&gt;Permet de réaliser une requête Update sur la table '$table'
+avec comme paramêtre '$conditions'
+et qui met à jour avec '$values'&lt;/p&gt;</long-description>
+          <tag line="264" name="param" description="Un tableau ASSOCIATIF des valeurs" type="array" variable="$values">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="264" name="param" description="Un tableau ASSOCIATIF des conditions" type="array" variable="$conditions">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="264" name="param" description="Table de la base de données" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="264" name="return" description="si réussite sinon Faux" type="\Vrai">
+            <type by_reference="false">\Vrai</type>
+          </tag>
+        </docblock>
+        <argument line="277">
+          <name>$values</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="277">
+          <name>$conditions</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="277">
+          <name>$table</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="317" package="Diapazen\Framework">
+        <name>deleteFrom</name>
+        <full_name>deleteFrom</full_name>
+        <docblock line="306">
+          <description>Supprime un enregistrement de la table</description>
+          <long-description>&lt;p&gt;Permet de réaliser une requête Delete sur la table '$table'
+avec comme paramêtre '$conditions'&lt;/p&gt;</long-description>
+          <tag line="306" name="param" description="Un tableau ASSOCIATIF des conditions" type="array" variable="$conditions">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="306" name="param" description="Table de la base de données" type="string" variable="$table">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="306" name="return" description="si réussite sinon Faux" type="\Vrai">
+            <type by_reference="false">\Vrai</type>
+          </tag>
+        </docblock>
+        <argument line="317">
+          <name>$conditions</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="317">
+          <name>$table</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="system\Request.class.php" hash="89597cb19251212e95dabfb88707e72d" package="Diapazen">
+    <docblock line="2">
+      <description>Cette classe permet de parser l'URL.</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="34" package="Diapazen\Framework">
+      <extends/>
+      <name>Request</name>
+      <full_name>\Request</full_name>
+      <docblock line="26">
+        <description>Request</description>
+        <long-description>&lt;p&gt;Classe parsant l'url fourni par la requête HTTP&lt;/p&gt;</long-description>
+        <tag line="26" name="package" description="Diapazen"/>
+        <tag line="26" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="40" namespace="global" package="Default">
+        <name>$mUrl</name>
+        <default></default>
+        <docblock line="37">
+          <description>Url provenant de la requête HTTP</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="45" namespace="global" package="Default">
+        <name>$mController</name>
+        <default></default>
+        <docblock line="42">
+          <description>Nom du contrôleur</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="50" namespace="global" package="Default">
+        <name>$mAction</name>
+        <default></default>
+        <docblock line="47">
+          <description>Nom de l'action</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="55" namespace="global" package="Default">
+        <name>$mParams</name>
+        <default>array()</default>
+        <docblock line="52">
+          <description>Tableau des paramètres de l'url</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="62" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="59">
+          <description>Constructeur</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="91" package="Diapazen\Framework">
+        <name>getController</name>
+        <full_name>getController</full_name>
+        <docblock line="86">
+          <description>Récupère le nom du controller</description>
+          <long-description></long-description>
+          <tag line="86" name="return" description="Nom du controller" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="101" package="Diapazen\Framework">
+        <name>getAction</name>
+        <full_name>getAction</full_name>
+        <docblock line="96">
+          <description>Récupère l'action</description>
+          <long-description></long-description>
+          <tag line="96" name="return" description="Nom de l'action" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="111" package="Diapazen\Framework">
+        <name>getParams</name>
+        <full_name>getParams</full_name>
+        <docblock line="106">
+          <description>Récupère les paramètres</description>
+          <long-description></long-description>
+          <tag line="106" name="return" description="Nom des paramètres" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="system\Router.class.php" hash="b98199b4da3aca2ed72577ac22a9e556" package="Diapazen">
+    <docblock line="2">
+      <description>Fait le chargement du contrôleur selon la requête HTTP</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>Request.class.php</name>
+    </include>
+    <include line="27" type="Require Once" package="Default">
+      <name>Controller.class.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="37" package="Diapazen\Framework">
+      <extends/>
+      <name>Router</name>
+      <full_name>\Router</full_name>
+      <docblock line="29">
+        <description>Router</description>
+        <long-description>&lt;p&gt;Classe qui charge le bon contrôleur selon l'url&lt;/p&gt;</long-description>
+        <tag line="29" name="package" description="Diapazen"/>
+        <tag line="29" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="42" namespace="global" package="Default">
+        <name>$mRequest</name>
+        <default></default>
+        <docblock line="39">
+          <description>Instance de l'objet Request</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="53" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="45">
+          <description>Constructeur</description>
+          <long-description>&lt;p&gt;Récupère le nom du controller et instancie en conséquence le controller désiré
+Appelle de l'action spécifié par l'url au controller
+Si il y a un problème on lève une exception&lt;/p&gt;</long-description>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="system\Singleton.class.php.php" hash="a4c13376cfeeb41ae5a09858b99cee46" package="Diapazen">
+    <docblock line="3">
+      <description>Classe qui implémente le design pattern Singleton</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="35" package="Diapazen\Framework">
+      <extends/>
+      <name>coreSingleton</name>
+      <full_name>\coreSingleton</full_name>
+      <docblock line="27">
+        <description>coreSingleton</description>
+        <long-description>&lt;p&gt;Classe qui implémente le patron de conception Singleton&lt;/p&gt;</long-description>
+        <tag line="27" name="package" description="Diapazen"/>
+        <tag line="27" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="protected" line="38" namespace="global" package="Default">
+        <name>$_instances</name>
+        <default></default>
+        <docblock line="37">
+          <description>Tableau des instance du singleton</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="public" line="40" namespace="global" package="Default">
+        <name>$namespace</name>
+        <default>__NAMESPACE__</default>
+        <docblock line="39">
+          <description>Namespace</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="49" package="Diapazen\Framework">
+        <name>__callStatic</name>
+        <full_name>__callStatic</full_name>
+        <docblock line="42">
+          <description>__callStatic</description>
+          <long-description></long-description>
+          <tag line="42" name="param" description="nom" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="param" description="arguments" type="array" variable="$arguments">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+        <argument line="49">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="49">
+          <name>$arguments</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="util\DownloaderFileUtil.class.php" hash="38f25beb13966d1b3a8b02f0d5aa6fdc" package="Diapazen">
+    <docblock line="3">
+      <description>Fichier de telechargement forcé d'un fichier</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="35" package="Diapazen\Framework">
+      <extends/>
+      <name>DownloaderFileUtil</name>
+      <full_name>\DownloaderFileUtil</full_name>
+      <docblock line="27">
+        <description>DownloaderFileUtil</description>
+        <long-description>&lt;p&gt;Classe gérant les téléchargements&lt;/p&gt;</long-description>
+        <tag line="27" name="package" description="Diapazen"/>
+        <tag line="27" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="43" namespace="global" package="Default">
+        <name>$mfilename</name>
+        <default></default>
+        <docblock line="40">
+          <description>Nom du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="48" namespace="global" package="Default">
+        <name>$mnewfilename</name>
+        <default></default>
+        <docblock line="45">
+          <description>Nouveau nom du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="53" namespace="global" package="Default">
+        <name>$mfilepath</name>
+        <default></default>
+        <docblock line="50">
+          <description>Dossier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="58" namespace="global" package="Default">
+        <name>$mfilesize</name>
+        <default></default>
+        <docblock line="55">
+          <description>Taille du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="63" namespace="global" package="Default">
+        <name>$mfilemd5</name>
+        <default></default>
+        <docblock line="60">
+          <description>Hash md5 du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="68" namespace="global" package="Default">
+        <name>$mdateformat</name>
+        <default></default>
+        <docblock line="65">
+          <description>Format de la date</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="81" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="71">
+          <description>Constructeur du downloader</description>
+          <long-description>&lt;p&gt;Permet de choisir les informations utile pour le telechargement&lt;/p&gt;</long-description>
+          <tag line="71" name="param" description="filename nom du fichier a télécharger" type="\Sting" variable="$filename">
+            <type by_reference="false">\Sting</type>
+          </tag>
+          <tag line="71" name="param" description="filepath lien vers le fichier" type="\Sting" variable="$filepath">
+            <type by_reference="false">\Sting</type>
+          </tag>
+          <tag line="71" name="param" description="newfilename nom du fichier pour l'utilisateur" type="\Sting" variable="$newfilename">
+            <type by_reference="false">\Sting</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$filename</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="81">
+          <name>$filepath</name>
+          <default>''</default>
+          <type/>
+        </argument>
+        <argument line="81">
+          <name>$newfilename</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="110" package="Diapazen\Framework">
+        <name>cleanPath</name>
+        <full_name>cleanPath</full_name>
+        <docblock line="101">
+          <description>cleanPath</description>
+          <long-description>&lt;p&gt;Rend le chemin vers le fichier correct&lt;/p&gt;</long-description>
+          <tag line="101" name="param" description="path chemin" type="string" variable="$path">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="101" name="return" description="path chemin" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="110">
+          <name>$path</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="135" package="Diapazen\Framework">
+        <name>getExtension</name>
+        <full_name>getExtension</full_name>
+        <docblock line="126">
+          <description>Renvoie l'extension du fichier</description>
+          <long-description>&lt;p&gt;Long description&lt;/p&gt;</long-description>
+          <tag line="126" name="param" description="file fichier" type="String" variable="$file">
+            <type by_reference="false">String</type>
+          </tag>
+          <tag line="126" name="return" description="extension" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="135">
+          <name>$file</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="151" package="Diapazen\Framework">
+        <name>forceDownload</name>
+        <full_name>forceDownload</full_name>
+        <docblock line="142">
+          <description>Lance le telechargement</description>
+          <long-description>&lt;p&gt;Il est forcé, cad qu'un fichier pdf ne s'ouvrira pas mais devra etre telecharge&lt;/p&gt;</long-description>
+          <tag line="142" name="return" description="resultat du telechargement" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="util\MailUtil.class.php" hash="b324e4242b1e97327cbf8c82ac69db45" package="Diapazen">
+    <docblock line="2">
+      <description>File using for send e-mail</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="34" package="Diapazen\Framework">
+      <extends/>
+      <name>MailUtil</name>
+      <full_name>\MailUtil</full_name>
+      <docblock line="26">
+        <description>MailUtil</description>
+        <long-description>&lt;p&gt;Classe gérant l'envoi des emails&lt;/p&gt;</long-description>
+        <tag line="26" name="package" description="Diapazen"/>
+        <tag line="26" name="subpackage" description="Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="41" package="Diapazen\Framework">
+        <name>MailUtil</name>
+        <full_name>MailUtil</full_name>
+        <docblock line="37">
+          <description>Constructeur de MailUtil</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="55" package="Diapazen\Framework">
+        <name>sendMail</name>
+        <full_name>sendMail</full_name>
+        <docblock line="46">
+          <description>Fonction permettant d'envoyer un mail</description>
+          <long-description>&lt;p&gt;Cette méthode permet d'envoyer un mail depuis $mailFrom à $mailTo&lt;/p&gt;</long-description>
+          <tag line="46" name="param" description="mail de destination" type="string" variable="$mailTo">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="46" name="param" description="sujet du mail" type="string" variable="$subject">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="46" name="param" description="message du mail" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$mailTo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="55">
+          <name>$subject</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="55">
+          <name>$message</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="77" package="Diapazen\Framework">
+        <name>sendMailWithCC</name>
+        <full_name>sendMailWithCC</full_name>
+        <docblock line="68">
+          <description>Fonction permettant d'envoyer un mail à plusieurs personne en copie carbone</description>
+          <long-description>&lt;p&gt;Cette méthode permet d'envoyer un mail depuis $mailFrom à $mailTo&lt;/p&gt;</long-description>
+          <tag line="68" name="param" description="tableau des mails de destination" type="string" variable="$mailsTo">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="param" description="sujet du mail" type="string" variable="$subjet">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="68" name="param" description="message du mail" type="string" variable="$message">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="77">
+          <name>$mailsTo</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="77">
+          <name>$subjet</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="77">
+          <name>$message</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="util\Message.class.php" hash="edcdc763468e418d370834ac2f20b31e" package="Diapazen">
+    <docblock line="2">
+      <description>Class contenant les messages principaux des mails</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="34" package="Diapazen\Framework">
+      <extends/>
+      <name>Message</name>
+      <full_name>\Message</full_name>
+      <docblock line="26">
+        <description>Message</description>
+        <long-description>&lt;p&gt;Classe gérant les messages des emails&lt;/p&gt;</long-description>
+        <tag line="26" name="package" description="Diapazen"/>
+        <tag line="26" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="40" namespace="global" package="Default">
+        <name>$messageRegistration</name>
+        <default>"Bonjour %s %s\n\nMerci de vous être inscrit sur Diapazen.\nVotre mot de passe est: %s\nChangez le dès maintenant en accèdant à votre profil."</default>
+        <docblock line="37">
+          <description>Message d'inscription</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="46" namespace="global" package="Default">
+        <name>$messageCreatePoll</name>
+        <default>"Bonjour\n\nVous venez de créer le sondage %s"</default>
+        <docblock line="43">
+          <description>Messaqge de création d'un sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="52" namespace="global" package="Default">
+        <name>$messagePswForgotten</name>
+        <default>"Bonjour\n\nVoici votre nouveau mot de passe: %s\nVous pouvez vous connecter de nouveau sur http://diapazen.com afin de le modifier."</default>
+        <docblock line="49">
+          <description>Message du mot de passe oublié</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="58" namespace="global" package="Default">
+        <name>$messageLogTooBig</name>
+        <default>"Bonjour\n\nAttention: Le fichier de logs de Diapazen est plein."</default>
+        <docblock line="55">
+          <description>Message du log trop gros</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="true" visibility="private" line="64" namespace="global" package="Default">
+        <name>$messagePollShare</name>
+        <default>"Bonjour\n\n%s vous invite à répondre à son sondage:\n%s\n\nPour y répondre, il suffit de suivre ce lien: %s"</default>
+        <docblock line="61">
+          <description>Message du partage de sondage</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="70" namespace="global" package="Default">
+        <name>$message</name>
+        <default></default>
+        <docblock line="67">
+          <description>Message</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="77" package="Diapazen\Framework">
+        <name>getMessage</name>
+        <full_name>getMessage</full_name>
+        <docblock line="72">
+          <description>Récupère le message à envoyer</description>
+          <long-description></long-description>
+          <tag line="72" name="return" description="message à envoyer" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="89" package="Diapazen\Framework">
+        <name>setMessage</name>
+        <full_name>setMessage</full_name>
+        <docblock line="82">
+          <description>Récupère le message à envoyer</description>
+          <long-description>&lt;p&gt;On utilise un switch sur '$name' afin de savoir quel message récupérer&lt;/p&gt;</long-description>
+          <tag line="82" name="param" description="nom permettant de savoir quel message choisir" type="\name" variable="$name">
+            <type by_reference="false">\name</type>
+          </tag>
+        </docblock>
+        <argument line="89">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="136" package="Diapazen\Framework">
+        <name>setParams</name>
+        <full_name>setParams</full_name>
+        <docblock line="127">
+          <description>Set les paramêtres des messages (ex : mot de passe)</description>
+          <long-description>&lt;p&gt;Set les paramêtres des messages grâce à la fonction vsprintf
+Rajoute une ligne à la fin de tous les messages&lt;/p&gt;</long-description>
+          <tag line="127" name="param" description="tableau des paramêtres du message" type="\params" variable="$params">
+            <type by_reference="false">\params</type>
+          </tag>
+        </docblock>
+        <argument line="136">
+          <name>$params</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="util\NumberUtil.class.php" hash="49235adcaaf2e752a8d8f53c095eec4a" package="Diapazen">
+    <docblock line="3">
+      <description>Classe utilitaire concernant les nombres</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="35" package="Diapazen\Framework">
+      <extends/>
+      <name>NumberUtil</name>
+      <full_name>\NumberUtil</full_name>
+      <docblock line="27">
+        <description>NumberUtil</description>
+        <long-description>&lt;p&gt;Classe gérant le calcul des pourcentages&lt;/p&gt;</long-description>
+        <tag line="27" name="package" description="Diapazen"/>
+        <tag line="27" name="subpackage" description="Framework"/>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="44" package="Diapazen\Framework">
+        <name>getPourcentage</name>
+        <full_name>getPourcentage</full_name>
+        <docblock line="37">
+          <description>Donne le pourcentage de valeur avec arrondi</description>
+          <long-description></long-description>
+          <tag line="37" name="param" description="nombre d'element" type="int" variable="$number">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="37" name="param" description="nombre d'element total" type="int" variable="$total">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="37" name="return" description="le pourcentage" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="44">
+          <name>$number</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="44">
+          <name>$total</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="55" package="Diapazen\Framework">
+        <name>getNumberWithPercentage</name>
+        <full_name>getNumberWithPercentage</full_name>
+        <docblock line="48">
+          <description>Donne le nombre apres application d'un pourcentage</description>
+          <long-description></long-description>
+          <tag line="48" name="param" description="nombre d'element de base" type="int" variable="$number">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="48" name="param" description="le pourcentage a appliquer" type="int" variable="$percent">
+            <type by_reference="false">int</type>
+          </tag>
+          <tag line="48" name="return" description="le nouveau nombre" type="int">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="55">
+          <name>$number</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="55">
+          <name>$percent</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="util\TestForm.class.php" hash="032f502c17cbc1ccb4bb47cb3e4a3424" package="Diapazen">
+    <docblock line="2">
+      <description>Class contenant des fonction de tests des champs des formulaires</description>
+      <long-description></long-description>
+      <tag line="2" name="package" description="Diapazen"/>
+      <tag line="2" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="2" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <class final="false" abstract="false" namespace="global" line="34" package="Diapazen\Framework">
+      <extends/>
+      <name>TestForm</name>
+      <full_name>\TestForm</full_name>
+      <docblock line="26">
+        <description>TestForm</description>
+        <long-description>&lt;p&gt;Classe gérant la vérification des entrées utilisateur dans les formulaires&lt;/p&gt;</long-description>
+        <tag line="26" name="package" description="Diapazen"/>
+        <tag line="26" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="true" visibility="private" line="40" namespace="global" package="Default">
+        <name>$mStrRegexp</name>
+        <default>array('email' =&gt; '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#', 'pwd' =&gt; '#^[a-zA-Zéèôïëñ0-9]{3,}$#', 'title' =&gt; '#^[a-zA-Zéèôïëñ0-9-\s]{3,}$#', 'expirationDate' =&gt; '#^[0-9]{4}-[0-9]{2}-[0-9]{2}$#', 'description' =&gt; '#^.{3,}$#', 'choice' =&gt; '#^[a-zA-Zéèôïëñ0-9\s]{3,}$#', 'firstname' =&gt; '#^[a-zA-Zéèôïëñ-]{3,}$#', 'lastName' =&gt; '#^[a-zA-Zéèôïëñ-]{3,}$#', 'voteName' =&gt; '#^[a-zA-Zéèôïëñ0-9\s]{3,}$#', 'pollUrl' =&gt; '#^[a-zA-Z0-9]{10}$#')</default>
+        <docblock line="37">
+          <description>RegExp</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="global" line="58" package="Diapazen\Framework">
+        <name>testRegexp</name>
+        <full_name>testRegexp</full_name>
+        <docblock line="52">
+          <description>Fonction qui test les une string par regexp</description>
+          <long-description></long-description>
+          <tag line="52" name="param" description="regexp La regexp pour tester" type="string" variable="$regexp">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="52" name="param" description="string Phrase à tester" type="string" variable="$string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="52" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="58">
+          <name>$regexp</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="58">
+          <name>$string</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+  </file>
+  <file path="util\XmlUtil.class.php" hash="d6a9e639f8ca05a6be302ea3e880c2d9" package="Diapazen">
+    <docblock line="3">
+      <description>Fichier gestion du xml</description>
+      <long-description></long-description>
+      <tag line="3" name="package" description="Diapazen"/>
+      <tag line="3" name="copyright" description="Copyright (c) 2013, ISEN-Toulon"/>
+      <tag line="3" name="license" description="http://www.gnu.org/licenses/gpl.html GNU GPL v3&#13;&#10;This file is part of Diapazen.&#13;&#10;Diapazen is free software: you can redistribute it and/or modify&#13;&#10;it under the terms of the GNU General Public License 3 as published by&#13;&#10;the Free Software Foundation.&#13;&#10;Diapazen is distributed in the hope that it will be useful,&#13;&#10;but WITHOUT ANY WARRANTY; without even the implied warranty of&#13;&#10;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#13;&#10;GNU General Public License for more details.&#13;&#10;You should have received a copy of the GNU General Public License&#13;&#10;along with Diapazen.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+    </docblock>
+    <include line="26" type="Require Once" package="Default">
+      <name>../system/defineConstant.inc.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="global" line="36" package="Diapazen\Framework">
+      <extends/>
+      <name>XmlUtil</name>
+      <full_name>\XmlUtil</full_name>
+      <docblock line="28">
+        <description>XmlUtil</description>
+        <long-description>&lt;p&gt;Classe encapsulant XML&lt;/p&gt;</long-description>
+        <tag line="28" name="package" description="Diapazen"/>
+        <tag line="28" name="subpackage" description="Framework"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="41" namespace="global" package="Default">
+        <name>$mXMLFile</name>
+        <default>null</default>
+        <docblock line="38">
+          <description>Fichier XML</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="45" namespace="global" package="Default">
+        <name>$mFileName</name>
+        <default></default>
+        <docblock line="42">
+          <description>Nom du fichier</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="57" package="Diapazen\Framework">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="47">
+          <description>Constructeur de gestionnaire xml</description>
+          <long-description>&lt;p&gt;Permet de recuperer un fichier xml ou le creer selon un modele
+pour travailler sur le fichier.&lt;/p&gt;</long-description>
+          <tag line="47" name="param" description="fileURL lien vers le fichier" type="string" variable="$fileURL">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="57">
+          <name>$fileURL</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="92" package="Diapazen\Framework">
+        <name>addNode</name>
+        <full_name>addNode</full_name>
+        <docblock line="81">
+          <description>Ajout d'un noeud dans le root</description>
+          <long-description></long-description>
+          <tag line="81" name="param" description="name nom du noeud" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="81" name="param" description="value contenu du noeud (defaut vide)" type="string" variable="$value">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="81" name="param" description="attributes tableau dattribut (key --&gt; value)" type="array" variable="$attributes">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="81" name="return" description="noed ajouté" type="\simpleXMLElement">
+            <type by_reference="false">\simpleXMLElement</type>
+          </tag>
+        </docblock>
+        <argument line="92">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="92">
+          <name>$value</name>
+          <default>""</default>
+          <type/>
+        </argument>
+        <argument line="92">
+          <name>$attributes</name>
+          <default>null</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="global" line="119" package="Diapazen\Framework">
+        <name>saveXml</name>
+        <full_name>saveXml</full_name>
+        <docblock line="115">
+          <description>Enregistre le xml</description>
+          <long-description></long-description>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="Diapazen" full_name="Diapazen">
+    <package name="Controller" full_name="Diapazen\Controller"/>
+    <package name="Framework" full_name="Diapazen\Framework"/>
+    <package name="Model" full_name="Diapazen\Model"/>
+    <package name="View" full_name="Diapazen\View"/>
+  </package>
+  <namespace name="global" full_name="global"/>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>
