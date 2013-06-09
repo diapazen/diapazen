@@ -347,7 +347,7 @@ class PollController extends Controller
 				$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 				$mailSend = $this->getModel()->sharePoll($_POST['mails']);
 				$mailSend = implode(', ', $mailSend);
-
+				unset($_SESSION['poll_url']);
 			}
 			catch(Exception $e)
 			{
