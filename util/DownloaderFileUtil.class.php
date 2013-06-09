@@ -24,15 +24,47 @@
  *
  */
 
+/**
+ * DownloaderFileUtil
+ *
+ * Classe gérant les téléchargements
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class DownloaderFileUtil 
 {
 
 
+    
+    /**
+     * Nom du fichier
+     */
     private $mfilename;
+    
+    /**
+     * Nouveau nom du fichier
+     */
     private $mnewfilename;  
+    
+    /**
+     * Dossier
+     */
     private $mfilepath;
+    
+    /**
+     * Taille du fichier
+     */
     private $mfilesize;
+    
+    /**
+     * Hash md5 du fichier
+     */
     private $mfilemd5;
+    
+    /**
+     * Format de la date
+     */
     private $mdateformat;
     
 
@@ -96,7 +128,7 @@ class DownloaderFileUtil
     * 
     * Long description
     * 
-    * @param     String nom fichier
+    * @param     String file fichier
     * @return    string extension
     */
 

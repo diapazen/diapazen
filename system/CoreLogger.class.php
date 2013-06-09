@@ -28,12 +28,29 @@
 require_once "defineConstant.inc.php";
 require_once LOADER;
 
+/**
+ * CoreLogger
+ *
+ * Classe gérant la journalisation des messages d'erreurs ou autres
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class CoreLogger 
 {
 
+
+    /**
+     * Instance du logger
+     */
     private static $_instance = null;
+    
+    /**
+     * Instance du writer
+     */
     private static $mwriter  =  null;
     
+
 
     /** Récuperation d'un logger
      *

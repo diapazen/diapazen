@@ -23,12 +23,16 @@
  *
  */
 
+/**
+ * MailUtil
+ *
+ * Classe gérant l'envoi des emails
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class MailUtil 
 {
-	protected $mailFrom;
-	protected $nameMailFrom;
-	protected $pwdFrom;
-	protected $configSMTP;
 
 	/**
 	 * Constructeur de MailUtil 
@@ -66,8 +70,8 @@ class MailUtil
 	 * 
 	 * Cette méthode permet d'envoyer un mail depuis $mailFrom à $mailTo
 	 * 
-	 * @param     string	$mailTo	tableau des mails de destination
-	 * @param     string    $subject sujet du mail
+	 * @param     string	$mailsTo	tableau des mails de destination
+	 * @param     string    $subjet sujet du mail
 	 * @param     string    $message message du mail
 	 */
 	 public function sendMailWithCC($mailsTo,$subjet,$message)

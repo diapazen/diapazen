@@ -26,44 +26,59 @@
 require_once "IWriter.php";
 require_once "../CoreLoader.class.php";
 
+/**
+ * PXMLWriter
+ *
+ * Classe PXMLWriter
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class PXMLWriter implements IWriter
 {
-  
 
-   private  $mFileName="";
-   private $xml;
+	/**
+	 * Nom du fichier
+	 */
+	private		$mFileName="";
+	
+	/**
+	 *  Instance de XmlUtil
+	 */
+	private 	$xml;
 
 
-    /**
-    * Constructeur
-    * 
-    * Constructeur du writer texten defini le fichier du log
-    * 
-    * @param     string	file	url du fichier de log text
-    */ 
+	/**
+	* Constructeur
+	* 
+	* Constructeur du writer texten defini le fichier du log
+	* 
+	* @param     string	file	url du fichier de log text
+	*/ 
    public function __construct($file="") 
    {
-       $this->mfileName =ROOT."log.xml";
+	   $this->mfileName =ROOT."log.xml";
  
-      $this->xml= new XmlUtil('log.xml');
+	  $this->xml= new XmlUtil('log.xml');
    }
    
-    /**
-    * write
-    * 
-    * Ajout d'un log implemente l'interface IWRITER
-    * 
-    * @param     string message  log
-    */
+	/**
+	* write
+	* 
+	* Ajout d'un log implemente l'interface IWRITER
+	* 
+	* @param     string message  log
+	* @param     string level  log
+	*/
    public function write($message,$level)
    {
-      
-      $a=$this->xml->addNode('log');
-      $a->addChild("level",$level);
-      $date = date('d.m.Y h:i:s') ." GMT " ;
-      $a->addChild('date',$date);
-      $a->addChild('message',$message);
-      $this->xml->saveXml();
+	  
+	  $a=$this->xml->addNode('log');
+	  $a->addChild("level",$level);
+	  $date = date('d.m.Y h:i:s') ." GMT " ;
+	  $a->addChild('date',$date);
+	  $a->addChild('message',$message);
+	  $this->xml->saveXml();
    }
 
 

@@ -24,6 +24,14 @@
  *
  */
 
+/**
+ * IWriter
+ *
+ * Interface décrivant un writer
+ * 
+ * @package     Diapazen
+ * @subpackage	Framework
+ */
 interface IWriter
 {
     
@@ -32,8 +40,8 @@ interface IWriter
     * 
     * Ajout d'un log 
     * 
-    * @param     string message  log
-    * @param string level  
+    * @param	string message  Message à stocker
+    * @param	string level niveau de log 
     */
     public function write($message,$level);
 }

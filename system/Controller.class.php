@@ -23,11 +23,30 @@
  *
  */
 
+/**
+ * Controller
+ *
+ * Classe gérant les utilisateurs dans la base de données
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class Controller
 {
 
+	/**
+	 * Instance du modèle
+	 */
 	protected $mModel;
+	
+	/**
+	 * Requête de l'utilisateur
+	 */
 	protected $mRequest;
+
+	/**
+	 * Variables à envoyer à la vue
+	 */
 	protected $mVars = array();
 
 	/**
@@ -68,7 +87,7 @@ class Controller
 	/**
 	 * Fait le rendu de la vue
 	 *
-	 * @param	string	filename	chemin relatif du fichier
+	 * @param	string	view	nom de la vue à utiliser
 	 * @return	void	Rien
 	 */
 	public function render($view)
@@ -92,7 +111,8 @@ class Controller
 	/**
 	 * Ajoute une variable pour la vue
 	 *
-	 * @param	string	filename	chemin relatif du fichier
+	 * @param	string	key		nom de la variable à utiliser
+	 * @param	string	value	valeur de la variable
 	 * @return	void	Rien
 	 */
 	protected function set($key, $value)
@@ -161,6 +181,7 @@ class Controller
 	/**
 	 * Connecte l'utilisateur
 	 *
+	 * @param	string	userInfos	tableau contenant les infos de l'utilisateur
 	 * @return	void	Rien
 	 */
 	public function setUserConnected($userInfos)

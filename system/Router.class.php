@@ -26,8 +26,19 @@
 require_once 'Request.class.php';
 require_once 'Controller.class.php';
 
+/**
+ * Router
+ *
+ * Classe qui charge le bon contrôleur selon l'url
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class Router
 {
+	/**
+	 * Instance de l'objet Request
+	 */
 	private $mRequest;
 
 

@@ -25,9 +25,23 @@
  */
 require_once '../system/defineConstant.inc.php';
 
+/**
+ * XmlUtil
+ *
+ * Classe encapsulant XML
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class XmlUtil 
 {
+    /**
+     * Fichier XML
+     */
     protected $mXMLFile=null;
+    /**
+     * Nom du fichier
+     */
     protected $mFileName;
 
      /**
@@ -100,8 +114,7 @@ class XmlUtil
     }
     /**
     * Enregistre le xml
-    * 
-    * @param     string name nom du fichier 
+    *  
     */
     public function saveXml()
     {

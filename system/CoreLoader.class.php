@@ -27,10 +27,20 @@
 
 require_once "defineConstant.inc.php";
 
+/**
+ * CoreLoader
+ *
+ * Classe gérant le chargement des autres classes
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class CoreLoader 
 {
 
-
+    /**
+     * Instance du CoreLoader
+     */
     private static $_instance = null;
 
      /**
@@ -57,7 +67,7 @@ class CoreLoader
     /** 
      * Vérifie si la classe est présente et lance une exception sinon
      * 
-     * @param   string  $className  Nom de la classe à inclure
+     * @param   string  $class  Nom de la classe à inclure
      * 
      */
     private function loadClasses($class)

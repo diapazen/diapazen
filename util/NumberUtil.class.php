@@ -23,6 +23,15 @@
  * along with Diapazen.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+/**
+ * NumberUtil
+ *
+ * Classe gérant le calcul des pourcentages
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class NumberUtil
 {
      /**

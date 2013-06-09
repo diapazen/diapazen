@@ -23,10 +23,18 @@
  *
  */
 
+/**
+ * Config
+ *
+ * Classe gérant la configuration de la base de données
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class Config
 {
 
-	/*
+	/**
 	 * Configuration de la connexion à la base de données
 	 */
 	private static $mDb = array(

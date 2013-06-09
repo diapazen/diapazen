@@ -23,10 +23,20 @@
  *
  */
 
+/**
+ * TestForm
+ *
+ * Classe gérant la vérification des entrées utilisateur dans les formulaires
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class TestForm
 {
 
-
+	/**
+	 * RegExp
+	 */
 	private static $mStrRegexp = array(
 		'email' 			=> 		'#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#',
 		'pwd'				=> 		'#^[a-zA-Zéèôïëñ0-9]{3,}$#',
@@ -41,7 +51,8 @@ class TestForm
 
 	/**
 	 * Fonction qui test les une string par regexp
-	 *
+	 * @param string regexp La regexp pour tester
+	 * @param string string Phrase à tester
 	 * @return boolean 
 	 */
 	public static function testRegexp($regexp, $string)

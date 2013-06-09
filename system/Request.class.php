@@ -23,12 +23,37 @@
  *
  */
 
+/**
+ * Request
+ *
+ * Classe parsant l'url fourni par la requête HTTP
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class Request
 {
+
+	/**
+	 * Url provenant de la requête HTTP
+	 */
 	private $mUrl;
+	
+	/**
+	 * Nom du contrôleur
+	 */
 	private $mController;
+	
+	/**
+	 * Nom de l'action
+	 */
 	private $mAction;
+	
+	/**
+	 * Tableau des paramètres de l'url
+	 */
 	private $mParams = array();
+
 
 
 	/**

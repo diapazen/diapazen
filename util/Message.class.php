@@ -23,24 +23,50 @@
  *
  */
 
+/**
+ * Message
+ *
+ * Classe gérant les messages des emails
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class Message
 {
 
+	/**
+	 * Message d'inscription
+	 */
 	private static $messageRegistration	=
 				"Bonjour %s %s\n\nMerci de vous être inscrit sur Diapazen.\nVotre mot de passe est: %s\nChangez le dès maintenant en accèdant à votre profil.";
 
+	/**
+	 * Messaqge de création d'un sondage
+	 */
 	private static $messageCreatePoll	=
 				"Bonjour\n\nVous venez de créer le sondage %s";
 
+	/**
+	 * Message du mot de passe oublié
+	 */
 	private static $messagePswForgotten	=
 				"Bonjour\n\nVoici votre nouveau mot de passe: %s\nVous pouvez vous connecter de nouveau sur http://diapazen.com afin de le modifier.";
 		
+	/**
+	 * Message du log trop gros
+	 */
 	private static $messageLogTooBig	=
 				"Bonjour\n\nAttention: Le fichier de logs de Diapazen est plein.";
 
+	/**
+	 * Message du partage de sondage
+	 */
 	private static $messagePollShare	=
 				"Bonjour\n\n%s vous invite à répondre à son sondage:\n%s\n\nPour y répondre, il suffit de suivre ce lien: %s";
 
+	/**
+	 * Message
+	 */
 	private $message;
 
 	/**

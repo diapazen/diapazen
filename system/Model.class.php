@@ -25,10 +25,18 @@
  *
  */
 
+/**
+ * Model
+ *
+ * Classe de base de la gestion des modèles
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class Model
 {
 
-	/*
+	/**
 	 * Instance de PDO
 	 */
 	protected static $mPDO;

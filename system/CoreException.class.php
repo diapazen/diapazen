@@ -26,18 +26,38 @@
  */
 
 require_once "defineConstant.inc.php";
+
+/**
+ * CoreException
+ *
+ * Classe gérant les exceptions
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class CoreException extends Exception
 {
 
+    /**
+     * Message de l'exception
+     */
     protected $meMessage;
+    /**
+     * Code de l'exception
+     */
     protected $meCode;
+    /**
+     * Fichier dans lequel l'exception a été levée
+     */
     protected $meFile;
+    /**
+     * Line à laquelle l'exception a été levée
+     */
     protected $meLine;
+    /**
+     * Date et heure de l'exception
+     */
     protected $meDate;
-
-    // constructeur enrichie de la classe exception
-
-
 
      /**
      * Constructeur de la classe d exception
@@ -45,10 +65,10 @@ class CoreException extends Exception
      * Constructeur de la classe d exception personnalisé, qui cree notre exception mais 
      * aussi utilise un systeme de log
      * 
-     * @param     string  eMessage    message de l exception
-     * @param     unsigned int  eCode   code de l exception
+     * @param     string        eMessage    message de l exception
+     * @param     unsigned int  eCode       code de l exception
+     * @param     bool          log         Doit logguer l'exception ou non. Par défaut: oui
      */
-
     public function __construct($eMessage , $eCode = 0, $log= false) {
         parent::__construct($eMessage, $eCode);
         $this->meDate=date('d.m.Y h:i:s');

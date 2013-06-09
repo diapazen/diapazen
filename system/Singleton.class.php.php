@@ -24,11 +24,28 @@
  *
  */
 
+/**
+ * coreSingleton
+ *
+ * Classe qui implémente le patron de conception Singleton
+ * 
+ * @package     Diapazen
+ * @subpackage  Framework
+ */
 class coreSingleton 
 {
-    protected static $_instances; //tableau des instance singleton
+    /** Tableau des instance du singleton */
+    protected static $_instances;
+    /** Namespace */
     public static $namespace = __NAMESPACE__;
    
+    /**
+     * __callStatic
+     *
+     * @param   string  $name  nom
+     * @param   array   $arguments  arguments
+     *
+     */
     public static function __callStatic($name, array $arguments = array()) 
     {   
         //on trouve le nom de la classe 
