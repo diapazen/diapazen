@@ -27,13 +27,28 @@
 
 require_once 'system/Model.class.php';
 
+/**
+ * ChoiceModel
+ *
+ * Classe g√©rant les choix
+ * 
+ * @package     Diapazen
+ * @subpackage  Model
+ */
 class ChoiceModel extends Model
 {
+    /** 
+     * Titre du choix 
+     */
     private $title;
+
+    /** 
+     * Valeur du vote 
+     */
     private $value;
 
     /**
-    *Constructeur par dÈfaut 
+    * Constructeur par d√©faut
     */
     public function __construct()
     {
@@ -43,13 +58,13 @@ class ChoiceModel extends Model
     /**
     * Ajout d'un choix
     *
-    * Insert dans la base de donnÈe 'dpz_choices' un nouveau choix.
-    * MÈthode utilisÈ gr‚ce ‡ la mÈthode 'inser' de Model
+    * Insert dans la base de donn√©e 'dpz_choices' un nouveau choix.
+    * M√©thode utilis√© gr√¢ce √† la m√©thode 'inser' de Model
     *
     * @param type $title titre du choix
     * @param type $pollId id du sondage
     *
-    * @return boolean true si l'ajout s'est bien exÈcutÈ sinon false
+    * @return boolean true si l'ajout s'est bien ex√©cut√© sinon false
     */
     public function addChoice($title, $pollId)
     {
@@ -57,14 +72,14 @@ class ChoiceModel extends Model
     }
     
     /**
-     * Mise ‡ Jour d'un choix
+     * Mise √† Jour d'un choix
      *
-     * Met ‡ jour dans la base de donnÈe 'dpz_choices' du titre et de l'id du choix.
-     * MÈthode utilisÈ gr‚ce ‡ la mÈthode 'updateWhere' de Model
+     * Met √† jour dans la base de donn√©e 'dpz_choices' du titre et de l'id du choix.
+     * M√©thode utilis√© gr√¢ce √† la m√©thode 'updateWhere' de Model
      *
      * @param type $title titre du choix
      * @param type $id id du choix
-     * @return boolean true si l'ajout s'est bien exÈcutÈ sinon false
+     * @return boolean true si l'ajout s'est bien ex√©cut√© sinon false
      */
     public function updateChoice($title, $id)
     {

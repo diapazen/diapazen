@@ -25,6 +25,14 @@
 
 require_once 'system/Controller.class.php';
 
+/**
+ * DashboardController
+ *
+ * Contrôleur de la page de gestion des sondages
+ * 
+ * @package		Diapazen
+ * @subpackage	Controller
+ */
 class DashboardController extends Controller
 {
 

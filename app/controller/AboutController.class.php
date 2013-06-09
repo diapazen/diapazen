@@ -25,6 +25,13 @@
 
 require_once 'system/Controller.class.php';
 
+/**
+ * AboutController
+ * Gestion de la page À propos
+ * 
+ * @package		Diapazen
+ * @subpackage	Controller
+ */
 class AboutController extends Controller
 {
 

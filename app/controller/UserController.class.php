@@ -1,6 +1,5 @@
 <?php
 /**
- * 
  * Contrôleur de la page des utilisateurs
  * 
  * @package     Diapazen
@@ -25,13 +24,23 @@
 
 require_once 'system/Controller.class.php';
 
+/**
+ * UserController
+ *
+ * Contrôleur de la page des utilisateurs
+ * 
+ * @package		Diapazen
+ * @subpackage	Controller
+ */
 class UserController extends Controller
 {
 
 	/**
 	 * Action par défaut
-	 * m�ne a la page home.
+	 *
+	 * Redirige vers la page home.
 	 * url:	diapazen.com/user
+	 * @param type $params null par défaut
 	 **/
 	public function index($params = null)
 	{
@@ -40,21 +49,24 @@ class UserController extends Controller
 
 	/**
 	 * Connection à l'application
-	 * On charge le mod�le de l'utilisateur, et si l'utlisateur est d�j�
-         * connecter alors on le dirige vers la page home. Sinon on v�rifie le
-         * mail et le mot de passe dans la base de donn�es et on connecte
-         * l'utilisateur et on l'envoie vers le dashboard. Si le mot de passe ou
-         * le mail est erron� alors on cr�er la variable infoLogin et on
-         * affiche le formulaire de connection.
+	 *
+	 * On charge le modèle de l'utilisateur, et si l'utlisateur est déjà
+     * connecter alors on le dirige vers la page home. Sinon on vérifie le
+     * mail et le mot de passe dans la base de données et on connecte
+     * l'utilisateur et on l'envoie vers le dashboard. Si le mot de passe ou
+     * le mail est erroné alors on créer la variable infoLogin et on
+     * affiche le formulaire de connection.
 	 * url:	diapazen.com/user/login
+	 *
+	 * @param type $params null par défaut
 	 **/
 	public function login($params = null)
 	{
 		// quand on se connecte
-		// on charge le modèle de l'utilisateur
+		// on charge le modÃ¨le de l'utilisateur
 		$this->loadModel('user');
 
-		// si l'utilisateur est déja connecté
+		// si l'utilisateur est dÃ©ja connectÃ©
 		if ($this->isUserConnected())
 		{
 			header('Location: ' . BASE_URL. '/dashboard');
@@ -71,7 +83,7 @@ class UserController extends Controller
 			
 			try
 			{
-				// on vérifie les infos avec la bdd
+				// on vÃ©rifie les infos avec la bdd
 				$result = $this->getModel()->connectionToApp($email, $passwd, $ip_addr);
 			}
 			catch(Exception $e)
@@ -82,10 +94,10 @@ class UserController extends Controller
 			if ($result == false)
 			{
 
-				//création de la variable infoLogin
+				//crÃ©ation de la variable infoLogin
 				$this->set('infoLogin','connectionError');
 
-				// La connexion a échoué
+				// La connexion a Ã©chouÃ©
 				$this->setUserDisconnected();
 
 				// On affiche un formulaire de connexion
@@ -93,7 +105,7 @@ class UserController extends Controller
 			}
 			else
 			{
-				// La connexion a réussie
+				// La connexion a rÃ©ussie
 				$this->setUserConnected($result);
 
 				// On redirige vers la dashboard
@@ -112,21 +124,24 @@ class UserController extends Controller
 
 	/**
 	 * Modification des information personnelles
-	 * on dirige l'utilisateur vers la page de profil, en affichant ses
-         * donn�es on v�rifie qu'il est connecter. Si tel est le cas on charge
-         * le modelUser et si l'utilisateur veut modifier ses donn�es on le fait
-         * gr�ce � ce model et on teste le mot de passe de confirmation. Si le
-         * mot de passe est erron� on ne modifie rien par contre si c'est le bon
-         * mot de passe on met alors � jour la base de donn�es, on met � jour la 
-         * session et on informe l'utilisateur de la r�ussite. Si l'utilisateur
-         * veut modifier son mot de passe alors on teste le mot de passe de
-         * confirmation. Si le mot de passe est erron� on ne modifie rien par
-         * contre si c'est le bon mot de passe on met alors � jour la base de
-         * donn�es. Pour afficher les donn�es de l'utilisateur, on r�cup�re l'id
-         * de l'utilisateur, on prend les informations de la base de donn�es et
-         * on les affiche dans la vue. Si l'utilisateur est d�connecter il est
-         * dirig� vers la page home.
+	 *
+	 * On dirige l'utilisateur vers la page de profil, en affichant ses
+     * données on vérifie qu'il est connecter. Si tel est le cas on charge
+     * le modelUser et si l'utilisateur veut modifier ses données on le fait
+     * grâce à ce model et on teste le mot de passe de confirmation. Si le
+     * mot de passe est erroné on ne modifie rien par contre si c'est le bon
+     * mot de passe on met alors à jour la base de données, on met à jour la 
+     * session et on informe l'utilisateur de la réussite. Si l'utilisateur
+     * veut modifier son mot de passe alors on teste le mot de passe de
+     * confirmation. Si le mot de passe est erroné on ne modifie rien par
+     * contre si c'est le bon mot de passe on met alors à jour la base de
+     * données. Pour afficher les données de l'utilisateur, on récupère l'id
+     * de l'utilisateur, on prend les informations de la base de données et
+     * on les affiche dans la vue. Si l'utilisateur est déconnecter il est
+     * dirigé vers la page home.
 	 * url:	diapazen.com/user/profile
+	 * @param type $params null par défaut
+	 *
 	 **/
 	public function profile($params = null)
 	{
@@ -137,10 +152,10 @@ class UserController extends Controller
 		{
 			try
 			{
-				// chargement du modèle user
+				// chargement du modÃ¨le user
 				$this->loadModel('user');
 
-				//Partie: Modifications des données utilisateur
+				//Partie: Modifications des donnÃ©es utilisateur
 				if (	isset($_POST['lastNameUser']) && !empty($_POST['lastNameUser'])
 					&&	isset($_POST['firstNameUser']) && !empty($_POST['firstNameUser'])
 					&&	isset($_POST['email']) && !empty($_POST['email']) )
@@ -158,7 +173,7 @@ class UserController extends Controller
 						$this->setUserInfo('lastname', $_POST['lastNameUser']);
 						$this->setUserInfo('email', $_POST['email']);
 
-						// On informe l'utilisateur de la réussite
+						// On informe l'utilisateur de la rÃ©ussite
 						$this->set('data_updated', true);
 						
 					}
@@ -169,7 +184,7 @@ class UserController extends Controller
 					}
 				}
 
-				// On modifie le mot de passe si il est renseigné
+				// On modifie le mot de passe si il est renseignÃ©
 				if (	isset($_POST['newPassword']) && !empty($_POST['newPassword'])
 					&&	isset($_POST['passwordConfirm']) && !empty($_POST['passwordConfirm']) )
 				{
@@ -181,12 +196,12 @@ class UserController extends Controller
 						{
 							$res = $this->getModel()->changePassword($this->getUserInfo('email'), $_POST['newPassword']);
 						
-							// Réussite de la modification du mot de passe
+							// RÃ©ussite de la modification du mot de passe
 							$this->set('data_updated', true);
 						}
 						else
 						{
-							// Echec de la modification le mot de passe est différent
+							// Echec de la modification le mot de passe est diffÃ©rent
 							$this->set('data_updated', false);
 						}
 					}
@@ -198,11 +213,11 @@ class UserController extends Controller
 					
 				}
 
-				// Partie: affichage des données
-				// On récupère l'id de l'utilisateur (session)
+				// Partie: affichage des donnÃ©es
+				// On rÃ©cupÃ¨re l'id de l'utilisateur (session)
 				$id = $this->getUserInfo('id');
 
-				// On récupère ses infos dans la bdd
+				// On rÃ©cupÃ¨re ses infos dans la bdd
 				$user = $this->getModel()->dataProvider($id);
 				
 
@@ -228,14 +243,16 @@ class UserController extends Controller
 
 	/**
 	 * Mot de passe oublié
-	 * on verifie que l'utilisateur est d�connecter, si ce n'est pas le cas
-         * alors on redirige vers la page home. Si il est d�connecter on le
-         * dirige vers la page du mot de passe oubli�. Si l'email est pr�sent
-         * diff�rent de vide et est pr�sent dans la base de donn�es, alors on
-         * cr�er un nouveau mot de passe et on l'affecte comme nouveau mot de
-         * passe de l'utilisateur. On le lui envoi par mail et on lui notifit la
-         * pr�sence de ce mail.
+	 *
+	 * on verifie que l'utilisateur est déconnecter, si ce n'est pas le cas
+     * alors on redirige vers la page home. Si il est déconnecter on le
+     * dirige vers la page du mot de passe oublié. Si l'email est présent
+     * différent de vide et est présent dans la base de données, alors on
+     * créer un nouveau mot de passe et on l'affecte comme nouveau mot de
+     * passe de l'utilisateur. On le lui envoi par mail et on lui notifit la
+     * présence de ce mail.
 	 * url:	diapazen.com/user/forgot
+	 * @param type $params null par défaut
 	 **/
 	public function forgot($params = null)
 	{
@@ -245,20 +262,20 @@ class UserController extends Controller
 		}
 
 		// Titre de la page
-		$this->set('title', 'Mot de passe oublié | Diapazen');
+		$this->set('title', 'Mot de passe oubliÃ© | Diapazen');
 		
 
 		$this->loadModel('user');
 
 		try
 		{
-			// l'email est présent
+			// l'email est prÃ©sent
 			if (isset($_POST['email']))
 			{
-				// différent de vide
+				// diffÃ©rent de vide
 				if(!empty($_POST['email']))
 				{
-					// présent dans la bdd
+					// prÃ©sent dans la bdd
 					if ($this->getModel()->isEmailRegistred($_POST['email']))
 					{
 						$password = $this->getModel()->generatorPsw();
@@ -270,7 +287,7 @@ class UserController extends Controller
 						$message = new Message();
 						$message->setMessage('password');
 						$message->setParams(array('password'=>$password));
-						$subject = 'Réinitialisation de votre mot de passe';
+						$subject = 'RÃ©initialisation de votre mot de passe';
 						$messageMail = $message->getMessage();
 						$result = $objMail->sendMail($_POST['email'], $subject, $messageMail);
 						$this->set('infoLogin',$result ? 'sendPassword' : 'sendFailPassword');
@@ -301,12 +318,14 @@ class UserController extends Controller
 
 	/**
 	 * Déconnexion de l'application
+	 *
 	 * Deconnect l'utilisateur et le renvoi sur la page home
 	 * url:	diapazen.com/user/logout
+	 * @param type $params null par défaut
 	 **/
 	public function logout($params = null)
 	{
-		// quand on se déco.
+		// quand on se dÃ©co.
 		$this->setUserDisconnected();
 		session_destroy();
 		// On redirige vers l'accueil

@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * 
  * Class model d'un sondage
@@ -27,295 +26,339 @@
 
 require_once 'system/Model.class.php';
 
+/**
+ * PollModel
+ *
+ * Classe gÃ©rant les sondages dans la base de donnÃ©es
+ * 
+ * @package     Diapazen
+ * @subpackage  Model
+ */
 class PollModel extends Model
 {
-        
-        private $pollId;
-        private $pollUrl;
-        private $pollTitle;
-        private $pollDescription;
-        private $poll_expiration_date;
+
+	/** 
+	 * Identifiant unique du sondage 
+	 */
+	private $pollId;
+
+	/** 
+	 * Identifiant dans l'url du sondage 
+	 */
+	private $pollUrl;
+
+	/** 
+	 * Titre du sondage 
+	 */
+	private $pollTitle;
+
+	/** 
+	 * Description du sondage 
+	 */
+	private $pollDescription;
+
+	/** 
+	 * Date d'expiration du sondage 
+	 */
+	private $poll_expiration_date;
 
 
-    /**
-	 * Constructeur par défaut
+	/**
+	 * Constructeur par dÃ©faut
 	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
-    /**
-     * Affichage d'un sondage en
-     * récupèrant les informations stockées dans la base de données au moyen
-     * d’une requête sql Select sur la vue dpz_view_users_join_polls. On traite
-     * le résultat obtenu en récupérant les informations de chaque choix du
-     * sondage ainsi que les informations de chaque résultat des choix du
-     * sondage. Les résultats obtenus sont ensuite transférés dans un tableau
-     * et on calcule le pourcentage de chaque choix du sondage. Le tableau est
-     * donc complété avec ces mêmes pourcentages.
-     * @param type $pollUrl url du sondage
-     * @return array contenu du sondage
-     */
-    public function viewPoll($pollUrl)
-    {
-        try
-        {   
-            // On récupère les informations de base du sondage
-            $fields = 'firstname, lastname, POLL_ID, title, description, creation_date, expiration_date, open, url';
-            $conditions = array('url' => $pollUrl);
-            $pollInfo = $this->selectWhere($fields, 'dpz_view_users_join_polls', $conditions, 'assoc');
-            
-            // On traite le résultat
-            if(!empty($pollInfo))
-            {
-                $pollInfo = $pollInfo[0];
+	/**
+	 * Affichage d'un sondage
+	 *
+	 * En rÃ©cupÃ¨rant les informations stockÃ©es dans la base de donnÃ©es au moyen
+	 * dâ€™une requÃªte sql Select sur la vue dpz_view_users_join_polls. On traite
+	 * le rÃ©sultat obtenu en rÃ©cupÃ©rant les informations de chaque choix du
+	 * sondage ainsi que les informations de chaque rÃ©sultat des choix du
+	 * sondage. Les rÃ©sultats obtenus sont ensuite transfÃ©rÃ©s dans un tableau
+	 * et on calcule le pourcentage de chaque choix du sondage. Le tableau est
+	 * donc complÃ©tÃ© avec ces mÃªmes pourcentages.
+	 * @param type $pollUrl url du sondage
+	 * @return array contenu du sondage
+	 */
+	public function viewPoll($pollUrl)
+	{
+		try
+		{   
+			// On rÃ©cupÃ¨re les informations de base du sondage
+			$fields = 'firstname, lastname, POLL_ID, title, description, creation_date, expiration_date, open, url';
+			$conditions = array('url' => $pollUrl);
+			$pollInfo = $this->selectWhere($fields, 'dpz_view_users_join_polls', $conditions, 'assoc');
+			
+			// On traite le rÃ©sultat
+			if(!empty($pollInfo))
+			{
+				$pollInfo = $pollInfo[0];
 
-                // On récupère les informations de chaque choix du sondage de la bdd
-                $results = $this->selectWhere('CHOICE_ID,value', 'dpz_view_choice', array('POLL_ID' => $pollInfo['POLL_ID']), 'assoc');
+				// On rÃ©cupÃ¨re les informations de chaque choix du sondage de la bdd
+				$results = $this->selectWhere('CHOICE_ID,value', 'dpz_view_choice', array('POLL_ID' => $pollInfo['POLL_ID']), 'assoc');
 
-                // On récupère les informations de chaque résultat des choix du sondage de la bdd
-                $choices = $this->selectWhere('CHOICE_ID,choice', 'dpz_view_poll', array('POLL_ID' => $pollInfo['POLL_ID']), 'assoc');
+				// On rÃ©cupÃ¨re les informations de chaque rÃ©sultat des choix du sondage de la bdd
+				$choices = $this->selectWhere('CHOICE_ID,choice', 'dpz_view_poll', array('POLL_ID' => $pollInfo['POLL_ID']), 'assoc');
 
-                // Traitements des résultats
-                $list = array();
-                $nbTotalVotes = 0;
-                foreach($choices as $choice)
-                {
-                    $id = $choice['CHOICE_ID'];
-                    $list[$id]['choiceName'] = htmlspecialchars($choice['choice']);
-                    $list[$id]['checkList'] = array();
-                    foreach($results as $result)
-                    {
-                        $rid = $result['CHOICE_ID'];
-                        if ($id == $rid)
-                        {
-                            $list[$id]['checkList'][] = htmlspecialchars($result['value']);
-                            $nbTotalVotes++;
-                        }
-                    }
-                }
+				// Traitements des rÃ©sultats
+				$list = array();
+				$nbTotalVotes = 0;
+				foreach($choices as $choice)
+				{
+					$id = $choice['CHOICE_ID'];
+					$list[$id]['choiceName'] = htmlspecialchars($choice['choice']);
+					$list[$id]['checkList'] = array();
+					foreach($results as $result)
+					{
+						$rid = $result['CHOICE_ID'];
+						if ($id == $rid)
+						{
+							$list[$id]['checkList'][] = htmlspecialchars($result['value']);
+							$nbTotalVotes++;
+						}
+					}
+				}
 
-                // calcul du pourcentage
-                foreach($list as &$elem)
-                {
-                    if (count($elem['checkList']) != 0)
-                        $elem['percent'] = (int) round((count($elem['checkList']) / $nbTotalVotes) * 100);
-                    else
-                        $elem['percent'] = 0;
-                }
-                
-                // On prépare le tableau de retour
-                $ret = $pollInfo;
-                $ret['nbVotes'] = $nbTotalVotes;
-                $ret['choices'] = $list;
-                return $ret;
-            }
+				// calcul du pourcentage
+				foreach($list as &$elem)
+				{
+					if (count($elem['checkList']) != 0)
+						$elem['percent'] = (int) round((count($elem['checkList']) / $nbTotalVotes) * 100);
+					else
+						$elem['percent'] = 0;
+				}
+				
+				// On prÃ©pare le tableau de retour
+				$ret = $pollInfo;
+				$ret['nbVotes'] = $nbTotalVotes;
+				$ret['choices'] = $list;
+				return $ret;
+			}
 
-            return false;
-        }
-        catch(Exception $e) 
-        {
-            throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
-        }
-    }
+			return false;
+		}
+		catch(Exception $e) 
+		{
+			throw new Exception('Erreur lors de la tentative de connexion :</br>' . $e->getMessage());
+		}
+	}
 
-    /**
-     * Affichage de la liste des sondages
-     * créé par l’utilisateur en prenant en paramètre l’Id de l’utilisateur avec
-     * une requête select sur la vue dpz_view_users_join_polls.
-     * @param type $pollUrl url du sondage
-     * @return array contenu du sondage
-     */
-    public function viewAllPolls($userId)
-    {
+	/**
+	 * Affichage de la liste des sondages
+	 *
+	 * CrÃ©Ã© par lâ€™utilisateur en prenant en paramÃ¨tre lâ€™Id de lâ€™utilisateur avec
+	 * une requÃªte select sur la vue dpz_view_users_join_polls.
+	 * @param type userId id de l'utilisateur
+	 * @return array contenu du sondage
+	 */
+	public function viewAllPolls($userId)
+	{
 
-        $fields = array('title', 'description', 'open', 'url', 'POLL_ID', 'expiration_date', 'creation_date');
-        $view   = 'dpz_view_users_join_polls';
-        $where  = array('USER_ID' => $userId);
-        $orderBy = array('open desc', 'creation_date desc');
-        
-        return $this->selectWhereOrderBy($fields, $view, $where, $orderBy, 'assoc');
-    }
-    
-    /**
-     * Ajout d'un sondage
-     * On commence par affecter les valeurs des propriétés de l’objet et on
-     * ajoute la ligne correspondante à la base de données.
-     * @param type $userId id de l'utilisateur
-     * @param type $pollTitle titre du sondage
-     * @param type $pollDescription description du sondage
-     * @param type $poll_expiration_date date d'expiration du sondage
-     * @return boolean true si l'ajout s'est bien exécuté sinon false
-     */
-    public function addPoll($userId, $pollTitle, $pollDescription, $poll_expiration_date)
-    {
+		$fields = array('title', 'description', 'open', 'url', 'POLL_ID', 'expiration_date', 'creation_date');
+		$view   = 'dpz_view_users_join_polls';
+		$where  = array('USER_ID' => $userId);
+		$orderBy = array('open desc', 'creation_date desc');
+		
+		return $this->selectWhereOrderBy($fields, $view, $where, $orderBy, 'assoc');
+	}
+	
+	/**
+	 * Ajout d'un sondage
+	 *
+	 * On commence par affecter les valeurs des propriÃ©tÃ©s de lâ€™objet et on
+	 * ajoute la ligne correspondante Ã  la base de donnÃ©es.
+	 * @param type $userId id de l'utilisateur
+	 * @param type $pollTitle titre du sondage
+	 * @param type $pollDescription description du sondage
+	 * @param type $poll_expiration_date date d'expiration du sondage
+	 * @return boolean true si l'ajout s'est bien exÃ©cutÃ© sinon false
+	 */
+	public function addPoll($userId, $pollTitle, $pollDescription, $poll_expiration_date)
+	{
 
-        //on set les valeurs
-        $this->setPollTitle($pollTitle);
-        $this->setPollDescription($pollDescription);
-        $this->setPollExpirationDate($poll_expiration_date);
+		//on set les valeurs
+		$this->setPollTitle($pollTitle);
+		$this->setPollDescription($pollDescription);
+		$this->setPollExpirationDate($poll_expiration_date);
 
-        // Url unique du sondage. ex: h8ddf2e561
-        $this->setPollUrl(substr(md5(uniqid()),5,10));
+		// Url unique du sondage. ex: h8ddf2e561
+		$this->setPollUrl(substr(md5(uniqid()),5,10));
 
-        $values = array('id'                => 'NULL',
-                        'user_id'           => $userId,
-                        'url'               => $this->getPollUrl(),
-                        'title'             => $this->getPollTitle(),
-                        'description'       => $this->getPollDescription(),
-                        'expiration_date'   => $this->getPollExpirationDate(),
-                        'open'              => '1'
-                        );
-        // Insertion dans la base de données
-        if ($this->insert($values, 'dpz_polls'))
-        {
-            $this->setPollId($this->getPDO()->lastInsertId());
-            return true;
-        }
+		$values = array('id'                => 'NULL',
+						'user_id'           => $userId,
+						'url'               => $this->getPollUrl(),
+						'title'             => $this->getPollTitle(),
+						'description'       => $this->getPollDescription(),
+						'expiration_date'   => $this->getPollExpirationDate(),
+						'open'              => '1'
+						);
+		// Insertion dans la base de donnÃ©es
+		if ($this->insert($values, 'dpz_polls'))
+		{
+			$this->setPollId($this->getPDO()->lastInsertId());
+			return true;
+		}
 
-        return false;
-    }
+		return false;
+	}
 
-    /**
-     * Vote d'un sondage
-     * pour le choix du sondage grâce à l’Id du choix et la valeur du votant.
-     * On insère cette ligne dans la base de données, dans la table dpz_results.
-     * @param int $choiceId L'id du choix
-     * @param string $pollTitle valeur à insérer
-     * @return boolean true si l'ajout s'est bien exécuté sinon false
-     */
-    public function votePoll($choiceId, $value)
-    {
-        return $this->insert(array('id' => 'NULL', 'choice_id' => $choiceId, 'value' => $value), 'dpz_results');
-    }
-    
-    /**
-     * Mise à jour de la table Sondage
-     * clos le sondage en mettant à 0 dans la colonne open de la table du sondage.
-     * @return boolean true si la mise à jour s'est bien exécuté sinon false
-     */
-    public function updatePoll($pollId)
-    {
-        return $this->updateWhere(array('open' => '0'), array('id' => $pollId), 'dpz_polls');
-    }
+	/**
+	 * Vote d'un sondage
+	 *
+	 * Pour le choix du sondage grÃ¢ce Ã  lâ€™Id du choix et la valeur du votant.
+	 * On insÃ¨re cette ligne dans la base de donnÃ©es, dans la table dpz_results.
+	 * @param int $choiceId L'id du choix
+	 * @param string $value valeur Ã  insÃ©rer
+	 * @return boolean true si l'ajout s'est bien exÃ©cutÃ© sinon false
+	 */
+	public function votePoll($choiceId, $value)
+	{
+		return $this->insert(array('id' => 'NULL', 'choice_id' => $choiceId, 'value' => $value), 'dpz_results');
+	}
+	
+	/**
+	 * Mise Ã  jour de la table Sondage
+	 * clÃ´ture le sondage en mettant Ã  0 dans la colonne open de la table du sondage.
+	 * @param string $pollId valeur Ã  insÃ©rer
+	 * @return boolean true si la mise Ã  jour s'est bien exÃ©cutÃ© sinon false
+	 */
+	public function updatePoll($pollId)
+	{
+		return $this->updateWhere(array('open' => '0'), array('id' => $pollId), 'dpz_polls');
+	}
 
-    /**
-     * Récupère le contenu du textarea et parse les emails au moyen d'une
-     * regexp. Elle retourne un tableau avec les email si le parsage est réussi
-     * et null sinon.
-     * @param $texteareaContent
-     * @return Tableau avec les emails valides auquels les mails ont été envoyé
-     */
-    public function sharePoll($texteareaContent)
-    {
+	/**
+	 * Parse les adresses emails
+	 *
+	 * RÃ©cupÃ¨re le contenu du textarea et parse les emails au moyen d'une
+	 * regexp. Elle retourne un tableau avec les email si le parsage est rÃ©ussi
+	 * et null sinon.
+	 * @param $texteareaContent
+	 * @return Tableau avec les emails valides auquels les mails ont Ã©tÃ© envoyÃ©
+	 */
+	public function sharePoll($texteareaContent)
+	{
 
-        $emails = preg_split("/[\r\n\t,; ]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
+		$emails = preg_split("/[\r\n\t,; ]+/", $texteareaContent, -1, PREG_SPLIT_NO_EMPTY);
 
-        $emails = array_unique($emails);
+		$emails = array_unique($emails);
 
-        $regexMail = '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#';
-        foreach($emails as $current)
-        {
-            // Evite les failles XSS
-            $current = htmlspecialchars($current);
-            
-            if(!preg_match($regexMail, $current))
-            {
-                unset($emails[array_search($current, $emails)]);
-            }
-        }
+		$regexMail = '#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#';
+		foreach($emails as $current)
+		{
+			// Evite les failles XSS
+			$current = htmlspecialchars($current);
+			
+			if(!preg_match($regexMail, $current))
+			{
+				unset($emails[array_search($current, $emails)]);
+			}
+		}
 
-        if (!isset($emails))
-        {
-            return null;
-        }
+		if (!isset($emails))
+		{
+			return null;
+		}
 
-        return $emails;
-    }
-    
-    /**
-     * Setteur du titre du sondage
-     * @param type $pollTitle titre du sondage
-     */
-    public function setPollTitle($pollTitle)
-    {
-        $this->pollTitle = $pollTitle;
-    }
-    /**
-     * Setteur de l'id du sondage
-     * @param type $pollId Id du sondage
-     */
-    public function setPollId($pollId)
-    {
-        $this->pollId = $pollId;
-    }
-    
-    /**
-     * Setteur de la description du sondage
-     * @param type $pollDescription description du sondage
-     */
-    public function setPollDescription($pollDescription)
-    {
-        $this->pollDescription = $pollDescription;
-    }
-    
-    /**
-     * Setteur de la date d'expiration du sondage
-     * @param type $poll_expiration_date date d'expiration du sondage
-     */
-    public function setPollExpirationDate($poll_expiration_date)
-    {
-        $this->poll_expiration_date = $poll_expiration_date;
-    }
-    
-    /**
-     * Setteur de l'url du sondage
-     * @param type $pollUrl url du sondage
-     */
-    public function setPollUrl($pollUrl)
-    {
-        $this->pollUrl = $pollUrl;
-    }
-    
-    /**
-     * Getteur du titre du sondage
-     */
-    public function getPollId()
-    {
-        return $this->pollId;
-    }
-    /**
-     * Getteur de l'id du sondage
-     */
-    public function getPollTitle()
-    {
-        return $this->pollTitle;
-    }
-    
-    /**
-     * Getteur de la description du sondage
-     */
-    public function getPollDescription()
-    {
-        return $this->pollDescription;
-    }
-    
-    /**
-     * Getteur de la date d'expiration du sondage
-     */
-    public function getPollExpirationDate()
-    {
-        return $this->poll_expiration_date;
-    }
-    
-    /**
-     * Getteur de l'url du sondage
-     */
-    public function getPollUrl()
-    {
-        return $this->pollUrl;
-    }
+		return $emails;
+	}
+	
+	/**
+	 * Setteur du titre du sondage
+	 *
+	 * @param type $pollTitle titre du sondage
+	 */
+	public function setPollTitle($pollTitle)
+	{
+		$this->pollTitle = $pollTitle;
+	}
+	/**
+	 * Setteur de l'id du sondage
+	 *
+	 * @param type $pollId Id du sondage
+	 */
+	public function setPollId($pollId)
+	{
+		$this->pollId = $pollId;
+	}
+	
+	/**
+	 * Setteur de la description du sondage
+	 *
+	 * @param type $pollDescription description du sondage
+	 */
+	public function setPollDescription($pollDescription)
+	{
+		$this->pollDescription = $pollDescription;
+	}
+	
+	/**
+	 * Setteur de la date d'expiration du sondage
+	 *
+	 * @param type $poll_expiration_date date d'expiration du sondage
+	 */
+	public function setPollExpirationDate($poll_expiration_date)
+	{
+		$this->poll_expiration_date = $poll_expiration_date;
+	}
+	
+	/**
+	 * Setteur de l'url du sondage
+	 *
+	 * @param type $pollUrl url du sondage
+	 */
+	public function setPollUrl($pollUrl)
+	{
+		$this->pollUrl = $pollUrl;
+	}
+	
+	/**
+	 * Getteur du titre du sondage
+	 * @return Renvoie la valeur du getter
+	 */
+	public function getPollId()
+	{
+		return $this->pollId;
+	}
+	/**
+	 * Getteur de l'id du sondage
+	 * @return Renvoie la valeur du getter
+	 */
+	public function getPollTitle()
+	{
+		return $this->pollTitle;
+	}
+	
+	/**
+	 * Getteur de la description du sondage
+	 * @return Renvoie la valeur du getter
+	 */
+	public function getPollDescription()
+	{
+		return $this->pollDescription;
+	}
+	
+	/**
+	 * Getteur de la date d'expiration du sondage
+	 * @return Renvoie la valeur du getter
+	 */
+	public function getPollExpirationDate()
+	{
+		return $this->poll_expiration_date;
+	}
+	
+	/**
+	 * Getteur de l'url du sondage
+	 * @return Renvoie la valeur du getter
+	 */
+	public function getPollUrl()
+	{
+		return $this->pollUrl;
+	}
 
 }
 

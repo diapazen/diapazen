@@ -27,6 +27,14 @@
 
 require_once 'system/Model.class.php';
 
+/**
+ * UserModel
+ *
+ * Classe gérant les utilisateurs dans la base de données
+ * 
+ * @package     Diapazen
+ * @subpackage  Model
+ */
 class UserModel extends Model
 {	
 	/**
@@ -47,11 +55,11 @@ class UserModel extends Model
 	 * on met à jour la dernière connection grâce à updateConnectionDate 
 	 * et on renvoie un tableau avec toutes les données.
 	 *
-	 * @param email email renseigné par l'utilisateur
-	 * @param password mot de passe renseigné par l'utilisateur
-	 * @param login_ip ip de l'utilisateur
+	 * @param string email email renseigné par l'utilisateur
+	 * @param string password mot de passe renseigné par l'utilisateur
+	 * @param string login_ip Adresse IP de l'utilisateur
 	 *
-	 * @return	array tableau avec toutes les infos si tout s’est bien passé et false sinon
+	 * @return tableau avec toutes les infos si tout s’est bien passé et false sinon
 	 */
 	public function connectionToApp($email,$password,$login_ip=null)
 	{
@@ -103,7 +111,7 @@ class UserModel extends Model
 	 * On test d’abord si l’id renseigné est bon ,
 	 * puis si c’est le cas on update d’abords la date de dernière connexion dans la table ‘dpz_users’ avec une clause Where sur l’id. 
 	 * Puis on met à jour de la même manière l’ip.
-	 *
+	 * @param id id de l'utilisateur
 	 * @param login_ip ip de l'utilisateur
 	 *
 	 * @return	bool true si la mise à jour s'est bien passé

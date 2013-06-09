@@ -27,6 +27,13 @@ require_once 'system/Controller.class.php';
 require_once 'util/MailUtil.class.php';
 require_once 'util/TestForm.class.php';
 
+/**
+ * PollController
+ * Contrôleur de la page d'un sondage
+ * 
+ * @package		Diapazen
+ * @subpackage	Controller
+ */
 class PollController extends Controller
 {
 
@@ -480,6 +487,13 @@ class PollController extends Controller
 					// du meilleur au moins bon.
 					if (!$res['open'])
 					{
+						/**
+						 * Fonction interne de comparaison
+						 *
+						 * @param string a paremètres a
+						 * @param string a paremètres a
+						 * @return a ou b.
+						 */
 						function cmp($a, $b)
 						{
 							if ($a['percent'] == $b['percent'])
