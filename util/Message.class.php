@@ -39,7 +39,7 @@ class Message
 				"Bonjour\n\nAttention: Le fichier de logs de Diapazen est plein.";
 
 	private static $messagePollShare	=
-				"Bonjour\n\n%s vous invite à répondre à un sondage.\nPour y répondre, il suffit de suivre ce lien: %s";
+				"Bonjour\n\n%s vous invite à répondre à son sondage:\n%s\n\nPour y répondre, il suffit de suivre ce lien: %s";
 
 	private $message;
 

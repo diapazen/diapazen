@@ -285,6 +285,7 @@ class PollController extends Controller
 					$pollId = $this->getModel()->getPollId();
 
 					$_SESSION['poll_url'] = $this->getModel()->getPollUrl();
+					$_SESSION['poll_tittle'] = $this->getModel()->getPollTitle();
 
 					$this->set('pollUrl', $_SESSION['poll_url']);
 
@@ -338,7 +339,7 @@ class PollController extends Controller
 
 		$this->set('title', 'Partager le sondage | Diapazen');
 
-		if (isset($_POST['mails']) && isset($_SESSION['poll_url']) && TestForm::testRegexp('pollUrl', $_SESSION['poll_url']))
+		if (isset($_POST['mails']) && isset($_SESSION['poll_tittle']) && isset($_SESSION['poll_url']) && TestForm::testRegexp('pollUrl', $_SESSION['poll_url']))
 		{
 			try
 			{
@@ -347,7 +348,6 @@ class PollController extends Controller
 				$from = $this->getUserInfo('firstname').' '.$this->getUserInfo('lastname');
 				$mailSend = $this->getModel()->sharePoll($_POST['mails']);
 				$mailSend = implode(', ', $mailSend);
-				unset($_SESSION['poll_url']);
 			}
 			catch(Exception $e)
 			{
@@ -358,12 +358,15 @@ class PollController extends Controller
 			$subject = "Invitation à un sondage";
 			$message = new Message();
 			$message->setMessage('share');
-			$tabParamMessage = array('user' => $from, 'linkPoll' => $lien);
+			$tabParamMessage = array('user' => $from, 'pollTitle' => $_SESSION['poll_tittle'], 'linkPoll' => $lien);
 			$message->setParams($tabParamMessage);
 			$messageMail = $message->getMessage();
 
 			$mailer = new MailUtil();
 			$res = $mailer->sendMail($mailSend,$subject,$messageMail);
+
+			unset($_SESSION['poll_url']);
+			unset($_SESSION['poll_tittle']);
 
 			$this->set('pollUrl', $lien);
 			$this->set('sent', $res ? 'success' : 'fail');
