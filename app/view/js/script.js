@@ -9,8 +9,8 @@ function datepickerLoader() {
 
 /* French initialisation for the jQuery UI date picker plugin. */
 /* Written by Keith Wood (kbwood{at}iinet.com.au),
-              StÃ©phane Nahmani (sholby@sholby.net),
-              StÃ©phane Raimbault <stephane.raimbault@gmail.com> */
+              Stéphane Nahmani (sholby@sholby.net),
+              Stéphane Raimbault <stephane.raimbault@gmail.com> */
 
 	$.datepicker.regional['fr'] = {
 		closeText: 'Fermer',
@@ -33,6 +33,10 @@ function datepickerLoader() {
 	$.datepicker.setDefaults($.datepicker.regional['fr']);
 }
 
+/*
+ *Fonction d'ajout ou suppression de choix lors 
+ *de la création d'un sondage
+ */
 function manageChoices(input)
 {
 
@@ -99,17 +103,23 @@ function manageChoices(input)
 
 }
 
-
+/*
+ *Fonction de gestion de la connexion
+ *Lors de la création d'un sondage et que le créateur
+ *ne se soit pas connecté, ou n'ait pas de compte
+ */
 function manageConnectionForm(radio) {
 
 	switch(radio.id) {
-
+		
+		//Si possède déjà un compte
 		case 'registered':
 			$('.infos_user').css({display:'none'});
 			$('#pwd_user').css({display:'inline-block'});
 			document.getElementById('pwd_user').previousSibling.previousSibling.style.display = 'inline-block';
 		break;
-
+		
+		//Si première utilisation
 		case 'not_registered':
 			$('.infos_user').css({display:'inline-block'});
 			$('.info_box').css({display:'block'});

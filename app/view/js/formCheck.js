@@ -1,3 +1,6 @@
+/*
+ *Expressions régulières utlisées
+ */
 var strRegexp = {
                     "default"       :   /^(.|\n){3,}$/,
                     "choice"         :   /^.{1,}$/,
@@ -12,6 +15,9 @@ $(document).ready(function() {
     initBlur();
 });
 
+/*
+ *Fonction de vérification des champs
+ */
 function initBlur()
 {
     var fields = $("#content form input, textarea");
@@ -20,6 +26,7 @@ function initBlur()
     {
         for(var i=0; i<fields.length; i++)
         {
+			//Liste des champs vérifiés
             if( ((fields[i].tagName == 'INPUT' && (fields[i].type == 'text'
                 || fields[i].type == 'password')) 
                 || fields[i].tagName == 'TEXTAREA')
@@ -32,7 +39,8 @@ function initBlur()
                 $("#"+fields[i].id).blur(function(e) {
 
                     regexp = getRegexp(this, "blur");
-
+					
+					//Exception pour la liste des mails pour le partage du lien
                     if(this.name != 'mails')
                     {
                         if(!this.value.match(regexp) && regexp != null)
@@ -55,7 +63,10 @@ function initBlur()
     }
 }
 
-
+/*
+ *Fonction de vérification des formulaires
+ *Lors du clic sur le bouton submit
+ */
 function formCheck(form) {
 
     var i;
@@ -67,12 +78,14 @@ function formCheck(form) {
 
     for(i=0; i<fields.length; i++)
     {
+		//Liste des champs vérifiés
         if( ((fields[i].tagName == 'INPUT' && fields[i].id != 'poll_link' && (fields[i].type == 'text'
             || fields[i].type == 'password')) 
             || fields[i].tagName == 'TEXTAREA') && getStyleProperty(fields[i], 'display') != 'none')
         {
             regexp = getRegexp(fields[i], "submit");
-
+			
+			//Vérification de la regexp, exception pour la liste de mails de partage
             if(regexp != null && regexp != false && fields[i].name != 'mails')
             {
                 if(!fields[i].value.match(regexp))
@@ -98,6 +111,10 @@ function formCheck(form) {
 }
 
 var newPassword;
+
+/*
+ *Fonction de récupération des regexps 
+ */
 function getRegexp(element, call)
 {
 
@@ -106,21 +123,21 @@ function getRegexp(element, call)
     switch(element.name)
     {
 
-        case 'title_input':
-        case 'password':
-        case 'description_input':
+        case 'title_input':	//Titre	du sondage
+        case 'password':	//Password
+        case 'description_input':	//Description du sondage
             return strRegexp['default'];
         break;
 
-        case 'date_input':
+        case 'date_input':	//Date de cloture du sondage
             return strRegexp['date_input'];
         break;
 
-        case 'choices[]':
+        case 'choices[]':	//Liste des choix du sondage
             return strRegexp['choice'];
         break;
 
-        case 'email':
+        case 'email':	//Adresse mail
             return strRegexp['email'];
         break;
 
@@ -158,14 +175,14 @@ function getRegexp(element, call)
 
         break;
 
-        case 'firstNameUser':
+        case 'firstNameUser':	//Prénom de l'utilisateur
             return strRegexp['firstname'];
         break;
-        case 'lastNameUser':
+        case 'lastNameUser':	//Nom de l'utilisateur
             return strRegexp['lastname'];
         break;
 
-        case 'newPassword':
+        case 'newPassword':		//Changement du mot de passe
             
             if(element.value == '')
                 newPassword = null;
@@ -176,7 +193,7 @@ function getRegexp(element, call)
             
             return null;
         break;
-        case 'passwordConfirm':
+        case 'passwordConfirm':	//Confirmation de changement du mot de passe
             if(newPassword)
             {
                 return strRegexp['default'];
@@ -197,6 +214,7 @@ function getRegexp(element, call)
 
 }
 
+//Retourne le style de l'élément
 function getStyleProperty(element, styleProperty)
 {
  
