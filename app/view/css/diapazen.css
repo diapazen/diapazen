@@ -141,6 +141,12 @@ footer ul li
     border-right: 1px solid #919191;
 }
 
+footer #logo_isen
+{
+    width: 150px;
+    vertical-align: -5px;
+}
+
 .white_bg
 {
     background-color: #ffffff;

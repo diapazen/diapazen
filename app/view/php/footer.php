@@ -36,6 +36,7 @@
 		        <!-- <li><a class="link" href="#">Contact</a></li> -->
 		    </ul>
 		    <p class="text">© <?php echo date('Y'); ?> Diapazen</p>
+		    <img id="logo_isen" src="<?php $this->getPath('media/pictures/logo_isen.png'); ?>" alt="ISEN Toulon">
 		</footer>
 
     </body>
