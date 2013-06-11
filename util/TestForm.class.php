@@ -46,7 +46,7 @@ class TestForm
 		'choice' 			=> 		'#^[a-zA-Zéèôïëñ0-9\s]{3,}$#',
 		'firstname'			=>		'#^[a-zA-Zéèôïëñ-]{3,}$#',
 		'lastName'			=>		'#^[a-zA-Zéèôïëñ-]{3,}$#',		
-		'voteName'			=>		'#^[a-zA-Zéèôïëñ0-9\s]{3,}$#',		
+		'voteName'			=>		'#^[a-zA-Zéèôïëñ0-9][a-zA-Zéèôïëñ0-9\s]{2,}$#',		
 		'pollUrl'			=>		'#^[a-zA-Z0-9]{10}$#');		
 
 	/**

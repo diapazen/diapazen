@@ -427,7 +427,7 @@ class PollController extends Controller
 				// Ajout d'un vote
 				if (isset($_POST['value']))
 				{
-					if (!empty($_POST['value']) && isset($_POST['choiceId']))
+					if (TestForm::testRegexp('voteName', $_POST['value']) && isset($_POST['choiceId']))
 					{
 						foreach($_POST['choiceId'] as $choice)
 						{
