@@ -24,7 +24,7 @@
  */
 
     // fixe un bug de la documentation
-    namespace ns;
+    // namespace ns;
     // fixe un bug de la documentation
 ?>
 
