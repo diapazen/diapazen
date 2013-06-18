@@ -31,12 +31,10 @@ Diapazen est libre et gratuit. Il est distribué dans les termes de la license [
 
 2. Ouvrir le fichier de configuration de Diapazen `Config.class.php` dans le dossier *config*
 
- * Modifier les paramètres de connexion à la base de données
- 
- * Configurer le serveur SMTP pour l'envoi d'emails
+3. Modifier les paramètres de connexion à la base de données
 
-3. Et c'est tout ! Créez un sondage pour commencer à utiliser Diapazen
+4. Et c'est tout ! Créez un sondage pour commencer à utiliser Diapazen
     
 ## Documentation
 
-La documentation technique est incluse dans le code source. Pour générer la documentation, vous devez installer [phpDocumentator](http://www.phpdoc.org).
+La documentation technique est incluse dans le code source. Pour générer la documentation, vous devez installer [phpDocumentor2](http://www.phpdoc.org).
